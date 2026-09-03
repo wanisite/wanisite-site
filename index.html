@@ -84,10 +84,31 @@
   #flip-word{display:inline-block;color:var(--t);font-style:italic;font-family:var(--serif);transition:opacity .3s ease, transform .3s ease;}
   #flip-word.flip{opacity:0;transform:translateY(6px);}
   .hero-sub{font-size:16px;line-height:1.7;color:var(--text2);max-width:50ch;margin:22px 0 30px 0;}
-  .hero-badges{display:flex;gap:10px 18px;flex-wrap:wrap;margin-bottom:32px;}
-  .hb{font-family:var(--mono);font-size:11.5px;color:rgba(216,238,238,.65);display:flex;align-items:center;gap:6px;}
-  .hb::before{content:'✓';color:var(--t);}
+  .hero-left{position:relative;padding-bottom:64px;}
   .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* floating service icons — overlap the bottom-left of the hero copy */
+  .float-icons{position:absolute;left:-4px;bottom:0;display:flex;align-items:flex-end;z-index:3;}
+  .ficon{width:54px;height:54px;border-radius:16px;background:var(--bg2);border:1px solid var(--borderl);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 24px 44px -16px rgba(0,0,0,.65);
+    animation:ficonbob 5s ease-in-out infinite;}
+  .ficon svg{width:24px;height:24px;stroke:var(--t);}
+  .ficon.f1{transform:rotate(-9deg);margin-right:-14px;z-index:1;animation-delay:0s;}
+  .ficon.f2{transform:rotate(5deg);z-index:3;margin-bottom:14px;animation-delay:.7s;}
+  .ficon.f3{transform:rotate(-4deg);margin-left:-14px;z-index:2;animation-delay:1.4s;}
+  @keyframes ficonbob{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-8px) rotate(var(--r,0deg));}}
+  .ficon.f1{--r:-9deg;}.ficon.f2{--r:5deg;}.ficon.f3{--r:-4deg;}
+  @media (prefers-reduced-motion:reduce){.ficon{animation:none;}}
+  @media (max-width:900px){.hero-left{padding-bottom:0;}.float-icons{position:static;margin-top:28px;}}
+
+  /* numbered proof pills, right column, above the code window */
+  .hero-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+  .hero-step{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;
+    background:rgba(0,201,201,.05);border:1px solid var(--border);}
+  .hero-step .num{width:24px;height:24px;border-radius:50%;background:rgba(0,201,201,.14);color:var(--t);
+    font-family:var(--mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .hero-step .txt{font-size:13px;color:var(--text2);}
+  .hero-step .txt b{color:#fff;font-weight:600;}
 
   /* code window */
   .hero-code-win{position:relative;z-index:1;background:var(--bg2);border:1px solid var(--borderl);
@@ -237,23 +258,33 @@
 <div class="dot-grid">
   <div class="wrap">
     <section class="hero">
-      <div>
+      <div class="hero-left">
         <div class="hero-prompt enter" style="animation-delay:.05s"><span>&gt;_</span><span>wanisite.fr</span></div>
         <h1 class="hero-h1 enter" style="animation-delay:.12s">On construit votre<br><span id="flip-word">site vitrine.</span></h1>
         <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
-        <div class="hero-badges enter" style="animation-delay:.28s">
-          <span class="hb">Diagnostic gratuit</span>
-          <span class="hb">Devis le jour même</span>
-          <span class="hb">Livraison en 7 jours</span>
-          <span class="hb">Le projet vous appartient</span>
-        </div>
-        <div class="hero-btns enter" style="animation-delay:.34s">
+        <div class="hero-btns enter" style="animation-delay:.28s">
           <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit</a>
           <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
+        </div>
+        <div class="float-icons enter" style="animation-delay:.4s">
+          <div class="ficon f1" title="Sites internet">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><circle cx="6.5" cy="6.5" r=".5" fill="var(--t)"></circle></svg>
+          </div>
+          <div class="ficon f2" title="CRM sur mesure">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"></ellipse><path d="M4 5.5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"></path><path d="M4 11.5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"></path></svg>
+          </div>
+          <div class="ficon f3" title="Campagnes Ads">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4L6 9H5a2 2 0 0 0-2 2Z"></path><path d="M14 8a4 4 0 0 1 0 8"></path><path d="M17 5a8 8 0 0 1 0 14"></path></svg>
+          </div>
         </div>
       </div>
 
       <div id="viz-mount" style="position:relative;">
+        <div class="hero-steps enter" style="animation-delay:.32s">
+          <div class="hero-step"><div class="num">1</div><div class="txt"><b>Diagnostic gratuit</b> — 30 min, sans engagement</div></div>
+          <div class="hero-step"><div class="num">2</div><div class="txt"><b>Devis le jour même</b> — prix fixe, aucune surprise</div></div>
+          <div class="hero-step"><div class="num">3</div><div class="txt"><b>Livraison en 7 jours</b> — le projet vous appartient</div></div>
+        </div>
         <div class="hero-code-win">
           <div class="hcw-bar">
             <div class="hcw-dot r"></div><div class="hcw-dot y"></div><div class="hcw-dot g"></div>
