@@ -1,0 +1,640 @@
+<title>Wanisite</title>
+<style>
+  :root{
+    --bg:#04080f; --bg2:#080e1c; --bg3:#0d1526;
+    --text:#d8eeee; --text2:rgba(216,238,238,.55); --text3:rgba(216,238,238,.28);
+    --t:#00C9C9; --td:#007f7f;
+    --border:rgba(0,201,201,.10); --borderl:rgba(0,201,201,.18); --tg:rgba(0,201,201,.15);
+    --light:#eaf6f6; --light-ink:#0c2030; --light-ink2:rgba(12,32,48,.6);
+    --sans:'Outfit',ui-sans-serif,system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --serif:'Playfair Display',serif;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  @media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth;} }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .italic{font-family:var(--serif);font-style:italic;color:var(--t);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+  @media (max-width:720px){.wrap{padding:0 20px;}}
+  ::selection{background:var(--t);color:var(--bg);}
+
+  /* orbs */
+  .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:.12;}
+  .orb1{width:600px;height:600px;background:var(--t);top:-200px;left:-200px;animation:orbmove1 22s ease-in-out infinite alternate;}
+  .orb2{width:420px;height:420px;background:#004488;bottom:-120px;right:-120px;animation:orbmove2 26s ease-in-out infinite alternate;}
+  @keyframes orbmove1{to{transform:translate(80px,60px);}}
+  @keyframes orbmove2{to{transform:translate(-60px,-40px);}}
+
+  .dot-grid{position:relative;background:var(--bg);}
+  .dot-grid::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(circle, rgba(0,201,201,.20) 1.2px, transparent 1.2px);
+    background-size:26px 26px;}
+
+  /* nav */
+  .navbar{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:18px 20px;}
+  .nav-pill{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 18px;border-radius:999px;
+    background:rgba(8,14,28,.72);border:1px solid var(--border);backdrop-filter:blur(14px);
+    transition:box-shadow .3s ease, border-color .3s ease;}
+  .navbar.stuck .nav-pill{box-shadow:0 12px 32px -12px rgba(0,201,201,.18);border-color:var(--borderl);}
+  .nav-mark{font-family:var(--mono);font-weight:700;font-size:13px;color:#fff;margin-right:10px;letter-spacing:.02em;}
+  .nav-links{display:flex;align-items:center;gap:2px;}
+  .nav-links a{font-size:13px;color:var(--text2);padding:8px 13px;border-radius:999px;transition:color .15s ease, background .15s ease;}
+  .nav-links a:hover{color:#fff;background:rgba(0,201,201,.08);}
+  .nav-links a.active{color:#fff;background:rgba(0,201,201,.12);}
+  @media (max-width:760px){.nav-links a.hide-sm{display:none;}}
+
+  /* buttons */
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;
+    background:linear-gradient(135deg, var(--t), var(--td));color:#04080f;font-size:13px;font-weight:700;
+    font-family:var(--sans);box-shadow:0 0 24px var(--tg);transition:transform .18s ease, box-shadow .18s ease;}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 34px rgba(0,201,201,.35);}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;
+    border:1px solid rgba(0,201,201,.25);color:var(--text2);background:rgba(0,201,201,.06);
+    font-size:13px;font-weight:600;font-family:var(--sans);transition:background .15s ease,color .15s ease;}
+  .btn-ghost:hover{background:rgba(0,201,201,.12);color:#fff;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--t);outline-offset:3px;}
+
+  /* reveal: transition-based (not animation-based), driven by a JS class.
+     Safe by construction — see the reveal script at the bottom: anything
+     already on screen at load is revealed synchronously (no rAF, no
+     waiting), a window 'load' pass catches late layout, and browsers
+     without IntersectionObserver (or reduced-motion) reveal everything
+     immediately. Nothing ever depends on a scroll happening. */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .rv.in{opacity:1;transform:none;}
+  .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+  .rv.d4{transition-delay:.32s}.rv.d5{transition-delay:.4s}.rv.d6{transition-delay:.48s}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+
+  .progress{position:fixed;left:0;top:0;height:2px;z-index:90;width:0;
+    background:linear-gradient(90deg,var(--td),var(--t));box-shadow:0 0 12px var(--tg);}
+
+  /* hero entrance: self-running on load, never gated on JS or scroll */
+  .enter{animation:enterup .7s cubic-bezier(.2,.7,.2,1) both;}
+  @keyframes enterup{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){.enter{animation:none;}}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 0.92fr;gap:40px;align-items:center;padding:44px 0 84px 0;position:relative;}
+  @media (max-width:900px){.hero{grid-template-columns:1fr;}}
+  .hero-prompt{font-family:var(--mono);font-size:12px;color:var(--t);margin-bottom:26px;display:flex;gap:8px;}
+  .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-1.5px;color:#fff;margin:0;}
+  #flip-word{display:inline-block;color:var(--t);font-style:italic;font-family:var(--serif);transition:opacity .3s ease, transform .3s ease;}
+  #flip-word.flip{opacity:0;transform:translateY(6px);}
+  .hero-sub{font-size:16px;line-height:1.7;color:var(--text2);max-width:50ch;margin:22px 0 30px 0;}
+  .hero-badges{display:flex;gap:10px 18px;flex-wrap:wrap;margin-bottom:32px;}
+  .hb{font-family:var(--mono);font-size:11.5px;color:rgba(216,238,238,.65);display:flex;align-items:center;gap:6px;}
+  .hb::before{content:'✓';color:var(--t);}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* code window */
+  .hero-code-win{position:relative;z-index:1;background:var(--bg2);border:1px solid var(--borderl);
+    border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(0,201,201,.08), 0 32px 64px rgba(0,0,0,.5);
+    opacity:1;
+    animation:enterup .7s cubic-bezier(.2,.7,.2,1) .4s both, bob 6s ease-in-out 1.1s infinite;}
+  @media (prefers-reduced-motion:reduce){.hero-code-win{animation:none;opacity:1;}}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .hcw-bar{padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;}
+  .hcw-dot{width:10px;height:10px;border-radius:50%;}
+  .hcw-dot.r{background:#ff5f56;}.hcw-dot.y{background:#ffbd2e;}.hcw-dot.g{background:#27c93f;}
+  .hcw-file{font-family:var(--mono);font-size:11px;color:var(--text3);margin-left:8px;}
+  .hcw-body{padding:20px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.85;}
+  .cl-num{display:inline-block;width:22px;color:rgba(216,238,238,.18);user-select:none;}
+  .cm{color:rgba(216,238,238,.35);}
+  .kw{color:#c792ea;}.fn{color:#82aaff;}.op{color:var(--text2);}
+  .pl{color:#8ffff4;}.str{color:#c3e88d;}.val{color:#ffcb6b;}
+
+  /* marquee */
+  .marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:22px 0;overflow:hidden;background:var(--bg2);position:relative;z-index:1;}
+  .marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 32s linear infinite;}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee-track span{font-family:var(--mono);font-size:13px;color:var(--text3);white-space:nowrap;}
+
+  /* sections */
+  .section{padding:88px 0;position:relative;z-index:1;}
+  .sec-tag{font-family:var(--mono);font-size:11px;color:var(--t);letter-spacing:1.5px;text-transform:uppercase;
+    margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .sec-tag::before{content:'//';color:var(--text3);}
+  .sec-tag.on-light{color:var(--td);}
+  .sec-tag.on-light::before{color:rgba(12,32,48,.3);}
+  .sec-h{font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.1;letter-spacing:-1.2px;color:#fff;margin:0 0 14px 0;}
+  .sec-h.on-light{color:var(--light-ink);}
+  .sec-p{font-size:15px;color:var(--text2);line-height:1.75;max-width:580px;margin:0 0 44px 0;}
+  .sec-p.on-light{color:var(--light-ink2);}
+
+  /* pain points (light section) */
+  .light-sec{background:var(--light);position:relative;z-index:1;}
+  .recog-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(12,32,48,.10);
+    border:1px solid rgba(12,32,48,.10);border-radius:12px;overflow:hidden;}
+  @media (max-width:680px){.recog-grid{grid-template-columns:1fr;}}
+  .recog-card{padding:30px;background:var(--light);position:relative;overflow:hidden;transition:background .2s ease;}
+  .recog-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+    background:linear-gradient(90deg, transparent, var(--td), transparent);transition:left .4s ease;}
+  .recog-card:hover{background:#dff2f2;}
+  .recog-card:hover::after{left:100%;}
+  .recog-card .ic{font-size:20px;margin-bottom:10px;}
+  .recog-card h3{font-size:16px;font-weight:700;color:var(--light-ink);margin:0 0 8px 0;letter-spacing:-.3px;}
+  .recog-card p{font-size:13.5px;color:rgba(12,32,48,.62);line-height:1.7;margin:0;}
+  .recog-footer{margin-top:22px;padding:22px 28px;background:rgba(12,32,48,.05);border:1px solid rgba(12,32,48,.10);
+    border-radius:10px;font-size:14px;color:var(--light-ink);font-weight:600;}
+
+  /* ownership list */
+  .own-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;}
+  @media (max-width:680px){.own-list{grid-template-columns:1fr;}}
+  .own-item{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:var(--text2);line-height:1.6;padding:14px 0;border-top:1px solid var(--border-soft, var(--border));}
+  .own-item::before{content:'✓';color:var(--t);font-weight:700;flex-shrink:0;}
+
+  /* process */
+  .proc-list{display:flex;flex-direction:column;}
+  .proc-row{display:grid;grid-template-columns:60px 1fr auto;gap:22px;align-items:center;padding:26px 0;border-top:1px solid var(--border);}
+  .proc-row:last-child{border-bottom:1px solid var(--border);}
+  .proc-num{font-family:var(--mono);font-size:13px;color:var(--t);border:1px solid var(--borderl);
+    border-radius:999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;}
+  .proc-body h3{font-size:17px;font-weight:700;color:#fff;margin:0 0 6px 0;}
+  .proc-body p{font-size:13.5px;color:var(--text2);margin:0;line-height:1.6;}
+  .proc-meta{font-family:var(--mono);font-size:11px;color:var(--text3);text-align:right;max-width:180px;}
+  @media (max-width:720px){.proc-row{grid-template-columns:44px 1fr;}.proc-meta{display:none;}}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  @media (max-width:720px){.stats{grid-template-columns:1fr;}}
+  .stat{background:var(--bg2);padding:30px;}
+  .stat .l{font-family:var(--mono);font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+  .stat .n{font-family:var(--sans);font-weight:900;font-size:34px;color:#fff;letter-spacing:-1px;}
+  .stat .n em{font-style:normal;color:var(--t);}
+  .stat .s{font-size:12.5px;color:var(--text2);margin-top:6px;}
+
+  /* pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  @media (max-width:900px){.price-grid{grid-template-columns:1fr;}}
+  .price-card{background:var(--bg2);padding:32px 28px;display:flex;flex-direction:column;}
+  .price-card .pt{font-family:var(--mono);font-size:11px;color:var(--t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
+  .price-card h3{font-size:21px;font-weight:800;color:#fff;margin:0 0 12px 0;}
+  .price-card p{font-size:13.5px;color:var(--text2);line-height:1.65;margin:0 0 20px 0;flex:1;}
+  .price-card .meta{font-family:var(--mono);font-size:11px;color:var(--text3);border-top:1px solid var(--border);padding-top:16px;}
+
+  /* portfolio */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  @media (max-width:720px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg2);padding:28px;display:block;position:relative;overflow:hidden;transition:background .2s ease;}
+  .card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+    background:linear-gradient(90deg, transparent, var(--t), transparent);transition:left .4s ease;}
+  .card:hover{background:var(--bg3);}
+  .card:hover::after{left:100%;}
+  .status{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:16px;}
+  .status i{width:6px;height:6px;border-radius:50%;background:var(--text3);display:inline-block;}
+  .status.live i{background:var(--t);}
+  .status.live{color:var(--t);}
+  .card h3{font-family:var(--sans);font-weight:700;font-size:18px;color:#fff;margin:0 0 8px 0;}
+  .card p{font-size:13.5px;line-height:1.6;color:var(--text2);margin:0 0 16px 0;}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;}
+  .tag{font-family:var(--mono);font-size:10px;padding:4px 8px;border:1px solid var(--border);border-radius:5px;color:var(--text3);}
+  .more-note{text-align:center;font-size:13px;color:var(--text3);margin-top:26px;}
+
+  /* differentiation tags */
+  .tech-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
+  .tech-pill{font-family:var(--mono);font-size:12px;padding:8px 16px;border:1px solid var(--border);border-radius:999px;color:var(--text2);}
+
+  /* cta */
+  .cta-band{border-radius:20px;border:1px solid var(--borderl);background:var(--bg2);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+  .cta-h{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin:0 0 20px 0;}
+  .cta-p{font-size:15px;color:var(--text2);margin:0 0 32px 0;}
+  .cta-btns{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;}
+
+  footer{display:flex;align-items:center;justify-content:space-between;padding:34px 0 56px 0;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;position:relative;z-index:1;}
+  footer .mono{font-family:var(--mono);font-size:12px;color:var(--text3);}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<div class="progress" id="progress"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-pill">
+    <div class="nav-mark">&gt;_ wanisite</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#services" data-nav="services" class="hide-sm">Services</a>
+      <a href="#tarifs" data-nav="tarifs" class="hide-sm">Tarifs</a>
+      <a href="#realisations" data-nav="realisations" class="hide-sm">Réalisations</a>
+      <a class="btn-ghost" href="https://wa.me/33624547342" target="_blank" rel="noopener" style="padding:8px 16px;">Diagnostic gratuit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="dot-grid">
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="hero-prompt enter" style="animation-delay:.05s"><span>&gt;_</span><span>wanisite.fr</span></div>
+        <h1 class="hero-h1 enter" style="animation-delay:.12s">On construit votre<br><span id="flip-word">site vitrine.</span></h1>
+        <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
+        <div class="hero-badges enter" style="animation-delay:.28s">
+          <span class="hb">Diagnostic gratuit</span>
+          <span class="hb">Devis le jour même</span>
+          <span class="hb">Livraison en 7 jours</span>
+          <span class="hb">Le projet vous appartient</span>
+        </div>
+        <div class="hero-btns enter" style="animation-delay:.34s">
+          <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit</a>
+          <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
+        </div>
+      </div>
+
+      <div id="viz-mount" style="position:relative;">
+        <div class="hero-code-win">
+          <div class="hcw-bar">
+            <div class="hcw-dot r"></div><div class="hcw-dot y"></div><div class="hcw-dot g"></div>
+            <span class="hcw-file">wanisite.config.js</span>
+          </div>
+          <div class="hcw-body">
+            <div><span class="cl-num">1</span><span class="cm">// Votre projet en 4 étapes</span></div>
+            <div><span class="cl-num">2</span></div>
+            <div><span class="cl-num">3</span><span class="kw">const </span><span class="fn">projet</span><span class="op"> = {</span></div>
+            <div><span class="cl-num">4</span><span style="padding-left:16px"><span class="pl">diagnostic</span><span class="op">: </span><span class="str">"gratuit"</span><span class="op">,</span></span></div>
+            <div><span class="cl-num">5</span><span style="padding-left:16px"><span class="pl">devis</span><span class="op">: </span><span class="str">"le jour même"</span><span class="op">,</span></span></div>
+            <div><span class="cl-num">6</span><span style="padding-left:16px"><span class="pl">livraison</span><span class="op">: </span><span class="str">"7 jours"</span><span class="op">,</span></span></div>
+            <div><span class="cl-num">7</span><span style="padding-left:16px"><span class="pl">propriété</span><span class="op">: </span><span class="val">"vous"</span><span class="op">,</span></span></div>
+            <div><span class="cl-num">8</span><span style="padding-left:16px"><span class="pl">surprises</span><span class="op">: </span><span class="val">false</span></span></div>
+            <div><span class="cl-num">9</span><span class="op">}</span></div>
+            <div><span class="cl-num">10</span></div>
+            <div><span class="cl-num">11</span><span class="fn">launch</span><span class="op">(</span><span class="fn">projet</span><span class="op">)</span></div>
+            <div><span class="cl-num">12</span><span class="cm">// → résultats mesurables</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>IWANA Formation</span><span>·</span><span>ELITECARS</span><span>·</span><span>Lumina Lab</span><span>·</span><span>Halim Clim</span><span>·</span><span>MAD Transport</span><span>·</span><span>Nassi Dératisation</span><span>·</span><span>Clean &amp; Polish</span><span>·</span><span>Thomcut Barber</span><span>·</span><span>Street Car Wash</span><span>·</span><span>Aesthetic Men</span><span>·</span>
+    <span>IWANA Formation</span><span>·</span><span>ELITECARS</span><span>·</span><span>Lumina Lab</span><span>·</span><span>Halim Clim</span><span>·</span><span>MAD Transport</span><span>·</span><span>Nassi Dératisation</span><span>·</span><span>Clean &amp; Polish</span><span>·</span><span>Thomcut Barber</span><span>·</span><span>Street Car Wash</span><span>·</span><span>Aesthetic Men</span><span>·</span>
+  </div>
+</div>
+
+<section class="light-sec">
+  <div class="wrap section">
+    <div class="rv">
+      <div class="sec-tag on-light">Votre situation</div>
+      <h2 class="sec-h on-light">Vous vous <span class="italic" style="color:var(--td)">reconnaissez ?</span></h2>
+      <p class="sec-p on-light">On a aidé des dizaines de commerces locaux à exister en ligne. Voilà ce qu'on entend le plus souvent.</p>
+    </div>
+    <div class="recog-grid rv">
+      <div class="recog-card rv d1"><div class="ic">😤</div><h3>Pas de site, ou il est moche</h3><p>Vos concurrents sont en ligne. Vous, non.</p></div>
+      <div class="recog-card rv d2"><div class="ic">📉</div><h3>Vos pubs ne rapportent rien</h3><p>Vous avez essayé seul. Budget dépensé, zéro résultat.</p></div>
+      <div class="recog-card rv d3"><div class="ic">🛒</div><h3>Boutique qui ne vend pas</h3><p>Les visiteurs arrivent et repartent. C'est la conversion, pas le produit.</p></div>
+      <div class="recog-card rv d4"><div class="ic">⏱️</div><h3>Pas le temps de tout gérer</h3><p>Votre métier, c'est pas le webdesign. C'est pour ça qu'on est là.</p></div>
+    </div>
+    <div class="recog-footer rv">💡 La solution commence par un diagnostic.</div>
+  </div>
+</section>
+
+<div class="wrap section" id="services">
+  <div class="rv">
+    <div class="sec-tag">Ce qui change</div>
+    <h2 class="sec-h">Vous récupérez tout. <span class="italic">Enfin.</span></h2>
+    <p class="sec-p">Ailleurs, vous louez un site que vous ne pouvez pas quitter sans tout repayer. Chez Wanisite, c'est l'inverse.</p>
+  </div>
+  <div class="own-list rv">
+    <div class="own-item rv d1">Accès total dès livraison. Zéro abonnement.</div>
+    <div class="own-item rv d2">Hébergement à votre nom. Vous contrôlez tout.</div>
+    <div class="own-item rv d3">Date garantie. Prix fixe. Devis le jour même.</div>
+    <div class="own-item rv d4">Corrections sans surcoût après livraison.</div>
+    <div class="own-item rv d5">Vous comprenez chaque décision.</div>
+    <div class="own-item rv d6">Vous parlez directement au dev.</div>
+  </div>
+</div>
+
+<div class="wrap section" style="padding-top:0;">
+  <div class="rv">
+    <div class="sec-tag">Comment ça marche</div>
+    <h2 class="sec-h">De zéro à en ligne <span class="italic">en 7 jours.</span></h2>
+  </div>
+  <div class="proc-list rv">
+    <div class="proc-row rv d1">
+      <div class="proc-num">01</div>
+      <div class="proc-body"><h3>🔍 Diagnostic gratuit</h3><p>30 min. On identifie ce dont vous avez besoin.</p></div>
+      <div class="proc-meta">30 minutes · Gratuit · Sans engagement</div>
+    </div>
+    <div class="proc-row rv d2">
+      <div class="proc-num">02</div>
+      <div class="proc-body"><h3>📋 Devis le jour même</h3><p>Prix fixe par WhatsApp. Aucune surprise.</p></div>
+      <div class="proc-meta">50% au départ · 50% à la livraison</div>
+    </div>
+    <div class="proc-row rv d3">
+      <div class="proc-num">03</div>
+      <div class="proc-body"><h3>🔧 On construit</h3><p>Vous validez chaque étape. Livraison en 7 jours.</p></div>
+      <div class="proc-meta">Livraison garantie en 7 jours</div>
+    </div>
+    <div class="proc-row rv d4">
+      <div class="proc-num">04</div>
+      <div class="proc-body"><h3>🚀 Livraison &amp; liberté</h3><p>Tous les accès à votre nom. Vous êtes libre.</p></div>
+      <div class="proc-meta">Accès total · Zéro dépendance</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap section" style="padding-top:0;">
+  <div class="rv">
+    <div class="sec-tag">Résultats mesurés</div>
+    <h2 class="sec-h">Pas de promesses. <span class="italic">Des chiffres.</span></h2>
+  </div>
+  <div class="stats rv">
+    <div class="stat rv d1"><div class="l">Meta Ads — Aesthetic Men</div><div class="n"><em class="cnt" data-target="51">0</em> appels</div><div class="s">en 9 jours · 2,39&nbsp;€/appel</div></div>
+    <div class="stat rv d2"><div class="l">Meta Ads — Clean &amp; Polish</div><div class="n"><em class="cnt" data-target="108">0</em> appels</div><div class="s">en 6 jours · 1,49&nbsp;€/appel</div></div>
+    <div class="stat rv d3"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em> prospects</div><div class="s">en 10 jours · + automation Telegram</div></div>
+  </div>
+</div>
+
+<div class="wrap section" id="tarifs" style="padding-top:0;">
+  <div class="rv">
+    <div class="sec-tag">Nos formules</div>
+    <h2 class="sec-h">Choisissez votre <span class="italic">formule.</span></h2>
+    <p class="sec-p">Prix clair, délai garanti, aucun abonnement caché. Vous ne savez pas laquelle choisir ? Le diagnostic est là pour ça.</p>
+  </div>
+  <div class="price-grid rv">
+    <div class="price-card rv d1">
+      <div class="pt">Site vitrine</div>
+      <h3>Présence en ligne</h3>
+      <p>Site pro responsive, fiche Google Business, référencement local, formulaire de contact. En 7 jours, vos clients vous trouvent.</p>
+      <div class="meta">Livraison en 7 jours</div>
+    </div>
+    <div class="price-card rv d2">
+      <div class="pt">E-commerce</div>
+      <h3>Boutique en ligne</h3>
+      <p>Boutique complète, agent fournisseur connecté, vidéos UGC IA, tunnel de vente optimisé. Vous encaissez, on gère tout.</p>
+      <div class="meta">Livraison en 10 jours</div>
+    </div>
+    <div class="price-card rv d3">
+      <div class="pt">Réservation / CRM</div>
+      <h3>Système sur mesure</h3>
+      <p>Réservation en ligne 24h/24, ou CRM multi-établissement pour une structure avec plusieurs sites, rôles et stock.</p>
+      <div class="meta">Livraison en 10 jours</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap section" id="realisations" style="padding-top:0;">
+  <div class="rv">
+    <div class="sec-tag">Réalisations</div>
+    <h2 class="sec-h">Ce qu'on a <span class="italic">livré.</span></h2>
+    <p class="sec-p">Des projets réels, livrés dans les délais, avec des résultats concrets et vérifiables.</p>
+  </div>
+  <div class="grid rv">
+    <a class="card rv d1" href="https://elite-car-silk.vercel.app">
+      <div class="status live"><i></i>En ligne depuis 08/2026</div>
+      <h3>ELITECARS</h3>
+      <p>CRM de location de véhicules — signature électronique, contrat PDF fidèle aux CGL, disponibilité en temps réel.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+    </a>
+    <a class="card rv d2" href="https://thomcutbarber.thomcutbarber.fr/login">
+      <div class="status live"><i></i>En production</div>
+      <h3>Thomcut Barber</h3>
+      <p>CRM franchise multi-salon — rôles, planning, stock, formations. 55 migrations appliquées.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+    </a>
+    <a class="card rv d3" href="https://street-carwash.fr">
+      <div class="status live"><i></i>En ligne</div>
+      <h3>Street Car Wash</h3>
+      <p>Tunnel de réservation en 5 étapes, acompte PayPal, confirmation automatique, Calendly.</p>
+      <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
+    </a>
+    <a class="card rv d4" href="https://cleanandpolish.fr">
+      <div class="status live"><i></i>En ligne</div>
+      <h3>Clean &amp; Polish</h3>
+      <p>Site vitrine + campagne Meta Ads orientée appels — 108 appels en 6 jours à 1,49&nbsp;€/appel.</p>
+      <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+    </a>
+    <a class="card rv d5" href="https://aestheticmenparis.com">
+      <div class="status live"><i></i>En ligne</div>
+      <h3>Aesthetic Men</h3>
+      <p>Site vitrine + campagne Meta Ads orientée appels — 51 appels en 9 jours à 2,39&nbsp;€/appel.</p>
+      <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+    </a>
+    <a class="card rv d6" href="https://a2d-distribution.fr">
+      <div class="status live"><i></i>En ligne</div>
+      <h3>A2D Distribution</h3>
+      <p>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</p>
+      <div class="tags"><span class="tag">WordPress</span></div>
+    </a>
+  </div>
+  <p class="more-note rv">+ une vingtaine d'autres sites livrés (auto-école, dératisation, rénovation, e-commerce...).</p>
+</div>
+
+<div class="wrap section" style="padding-top:0;">
+  <div class="rv">
+    <div class="sec-tag">Pourquoi nous</div>
+    <h2 class="sec-h">Un seul interlocuteur. <span class="italic">Pas une agence.</span></h2>
+    <p class="sec-p">Même scénario partout : une agence, des semaines d'attente, un site incompréhensible avec abonnement mensuel. Chez Wanisite, vous parlez directement à la personne qui code.</p>
+    <div class="tech-row">
+      <span class="tech-pill">CRM sur mesure</span>
+      <span class="tech-pill">Shopify</span>
+      <span class="tech-pill">WordPress</span>
+      <span class="tech-pill">Meta Ads</span>
+      <span class="tech-pill">SEO</span>
+      <span class="tech-pill">UGC IA</span>
+      <span class="tech-pill">Automation</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap section">
+  <div class="cta-band rv">
+    <div class="sec-tag" style="justify-content:center;">Prêt ?</div>
+    <h2 class="cta-h">Prêt à débloquer<br><span class="italic">votre business ?</span></h2>
+    <p class="cta-p">On vous dit honnêtement si on peut vous aider. Devis le jour même.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit</a>
+      <a class="btn-ghost" href="mailto:contact@wanisite.fr">contact@wanisite.fr</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="nav-mark" style="color:var(--text2);">&gt;_ wanisite.fr</div>
+    <div class="mono">© 2026 · contact@wanisite.fr · +33 6 24 54 73 42</div>
+  </footer>
+</div>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap">
+
+<script>
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // sticky nav shrink state (purely cosmetic, never hides content)
+  var nav = document.getElementById('navbar');
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        nav.classList.toggle('stuck', window.scrollY > 30);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // scroll progress bar
+  var bar = document.getElementById('progress');
+  var pTicking = false;
+  function updateProgress(){
+    var h = document.documentElement;
+    var scrollable = h.scrollHeight - h.clientHeight;
+    var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    bar.style.width = pct + '%';
+    pTicking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!pTicking){ requestAnimationFrame(updateProgress); pTicking = true; }
+  });
+  updateProgress();
+
+  // active nav link while scrolling through sections
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navLinks a[data-nav]'));
+  var navTargets = navLinks.map(function(a){ return document.getElementById(a.dataset.nav); }).filter(Boolean);
+  function updateActiveNav(){
+    var pos = window.scrollY + window.innerHeight * 0.3;
+    var current = null;
+    navTargets.forEach(function(sec){ if(sec.offsetTop <= pos) current = sec.id; });
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.dataset.nav === current); });
+  }
+  window.addEventListener('scroll', function(){ requestAnimationFrame(updateActiveNav); });
+  updateActiveNav();
+
+  // reveal-on-scroll: same safe pattern throughout — nothing ever depends
+  // on a scroll actually happening for content to become visible.
+  var revealItems = document.querySelectorAll('.rv');
+  if(reduced || !('IntersectionObserver' in window)){
+    revealItems.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      });
+    }, window.matchMedia('(max-width:900px)').matches
+         ? {threshold:0.04, rootMargin:'0px 0px 14% 0px'}
+         : {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revealItems.forEach(function(el){ io.observe(el); });
+
+    // Anything already on screen at load appears immediately — called
+    // directly, not inside requestAnimationFrame (rAF doesn't fire while
+    // the tab starts in the background, which would leave the page missing
+    // its own first screen).
+    var revealVisible = function(){
+      var h = window.innerHeight;
+      revealItems.forEach(function(el){
+        if(el.classList.contains('in')) return;
+        var r = el.getBoundingClientRect();
+        if(r.top < h && r.bottom > 0){ el.classList.add('in'); io.unobserve(el); }
+      });
+    };
+    revealVisible();
+    window.addEventListener('load', revealVisible);
+  }
+
+  // stat counters: count up once their tile is revealed
+  var counters = document.querySelectorAll('.cnt');
+  if(reduced){
+    counters.forEach(function(el){ el.textContent = el.dataset.target; });
+  } else if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        cio.unobserve(entry.target);
+        var el = entry.target;
+        var target = parseInt(el.dataset.target, 10) || 0;
+        var start = performance.now();
+        var dur = 1100;
+        function step(now){
+          var p = Math.min(1, (now - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target);
+          if(p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, {threshold:0.4});
+    counters.forEach(function(el){ cio.observe(el); });
+  } else {
+    counters.forEach(function(el){ el.textContent = el.dataset.target; });
+  }
+
+  // flip word
+  if(!reduced){
+    var words = ['site vitrine.','boutique en ligne.','CRM sur mesure.','campagne Ads.'];
+    var i = 0;
+    var el = document.getElementById('flip-word');
+    setInterval(function(){
+      el.classList.add('flip');
+      setTimeout(function(){
+        i = (i+1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('flip');
+      }, 300);
+    }, 2600);
+  }
+
+  // three.js ambient turquoise particle field behind hero
+  try{
+    if(typeof THREE === 'undefined') throw new Error('no three');
+    var mount = document.getElementById('viz-mount');
+    var w = mount.clientWidth || 480, h = mount.clientHeight || 480;
+
+    var canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.inset = '-60px';
+    canvas.style.zIndex = '0';
+    canvas.style.pointerEvents = 'none';
+    mount.style.position = 'relative';
+    mount.insertBefore(canvas, mount.firstChild);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, (w+120)/(h+120), 0.1, 100);
+    camera.position.z = 6;
+
+    var renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setSize(w+120, h+120);
+
+    var count = 90;
+    var positions = new Float32Array(count*3);
+    for(var p=0;p<count;p++){
+      positions[p*3] = (Math.random()-0.5)*9;
+      positions[p*3+1] = (Math.random()-0.5)*9;
+      positions[p*3+2] = (Math.random()-0.5)*4;
+    }
+    var geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+    var mat = new THREE.PointsMaterial({color:0x00C9C9, size:0.05, transparent:true, opacity:0.55});
+    var points = new THREE.Points(geo, mat);
+    scene.add(points);
+
+    function onResize(){
+      var nw = mount.clientWidth || w, nh = mount.clientHeight || h;
+      camera.aspect = (nw+120)/(nh+120); camera.updateProjectionMatrix();
+      renderer.setSize(nw+120, nh+120);
+    }
+    window.addEventListener('resize', onResize);
+
+    function tick(){
+      requestAnimationFrame(tick);
+      if(!reduced) points.rotation.y += 0.0009;
+      renderer.render(scene, camera);
+    }
+    tick();
+  }catch(e){}
+})();
+</script>
