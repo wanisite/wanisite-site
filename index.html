@@ -10,7 +10,6 @@
     --text:#d8eeee; --text2:rgba(216,238,238,.55); --text3:rgba(216,238,238,.28);
     --t:#00C9C9; --td:#007f7f;
     --border:rgba(0,201,201,.10); --borderl:rgba(0,201,201,.18); --tg:rgba(0,201,201,.15);
-    --light:#eaf6f6; --light-ink:#0c2030; --light-ink2:rgba(12,32,48,.6);
     --sans:'Outfit',ui-sans-serif,system-ui,sans-serif;
     --mono:'JetBrains Mono',ui-monospace,monospace;
     --serif:'Playfair Display',serif;
@@ -222,28 +221,24 @@
   .sec-tag{font-family:var(--mono);font-size:11px;color:var(--t);letter-spacing:1.5px;text-transform:uppercase;
     margin-bottom:16px;display:flex;align-items:center;gap:8px;}
   .sec-tag::before{content:'//';color:var(--text3);}
-  .sec-tag.on-light{color:var(--td);}
-  .sec-tag.on-light::before{color:rgba(12,32,48,.3);}
   .sec-h{font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.1;letter-spacing:-1.2px;color:#fff;margin:0 0 14px 0;}
-  .sec-h.on-light{color:var(--light-ink);}
   .sec-p{font-size:15px;color:var(--text2);line-height:1.75;max-width:580px;margin:0 0 44px 0;}
-  .sec-p.on-light{color:var(--light-ink2);}
 
   /* pain points (light section) */
-  .light-sec{background:var(--light);position:relative;z-index:1;}
-  .recog-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(12,32,48,.10);
-    border:1px solid rgba(12,32,48,.10);border-radius:12px;overflow:hidden;}
+  .recog-sec{background:var(--bg);position:relative;z-index:1;}
+  .recog-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   @media (max-width:680px){.recog-grid{grid-template-columns:1fr;}}
-  .recog-card{padding:30px;background:var(--light);position:relative;overflow:hidden;transition:background .2s ease;}
+  .recog-card{padding:30px;background:var(--bg2);position:relative;overflow:hidden;transition:background .2s ease;}
   .recog-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
-    background:linear-gradient(90deg, transparent, var(--td), transparent);transition:left .4s ease;}
-  .recog-card:hover{background:#dff2f2;}
+    background:linear-gradient(90deg, transparent, var(--t), transparent);transition:left .4s ease;}
+  .recog-card:hover{background:var(--bg3);}
   .recog-card:hover::after{left:100%;}
   .recog-card .ic{font-size:20px;margin-bottom:10px;}
-  .recog-card h3{font-size:16px;font-weight:700;color:var(--light-ink);margin:0 0 8px 0;letter-spacing:-.3px;}
-  .recog-card p{font-size:13.5px;color:rgba(12,32,48,.62);line-height:1.7;margin:0;}
-  .recog-footer{margin-top:22px;padding:22px 28px;background:rgba(12,32,48,.05);border:1px solid rgba(12,32,48,.10);
-    border-radius:10px;font-size:14px;color:var(--light-ink);font-weight:600;}
+  .recog-card h3{font-size:16px;font-weight:700;color:#fff;margin:0 0 8px 0;letter-spacing:-.3px;}
+  .recog-card p{font-size:13.5px;color:var(--text2);line-height:1.7;margin:0;}
+  .recog-footer{margin-top:22px;padding:22px 28px;background:var(--bg2);border:1px solid var(--border);
+    border-radius:10px;font-size:14px;color:var(--text);font-weight:600;}
 
   /* ownership list */
   .own-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;}
@@ -471,12 +466,12 @@
   </div>
 </div>
 
-<section class="light-sec">
+<section class="recog-sec">
   <div class="wrap section">
     <div class="rv">
-      <div class="sec-tag on-light">Votre situation</div>
-      <h2 class="sec-h on-light">Vous vous <span class="italic" style="color:var(--td)">reconnaissez ?</span></h2>
-      <p class="sec-p on-light">On a aidé des dizaines de commerces locaux à exister en ligne. Voilà ce qu'on entend le plus souvent.</p>
+      <div class="sec-tag">Votre situation</div>
+      <h2 class="sec-h">Vous vous <span class="italic" style="color:var(--t)">reconnaissez ?</span></h2>
+      <p class="sec-p">On a aidé des dizaines de commerces locaux à exister en ligne. Voilà ce qu'on entend le plus souvent.</p>
     </div>
     <div class="recog-grid rv">
       <div class="recog-card rv d1"><div class="ic">😤</div><h3>Pas de site, ou il est moche</h3><p>Vos concurrents sont en ligne. Vous, non.</p></div>
