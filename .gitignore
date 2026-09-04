@@ -1,3 +1,4 @@
 .vercel
 _archive
 .DS_Store
+_artifact-build.html
