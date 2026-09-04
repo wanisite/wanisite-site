@@ -193,12 +193,6 @@
   .pl{color:#8ffff4;}.str{color:#c3e88d;}.val{color:#ffcb6b;}
 
   /* marquee */
-  .marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-    padding:22px 0;overflow:hidden;background:var(--bg2);position:relative;z-index:1;}
-  .marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 32s linear infinite;}
-  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
-  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .marquee-track span{font-family:var(--mono);font-size:13px;color:var(--text3);white-space:nowrap;}
 
   /* sections */
   .section{padding:88px 0;position:relative;z-index:1;}
@@ -397,17 +391,6 @@
           <a class="btn-primary" href="#rdv">⚡ Diagnostic gratuit</a>
           <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
         </div>
-        <div class="float-icons enter" style="animation-delay:.4s">
-          <div class="ficon f1" title="Sites internet">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L4.8 17.2c-.7 1.2.2 2.8 1.6 2.8h11.2c1.4 0 2.3-1.6 1.6-2.8L14 8.5V3"></path><path d="M7.5 14h9"></path></svg>
-          </div>
-          <div class="ficon f2" title="CRM sur mesure">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.2"></circle><circle cx="18" cy="7" r="2.2"></circle><circle cx="12" cy="17" r="2.2"></circle><path d="M8 8.2 10 15M16 8.2 14 15M8.2 7h7.6"></path></svg>
-          </div>
-          <div class="ficon f3" title="Campagnes Ads">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4L6 9H5a2 2 0 0 0-2 2Z"></path><path d="M14 8a4 4 0 0 1 0 8"></path><path d="M17 5a8 8 0 0 1 0 14"></path></svg>
-          </div>
-        </div>
       </div>
 
       <div id="viz-mount" style="position:relative;">
@@ -417,7 +400,6 @@
           <div class="hero-step"><div class="num">3</div><div class="txt"><b>Livraison en 7 jours</b> — le projet vous appartient</div></div>
         </div>
         <div class="hero-code-win">
-          <span class="lab-stamp">Échantillon validé</span>
           <div class="hcw-bar">
             <div class="hcw-dot r"></div><div class="hcw-dot y"></div><div class="hcw-dot g"></div>
             <span class="hcw-file">wanisite.config.js</span>
@@ -459,13 +441,6 @@
       <span class="trust-tile logo-streetcarwash" title="Street Car Wash" aria-hidden="true"></span>
       <span class="trust-tile logo-123permis" title="123 Permis" aria-hidden="true"></span>
     </div>
-  </div>
-</div>
-
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>IWANA Formation</span><span>·</span><span>ELITECARS</span><span>·</span><span>Lumina Lab</span><span>·</span><span>Halim Clim</span><span>·</span><span>MAD Transport</span><span>·</span><span>Nassi Dératisation</span><span>·</span><span>Clean &amp; Polish</span><span>·</span><span>Thomcut Barber</span><span>·</span><span>Street Car Wash</span><span>·</span><span>Aesthetic Men</span><span>·</span>
-    <span>IWANA Formation</span><span>·</span><span>ELITECARS</span><span>·</span><span>Lumina Lab</span><span>·</span><span>Halim Clim</span><span>·</span><span>MAD Transport</span><span>·</span><span>Nassi Dératisation</span><span>·</span><span>Clean &amp; Polish</span><span>·</span><span>Thomcut Barber</span><span>·</span><span>Street Car Wash</span><span>·</span><span>Aesthetic Men</span><span>·</span>
   </div>
 </div>
 
