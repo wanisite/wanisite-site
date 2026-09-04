@@ -127,7 +127,13 @@
     text-shadow:0 2px 18px rgba(4,8,15,.8), 0 1px 0 rgba(4,8,15,.5);}
   #flip-word.flip{opacity:0;transform:translateY(6px);}
   .hero-sub{font-size:16px;line-height:1.7;color:var(--text2);max-width:50ch;margin:22px 0 30px 0;}
-  .hero-left{position:relative;padding-bottom:64px;}
+  .hero-left{position:relative;padding-bottom:110px;}
+  .lab-vial{position:absolute;left:4px;bottom:0;width:38px;z-index:3;
+    animation:vialbob 5s ease-in-out infinite;
+    filter:drop-shadow(0 14px 24px rgba(0,201,201,.4));}
+  @keyframes vialbob{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-9px) rotate(-5deg);}}
+  @media (prefers-reduced-motion:reduce){.lab-vial{animation:none;}}
+  @media (max-width:900px){.lab-vial{position:static;margin-top:28px;transform:none;}}
   .hero-prompt,.hero-h1,.hero-sub,.hero-btns{position:relative;z-index:1;}
   .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
 
@@ -271,7 +277,7 @@
   /* portfolio */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   @media (max-width:720px){.grid{grid-template-columns:1fr;}}
-  .card{background:var(--bg2);padding:28px;display:block;position:relative;overflow:hidden;transition:background .2s ease;}
+  .card{background:var(--bg2);padding:28px;display:block;position:relative;overflow-x:hidden;overflow-y:visible;transition:background .2s ease;}
   .card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
     background:linear-gradient(90deg, transparent, var(--t), transparent);transition:left .4s ease;}
   .card:hover{background:var(--bg3);}
@@ -280,7 +286,12 @@
   .status i{width:6px;height:6px;border-radius:50%;background:var(--text3);display:inline-block;}
   .status.live i{background:var(--t);}
   .status.live{color:var(--t);}
-  .spec-no{position:absolute;top:22px;right:22px;font-family:var(--mono);font-size:10.5px;color:var(--text3);letter-spacing:.06em;}
+  /* specimen label — a small tag stuck to the card's top edge, like a
+     sample sticker, not a stamp floating over the artwork */
+  .spec-tag{position:absolute;top:-11px;right:22px;z-index:2;transform:rotate(-2.5deg);
+    background:var(--bg3);border:1px dashed var(--borderl);border-radius:4px 4px 3px 3px;
+    padding:4px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--t);
+    box-shadow:0 4px 12px -4px rgba(0,0,0,.6);}
   .card h3{font-family:var(--sans);font-weight:700;font-size:18px;color:#fff;margin:0 0 8px 0;}
   .card p{font-size:13.5px;line-height:1.6;color:var(--text2);margin:0 0 16px 0;}
   .tags{display:flex;gap:7px;flex-wrap:wrap;}
@@ -397,9 +408,30 @@
         <h1 class="hero-h1 enter" style="animation-delay:.12s"><span class="hl">On construit votre</span><br><span id="flip-word">site vitrine.</span></h1>
         <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
         <div class="hero-btns enter" style="animation-delay:.28s">
-          <a class="btn-primary" href="#rdv">⚡ Diagnostic gratuit</a>
+          <a class="btn-primary" href="#rdv">Diagnostic gratuit</a>
           <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
         </div>
+
+        <svg class="lab-vial enter" style="animation-delay:.42s" viewBox="0 0 60 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8ff5f5"></stop>
+              <stop offset="1" stop-color="#00a8a8"></stop>
+            </linearGradient>
+            <clipPath id="tubeClip">
+              <path d="M14 8 H46 V90 C46 112 40 129 30 129 C20 129 14 112 14 90 Z"></path>
+            </clipPath>
+          </defs>
+          <g clip-path="url(#tubeClip)">
+            <rect x="10" y="68" width="40" height="72" fill="url(#liquidGrad)"></rect>
+            <ellipse cx="30" cy="68" rx="16" ry="3" fill="#c8fbfb" opacity="0.7"></ellipse>
+          </g>
+          <circle cx="25" cy="100" r="2" fill="#d8fdfd" opacity="0.85"></circle>
+          <circle cx="35" cy="115" r="1.5" fill="#d8fdfd" opacity="0.6"></circle>
+          <circle cx="28" cy="82" r="1.2" fill="#d8fdfd" opacity="0.55"></circle>
+          <path d="M14 8 H46 V90 C46 112 40 129 30 129 C20 129 14 112 14 90 Z" stroke="rgba(216,238,238,.6)" stroke-width="1.8"></path>
+          <rect x="11" y="3.5" width="38" height="7" rx="2" stroke="rgba(216,238,238,.75)" stroke-width="1.8"></rect>
+        </svg>
       </div>
 
       <div id="viz-mount" style="position:relative;">
@@ -563,14 +595,14 @@
   </div>
   <div class="grid rv">
     <a class="card rv d1" href="https://elite-car-silk.vercel.app">
-      <span class="spec-no">N°01</span>
+      <span class="spec-tag">ÉCH. N°01</span>
       <div class="status live"><i></i>En ligne depuis 08/2026</div>
       <h3>ELITECARS</h3>
       <p>CRM de location de véhicules — signature électronique, contrat PDF fidèle aux CGL, disponibilité en temps réel.</p>
       <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
     </a>
     <a class="card rv d2" href="https://thomcutbarber.thomcutbarber.fr/login">
-      <span class="spec-no">N°02</span>
+      <span class="spec-tag">ÉCH. N°02</span>
       <div class="status live"><i></i>En production</div>
       <div class="card-logo logo-thomcut"></div>
       <h3>Thomcut Barber</h3>
@@ -578,7 +610,7 @@
       <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
     </a>
     <a class="card rv d3" href="https://streetcarwash.com">
-      <span class="spec-no">N°03</span>
+      <span class="spec-tag">ÉCH. N°03</span>
       <div class="status live"><i></i>En ligne</div>
       <div class="card-logo logo-streetcarwash"></div>
       <h3>Street Car Wash</h3>
@@ -586,7 +618,7 @@
       <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
     </a>
     <a class="card rv d4" href="https://cleanandpolish.fr">
-      <span class="spec-no">N°04</span>
+      <span class="spec-tag">ÉCH. N°04</span>
       <div class="status live"><i></i>En ligne</div>
       <div class="card-logo logo-cleanpolish"></div>
       <h3>Clean &amp; Polish</h3>
@@ -594,7 +626,7 @@
       <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
     </a>
     <a class="card rv d5" href="https://aestheticmenparis.com">
-      <span class="spec-no">N°05</span>
+      <span class="spec-tag">ÉCH. N°05</span>
       <div class="status live"><i></i>En ligne</div>
       <div class="card-logo logo-aestheticmen"></div>
       <h3>Aesthetic Men</h3>
@@ -602,7 +634,7 @@
       <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
     </a>
     <a class="card rv d6" href="https://a2ddistribution.com">
-      <span class="spec-no">N°06</span>
+      <span class="spec-tag">ÉCH. N°06</span>
       <div class="status live"><i></i>En ligne</div>
       <div class="card-logo logo-a2d"></div>
       <h3>A2D Distribution</h3>
@@ -611,7 +643,7 @@
     </a>
     <div class="card rv d1">
       <div class="status"><i></i>Livré</div>
-      <span class="spec-no">N°07</span>
+      <span class="spec-tag">ÉCH. N°07</span>
       <div class="card-logo logo-123permis"></div>
       <h3>123 Permis</h3>
       <p>Site vitrine pour une auto-école — présentation des formules, prise de contact.</p>
@@ -619,14 +651,14 @@
     </div>
     <div class="card rv d2">
       <div class="status"><i></i>En cours</div>
-      <span class="spec-no">N°08</span>
+      <span class="spec-tag">ÉCH. N°08</span>
       <h3>Jemil Barber</h3>
       <p>Cockpit de pilotage à distance pour un barbershop en équipe mixte salariés / indépendants.</p>
       <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
     </div>
     <div class="card rv d3">
       <div class="status"><i></i>En cours</div>
-      <span class="spec-no">N°09</span>
+      <span class="spec-tag">ÉCH. N°09</span>
       <h3>Equip'Food</h3>
       <p>Vitrine catalogue pour un fournisseur d'équipement CHR, bascule vers la vente en ligne en un réglage.</p>
       <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
@@ -658,7 +690,7 @@
     <h2 class="cta-h">Prêt à débloquer<br><span class="italic">votre business ?</span></h2>
     <p class="cta-p">On vous dit honnêtement si on peut vous aider. Devis le jour même — ou décrivez votre projet ci-dessous, réponse sous 24h.</p>
     <div class="cta-btns" style="margin-bottom:0;">
-      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit par WhatsApp</a>
+      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Diagnostic gratuit par WhatsApp</a>
     </div>
   </div>
 
