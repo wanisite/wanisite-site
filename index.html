@@ -103,18 +103,18 @@
   .hero{display:grid;grid-template-columns:1fr 0.92fr;gap:40px;align-items:center;padding:44px 0 84px 0;position:relative;}
   @media (max-width:900px){.hero{grid-template-columns:1fr;}}
   .hero-prompt{font-family:var(--mono);font-size:12px;color:var(--t);margin-bottom:26px;display:flex;gap:8px;}
-  .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-1.5px;margin:0;
-    position:relative;z-index:1;
-    background:linear-gradient(120deg, #ffffff 0%, #d8f9f9 30%, #6fe8e8 62%, #00C9C9 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 2px 26px rgba(0,201,201,.25));}
+  .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.32;letter-spacing:-1.5px;margin:0;
+    position:relative;z-index:1;color:#fff;}
+  .hero-h1 .hl{background:var(--t);color:#04141a;padding:3px 14px;border-radius:8px;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+    box-shadow:0 10px 34px -10px rgba(0,201,201,.55);}
   #flip-word{display:inline-block;color:var(--t);font-style:italic;font-family:var(--serif);transition:opacity .3s ease, transform .3s ease;}
   #flip-word.flip{opacity:0;transform:translateY(6px);}
   .hero-sub{font-size:16px;line-height:1.7;color:var(--text2);max-width:50ch;margin:22px 0 30px 0;}
   .hero-left{position:relative;padding-bottom:64px;}
   .hero-left::before{content:'';position:absolute;z-index:0;pointer-events:none;
     left:-40px;top:-60px;width:120%;height:280px;
-    background:radial-gradient(ellipse 75% 85% at 32% 48%, rgba(4,8,15,.66), rgba(4,8,15,.4) 55%, transparent 80%);}
+    background:radial-gradient(ellipse 75% 85% at 32% 52%, rgba(4,8,15,.4), rgba(4,8,15,.22) 55%, transparent 82%);}
   .hero-prompt,.hero-h1,.hero-sub,.hero-btns{position:relative;z-index:1;}
   .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
 
@@ -354,7 +354,7 @@
     <section class="hero">
       <div class="hero-left">
         <div class="hero-prompt enter" style="animation-delay:.05s"><span>&gt;_</span><span>wanisite.fr</span></div>
-        <h1 class="hero-h1 enter" style="animation-delay:.12s">On construit votre<br><span id="flip-word">site vitrine.</span></h1>
+        <h1 class="hero-h1 enter" style="animation-delay:.12s"><span class="hl">On construit votre</span><br><span id="flip-word">site vitrine.</span></h1>
         <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
         <div class="hero-btns enter" style="animation-delay:.28s">
           <a class="btn-primary" href="#rdv">⚡ Diagnostic gratuit</a>
