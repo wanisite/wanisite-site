@@ -46,23 +46,33 @@
   @media (prefers-reduced-motion:reduce){.hero-bg .silk,.hero-bg .glow{animation:none;}}
 
   /* nav */
-  .navbar{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:18px 20px;}
-  .nav-pill{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 18px;border-radius:999px;
-    background:rgba(8,14,28,.72);border:1px solid var(--border);backdrop-filter:blur(14px);
+  .navbar{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:20px 20px;}
+  .nav-pill{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 22px;border-radius:999px;
+    background:linear-gradient(180deg, rgba(0,201,201,.14), rgba(8,14,28,.82) 60%);
+    border:1px solid var(--border);backdrop-filter:blur(16px);box-shadow:0 20px 50px -24px rgba(0,0,0,.7);
     transition:box-shadow .3s ease, border-color .3s ease;}
-  .navbar.stuck .nav-pill{box-shadow:0 12px 32px -12px rgba(0,201,201,.18);border-color:var(--borderl);}
-  .nav-mark{font-family:var(--mono);font-weight:700;font-size:13px;color:#fff;margin-right:10px;letter-spacing:.02em;}
+  .navbar.stuck .nav-pill{box-shadow:0 12px 32px -12px rgba(0,201,201,.24);border-color:var(--borderl);}
+  .nav-mark{font-family:var(--mono);font-weight:700;font-size:14px;color:#fff;margin-right:14px;letter-spacing:.02em;}
   .nav-links{display:flex;align-items:center;gap:2px;}
-  .nav-links a{font-size:13px;color:var(--text2);padding:8px 13px;border-radius:999px;transition:color .15s ease, background .15s ease;}
+  .nav-links a{font-size:14px;color:var(--text2);padding:10px 16px;border-radius:999px;position:relative;transition:color .15s ease, background .15s ease;}
   .nav-links a:hover{color:#fff;background:rgba(0,201,201,.08);}
-  .nav-links a.active{color:#fff;background:rgba(0,201,201,.12);}
+  .nav-links a.active{color:#fff;}
+  .nav-links a.active::after{content:'';position:absolute;left:16px;right:16px;bottom:2px;height:2px;
+    background:var(--t);border-radius:2px;}
   @media (max-width:760px){.nav-links a.hide-sm{display:none;}}
 
   /* buttons */
-  .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;
-    background:linear-gradient(135deg, var(--t), var(--td));color:#04080f;font-size:13px;font-weight:700;
-    font-family:var(--sans);box-shadow:0 0 24px var(--tg);transition:transform .18s ease, box-shadow .18s ease;}
-  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 34px rgba(0,201,201,.35);}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;
+    position:relative;overflow:hidden;isolation:isolate;
+    background:linear-gradient(160deg, #7ff2f2 0%, var(--t) 42%, var(--td) 100%);
+    color:#04141a;font-size:13.5px;font-weight:700;
+    font-family:var(--sans);box-shadow:0 10px 30px -6px var(--tg), inset 0 1px 0 rgba(255,255,255,.5);
+    transition:transform .18s ease, box-shadow .18s ease;}
+  .btn-primary::before{content:'';position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 45%, transparent 60%);
+    transform:translateX(-120%);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 38px -6px rgba(0,201,201,.45), inset 0 1px 0 rgba(255,255,255,.5);}
+  .btn-primary:hover::before{transform:translateX(120%);transition:transform .7s ease;}
   .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;
     border:1px solid rgba(0,201,201,.25);color:var(--text2);background:rgba(0,201,201,.06);
     font-size:13px;font-weight:600;font-family:var(--sans);transition:background .15s ease,color .15s ease;}
@@ -93,7 +103,9 @@
   .hero{display:grid;grid-template-columns:1fr 0.92fr;gap:40px;align-items:center;padding:44px 0 84px 0;position:relative;}
   @media (max-width:900px){.hero{grid-template-columns:1fr;}}
   .hero-prompt{font-family:var(--mono);font-size:12px;color:var(--t);margin-bottom:26px;display:flex;gap:8px;}
-  .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-1.5px;color:#fff;margin:0;}
+  .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-1.5px;margin:0;
+    background:linear-gradient(135deg, #fff 0%, #fff 45%, #bdf5f5 75%, #7fe3e3 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
   #flip-word{display:inline-block;color:var(--t);font-style:italic;font-family:var(--serif);transition:opacity .3s ease, transform .3s ease;}
   #flip-word.flip{opacity:0;transform:translateY(6px);}
   .hero-sub{font-size:16px;line-height:1.7;color:var(--text2);max-width:50ch;margin:22px 0 30px 0;}
@@ -115,6 +127,11 @@
   @media (max-width:900px){.hero-left{padding-bottom:0;}.float-icons{position:static;margin-top:28px;}}
 
   /* numbered proof pills, right column, above the code window */
+  .trust-logos{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .trust-logos .tl{width:44px;height:44px;border-radius:50%;background-size:cover;background-position:center;
+    border:2px solid var(--bg2);box-shadow:0 6px 18px -6px rgba(0,0,0,.6);margin-left:-12px;}
+  .trust-logos .tl:first-child{margin-left:0;}
+  .trust-logos .tl-label{font-family:var(--mono);font-size:11.5px;color:var(--text2);margin-left:8px;}
   .hero-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
   .hero-step{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;
     background:rgba(0,201,201,.05);border:1px solid var(--border);}
@@ -247,6 +264,25 @@
 
   /* cta */
   .cta-band{border-radius:20px;border:1px solid var(--borderl);background:var(--bg2);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+
+  /* rdv form */
+  .form-card{border-radius:20px;border:1px solid var(--border);background:var(--bg2);padding:48px;max-width:720px;margin:0 auto;}
+  @media (max-width:640px){.form-card{padding:32px 24px;}}
+  .form-step{font-family:var(--mono);font-size:11px;color:var(--t);letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px 0;padding-top:28px;border-top:1px solid var(--border);}
+  .form-step:first-child{padding-top:0;border-top:none;}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){.field-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+  .field label{font-family:var(--mono);font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;}
+  .field input,.field select,.field textarea{
+    background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;
+    color:var(--text);font-family:var(--sans);font-size:14px;width:100%;transition:border-color .15s ease;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--t);}
+  .field textarea{min-height:96px;resize:vertical;font-family:var(--sans);}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300C9C9' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
+  .form-trust{text-align:center;font-size:12px;color:var(--text3);margin-top:18px;}
+  .form-submit{width:100%;justify-content:center;margin-top:8px;padding:15px 24px;font-size:14.5px;}
   .cta-h{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin:0 0 20px 0;}
   .cta-p{font-size:15px;color:var(--text2);margin:0 0 32px 0;}
   .cta-btns{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;}
@@ -266,7 +302,7 @@
       <a href="#services" data-nav="services" class="hide-sm">Services</a>
       <a href="#tarifs" data-nav="tarifs" class="hide-sm">Tarifs</a>
       <a href="#realisations" data-nav="realisations" class="hide-sm">Réalisations</a>
-      <a class="btn-ghost" href="https://wa.me/33624547342" target="_blank" rel="noopener" style="padding:8px 16px;">Diagnostic gratuit</a>
+      <a class="btn-primary" href="#rdv" style="padding:10px 18px;">Diagnostic gratuit</a>
     </div>
   </div>
 </nav>
@@ -315,7 +351,7 @@
         <h1 class="hero-h1 enter" style="animation-delay:.12s">On construit votre<br><span id="flip-word">site vitrine.</span></h1>
         <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
         <div class="hero-btns enter" style="animation-delay:.28s">
-          <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit</a>
+          <a class="btn-primary" href="#rdv">⚡ Diagnostic gratuit</a>
           <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
         </div>
         <div class="float-icons enter" style="animation-delay:.4s">
@@ -332,6 +368,14 @@
       </div>
 
       <div id="viz-mount" style="position:relative;">
+        <div class="trust-logos enter" style="animation-delay:.26s">
+          <span class="tl logo-thomcut" title="Thomcut Barber"></span>
+          <span class="tl logo-cleanpolish" title="Clean &amp; Polish"></span>
+          <span class="tl logo-aestheticmen" title="Aesthetic Men"></span>
+          <span class="tl logo-a2d" title="A2D Distribution"></span>
+          <span class="tl logo-streetcarwash" title="Street Car Wash"></span>
+          <span class="tl-label">+20 commerces nous font confiance</span>
+        </div>
         <div class="hero-steps enter" style="animation-delay:.32s">
           <div class="hero-step"><div class="num">1</div><div class="txt"><b>Diagnostic gratuit</b> — 30 min, sans engagement</div></div>
           <div class="hero-step"><div class="num">2</div><div class="txt"><b>Devis le jour même</b> — prix fixe, aucune surprise</div></div>
@@ -559,16 +603,65 @@
   </div>
 </div>
 
-<div class="wrap section">
-  <div class="cta-band rv">
+<div class="wrap section" id="rdv" style="padding-bottom:32px;">
+  <div class="rv" style="text-align:center;max-width:640px;margin:0 auto 44px auto;">
     <div class="sec-tag" style="justify-content:center;">Prêt ?</div>
     <h2 class="cta-h">Prêt à débloquer<br><span class="italic">votre business ?</span></h2>
-    <p class="cta-p">On vous dit honnêtement si on peut vous aider. Devis le jour même.</p>
-    <div class="cta-btns">
-      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit</a>
-      <a class="btn-ghost" href="mailto:contact@wanisite.fr">contact@wanisite.fr</a>
+    <p class="cta-p">On vous dit honnêtement si on peut vous aider. Devis le jour même — ou décrivez votre projet ci-dessous, réponse sous 24h.</p>
+    <div class="cta-btns" style="margin-bottom:0;">
+      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">⚡ Diagnostic gratuit par WhatsApp</a>
     </div>
   </div>
+
+  <form class="form-card rv" id="rdvForm">
+    <div class="form-step">01 — Vous</div>
+    <div class="field-grid">
+      <div class="field"><label for="f-prenom">Prénom</label><input id="f-prenom" name="prenom" type="text" required autocomplete="given-name"></div>
+      <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" type="text" required autocomplete="family-name"></div>
+    </div>
+    <div class="field"><label for="f-entreprise">Entreprise</label><input id="f-entreprise" name="entreprise" type="text" autocomplete="organization"></div>
+
+    <div class="form-step">02 — Vous joindre</div>
+    <div class="field-grid">
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+    </div>
+
+    <div class="form-step">03 — Votre projet</div>
+    <div class="field"><label for="f-type">Quel est votre projet ?</label>
+      <select id="f-type" name="type">
+        <option>Site vitrine</option>
+        <option>E-commerce</option>
+        <option>CRM sur mesure</option>
+        <option>Campagne Ads</option>
+        <option>Je ne sais pas encore</option>
+      </select>
+    </div>
+    <div class="field"><label for="f-desc">Décrivez votre projet</label><textarea id="f-desc" name="description" placeholder="Quelques lignes suffisent"></textarea></div>
+
+    <div class="form-step">04 — Calendrier &amp; budget</div>
+    <div class="field-grid">
+      <div class="field"><label for="f-quand">Quand voulez-vous lancer ?</label>
+        <select id="f-quand" name="quand">
+          <option>Dès que possible</option>
+          <option>D'ici 3 mois</option>
+          <option>Plus tard cette année</option>
+          <option>Je ne sais pas encore</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-budget">Budget estimé</label>
+        <select id="f-budget" name="budget">
+          <option>500 € → 1 500 €</option>
+          <option>1 500 € → 3 000 €</option>
+          <option>3 000 € → 5 000 €</option>
+          <option>5 000 € et +</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary form-submit">Recevoir mon audit offert →</button>
+    <p class="form-trust">Aucune carte requise · réponse sous 24h · 100% confidentiel</p>
+  </form>
 </div>
 
 <div class="wrap">
@@ -682,6 +775,30 @@
     counters.forEach(function(el){ cio.observe(el); });
   } else {
     counters.forEach(function(el){ el.textContent = el.dataset.target; });
+  }
+
+  // rdv form: no backend yet, so submit opens a pre-filled email to
+  // contact@wanisite.fr — the visitor's own mail client sends it.
+  var rdvForm = document.getElementById('rdvForm');
+  if(rdvForm){
+    rdvForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = function(name){ return (rdvForm.elements[name] && rdvForm.elements[name].value || '').trim(); };
+      var subject = 'Demande d\'audit — ' + (v('prenom') || 'nouveau projet');
+      var lines = [
+        'Prénom : ' + v('prenom'),
+        'Nom : ' + v('nom'),
+        'Entreprise : ' + v('entreprise'),
+        'Email : ' + v('email'),
+        'Téléphone : ' + v('tel'),
+        'Type de projet : ' + v('type'),
+        'Description : ' + v('description'),
+        'Quand : ' + v('quand'),
+        'Budget : ' + v('budget')
+      ];
+      var body = lines.join('\n');
+      window.location.href = 'mailto:contact@wanisite.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
   }
 
   // flip word
