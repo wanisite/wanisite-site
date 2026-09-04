@@ -113,10 +113,6 @@
   /* hero */
   .hero{display:grid;grid-template-columns:1fr 0.92fr;gap:40px;align-items:center;padding:44px 0 84px 0;position:relative;}
   @media (max-width:900px){.hero{grid-template-columns:1fr;padding:32px 0 40px 0;gap:32px;}}
-  .lab-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
-    color:var(--t);letter-spacing:.1em;text-transform:uppercase;padding:6px 12px 6px 8px;
-    border:1px dashed var(--borderl);border-radius:999px;margin-bottom:18px;}
-  .lab-tag svg{width:12px;height:12px;flex-shrink:0;}
   .hero-prompt{font-family:var(--mono);font-size:12px;color:var(--t);margin-bottom:26px;display:flex;gap:8px;}
   .hero-h1{font-family:var(--sans);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.32;letter-spacing:-1.5px;margin:0;
     position:relative;z-index:1;color:#fff;}
@@ -400,11 +396,7 @@
   <div class="wrap">
     <section class="hero">
       <div class="hero-left">
-        <div class="lab-tag enter" style="animation-delay:0s">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg>
-          Laboratoire digital
-        </div>
-        <div class="hero-prompt enter" style="animation-delay:.05s"><span>&gt;_</span><span>wanisite.fr</span></div>
+        <div class="hero-prompt enter" style="animation-delay:0s"><span>&gt;_</span><span>wanisite.fr</span></div>
         <h1 class="hero-h1 enter" style="animation-delay:.12s"><span class="hl">On construit votre</span><br><span id="flip-word">site vitrine.</span></h1>
         <p class="hero-sub enter" style="animation-delay:.2s">Site vitrine, boutique e-commerce, CRM sur mesure ou campagne Meta Ads. On prend en charge, on livre, vous encaissez. Prix fixe, délai garanti, le projet vous appartient.</p>
         <div class="hero-btns enter" style="animation-delay:.28s">
