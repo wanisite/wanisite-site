@@ -304,6 +304,30 @@
 
   /* portfolio */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+
+  /* réalisations: horizontal pin-scroll gallery — the section stays pinned
+     in the viewport while normal vertical scroll drives the row of project
+     cards sideways, so you're carried through the whole set before the
+     page lets go and moves on. Falls back to a plain swipeable row below
+     900px, where scroll-jacking a touch gesture would just feel broken. */
+  .real-pin{position:relative;}
+  .real-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
+  .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;}
+  .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;}
+  .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
+  .real-track .card:hover{background:var(--bg3);}
+  .real-more{width:240px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;
+    font-size:13.5px;line-height:1.6;color:var(--text2);border:1px dashed var(--borderl);border-radius:14px;padding:24px;}
+  .real-progress-track{height:3px;background:var(--border);border-radius:99px;position:relative;overflow:hidden;}
+  .real-progress-bar{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--t);border-radius:99px;}
+  @media (max-width:899px){
+    .real-sticky{position:static;height:auto;}
+    .real-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:24px 0;}
+    .real-track{padding:0 20px;}
+    .real-track .card{width:80vw;scroll-snap-align:start;}
+    .real-more{width:60vw;scroll-snap-align:start;}
+    .real-progress-track{display:none;}
+  }
   @media (max-width:720px){.grid{grid-template-columns:1fr;}}
   .card{background:var(--bg2);padding:28px;display:block;position:relative;overflow-x:hidden;overflow-y:visible;transition:background .2s ease;}
   .card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
@@ -606,84 +630,93 @@
   </div>
 </div>
 
-<div class="wrap section" id="realisations" style="padding-top:0;">
-  <div class="rv">
-    <div class="sec-tag">Échantillons</div>
-    <h2 class="sec-h">Ce qu'on a <span class="italic">livré.</span></h2>
-    <p class="sec-p">Des projets réels, livrés dans les délais, avec des résultats concrets et vérifiables.</p>
+<div class="real-pin" id="realisations">
+  <div class="real-sticky">
+    <div class="wrap">
+      <div class="rv">
+        <div class="sec-tag">Échantillons</div>
+        <h2 class="sec-h">Ce qu'on a <span class="italic">livré.</span></h2>
+        <p class="sec-p">Des projets réels, livrés dans les délais, avec des résultats concrets et vérifiables.</p>
+      </div>
+    </div>
+    <div class="real-track-wrap">
+      <div class="real-track" id="realTrack">
+        <a class="card" href="https://elite-car-silk.vercel.app">
+          <span class="spec-tag">ÉCH. N°01</span>
+          <div class="status live"><i></i>En ligne depuis 08/2026</div>
+          <h3>ELITECARS</h3>
+          <p>CRM de location de véhicules — signature électronique, contrat PDF fidèle aux CGL, disponibilité en temps réel.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+        </a>
+        <a class="card" href="https://thomcutbarber.thomcutbarber.fr/login">
+          <span class="spec-tag">ÉCH. N°02</span>
+          <div class="status live"><i></i>En production</div>
+          <div class="card-logo logo-thomcut"></div>
+          <h3>Thomcut Barber</h3>
+          <p>CRM franchise multi-salon — rôles, planning, stock, formations. 55 migrations appliquées.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+        </a>
+        <a class="card" href="https://streetcarwash.com">
+          <span class="spec-tag">ÉCH. N°03</span>
+          <div class="status live"><i></i>En ligne</div>
+          <div class="card-logo logo-streetcarwash"></div>
+          <h3>Street Car Wash</h3>
+          <p>Tunnel de réservation en 5 étapes, acompte PayPal, confirmation automatique, Calendly.</p>
+          <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
+        </a>
+        <a class="card" href="https://cleanandpolish.fr">
+          <span class="spec-tag">ÉCH. N°04</span>
+          <div class="status live"><i></i>En ligne</div>
+          <div class="card-logo logo-cleanpolish"></div>
+          <h3>Clean &amp; Polish</h3>
+          <p>Site vitrine + campagne Meta Ads orientée appels — 108 appels en 6 jours à 1,49&nbsp;€/appel.</p>
+          <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+        </a>
+        <a class="card" href="https://aestheticmenparis.com">
+          <span class="spec-tag">ÉCH. N°05</span>
+          <div class="status live"><i></i>En ligne</div>
+          <div class="card-logo logo-aestheticmen"></div>
+          <h3>Aesthetic Men</h3>
+          <p>Site vitrine + campagne Meta Ads orientée appels — 51 appels en 9 jours à 2,39&nbsp;€/appel.</p>
+          <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+        </a>
+        <a class="card" href="https://a2ddistribution.com">
+          <span class="spec-tag">ÉCH. N°06</span>
+          <div class="status live"><i></i>En ligne</div>
+          <div class="card-logo logo-a2d"></div>
+          <h3>A2D Distribution</h3>
+          <p>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</p>
+          <div class="tags"><span class="tag">WordPress</span></div>
+        </a>
+        <div class="card">
+          <div class="status"><i></i>Livré</div>
+          <span class="spec-tag">ÉCH. N°07</span>
+          <div class="card-logo logo-123permis"></div>
+          <h3>123 Permis</h3>
+          <p>Site vitrine pour une auto-école — présentation des formules, prise de contact.</p>
+          <div class="tags"><span class="tag">WordPress</span></div>
+        </div>
+        <div class="card">
+          <div class="status"><i></i>En cours</div>
+          <span class="spec-tag">ÉCH. N°08</span>
+          <h3>Jemil Barber</h3>
+          <p>Cockpit de pilotage à distance pour un barbershop en équipe mixte salariés / indépendants.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+        </div>
+        <div class="card">
+          <div class="status"><i></i>En cours</div>
+          <span class="spec-tag">ÉCH. N°09</span>
+          <h3>Equip'Food</h3>
+          <p>Vitrine catalogue pour un fournisseur d'équipement CHR, bascule vers la vente en ligne en un réglage.</p>
+          <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
+        </div>
+        <div class="real-more">+ une vingtaine d'autres sites livrés<br>(auto-école, dératisation, rénovation, e-commerce...)</div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="real-progress-track"><div class="real-progress-bar" id="realProgressBar"></div></div>
+    </div>
   </div>
-  <div class="grid rv">
-    <a class="card rv d1" href="https://elite-car-silk.vercel.app">
-      <span class="spec-tag">ÉCH. N°01</span>
-      <div class="status live"><i></i>En ligne depuis 08/2026</div>
-      <h3>ELITECARS</h3>
-      <p>CRM de location de véhicules — signature électronique, contrat PDF fidèle aux CGL, disponibilité en temps réel.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-    </a>
-    <a class="card rv d2" href="https://thomcutbarber.thomcutbarber.fr/login">
-      <span class="spec-tag">ÉCH. N°02</span>
-      <div class="status live"><i></i>En production</div>
-      <div class="card-logo logo-thomcut"></div>
-      <h3>Thomcut Barber</h3>
-      <p>CRM franchise multi-salon — rôles, planning, stock, formations. 55 migrations appliquées.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-    </a>
-    <a class="card rv d3" href="https://streetcarwash.com">
-      <span class="spec-tag">ÉCH. N°03</span>
-      <div class="status live"><i></i>En ligne</div>
-      <div class="card-logo logo-streetcarwash"></div>
-      <h3>Street Car Wash</h3>
-      <p>Tunnel de réservation en 5 étapes, acompte PayPal, confirmation automatique, Calendly.</p>
-      <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
-    </a>
-    <a class="card rv d4" href="https://cleanandpolish.fr">
-      <span class="spec-tag">ÉCH. N°04</span>
-      <div class="status live"><i></i>En ligne</div>
-      <div class="card-logo logo-cleanpolish"></div>
-      <h3>Clean &amp; Polish</h3>
-      <p>Site vitrine + campagne Meta Ads orientée appels — 108 appels en 6 jours à 1,49&nbsp;€/appel.</p>
-      <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
-    </a>
-    <a class="card rv d5" href="https://aestheticmenparis.com">
-      <span class="spec-tag">ÉCH. N°05</span>
-      <div class="status live"><i></i>En ligne</div>
-      <div class="card-logo logo-aestheticmen"></div>
-      <h3>Aesthetic Men</h3>
-      <p>Site vitrine + campagne Meta Ads orientée appels — 51 appels en 9 jours à 2,39&nbsp;€/appel.</p>
-      <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
-    </a>
-    <a class="card rv d6" href="https://a2ddistribution.com">
-      <span class="spec-tag">ÉCH. N°06</span>
-      <div class="status live"><i></i>En ligne</div>
-      <div class="card-logo logo-a2d"></div>
-      <h3>A2D Distribution</h3>
-      <p>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</p>
-      <div class="tags"><span class="tag">WordPress</span></div>
-    </a>
-    <div class="card rv d1">
-      <div class="status"><i></i>Livré</div>
-      <span class="spec-tag">ÉCH. N°07</span>
-      <div class="card-logo logo-123permis"></div>
-      <h3>123 Permis</h3>
-      <p>Site vitrine pour une auto-école — présentation des formules, prise de contact.</p>
-      <div class="tags"><span class="tag">WordPress</span></div>
-    </div>
-    <div class="card rv d2">
-      <div class="status"><i></i>En cours</div>
-      <span class="spec-tag">ÉCH. N°08</span>
-      <h3>Jemil Barber</h3>
-      <p>Cockpit de pilotage à distance pour un barbershop en équipe mixte salariés / indépendants.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-    </div>
-    <div class="card rv d3">
-      <div class="status"><i></i>En cours</div>
-      <span class="spec-tag">ÉCH. N°09</span>
-      <h3>Equip'Food</h3>
-      <p>Vitrine catalogue pour un fournisseur d'équipement CHR, bascule vers la vente en ligne en un réglage.</p>
-      <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
-    </div>
-  </div>
-  <p class="more-note rv">+ une vingtaine d'autres sites livrés (auto-école, dératisation, rénovation, e-commerce...).</p>
 </div>
 
 <div class="wrap section" style="padding-top:0;">
@@ -1003,6 +1036,47 @@
     }
     tick();
   }catch(e){}
+
+  // réalisations: horizontal pin-scroll gallery — vertical scroll drives
+  // the card row sideways while the section stays pinned in the viewport.
+  (function(){
+    var pin = document.getElementById('realisations');
+    var sticky = pin && pin.querySelector('.real-sticky');
+    var trackWrap = pin && pin.querySelector('.real-track-wrap');
+    var track = document.getElementById('realTrack');
+    var bar = document.getElementById('realProgressBar');
+    if(!pin || !sticky || !trackWrap || !track) return;
+    var mq = window.matchMedia('(min-width:900px)');
+    var scrollDist = 0;
+
+    function layout(){
+      if(!mq.matches || reduced){
+        pin.style.height = 'auto';
+        track.style.transform = 'none';
+        if(bar) bar.style.width = '0%';
+        scrollDist = 0;
+        return;
+      }
+      scrollDist = Math.max(track.scrollWidth - trackWrap.clientWidth, 0);
+      pin.style.height = (window.innerHeight + scrollDist) + 'px';
+    }
+    function onScroll(){
+      if(!mq.matches || reduced || scrollDist <= 0) return;
+      var total = pin.offsetHeight - window.innerHeight;
+      if(total <= 0) return;
+      var rect = pin.getBoundingClientRect();
+      var progress = Math.max(0, Math.min(1, -rect.top / total));
+      track.style.transform = 'translateX(' + (-progress * scrollDist) + 'px)';
+      if(bar) bar.style.width = (progress * 100) + '%';
+    }
+    layout();
+    onScroll();
+    var raf = false;
+    window.addEventListener('scroll', function(){
+      if(!raf){ requestAnimationFrame(function(){ onScroll(); raf = false; }); raf = true; }
+    }, {passive:true});
+    window.addEventListener('resize', function(){ layout(); onScroll(); });
+  })();
 })();
 </script>
 </body>
