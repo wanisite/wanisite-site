@@ -328,8 +328,12 @@
      page lets go and moves on. Falls back to a plain swipeable row below
      900px, where scroll-jacking a touch gesture would just feel broken. */
   .real-pin{position:relative;}
-  .real-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:0 0 8vh 0;}
-  @media (min-height:820px){.real-sticky{justify-content:flex-start;padding-top:14vh;}}
+  /* content-height, not 100vh: a forced full-screen sticky box left a
+     huge empty gap under short content (a few cards). Sticky pinning
+     only needs top:0 — the JS scroll math (in initHorizontalPin) reads
+     the pin element's own height, not this box's, so shrinking it is
+     safe and just gives a little extra hang-time at the end. */
+  .real-sticky{position:sticky;top:0;overflow:hidden;padding:12vh 0 8vh 0;}
   .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;}
   .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;}
   .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
