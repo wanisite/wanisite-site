@@ -218,12 +218,13 @@
   .trust-track-wrap:hover .trust-grid{animation-play-state:paused;}
   @keyframes trustScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   @media (prefers-reduced-motion:reduce){.trust-grid{animation:none;flex-wrap:wrap;justify-content:center;width:auto;}}
-  .trust-tile{width:220px;height:180px;
+  .trust-tile{width:180px;height:140px;border-radius:20px;background-color:#0d1526;
     background-size:contain;background-repeat:no-repeat;background-position:center;
-    flex-shrink:0;transition:transform .25s ease,filter .25s ease;
-    filter:drop-shadow(0 12px 22px rgba(12,32,48,.12));}
-  .trust-tile:hover{transform:translateY(-4px) scale(1.05);filter:drop-shadow(0 18px 32px rgba(12,32,48,.18));}
-  @media (max-width:720px){.trust-tile{width:140px;height:120px;}}
+    background-origin:content-box;background-clip:content-box;padding:26px;
+    flex-shrink:0;transition:transform .25s ease,box-shadow .25s ease;
+    box-shadow:0 14px 30px -14px rgba(12,32,48,.28);}
+  .trust-tile:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 20px 40px -14px rgba(12,32,48,.4);}
+  @media (max-width:720px){.trust-tile{width:120px;height:96px;padding:18px;}}
   .hero-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
   .hero-step{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;
     background:rgba(0,201,201,.05);border:1px solid var(--border);}
