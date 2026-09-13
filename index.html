@@ -218,13 +218,26 @@
   .trust-track-wrap:hover .trust-grid{animation-play-state:paused;}
   @keyframes trustScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   @media (prefers-reduced-motion:reduce){.trust-grid{animation:none;flex-wrap:wrap;justify-content:center;width:auto;}}
-  .trust-tile{width:180px;height:140px;border-radius:20px;background-color:#0d1526;
+  /* no background plate — pale logos (silver/white marks) get a crisp
+     4-direction outline instead, via stacked drop-shadows that trace
+     every opaque pixel. Gives contrast on the light bg without a box. */
+  .trust-tile{width:230px;height:190px;
     background-size:contain;background-repeat:no-repeat;background-position:center;
-    background-origin:content-box;background-clip:content-box;padding:26px;
-    flex-shrink:0;transition:transform .25s ease,box-shadow .25s ease;
-    box-shadow:0 14px 30px -14px rgba(12,32,48,.28);}
-  .trust-tile:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 20px 40px -14px rgba(12,32,48,.4);}
-  @media (max-width:720px){.trust-tile{width:120px;height:96px;padding:18px;}}
+    flex-shrink:0;transition:transform .3s var(--ease),filter .3s ease;
+    filter:
+      drop-shadow(1px 0 0 rgba(12,32,48,.55))
+      drop-shadow(-1px 0 0 rgba(12,32,48,.55))
+      drop-shadow(0 1px 0 rgba(12,32,48,.55))
+      drop-shadow(0 -1px 0 rgba(12,32,48,.55))
+      drop-shadow(0 10px 20px rgba(12,32,48,.16));}
+  .trust-tile:hover{transform:translateY(-6px) scale(1.07);
+    filter:
+      drop-shadow(1px 0 0 rgba(12,32,48,.7))
+      drop-shadow(-1px 0 0 rgba(12,32,48,.7))
+      drop-shadow(0 1px 0 rgba(12,32,48,.7))
+      drop-shadow(0 -1px 0 rgba(12,32,48,.7))
+      drop-shadow(0 16px 28px rgba(0,201,201,.3));}
+  @media (max-width:720px){.trust-tile{width:140px;height:120px;}}
   .hero-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
   .hero-step{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;
     background:rgba(0,201,201,.05);border:1px solid var(--border);}
@@ -316,6 +329,8 @@
     border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   @media (max-width:900px){.price-grid{grid-template-columns:1fr;}}
   .price-card{background:var(--bg2);padding:32px 28px;display:flex;flex-direction:column;}
+  .real-track .price-card{width:300px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);}
+  .real-track .price-card:hover{background:var(--bg3);}
   .price-card .pt{font-family:var(--mono);font-size:11px;color:var(--t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
   .price-card h3{font-size:21px;font-weight:800;color:#fff;margin:0 0 12px 0;}
   .price-card p{font-size:13.5px;color:var(--text2);line-height:1.65;margin:0 0 20px 0;flex:1;}
@@ -354,7 +369,8 @@
     .real-track{padding:0 20px;}
     .real-track .card,
     .real-track .recog-card,
-    .real-track .proc-card{width:80vw;scroll-snap-align:start;}
+    .real-track .proc-card,
+    .real-track .price-card{width:80vw;scroll-snap-align:start;}
     .real-more{width:60vw;scroll-snap-align:start;}
     .real-progress-track{display:none;}
     .swipe-hint{display:flex;align-items:center;justify-content:center;gap:8px;
@@ -699,46 +715,54 @@
 </div>
 </div>
 
-<div class="wrap section" id="tarifs" style="padding-top:0;">
-  <div class="rv">
-    <div class="sec-tag">Ce qu'on propose</div>
-    <h2 class="sec-h">Un service pour chaque <span class="italic">besoin.</span></h2>
-    <p class="sec-p">Tout est sur devis, adapté à votre projet — on en discute directement sur WhatsApp.</p>
-  </div>
-  <div class="price-grid rv">
-    <div class="price-card rv d1">
-      <div class="pt">Site vitrine</div>
-      <h3>Présence en ligne</h3>
-      <p>Site pro responsive, fiche Google Business, référencement local, formulaire de contact. En 7 jours, vos clients vous trouvent.</p>
-      <div class="meta">Sur devis <a class="learn-more" href="services/site-vitrine.html">En savoir plus →</a></div>
+<div class="real-pin" id="tarifs">
+  <div class="real-sticky">
+    <div class="wrap">
+      <div class="rv">
+        <div class="sec-tag">Ce qu'on propose</div>
+        <h2 class="sec-h">Un service pour chaque <span class="italic">besoin.</span></h2>
+        <p class="sec-p">Tout est sur devis, adapté à votre projet — on en discute directement sur WhatsApp.</p>
+      </div>
     </div>
-    <div class="price-card rv d2">
-      <div class="pt">Réservation</div>
-      <h3>Prise de RDV en ligne</h3>
-      <p>Système de réservation 24h/24, notifications automatiques, agenda synchronisé. Zéro appel manqué, zéro créneau perdu.</p>
-      <div class="meta">Sur devis <a class="learn-more" href="services/reservation.html">En savoir plus →</a></div>
+    <div class="real-track-wrap">
+      <div class="real-track" id="tarifsTrack">
+        <div class="price-card">
+          <div class="pt">Site vitrine</div>
+          <h3>Présence en ligne</h3>
+          <p>Site pro responsive, fiche Google Business, référencement local, formulaire de contact. En 7 jours, vos clients vous trouvent.</p>
+          <div class="meta">Sur devis <a class="learn-more" href="services/site-vitrine.html">En savoir plus →</a></div>
+        </div>
+        <div class="price-card">
+          <div class="pt">Réservation</div>
+          <h3>Prise de RDV en ligne</h3>
+          <p>Système de réservation 24h/24, notifications automatiques, agenda synchronisé. Zéro appel manqué, zéro créneau perdu.</p>
+          <div class="meta">Sur devis <a class="learn-more" href="services/reservation.html">En savoir plus →</a></div>
+        </div>
+        <div class="price-card">
+          <div class="pt">E-commerce</div>
+          <h3>Boutique en ligne</h3>
+          <p>Boutique complète, agent fournisseur connecté, vidéos UGC IA, tunnel de vente optimisé. Vous encaissez, on gère tout.</p>
+          <div class="meta">Sur devis <a class="learn-more" href="services/ecommerce.html">En savoir plus →</a></div>
+        </div>
+        <div class="price-card">
+          <div class="pt">Logiciel sur mesure</div>
+          <h3>Pilotage d'entreprise</h3>
+          <p>CRM, dashboard, gestion clients / stock / équipe — un outil pensé pour votre métier, pas un logiciel générique qu'on vous impose.</p>
+          <div class="meta">Sur devis <a class="learn-more" href="services/logiciel-sur-mesure.html">En savoir plus →</a></div>
+        </div>
+        <div class="price-card">
+          <div class="pt">Ads</div>
+          <h3>Gestion de budget marketing</h3>
+          <p>Meta Ads, Google Ads — ciblage, budget, créas et reporting gérés de A à Z, pour des vrais résultats mesurables.</p>
+          <div class="meta">Sur devis <a class="learn-more" href="services/budget-marketing.html">En savoir plus →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-card rv d3">
-      <div class="pt">E-commerce</div>
-      <h3>Boutique en ligne</h3>
-      <p>Boutique complète, agent fournisseur connecté, vidéos UGC IA, tunnel de vente optimisé. Vous encaissez, on gère tout.</p>
-      <div class="meta">Sur devis <a class="learn-more" href="services/ecommerce.html">En savoir plus →</a></div>
+    <div class="wrap" style="text-align:center;">
+      <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a>
+      <div class="real-progress-track" style="margin-top:24px;"><div class="real-progress-bar" id="tarifsProgressBar"></div></div>
+      <div class="swipe-hint">◀ glisser ▶</div>
     </div>
-    <div class="price-card rv d1">
-      <div class="pt">Logiciel sur mesure</div>
-      <h3>Pilotage d'entreprise</h3>
-      <p>CRM, dashboard, gestion clients / stock / équipe — un outil pensé pour votre métier, pas un logiciel générique qu'on vous impose.</p>
-      <div class="meta">Sur devis <a class="learn-more" href="services/logiciel-sur-mesure.html">En savoir plus →</a></div>
-    </div>
-    <div class="price-card rv d2">
-      <div class="pt">Ads</div>
-      <h3>Gestion de budget marketing</h3>
-      <p>Meta Ads, Google Ads — ciblage, budget, créas et reporting gérés de A à Z, pour des vrais résultats mesurables.</p>
-      <div class="meta">Sur devis <a class="learn-more" href="services/budget-marketing.html">En savoir plus →</a></div>
-    </div>
-  </div>
-  <div class="rv" style="text-align:center;margin-top:32px;">
-    <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a>
   </div>
 </div>
 
@@ -1176,6 +1200,7 @@
   }
   initHorizontalPin('recog', 'recogTrack', 'recogProgressBar');
   initHorizontalPin('protocole', 'procTrack', 'procProgressBar');
+  initHorizontalPin('tarifs', 'tarifsTrack', 'tarifsProgressBar');
   initHorizontalPin('realisations', 'realTrack', 'realProgressBar');
 })();
 </script>
