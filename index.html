@@ -1171,16 +1171,23 @@
     var mq = window.matchMedia('(min-width:900px)');
     var scrollDist = 0;
 
+    var readDist = 0; // total scroll budget, separate from the visual shift
     function layout(){
       if(!mq.matches || reduced){
         pin.style.height = 'auto';
         track.style.transform = 'none';
         if(bar) bar.style.width = '0%';
         scrollDist = 0;
+        readDist = 0;
         return;
       }
       scrollDist = Math.max(track.scrollWidth - trackWrap.clientWidth, 0);
-      pin.style.height = (window.innerHeight + scrollDist) + 'px';
+      // give each card its own chunk of scroll (not just what the shift
+      // itself needs) so a card sits still on screen long enough to read
+      // before the next one snaps in.
+      var steps = Math.max(track.children.length - 1, 1);
+      readDist = steps * window.innerHeight * 0.65;
+      pin.style.height = (window.innerHeight + readDist) + 'px';
     }
     var lastStepX = null;
     function onScroll(){
