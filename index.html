@@ -355,7 +355,8 @@
      safe and just gives a little extra hang-time at the end. */
   .real-sticky{position:sticky;top:0;overflow:hidden;padding:12vh 0 8vh 0;}
   .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;}
-  .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;}
+  .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;
+    transition:transform .5s var(--ease);}
   .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
   .real-track .card:hover{background:var(--bg3);}
   .real-more{width:240px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;
@@ -1181,13 +1182,23 @@
       scrollDist = Math.max(track.scrollWidth - trackWrap.clientWidth, 0);
       pin.style.height = (window.innerHeight + scrollDist) + 'px';
     }
+    var lastStepX = null;
     function onScroll(){
       if(!mq.matches || reduced || scrollDist <= 0) return;
       var total = pin.offsetHeight - window.innerHeight;
       if(total <= 0) return;
       var rect = pin.getBoundingClientRect();
       var progress = Math.max(0, Math.min(1, -rect.top / total));
-      track.style.transform = 'translateX(' + (-progress * scrollDist) + 'px)';
+      // snap to one card at a time instead of a continuous pan — scroll
+      // advances the reveal card-by-card, easing between steps via the
+      // .real-track CSS transition rather than tracking the finger 1:1.
+      var steps = Math.max(track.children.length - 1, 1);
+      var stepIndex = Math.round(progress * steps);
+      var stepX = -(stepIndex / steps) * scrollDist;
+      if(stepX !== lastStepX){
+        track.style.transform = 'translateX(' + stepX + 'px)';
+        lastStepX = stepX;
+      }
       if(bar) bar.style.width = (progress * 100) + '%';
     }
     layout();
