@@ -354,7 +354,12 @@
      the pin element's own height, not this box's, so shrinking it is
      safe and just gives a little extra hang-time at the end. */
   .real-sticky{position:sticky;top:0;overflow:hidden;padding:12vh 0 8vh 0;}
-  .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;}
+  /* single-card stage on desktop: the window itself is only as wide as
+     one card, not the full section — so a snap genuinely shows one card
+     at a time instead of a wide strip that just shifts by one card's
+     width while still showing its neighbors. */
+  .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;
+    max-width:420px;margin:0 auto;}
   .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;
     transition:transform .5s var(--ease);}
   .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
@@ -366,7 +371,8 @@
   .swipe-hint{display:none;}
   @media (max-width:899px){
     .real-sticky{position:static;height:auto;}
-    .real-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:24px 0;}
+    .real-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:24px 0;
+      max-width:none;margin:0;}
     .real-track{padding:0 20px;}
     .real-track .card,
     .real-track .recog-card,
