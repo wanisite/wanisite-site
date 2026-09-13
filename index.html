@@ -304,8 +304,10 @@
   @media (max-width:720px){.stats{grid-template-columns:1fr;}}
   .stat{background:var(--bg2);padding:30px;}
   .stat .l{font-family:var(--mono);font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
-  .stat .n{font-family:var(--sans);font-weight:900;font-size:34px;color:#fff;letter-spacing:-1px;}
+  .stat .n{font-family:var(--sans);font-weight:900;font-size:34px;color:#fff;letter-spacing:-1px;
+    display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;}
   .stat .n em{font-style:normal;color:var(--t);}
+  .stat .n .unit{font-size:15px;font-weight:700;letter-spacing:0;}
   .stat .s{font-size:12.5px;color:var(--text2);margin-top:6px;}
 
   /* pricing */
@@ -689,9 +691,9 @@
     </div>
   </div>
   <div class="stats rv">
-    <div class="stat rv d1"><div class="l">Meta Ads — Aesthetic Men</div><div class="n"><em class="cnt" data-target="51">0</em> appels</div><div class="s">en 9 jours · 2,39&nbsp;€/appel</div></div>
-    <div class="stat rv d2"><div class="l">Meta Ads — Clean &amp; Polish</div><div class="n"><em class="cnt" data-target="108">0</em> appels</div><div class="s">en 6 jours · 1,49&nbsp;€/appel</div></div>
-    <div class="stat rv d3"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em> prospects</div><div class="s">en 10 jours · + automation Telegram</div></div>
+    <div class="stat rv d1"><div class="l">Meta Ads — Aesthetic Men</div><div class="n"><em class="cnt" data-target="51">0</em><span class="unit">appels</span></div><div class="s">en 9 jours · 2,39&nbsp;€/appel</div></div>
+    <div class="stat rv d2"><div class="l">Meta Ads — Clean &amp; Polish</div><div class="n"><em class="cnt" data-target="108">0</em><span class="unit">appels</span></div><div class="s">en 6 jours · 1,49&nbsp;€/appel</div></div>
+    <div class="stat rv d3"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em><span class="unit">prospects</span></div><div class="s">en 10 jours · + automation Telegram</div></div>
   </div>
 </div>
 </div>
