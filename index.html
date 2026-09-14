@@ -1192,6 +1192,7 @@
     if(!pin || !sticky || !trackWrap || !track) return;
     var mq = window.matchMedia('(min-width:900px)');
     var scrollDist = 0;
+    var stops = []; // each card's real left offset, not an even fraction of scrollDist
 
     var readDist = 0; // total scroll budget, separate from the visual shift
     function layout(){
@@ -1201,19 +1202,40 @@
         if(bar) bar.style.width = '0%';
         scrollDist = 0;
         readDist = 0;
+        stops = [];
         return;
       }
       scrollDist = Math.max(track.scrollWidth - trackWrap.clientWidth, 0);
+      // Snap targets are each card's actual left edge, not scrollDist cut
+      // into even fractions — cards aren't all the same width (the final
+      // "en savoir plus" block is narrower), so an even step overshoots
+      // some cards and undershoots others, leaving a sliver of the
+      // previous card visible instead of a clean cut.
+      // Measured via getBoundingClientRect with the transform neutralized
+      // first, not offsetLeft: once translateX has ever been applied,
+      // track becomes its own children's offsetParent in most browsers,
+      // which would silently corrupt offsetLeft on every later layout()
+      // call (e.g. on resize). getBoundingClientRect always reports true
+      // viewport coordinates regardless of transform state.
+      var prevTransform = track.style.transform;
+      track.style.transform = 'none';
+      var wrapLeft = trackWrap.getBoundingClientRect().left;
+      stops = [];
+      for(var i = 0; i < track.children.length; i++){
+        var left = track.children[i].getBoundingClientRect().left - wrapLeft;
+        stops.push(Math.max(0, Math.min(left, scrollDist)));
+      }
+      track.style.transform = prevTransform;
       // give each card its own chunk of scroll (not just what the shift
       // itself needs) so a card sits still on screen long enough to read
       // before the next one snaps in.
-      var steps = Math.max(track.children.length - 1, 1);
+      var steps = Math.max(stops.length - 1, 1);
       readDist = steps * window.innerHeight * 0.65;
       pin.style.height = (window.innerHeight + readDist) + 'px';
     }
     var lastStepX = null;
     function onScroll(){
-      if(!mq.matches || reduced || scrollDist <= 0) return;
+      if(!mq.matches || reduced || scrollDist <= 0 || !stops.length) return;
       var total = pin.offsetHeight - window.innerHeight;
       if(total <= 0) return;
       var rect = pin.getBoundingClientRect();
@@ -1221,9 +1243,9 @@
       // snap to one card at a time instead of a continuous pan — scroll
       // advances the reveal card-by-card, easing between steps via the
       // .real-track CSS transition rather than tracking the finger 1:1.
-      var steps = Math.max(track.children.length - 1, 1);
+      var steps = Math.max(stops.length - 1, 1);
       var stepIndex = Math.round(progress * steps);
-      var stepX = -(stepIndex / steps) * scrollDist;
+      var stepX = -stops[stepIndex];
       if(stepX !== lastStepX){
         track.style.transform = 'translateX(' + stepX + 'px)';
         lastStepX = stepX;
