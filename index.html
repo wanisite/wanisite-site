@@ -308,15 +308,22 @@
   /* process */
   /* protocole — same horizontal pin-scroll card pattern as réalisations
      and pain points, numbered like a step tracker */
-  .real-track .proc-card{width:280px;flex-shrink:0;padding:28px;background:var(--bg2);
-    border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;}
+  .real-track .proc-card{width:600px;flex-shrink:0;padding:52px;background:var(--bg2);
+    border:1px solid var(--border);border-radius:20px;display:flex;flex-direction:column;}
   .real-track .proc-card:hover{background:var(--bg3);}
-  .proc-num{font-family:var(--mono);font-size:13px;color:var(--t);border:1px solid var(--borderl);
-    border-radius:999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;margin-bottom:18px;}
-  .proc-card h3{font-size:16px;font-weight:700;color:#fff;margin:0 0 8px 0;}
-  .proc-card p{font-size:13.5px;color:var(--text2);margin:0 0 16px 0;line-height:1.6;flex:1;}
-  .proc-meta{font-family:var(--mono);font-size:11px;color:var(--text3);border-top:1px solid var(--border);padding-top:14px;}
+  .proc-num{font-family:var(--mono);font-size:22px;color:var(--t);border:1px solid var(--borderl);
+    border-radius:999px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;margin-bottom:28px;}
+  .proc-card h3{font-size:32px;font-weight:700;color:#fff;margin:0 0 14px 0;}
+  .proc-card p{font-size:18px;color:var(--text2);margin:0 0 20px 0;line-height:1.6;flex:1;max-width:460px;}
+  .proc-meta{font-family:var(--mono);font-size:13px;color:var(--text3);border-top:1px solid var(--border);padding-top:18px;}
+  @media (max-width:899px){
+    .real-track .proc-card{padding:28px;}
+    .proc-num{font-size:13px;width:38px;height:38px;margin-bottom:18px;}
+    .proc-card h3{font-size:16px;margin:0 0 8px 0;}
+    .proc-card p{font-size:13.5px;margin:0 0 16px 0;max-width:none;}
+    .proc-meta{font-size:11px;padding-top:14px;}
+  }
 
   /* stats */
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
@@ -334,14 +341,21 @@
   .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
     border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   @media (max-width:900px){.price-grid{grid-template-columns:1fr;}}
-  .price-card{background:var(--bg2);padding:32px 28px;display:flex;flex-direction:column;}
-  .real-track .price-card{width:300px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);}
+  .price-card{background:var(--bg2);padding:56px 48px;display:flex;flex-direction:column;}
+  .real-track .price-card{width:640px;flex-shrink:0;border-radius:20px;border:1px solid var(--border);}
   .real-track .price-card:hover{background:var(--bg3);}
-  .price-card .pt{font-family:var(--mono);font-size:11px;color:var(--t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
-  .price-card h3{font-size:21px;font-weight:800;color:#fff;margin:0 0 12px 0;}
-  .price-card p{font-size:13.5px;color:var(--text2);line-height:1.65;margin:0 0 20px 0;flex:1;}
-  .price-card .meta{font-family:var(--mono);font-size:11px;color:var(--text3);border-top:1px solid var(--border);
+  .price-card .pt{font-family:var(--mono);font-size:13px;color:var(--t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px;}
+  .price-card h3{font-size:38px;font-weight:800;color:#fff;margin:0 0 18px 0;}
+  .price-card p{font-size:18px;color:var(--text2);line-height:1.65;margin:0 0 28px 0;flex:1;max-width:500px;}
+  .price-card .meta{font-family:var(--mono);font-size:13px;color:var(--text3);border-top:1px solid var(--border);
     padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  @media (max-width:899px){
+    .price-card{padding:32px 28px;}
+    .price-card .pt{font-size:11px;margin-bottom:14px;}
+    .price-card h3{font-size:21px;margin:0 0 12px 0;}
+    .price-card p{font-size:13.5px;margin:0 0 20px 0;max-width:none;}
+    .price-card .meta{font-size:11px;}
+  }
   .price-card .learn-more{color:var(--t);font-weight:700;text-decoration:none;white-space:nowrap;}
   .price-card .learn-more:hover{text-decoration:underline;}
 
@@ -370,12 +384,27 @@
   .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;
     max-width:420px;margin:0 auto;}
   #recog .real-track-wrap{max-width:704px;}
-  #protocole .real-track-wrap{max-width:344px;}
-  #tarifs .real-track-wrap{max-width:364px;}
-  #realisations .real-track-wrap{max-width:404px;}
+  #protocole .real-track-wrap{max-width:664px;}
+  #tarifs .real-track-wrap{max-width:704px;}
+  #realisations .real-track-wrap{max-width:784px;}
   .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;
     transition:transform .5s var(--ease);}
-  .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
+  .real-track .card{width:720px;flex-shrink:0;border-radius:20px;border:1px solid var(--border);background:var(--bg2);padding:52px;}
+  .real-track .card h3{font-size:32px;margin:0 0 14px 0;}
+  .real-track .card p{font-size:18px;margin:0 0 24px 0;line-height:1.6;max-width:520px;}
+  .real-track .status{font-size:13px;margin-bottom:22px;}
+  .real-track .status i{width:8px;height:8px;}
+  .real-track .tag{font-size:12px;padding:6px 12px;}
+  .real-track .card-logo{width:72px;height:72px;margin-bottom:20px;}
+  @media (max-width:899px){
+    .real-track .card{padding:28px;}
+    .real-track .card h3{font-size:18px;margin:0 0 8px 0;}
+    .real-track .card p{font-size:13.5px;margin:0 0 16px 0;max-width:none;}
+    .real-track .status{font-size:10.5px;margin-bottom:16px;}
+    .real-track .status i{width:6px;height:6px;}
+    .real-track .tag{font-size:10px;padding:4px 8px;}
+    .real-track .card-logo{width:40px;height:40px;margin-bottom:14px;}
+  }
   .real-track .card:hover{background:var(--bg3);}
   .real-more{width:240px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;
     font-size:13.5px;line-height:1.6;color:var(--text2);border:1px dashed var(--borderl);border-radius:14px;padding:24px;}
