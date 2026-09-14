@@ -357,9 +357,16 @@
   /* single-card stage on desktop: the window itself is only as wide as
      one card, not the full section — so a snap genuinely shows one card
      at a time instead of a wide strip that just shifts by one card's
-     width while still showing its neighbors. */
+     width while still showing its neighbors. Width is tuned per gallery
+     to the card's own width (card + 32px pad each side) — a single
+     420px value clipped narrower cards (280/300px) mid-way through their
+     neighbour, leaving an ugly half-visible second card. */
   .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;
     max-width:420px;margin:0 auto;}
+  #recog .real-track-wrap{max-width:364px;}
+  #protocole .real-track-wrap{max-width:344px;}
+  #tarifs .real-track-wrap{max-width:364px;}
+  #realisations .real-track-wrap{max-width:404px;}
   .real-track{display:flex;gap:20px;width:max-content;padding:0 32px;will-change:transform;
     transition:transform .5s var(--ease);}
   .real-track .card{width:340px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:var(--bg2);}
