@@ -281,15 +281,21 @@
      réalisations, with real glossy icons instead of emoji */
   #recog .real-sticky::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:radial-gradient(ellipse 70% 80% at 50% 0%, rgba(0,201,201,.16), transparent 74%);}
-  .real-track .recog-card{width:300px;flex-shrink:0;padding:30px;background:var(--bg2);
-    border:1px solid var(--border);border-radius:14px;position:relative;overflow:hidden;transition:background .2s ease;}
+  .real-track .recog-card{width:640px;flex-shrink:0;padding:56px;background:var(--bg2);
+    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden;transition:background .2s ease;}
   .recog-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
     background:linear-gradient(90deg, transparent, var(--t), transparent);transition:left .4s ease;}
   .recog-card:hover{background:var(--bg3);}
   .recog-card:hover::after{left:100%;}
-  .recog-card .ric-icon{width:60px;height:60px;margin-bottom:14px;filter:drop-shadow(0 8px 16px rgba(0,201,201,.32));}
-  .recog-card h3{font-size:16px;font-weight:700;color:#fff;margin:0 0 8px 0;letter-spacing:-.3px;}
-  .recog-card p{font-size:13.5px;color:var(--text2);line-height:1.7;margin:0;}
+  .recog-card .ric-icon{width:112px;height:112px;margin-bottom:24px;filter:drop-shadow(0 8px 16px rgba(0,201,201,.32));}
+  .recog-card h3{font-size:32px;font-weight:700;color:#fff;margin:0 0 14px 0;letter-spacing:-.6px;}
+  .recog-card p{font-size:18px;color:var(--text2);line-height:1.7;margin:0;max-width:460px;}
+  @media (max-width:899px){
+    .real-track .recog-card{width:80vw;padding:30px;}
+    .recog-card .ric-icon{width:60px;height:60px;margin-bottom:14px;}
+    .recog-card h3{font-size:16px;margin:0 0 8px 0;}
+    .recog-card p{font-size:13.5px;max-width:none;}
+  }
 
   /* ownership list */
   .own-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;}
@@ -363,7 +369,7 @@
      neighbour, leaving an ugly half-visible second card. */
   .real-track-wrap{overflow:hidden;padding:40px 0 10px 0;
     max-width:420px;margin:0 auto;}
-  #recog .real-track-wrap{max-width:364px;}
+  #recog .real-track-wrap{max-width:704px;}
   #protocole .real-track-wrap{max-width:344px;}
   #tarifs .real-track-wrap{max-width:364px;}
   #realisations .real-track-wrap{max-width:404px;}
