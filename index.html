@@ -205,39 +205,37 @@
 
   /* numbered proof pills, right column, above the code window */
   /* big client-logo showcase, front and center under the hero */
-  .trust-showcase{padding:8px 0 64px 0;text-align:center;position:relative;z-index:1;overflow:hidden;
+  .trust-showcase{padding:8px 0 32px 0;text-align:center;position:relative;z-index:1;overflow:hidden;
     background:#eaf6f6;}
   .trust-showcase .sec-tag{justify-content:center;color:#007f7f;}
   .trust-showcase .sec-tag::before{color:rgba(12,32,48,.32);}
   .trust-showcase .sec-h{color:#0c2030;}
   .trust-showcase .sec-h .italic{color:#00a3a3;}
-  .trust-track-wrap{margin-top:28px;overflow:hidden;
+  .trust-track-wrap{margin-top:16px;overflow:hidden;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
             mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);}
-  .trust-grid{display:flex;gap:48px;align-items:center;width:max-content;animation:trustScroll 30s linear infinite;}
+  .trust-grid{display:flex;gap:32px;align-items:center;width:max-content;animation:trustScroll 16s linear infinite;}
   .trust-track-wrap:hover .trust-grid{animation-play-state:paused;}
   @keyframes trustScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   @media (prefers-reduced-motion:reduce){.trust-grid{animation:none;flex-wrap:wrap;justify-content:center;width:auto;}}
   /* no background plate — pale logos (silver/white marks) get a crisp
      4-direction outline instead, via stacked drop-shadows that trace
      every opaque pixel. Gives contrast on the light bg without a box. */
-  .trust-tile{width:230px;height:190px;
+  .trust-tile{width:150px;height:120px;
     background-size:contain;background-repeat:no-repeat;background-position:center;
     flex-shrink:0;transition:transform .3s var(--ease),filter .3s ease;
     filter:
       drop-shadow(1px 0 0 rgba(12,32,48,.55))
       drop-shadow(-1px 0 0 rgba(12,32,48,.55))
       drop-shadow(0 1px 0 rgba(12,32,48,.55))
-      drop-shadow(0 -1px 0 rgba(12,32,48,.55))
-      drop-shadow(0 10px 20px rgba(12,32,48,.16));}
+      drop-shadow(0 -1px 0 rgba(12,32,48,.55));}
   .trust-tile:hover{transform:translateY(-6px) scale(1.07);
     filter:
       drop-shadow(1px 0 0 rgba(12,32,48,.7))
       drop-shadow(-1px 0 0 rgba(12,32,48,.7))
       drop-shadow(0 1px 0 rgba(12,32,48,.7))
-      drop-shadow(0 -1px 0 rgba(12,32,48,.7))
-      drop-shadow(0 16px 28px rgba(0,201,201,.3));}
-  @media (max-width:720px){.trust-tile{width:140px;height:120px;}}
+      drop-shadow(0 -1px 0 rgba(12,32,48,.7));}
+  @media (max-width:720px){.trust-tile{width:110px;height:90px;}}
   .hero-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
   .hero-step{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;
     background:rgba(0,201,201,.05);border:1px solid var(--border);}
@@ -627,7 +625,6 @@
 </div>
 
 <div class="trust-showcase">
-  <div class="sec-tag rv" style="justify-content:center;">Ils nous font confiance</div>
   <h2 class="sec-h rv" style="text-align:center;">Des commerces qui <span class="italic">nous ont fait confiance.</span></h2>
   <div class="trust-track-wrap rv">
     <div class="trust-grid">
