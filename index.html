@@ -42,7 +42,8 @@
      centered on the viewport (not the page top) since a fixed layer only
      ever shows the current viewport — a top-anchored fade would fade to
      nothing for every section below the first screen. */
-  .lab-ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+  .lab-ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+    background:radial-gradient(ellipse 100% 65% at 50% 0%, rgba(26,107,120,.4) 0%, rgba(20,88,100,.24) 32%, rgba(10,44,52,.12) 55%, transparent 75%);}
   /* graph-paper grid — same dual fine/coarse density as the hero, not just
      the single-layer grid this used before, so the rest of the page reads
      as the same "lab notebook" instead of a thinner echo of it. */
