@@ -577,6 +577,7 @@
   #tarifs .real-progress-track{background:rgba(11,127,127,.16);}
   #tarifs .real-progress-bar{background:linear-gradient(90deg,#0b9c9c,#19d3d3);}
   #tarifs .swipe-hint{color:rgba(12,32,48,.45);}
+  #tarifs .tarifs-net{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
   @media (prefers-reduced-motion:reduce){#tarifs::before,#tarifs::after{animation:none;}}
 </style>
 </head>
@@ -821,6 +822,7 @@
 
 <div class="real-pin" id="tarifs">
   <div class="real-sticky">
+    <canvas class="tarifs-net" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="rv">
         <div class="sec-tag">Ce qu'on propose</div>
@@ -1379,6 +1381,49 @@
   initHorizontalPin('tarifs', 'tarifsTrack', 'tarifsProgressBar');
   initHorizontalPin('realisations', 'realTrack', 'realProgressBar');
 })();
+
+  /* ---- « Ce qu'on propose » : réseau de points interactif (comme le CRM) ---- */
+  (function initTarifsNet(){
+    var canvas=document.querySelector('#tarifs .tarifs-net');
+    if(!canvas||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var ctx=canvas.getContext('2d'); if(!ctx)return;
+    var host=canvas.parentElement, w=0,h=0,dpr=1,nodes=[],raf=0,last=0,visible=false;
+    var mouse={x:-9999,y:-9999}, LINK=170, COLOR='10,150,160';
+    function resize(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      w=host.clientWidth; h=host.clientHeight;
+      canvas.width=w*dpr; canvas.height=h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var n=Math.max(28,Math.min(90,Math.floor((w*h)/15000)));
+      nodes=[];
+      for(var i=0;i<n;i++)nodes.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:1.4+Math.random()*2});
+    }
+    function frame(t){
+      raf=requestAnimationFrame(frame);
+      if(!visible||document.hidden||t-last<33)return;
+      last=t; ctx.clearRect(0,0,w,h);
+      var i,j,a,b,d,dm;
+      for(i=0;i<nodes.length;i++){a=nodes[i];a.x+=a.vx;a.y+=a.vy;
+        if(a.x<-10)a.x=w+10; if(a.x>w+10)a.x=-10; if(a.y<-10)a.y=h+10; if(a.y>h+10)a.y=-10;}
+      for(i=0;i<nodes.length;i++){
+        a=nodes[i];
+        for(j=i+1;j<nodes.length;j++){
+          b=nodes[j]; d=Math.hypot(a.x-b.x,a.y-b.y);
+          if(d<LINK){ctx.strokeStyle='rgba('+COLOR+','+((1-d/LINK)*.5)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+        }
+        dm=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+        if(dm<200){ctx.strokeStyle='rgba('+COLOR+','+((1-dm/200)*.7)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+        ctx.fillStyle='rgba('+COLOR+',1)';ctx.shadowColor='rgba('+COLOR+',.9)';ctx.shadowBlur=10;
+        ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      }
+    }
+    host.addEventListener('mousemove',function(e){var r=host.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true});
+    host.addEventListener('mouseleave',function(){mouse.x=mouse.y=-9999;});
+    window.addEventListener('resize',resize);
+    if('IntersectionObserver' in window){new IntersectionObserver(function(en){visible=en[0].isIntersecting;},{threshold:0}).observe(document.getElementById('tarifs'));}
+    else visible=true;
+    resize(); raf=requestAnimationFrame(frame);
+  })();
 </script>
 </body>
 </html>
