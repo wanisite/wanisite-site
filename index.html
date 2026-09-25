@@ -535,6 +535,49 @@
 
   footer{display:flex;align-items:center;justify-content:space-between;padding:34px 0 56px 0;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;position:relative;z-index:1;}
   footer .mono{font-family:var(--mono);font-size:12px;color:var(--text3);}
+
+  /* ---- « Ce qu'on propose » : DA claire du CRM (lavis turquoise pâle, grille millimétrée,
+     halos, cartes en verre blanc, titre en bloc surligné) ---- */
+  @keyframes tarifsGrid{from{background-position:0 0,0 0,0 0,0 0,0 0;}to{background-position:0 80px,80px 0,0 80px,80px 0,0 0;}}
+  @keyframes tarifsGlow{0%{transform:translate(0,0) scale(1);}50%{transform:translate(3%,-2%) scale(1.12);}100%{transform:translate(0,0) scale(1);}}
+  #tarifs{position:relative;isolation:isolate;background:#eef6f7;}
+  #tarifs::before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;
+    background:
+      linear-gradient(rgba(11,127,127,.07) 1px, transparent 1px) 0 0 / 16px 16px,
+      linear-gradient(90deg, rgba(11,127,127,.07) 1px, transparent 1px) 0 0 / 16px 16px,
+      linear-gradient(rgba(11,127,127,.15) 1px, transparent 1px) 0 0 / 80px 80px,
+      linear-gradient(90deg, rgba(11,127,127,.15) 1px, transparent 1px) 0 0 / 80px 80px,
+      radial-gradient(ellipse 82% 55% at 56% 0%, rgba(0,201,201,.42) 0%, rgba(80,210,215,.24) 30%, rgba(190,236,238,.12) 55%, transparent 78%);
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.75) 55%,rgba(0,0,0,.35) 100%);
+            mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.75) 55%,rgba(0,0,0,.35) 100%);
+    animation:tarifsGrid 18s linear infinite;}
+  #tarifs::after{content:'';position:absolute;inset:-6% -6%;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(34vw 32vh at 10% 12%, rgba(0,201,201,.22), transparent 70%),
+      radial-gradient(32vw 30vh at 92% 30%, rgba(60,150,230,.20), transparent 72%),
+      radial-gradient(40vw 26vh at 50% 100%, rgba(0,201,201,.16), transparent 72%);
+    animation:tarifsGlow 30s ease-in-out infinite;}
+  #tarifs .sec-tag{color:#007f7f;}
+  #tarifs .sec-tag::before{color:rgba(12,32,48,.32);}
+  #tarifs .sec-h{color:#0c2030;}
+  #tarifs .sec-p{color:rgba(12,32,48,.64);}
+  #tarifs .sec-h .italic.hl-block{background:linear-gradient(120deg,#19d3d3,#0fb0b0 55%,#0b7f7f);color:#fff !important;
+    box-shadow:0 10px 30px -10px rgba(11,127,127,.6);}
+  #tarifs .real-track .price-card{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(243,250,250,.88));
+    border:1px solid rgba(11,127,127,.26);
+    box-shadow:0 1px 2px rgba(11,127,127,.08),0 20px 44px -28px rgba(11,127,127,.6);
+    transition:transform .2s,border-color .2s,box-shadow .2s;}
+  #tarifs .real-track .price-card:hover{background:linear-gradient(180deg,#fff,rgba(243,250,250,.96));border-color:#0fb0b0;
+    transform:translateY(-3px);box-shadow:0 0 0 1px rgba(15,176,176,.35),0 26px 50px -24px rgba(11,127,127,.65);}
+  #tarifs .price-card .pt{color:#0b6f6f;}
+  #tarifs .price-card h3{color:#0c2030;}
+  #tarifs .price-card p{color:rgba(12,32,48,.68);}
+  #tarifs .price-card .meta{color:rgba(12,32,48,.5);border-top-color:rgba(11,127,127,.2);}
+  #tarifs .price-card .learn-more{color:#0b7f7f;}
+  #tarifs .real-progress-track{background:rgba(11,127,127,.16);}
+  #tarifs .real-progress-bar{background:linear-gradient(90deg,#0b9c9c,#19d3d3);}
+  #tarifs .swipe-hint{color:rgba(12,32,48,.45);}
+  @media (prefers-reduced-motion:reduce){#tarifs::before,#tarifs::after{animation:none;}}
 </style>
 </head>
 <body>
