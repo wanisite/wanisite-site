@@ -424,8 +424,9 @@
   /* capture d'écran réelle du site livré — bord à bord en haut de la
      carte, comme une vraie fenêtre de navigateur, jamais une image
      inventée. */
-  .card-shot{position:relative;overflow:hidden;margin:-36px -36px 20px -36px;
-    border-radius:19px 19px 0 0;aspect-ratio:16/10;background:var(--bg3);}
+  .card-shot{position:relative;overflow:hidden;margin:0 0 20px 0;
+    border-radius:12px;border:1px solid var(--borderl);aspect-ratio:16/10;background:var(--bg3);
+    box-shadow:0 16px 32px -18px rgba(0,0,0,.6);}
   .card-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
   .card-shot-bar{position:absolute;top:0;left:0;right:0;z-index:1;display:flex;align-items:center;gap:5px;
     padding:7px 10px;background:rgba(4,8,15,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
@@ -433,7 +434,7 @@
   .card-shot-bar b{margin-left:5px;font-weight:500;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.7);
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   @media (max-width:899px){
-    .card-shot{margin:-22px -22px 16px -22px;}
+    .card-shot{margin:0 0 16px 0;}
     .card-shot-bar{padding:5px 8px;}.card-shot-bar b{font-size:9px;}
   }
 
