@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wanisite.fr/sitemap.xml
+Sitemap: https://wanisite-site.vercel.app/sitemap.xml
