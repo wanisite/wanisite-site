@@ -544,10 +544,13 @@
 
   .proto2-phone-col{position:relative;height:100%;}
   .proto2-phone-sticky{position:sticky;top:12vh;}
-  @media (max-width:900px){.proto2-phone-sticky{position:static;display:flex;justify-content:center;}}
+  @media (max-width:900px){.proto2-phone-sticky{position:static;}}
+
+  .proto2-phone-frame{position:relative;width:272px;margin:0 auto;}
+  @media (max-width:420px){.proto2-phone-frame{width:240px;}}
 
   /* châssis — métal brossé, boutons latéraux, bords arrondis type iPhone */
-  .proto2-phone{position:relative;width:272px;height:556px;border-radius:52px;padding:14px;
+  .proto2-phone{position:relative;width:272px;height:572px;border-radius:52px;padding:14px;
     background:linear-gradient(155deg,#3a3f47 0%,#17191d 18%,#0a0b0d 50%,#1d2024 82%,#44484f 100%);
     box-shadow:0 45px 90px -30px rgba(0,201,201,.4),0 0 0 1px rgba(255,255,255,.06) inset,0 2px 0 rgba(255,255,255,.12) inset;}
   .proto2-btn{position:absolute;background:linear-gradient(90deg,#1a1c20,#303339);border-radius:3px;}
@@ -566,17 +569,14 @@
   .proto2-sb-icons{display:flex;align-items:center;gap:5px;}
   .proto2-sb-icons svg{height:11px;fill:#fff;}
   .sb-signal{width:16px;}.sb-wifi{width:14px;}.sb-batt{width:23px;}
-  .proto2-clock{text-align:center;padding:30px 0 26px;position:relative;}
+  .proto2-clock{text-align:center;padding:18px 0 16px;position:relative;}
   .proto2-day{font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(255,255,255,.75);}
   .proto2-time{font-size:62px;font-weight:600;color:#fff;letter-spacing:-1.5px;margin-top:0;line-height:1;}
 
   .proto2-notifs{position:relative;display:flex;flex-direction:column;gap:9px;padding:0 10px;}
   .proto2-notif{display:flex;gap:10px;padding:11px 12px;border-radius:16px;
     background:rgba(255,255,255,.14);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
-    border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 20px -10px rgba(0,0,0,.5);
-    opacity:.4;filter:saturate(.6);transform:translateY(4px) scale(.98);
-    transition:opacity .45s var(--ease),filter .45s var(--ease),transform .45s var(--ease),background .3s,border-color .3s;}
-  .proto2-notif.on{opacity:1;filter:none;transform:none;background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.28);}
+    border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 20px -10px rgba(0,0,0,.5);}
   .proto2-notif-ic{flex:none;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
   .proto2-notif-ic svg{width:17px;height:17px;}
   .proto2-notif-ic.wa{background:#25D366;color:#fff;}
@@ -588,7 +588,48 @@
   .proto2-notif-top b{color:#fff;font-weight:700;font-size:12.5px;}
   .proto2-notif-txt{font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.92);
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  @media (max-width:420px){.proto2-phone{width:240px;height:490px;border-radius:46px;}.proto2-screen{border-radius:34px;}.proto2-time{font-size:54px;}}
+
+  /* écran d'appel entrant — simule l'appel de diagnostic reçu après les notifs */
+  .proto2-call{margin-top:10px;padding:16px 16px 14px;border-radius:20px;text-align:center;
+    background:rgba(255,255,255,.08);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+    border:1px solid rgba(255,255,255,.14);}
+  .proto2-call-avatar{width:48px;height:48px;margin:0 auto 8px;border-radius:50%;
+    background:linear-gradient(135deg,#1be6e6,#0a7a8a);color:#04141a;font-family:var(--mono);font-weight:800;font-size:18px;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px rgba(0,201,201,.6);}
+  .proto2-call-label{font-size:11px;color:rgba(255,255,255,.62);margin-bottom:2px;}
+  .proto2-call-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;}
+  .proto2-call-actions{display:flex;justify-content:center;align-items:center;gap:50px;}
+  .proto2-call-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+  .proto2-call-btn svg{width:20px;height:20px;}
+  .proto2-call-btn.decline{background:#ff3b30;color:#fff;transform:rotate(135deg);}
+  .proto2-call-btn.accept{background:linear-gradient(135deg,#1be6cf,#00a3a3);color:#04141a;}
+
+  /* bandeau flottant — dépasse le bas du téléphone, comme une barre d'app */
+  .proto2-cta-float{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);width:90%;
+    display:flex;align-items:center;gap:10px;padding:9px;border-radius:16px;z-index:2;
+    background:var(--bg2);border:1px solid var(--borderl);
+    box-shadow:0 20px 40px -16px rgba(0,201,201,.45),0 0 0 1px rgba(255,255,255,.04) inset;}
+  .proto2-cta-float-ic{flex:none;width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,#1be6e6,#0a7a8a);color:#04141a;font-family:var(--mono);font-weight:800;font-size:12px;
+    display:flex;align-items:center;justify-content:center;}
+  .proto2-cta-float-body{flex:1;min-width:0;}
+  .proto2-cta-float-top{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .proto2-cta-float-sub{font-size:10.5px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .proto2-cta-float-btn{flex:none;font-family:var(--mono);font-size:11px;font-weight:700;color:#04141a;
+    background:linear-gradient(135deg,#1be6e6,#00a3a3);padding:8px 12px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+
+  @media (max-width:420px){
+    .proto2-phone{width:240px;height:536px;border-radius:46px;}
+    .proto2-screen{border-radius:34px;}
+    .proto2-time{font-size:48px;}
+    .proto2-clock{padding:14px 0 10px;}
+    .proto2-notifs{gap:7px;}
+    .proto2-notif{padding:9px 10px;}
+    .proto2-call{margin-top:8px;padding:12px 14px;}
+    .proto2-call-avatar{width:42px;height:42px;margin-bottom:6px;}
+    .proto2-call-name{margin-bottom:10px;font-size:13px;}
+    .proto2-call-btn{width:40px;height:40px;}
+  }
 
   .proto2-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:28px;}
   .proto2-step{position:relative;display:flex;gap:20px;padding-left:4px;}
@@ -762,52 +803,57 @@
     <div class="proto2-grid">
       <div class="proto2-phone-col">
         <div class="proto2-phone-sticky rv">
-          <div class="proto2-phone">
-            <span class="proto2-btn vol1"></span><span class="proto2-btn vol2"></span><span class="proto2-btn pwr"></span>
-            <div class="proto2-screen">
-              <div class="proto2-statusbar">
-                <span class="proto2-sb-time">14:32</span>
-                <span class="proto2-island"></span>
-                <span class="proto2-sb-icons">
-                  <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx=".5"/><rect x="5" y="5" width="3" height="7" rx=".5"/><rect x="10" y="3" width="3" height="9" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
-                  <svg viewBox="0 0 16 12" class="sb-wifi"><path d="M8 10.3a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm-3.4-3.8a5 5 0 0 1 6.8 0 .6.6 0 0 1-.8.9 3.8 3.8 0 0 0-5.2 0 .6.6 0 1 1-.8-.9Zm-2.3-2.6a8.4 8.4 0 0 1 11.4 0 .6.6 0 1 1-.8.9 7.2 7.2 0 0 0-9.8 0 .6.6 0 1 1-.8-.9Z"/></svg>
-                  <svg viewBox="0 0 25 12" class="sb-batt"><rect x=".5" y=".5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="18" height="8" rx="1.3"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
-                </span>
-              </div>
-              <div class="proto2-clock">
-                <div class="proto2-day">Aujourd’hui</div>
-                <div class="proto2-time">14:32</div>
-              </div>
-              <div class="proto2-notifs" id="proto2Notifs">
-                <div class="proto2-notif" data-step="1">
-                  <div class="proto2-notif-ic wa"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.3.6-.6.9-.8 1.1-.2.2-.4.5-.2.8.2.4.9 1.5 2 2.4 1.3 1.2 2.4 1.5 2.8 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.5-.2.8-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.2.1.7-.1 1.4Z"/></svg></div>
-                  <div class="proto2-notif-body">
-                    <div class="proto2-notif-top"><b>WhatsApp</b><span>maintenant</span></div>
-                    <div class="proto2-notif-txt">Diagnostic reçu — on vous appelle dans l’heure.</div>
-                  </div>
+          <div class="proto2-phone-frame">
+            <div class="proto2-phone">
+              <span class="proto2-btn vol1"></span><span class="proto2-btn vol2"></span><span class="proto2-btn pwr"></span>
+              <div class="proto2-screen">
+                <div class="proto2-statusbar">
+                  <span class="proto2-sb-time">14:32</span>
+                  <span class="proto2-island"></span>
+                  <span class="proto2-sb-icons">
+                    <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx=".5"/><rect x="5" y="5" width="3" height="7" rx=".5"/><rect x="10" y="3" width="3" height="9" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                    <svg viewBox="0 0 16 12" class="sb-wifi"><path d="M8 10.3a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm-3.4-3.8a5 5 0 0 1 6.8 0 .6.6 0 0 1-.8.9 3.8 3.8 0 0 0-5.2 0 .6.6 0 1 1-.8-.9Zm-2.3-2.6a8.4 8.4 0 0 1 11.4 0 .6.6 0 1 1-.8.9 7.2 7.2 0 0 0-9.8 0 .6.6 0 1 1-.8-.9Z"/></svg>
+                    <svg viewBox="0 0 25 12" class="sb-batt"><rect x=".5" y=".5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="18" height="8" rx="1.3"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+                  </span>
                 </div>
-                <div class="proto2-notif" data-step="2">
-                  <div class="proto2-notif-ic doc"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 13h8v1.5H8V13Zm0 3.5h8V18H8v-1.5Zm0-7h4V11H8V9.5Z"/></svg></div>
-                  <div class="proto2-notif-body">
-                    <div class="proto2-notif-top"><b>Devis Wanisite</b><span>aujourd’hui</span></div>
-                    <div class="proto2-notif-txt">Prix fixe envoyé par WhatsApp, à valider quand vous voulez.</div>
-                  </div>
+                <div class="proto2-clock">
+                  <div class="proto2-day">Aujourd’hui</div>
+                  <div class="proto2-time">14:32</div>
                 </div>
-                <div class="proto2-notif" data-step="3">
-                  <div class="proto2-notif-ic build"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m21.7 19.4-5.8-5.8a5.5 5.5 0 0 0-6.9-6.9l3.4 3.4-2.1 2.1-3.4-3.4a5.5 5.5 0 0 0 6.9 6.9l5.8 5.8 2.1-2.1Z"/></svg></div>
-                  <div class="proto2-notif-body">
-                    <div class="proto2-notif-top"><b>Construction</b><span>en cours</span></div>
-                    <div class="proto2-notif-txt">Chaque étape vous est présentée avant de continuer.</div>
+                <div class="proto2-notifs">
+                  <div class="proto2-notif">
+                    <div class="proto2-notif-ic wa"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.3.6-.6.9-.8 1.1-.2.2-.4.5-.2.8.2.4.9 1.5 2 2.4 1.3 1.2 2.4 1.5 2.8 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.5-.2.8-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.2.1.7-.1 1.4Z"/></svg></div>
+                    <div class="proto2-notif-body">
+                      <div class="proto2-notif-top"><b>WhatsApp</b><span>maintenant</span></div>
+                      <div class="proto2-notif-txt">Diagnostic reçu — on vous appelle dans l’heure.</div>
+                    </div>
                   </div>
-                </div>
-                <div class="proto2-notif" data-step="4">
-                  <div class="proto2-notif-ic live"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c3 2.5 4.5 5.8 4.5 9.3 0 2-.5 3.6-1.2 4.9l2 2-1.4 1.4-1.8-1.8a8 8 0 0 1-2.1 1.1V22h-2v-3.1a8 8 0 0 1-2.1-1.1l-1.8 1.8-1.4-1.4 2-2A10 10 0 0 1 7.5 11.3C7.5 7.8 9 4.5 12 2Zm0 6.3a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6Z"/></svg></div>
-                  <div class="proto2-notif-body">
-                    <div class="proto2-notif-top"><b>Wanisite</b><span>jour 7</span></div>
-                    <div class="proto2-notif-txt">Site en ligne. Tous les accès sont à votre nom.</div>
+                  <div class="proto2-notif">
+                    <div class="proto2-notif-ic doc"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 13h8v1.5H8V13Zm0 3.5h8V18H8v-1.5Zm0-7h4V11H8V9.5Z"/></svg></div>
+                    <div class="proto2-notif-body">
+                      <div class="proto2-notif-top"><b>Wanisite</b><span>maintenant</span></div>
+                      <div class="proto2-notif-txt">Rendez-vous confirmé, appel dans l’heure.</div>
+                    </div>
+                  </div>
+                  <div class="proto2-call">
+                    <div class="proto2-call-avatar">W</div>
+                    <div class="proto2-call-label">Appel entrant</div>
+                    <div class="proto2-call-name">Wanisite · Diagnostic gratuit</div>
+                    <div class="proto2-call-actions">
+                      <span class="proto2-call-btn decline"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.2 2.2Z"/></svg></span>
+                      <span class="proto2-call-btn accept"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.2 2.2Z"/></svg></span>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="proto2-cta-float">
+              <div class="proto2-cta-float-ic">W</div>
+              <div class="proto2-cta-float-body">
+                <div class="proto2-cta-float-top">On vous appelle sous l’heure</div>
+                <div class="proto2-cta-float-sub">100&nbsp;% gratuit · sans engagement</div>
+              </div>
+              <a class="proto2-cta-float-btn" href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -1435,27 +1481,6 @@
   }
   initHorizontalPin('tarifs', 'tarifsTrack', 'tarifsProgressBar');
   initHorizontalPin('realisations', 'realTrack', 'realProgressBar');
-
-  /* Protocole : la notification du téléphone s'allume quand son étape
-     correspondante est visible dans le tiers central de l'écran. */
-  (function initProtoPhone(){
-    var steps = document.querySelectorAll('#protocole .proto2-step');
-    var notifs = document.querySelectorAll('#protocole .proto2-notif');
-    if(!steps.length || !notifs.length) return;
-    var byStep = {};
-    notifs.forEach(function(n){ byStep[n.getAttribute('data-step')] = n; });
-    if(!('IntersectionObserver' in window)){ notifs.forEach(function(n){ n.classList.add('on'); }); return; }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        var step = entry.target.getAttribute('data-step');
-        var notif = byStep[step];
-        if(!notif) return;
-        if(entry.isIntersecting) notif.classList.add('on');
-        else if(entry.boundingClientRect.top > 0) notif.classList.remove('on');
-      });
-    }, {threshold:0.4, rootMargin:'-15% 0px -35% 0px'});
-    steps.forEach(function(s){ io.observe(s); });
-  })();
 })();
 
   /* ---- « Ce qu'on propose » : réseau de points interactif (comme le CRM) ---- */
