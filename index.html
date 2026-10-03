@@ -16,6 +16,16 @@
 <link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <style>
+  #loader{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:#04080f;transition:opacity .5s ease,visibility .5s ease;}
+  #loader.done{opacity:0;visibility:hidden;pointer-events:none;}
+  #loader img{width:92px;height:auto;filter:drop-shadow(0 8px 28px rgba(0,201,201,.45));animation:ldPulse 1.5s ease-in-out infinite;}
+  .ld-bar{width:120px;height:3px;border-radius:99px;background:rgba(0,201,201,.16);overflow:hidden;position:relative;}
+  .ld-bar i{position:absolute;top:0;bottom:0;left:0;width:40%;border-radius:99px;background:linear-gradient(90deg,#00C9C9,#6ff);animation:ldSlide 1.1s ease-in-out infinite;}
+  @keyframes ldPulse{0%,100%{transform:scale(1);opacity:.85;}50%{transform:scale(1.07);opacity:1;}}
+  @keyframes ldSlide{0%{left:-40%;}100%{left:100%;}}
+  html.ld-lock{overflow:hidden;}
+  @media (prefers-reduced-motion:reduce){#loader img,.ld-bar i{animation:none;}}
+
   :root{
     --bg:#04080f; --bg2:#080e1c; --bg3:#0d1526;
     --text:#d8eeee; --text2:rgba(216,238,238,.55); --text3:rgba(216,238,238,.28);
@@ -378,6 +388,28 @@
     .real-track .card-logo{width:40px;height:40px;margin-bottom:14px;}
   }
   .real-track .card:hover{background:var(--bg3);}
+  .deliv{position:relative;padding:20px 0 10px;}
+  .deliv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:48px;}
+  .deliv-grid .card{display:flex;flex-direction:column;border-radius:18px;border:1px solid var(--border);padding:22px;}
+  .deliv-grid .card-shot{margin:0 0 20px 0;}
+  .deliv-grid .card h3{font-size:22px;margin:0 0 10px;}
+  .deliv-grid .card p{font-size:14.5px;line-height:1.65;flex:1;margin:0 0 18px;}
+  .deliv-grid .status{margin-bottom:14px;}
+  .deliv-sub{margin:72px 0 20px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:14px;}
+  .deliv-sub::after{content:'';flex:1;height:1px;background:var(--border);}
+  .deliv-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+  .mini{display:flex;gap:18px;align-items:flex-start;padding:20px;border-radius:16px;border:1px solid var(--border);background:var(--bg2);text-decoration:none;transition:background .2s ease,border-color .2s ease;}
+  a.mini:hover,.mini:hover{background:var(--bg3);border-color:var(--borderl);}
+  .mini .card-logo{width:56px;height:56px;flex:none;margin:0;}
+  .mini-ini{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:16px;color:var(--t);background:var(--tg);border:1px solid var(--borderl);}
+  .mini-body{min-width:0;}
+  .mini .status{margin-bottom:8px;font-size:10px;}
+  .mini h3{font-size:17px;font-weight:700;color:#fff;margin:0 0 6px;}
+  .mini p{font-size:13.5px;line-height:1.55;color:var(--text2);margin:0 0 12px;}
+  .deliv-more{margin:0;padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;line-height:1.6;color:var(--text2);border:1px dashed var(--borderl);border-radius:16px;grid-column:span 2;}
+  @media (max-width:1000px){.deliv-more{grid-column:1/-1;}}
+  @media (max-width:1000px){.deliv-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:640px){.deliv-grid{grid-template-columns:1fr;gap:22px;}.deliv-mini{grid-template-columns:1fr;}.deliv-sub{margin-top:52px;}}
   .real-more{width:240px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;
     font-size:13.5px;line-height:1.6;color:var(--text2);border:1px dashed var(--borderl);border-radius:14px;padding:24px;}
   .real-progress-track{height:3px;background:var(--border);border-radius:99px;position:relative;overflow:hidden;}
@@ -557,10 +589,10 @@
   /* ---- Coulisses : vidéo de présentation réelle d'un site livré,
      entre les logos clients et le protocole. ---- */
   .vid-block{position:relative;padding:20px 0 10px;}
-  .vid-grid{display:grid;grid-template-columns:380px 1fr;gap:72px;align-items:center;margin-top:48px;}
+  .vid-grid{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:88px;align-items:center;margin-top:48px;}
   @media (max-width:900px){.vid-grid{grid-template-columns:1fr;gap:36px;}}
   .vid-showcase{display:flex;justify-content:center;}
-  .vid-frame{position:relative;width:100%;max-width:380px;border-radius:26px;overflow:hidden;aspect-ratio:9/16;
+  .vid-frame{position:relative;width:100%;max-width:440px;border-radius:26px;overflow:hidden;aspect-ratio:9/16;
     border:1px solid var(--borderl);box-shadow:0 40px 80px -24px rgba(0,201,201,.4),0 0 0 1px rgba(255,255,255,.04) inset;background:#000;}
   .vid-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
   .vid-frame-bar{position:absolute;top:0;left:0;right:0;z-index:1;display:flex;align-items:center;gap:6px;
@@ -568,9 +600,16 @@
   .vid-frame-bar i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);flex:none;}
   .vid-frame-bar b{margin-left:6px;font-family:var(--mono);font-weight:500;font-size:12px;color:rgba(255,255,255,.75);}
   @media (max-width:420px){.vid-frame{max-width:260px;}}
+  .vid-sound{position:absolute;right:14px;bottom:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(4,8,15,.62);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s;}
+  .vid-sound:hover{background:rgba(0,201,201,.55);transform:scale(1.06);}
+  .vid-sound .on{display:none;} .vid-sound[aria-pressed="true"] .on{display:block;} .vid-sound[aria-pressed="true"] .off{display:none;}
+  .vid-points{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .vid-points li{position:relative;padding-left:30px;font-size:16.5px;color:var(--text);line-height:1.5;}
+  .vid-points li::before{content:'';position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;background:var(--t) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.5 2.5L14 7.5' stroke='%2304141a' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat;}
+  @media (max-width:900px){.vid-points{align-items:flex-start;max-width:360px;margin-left:auto;margin-right:auto;}}
   .vid-info .card-logo{margin-bottom:18px;}
-  .vid-info h3{font-size:28px;font-weight:800;color:#fff;margin:0 0 12px;letter-spacing:-.5px;}
-  .vid-info p{font-size:16px;line-height:1.75;color:var(--text2);margin:0 0 22px;max-width:460px;}
+  .vid-info h3{font-size:clamp(30px,3.6vw,44px);font-weight:800;color:#fff;margin:0 0 12px;letter-spacing:-.5px;}
+  .vid-info p{font-size:18px;line-height:1.7;color:var(--text2);margin:0 0 22px;max-width:520px;}
   .vid-info .tags{margin-bottom:28px;}
   @media (max-width:900px){.vid-info{text-align:center;}.vid-info .card-logo{margin-left:auto;margin-right:auto;}
     .vid-info p{max-width:none;}.vid-info .tags{justify-content:center;}}
@@ -670,6 +709,15 @@
     .proto2-call-btn{width:40px;height:40px;}
   }
 
+  .proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{opacity:0;transform:translateY(-8px) scale(.98);transition:opacity .16s ease,transform .16s ease;}
+  .proto2-notif,.proto2-call{opacity:0;transform:translateY(16px) scale(.96);}
+  .proto2-notif.in,.proto2-call.in{opacity:1;transform:none;transition:opacity .45s var(--ease) var(--d,0s),transform .5s var(--ease) var(--d,0s);}
+  .proto2-time,.proto2-day{transition:opacity .2s ease;}
+  .proto2-step .proto2-card{transition:border-color .35s ease,box-shadow .35s ease,opacity .35s ease,transform .35s ease;}
+  .proto2-step:not(.is-active) .proto2-card{opacity:.55;}
+  .proto2-step.is-active .proto2-card{border-color:rgba(0,201,201,.55);box-shadow:0 18px 50px -22px rgba(0,201,201,.55);}
+  .proto2-step.is-active .proto2-dot{background:var(--t);color:#04141a;box-shadow:0 0 0 6px rgba(0,201,201,.18);}
+  @media (prefers-reduced-motion:reduce){.proto2-notif,.proto2-call{opacity:1;transform:none;}.proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{transition:none;}}
   .proto2-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:28px;}
   .proto2-step{position:relative;display:flex;gap:20px;padding-left:4px;}
   .proto2-step::before{content:'';position:absolute;left:15px;top:36px;bottom:-28px;width:1px;background:var(--borderl);}
@@ -695,6 +743,11 @@
 </style>
 </head>
 <body>
+<div id="loader" role="status" aria-label="Chargement"><img src="/assets/img/nav-logo.webp" alt="" width="92" height="60"><span class="ld-bar"><i></i></span></div>
+<script>(function(){var d=document.documentElement,l=document.getElementById('loader'),t0=Date.now(),gone=false;d.classList.add('ld-lock');function hide(){if(gone)return;gone=true;l.classList.add('done');d.classList.remove('ld-lock');setTimeout(function(){l.remove();},600);}
+window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.now()-t0)));});setTimeout(hide,4000);})();</script>
+<noscript><style>#loader{display:none}</style></noscript>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -838,14 +891,22 @@
     <div class="vid-grid">
       <div class="vid-showcase rv">
         <div class="vid-frame">
-          <span class="vid-frame-bar"><i></i><i></i><i></i><b>Equip'Food</b></span>
-          <video src="assets/video/equipfood.mp4" controls preload="metadata" playsinline></video>
+          <video id="efVideo" src="assets/video/equipfood.mp4" poster="assets/video/posters/equipfood.jpg" muted loop playsinline preload="metadata" aria-label="Présentation du site Equip'Food"></video>
+          <button class="vid-sound" id="efSound" type="button" aria-label="Activer le son" aria-pressed="false">
+            <svg class="on" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-9v2.1a7 7 0 0 1 0 13.8V21a9 9 0 0 0 0-18Z"/></svg>
+            <svg class="off" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7Z"/></svg>
+          </button>
         </div>
       </div>
       <div class="vid-info rv d1">
         <div class="card-logo logo-equipfood"></div>
         <h3>Equip'Food</h3>
         <p>Vitrine catalogue pour un fournisseur d'équipement pour cafés, hôtels et restaurants, bascule vers la vente en ligne en un réglage.</p>
+        <ul class="vid-points">
+          <li>Catalogue complet en ligne</li>
+          <li>Demande de devis directement par WhatsApp</li>
+          <li>Passage en boutique en un réglage</li>
+        </ul>
         <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
         <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a>
       </div>
@@ -881,34 +942,10 @@
                   </span>
                 </div>
                 <div class="proto2-clock">
-                  <div class="proto2-day">Aujourd’hui</div>
-                  <div class="proto2-time">14:32</div>
+                  <div class="proto2-day" id="p2Day">Aujourd’hui</div>
+                  <div class="proto2-time" id="p2Time">14:32</div>
                 </div>
-                <div class="proto2-notifs">
-                  <div class="proto2-notif">
-                    <div class="proto2-notif-ic wa"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.3.6-.6.9-.8 1.1-.2.2-.4.5-.2.8.2.4.9 1.5 2 2.4 1.3 1.2 2.4 1.5 2.8 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.5-.2.8-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.2.1.7-.1 1.4Z"/></svg></div>
-                    <div class="proto2-notif-body">
-                      <div class="proto2-notif-top"><b>WhatsApp</b><span>maintenant</span></div>
-                      <div class="proto2-notif-txt">Diagnostic reçu — on vous appelle dans l’heure.</div>
-                    </div>
-                  </div>
-                  <div class="proto2-notif">
-                    <div class="proto2-notif-ic doc"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 13h8v1.5H8V13Zm0 3.5h8V18H8v-1.5Zm0-7h4V11H8V9.5Z"/></svg></div>
-                    <div class="proto2-notif-body">
-                      <div class="proto2-notif-top"><b>Wanisite</b><span>maintenant</span></div>
-                      <div class="proto2-notif-txt">Rendez-vous confirmé, appel dans l’heure.</div>
-                    </div>
-                  </div>
-                  <div class="proto2-call">
-                    <div class="proto2-call-avatar">W</div>
-                    <div class="proto2-call-label">Appel entrant</div>
-                    <div class="proto2-call-name">Wanisite · Diagnostic gratuit</div>
-                    <div class="proto2-call-actions">
-                      <span class="proto2-call-btn decline"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.2 2.2Z"/></svg></span>
-                      <span class="proto2-call-btn accept"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.2 2.2Z"/></svg></span>
-                    </div>
-                  </div>
-                </div>
+                <div class="proto2-notifs" id="p2Notifs" aria-live="polite"></div>
               </div>
             </div>
             <div class="proto2-cta-float">
@@ -1039,126 +1076,129 @@
   </div>
 </div>
 
-<div class="real-pin" id="realisations">
-  <div class="real-sticky">
-    <div class="wrap">
-      <div class="rv">
-        <div class="sec-tag">Échantillons</div>
-        <h2 class="sec-h">Ce qu'on a <span class="italic hl-block">livré.</span></h2>
-        <p class="sec-p">Des projets réels, livrés dans les délais, avec des résultats concrets et vérifiables.</p>
-      </div>
+<div class="deliv" id="realisations">
+  <div class="wrap section">
+    <div class="rv">
+      <div class="sec-tag">Échantillons</div>
+      <h2 class="sec-h">Ce qu'on a <span class="italic hl-block">livré.</span></h2>
+      <p class="sec-p">Des projets réels, livrés dans les délais, avec des résultats concrets et vérifiables.</p>
     </div>
-    <div class="real-track-wrap">
-      <div class="real-track" id="realTrack">
-        <a class="card" href="https://elite-car-silk.vercel.app">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>elite-car-silk.vercel.app</b></span><img src="assets/realisations/elitecars.jpg" alt="Capture d'écran du back-office ELITECARS" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°01</span>
-          <div class="status live"><i></i>En ligne depuis 08/2026</div>
-          <h3>ELITECARS</h3>
-          <p>CRM de location de véhicules — signature électronique, contrat conforme à la réglementation, disponibilité en temps réel.</p>
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-        </a>
-        <a class="card" href="https://thomcutbarber.thomcutbarber.fr/login">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>thomcutbarber.fr</b></span><img src="assets/realisations/thomcut.jpg" alt="Capture d'écran de l'espace franchisé Thomcut Barber" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°02</span>
-          <div class="status live"><i></i>En production</div>
-          <h3>Thomcut Barber</h3>
-          <p>CRM franchise multi-salon — rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</p>
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-        </a>
-        <a class="card" href="https://streetcarwash.com">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>streetcarwash.com</b></span><img src="assets/realisations/streetcarwash.jpg" alt="Capture d'écran du site Street Car Wash" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°03</span>
-          <div class="status live"><i></i>En ligne</div>
-          <h3>Street Car Wash</h3>
-          <p>Tunnel de réservation en 5 étapes, acompte PayPal, confirmation automatique, Calendly.</p>
-          <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
-        </a>
-        <a class="card" href="https://cleanandpolish.fr">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>cleanandpolish.fr</b></span><img src="assets/realisations/cleanpolish.jpg" alt="Capture d'écran du site Clean & Polish" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°04</span>
-          <div class="status live"><i></i>En ligne</div>
-          <h3>Clean &amp; Polish</h3>
-          <p>Site vitrine + campagne Meta Ads orientée appels — 108 appels en 6 jours à 1,49&nbsp;€/appel.</p>
-          <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
-        </a>
-        <a class="card" href="https://aestheticmenparis.com">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>aestheticmenparis.com</b></span><img src="assets/realisations/aestheticmen.jpg" alt="Capture d'écran du site Aesthetic Men" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°05</span>
-          <div class="status live"><i></i>En ligne</div>
-          <h3>Aesthetic Men</h3>
-          <p>Site vitrine + campagne Meta Ads orientée appels — 51 appels en 9 jours à 2,39&nbsp;€/appel.</p>
-          <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
-        </a>
-        <a class="card" href="https://a2ddistribution.com">
-          <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>a2ddistribution.com</b></span><img src="assets/realisations/a2d.jpg" alt="Capture d'écran du site A2D Distribution" loading="lazy"></div>
-          <span class="spec-tag">ÉCH. N°06</span>
-          <div class="status live"><i></i>En ligne</div>
-          <h3>A2D Distribution</h3>
-          <p>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</p>
-          <div class="tags"><span class="tag">WordPress</span></div>
-        </a>
-        <div class="card">
+    <div class="deliv-grid">
+      <a class="card" href="https://elite-car-silk.vercel.app">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>elite-car-silk.vercel.app</b></span><img src="assets/realisations/elitecars.jpg" alt="Capture d'écran du back-office ELITECARS" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°01</span>
+        <div class="status live"><i></i>En ligne depuis 08/2026</div>
+        <h3>ELITECARS</h3>
+        <p>CRM de location de véhicules — signature électronique, contrat conforme à la réglementation, disponibilité en temps réel.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+      </a>
+      <a class="card" href="https://thomcutbarber.thomcutbarber.fr/login">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>thomcutbarber.fr</b></span><img src="assets/realisations/thomcut.jpg" alt="Capture d'écran de l'espace franchisé Thomcut Barber" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°02</span>
+        <div class="status live"><i></i>En production</div>
+        <h3>Thomcut Barber</h3>
+        <p>CRM franchise multi-salon — rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+      </a>
+      <a class="card" href="https://streetcarwash.com">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>streetcarwash.com</b></span><img src="assets/realisations/streetcarwash.jpg" alt="Capture d'écran du site Street Car Wash" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°03</span>
+        <div class="status live"><i></i>En ligne</div>
+        <h3>Street Car Wash</h3>
+        <p>Tunnel de réservation en 5 étapes, acompte PayPal, confirmation automatique, Calendly.</p>
+        <div class="tags"><span class="tag">WordPress</span><span class="tag">PayPal</span></div>
+      </a>
+      <a class="card" href="https://cleanandpolish.fr">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>cleanandpolish.fr</b></span><img src="assets/realisations/cleanpolish.jpg" alt="Capture d'écran du site Clean & Polish" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°04</span>
+        <div class="status live"><i></i>En ligne</div>
+        <h3>Clean &amp; Polish</h3>
+        <p>Site vitrine + campagne Meta Ads orientée appels — 108 appels en 6 jours à 1,49&nbsp;€/appel.</p>
+        <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+      </a>
+      <a class="card" href="https://aestheticmenparis.com">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>aestheticmenparis.com</b></span><img src="assets/realisations/aestheticmen.jpg" alt="Capture d'écran du site Aesthetic Men" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°05</span>
+        <div class="status live"><i></i>En ligne</div>
+        <h3>Aesthetic Men</h3>
+        <p>Site vitrine + campagne Meta Ads orientée appels — 51 appels en 9 jours à 2,39&nbsp;€/appel.</p>
+        <div class="tags"><span class="tag">WordPress</span><span class="tag">Meta Ads</span></div>
+      </a>
+      <a class="card" href="https://a2ddistribution.com">
+        <div class="card-shot"><span class="card-shot-bar"><i></i><i></i><i></i><b>a2ddistribution.com</b></span><img src="assets/realisations/a2d.jpg" alt="Capture d'écran du site A2D Distribution" loading="lazy"></div>
+        <span class="spec-tag">ÉCH. N°06</span>
+        <div class="status live"><i></i>En ligne</div>
+        <h3>A2D Distribution</h3>
+        <p>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</p>
+        <div class="tags"><span class="tag">WordPress</span></div>
+      </a>
+    </div>
+    <h3 class="deliv-sub rv">Et aussi</h3>
+    <div class="deliv-mini">
+      <div class="mini">
+        <div class="card-logo logo-123permis"></div>
+        <div class="mini-body">
           <div class="status"><i></i>Livré</div>
-          <span class="spec-tag">ÉCH. N°07</span>
-          <div class="card-logo logo-123permis"></div>
           <h3>123 Permis</h3>
-          <p>Site vitrine pour une auto-école — présentation des formules, prise de contact.</p>
+          <p>Site vitrine pour une auto-école : formules, prise de contact.</p>
           <div class="tags"><span class="tag">WordPress</span></div>
         </div>
-        <div class="card">
+      </div>
+      <div class="mini">
+        <div class="card-logo logo-equipfood"></div>
+        <div class="mini-body">
           <div class="status"><i></i>En cours</div>
-          <span class="spec-tag">ÉCH. N°08</span>
-          <h3>Jemil Barber</h3>
-          <p>Cockpit de pilotage à distance pour un barbershop en équipe mixte salariés / indépendants.</p>
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
-        </div>
-        <div class="card">
-          <div class="status"><i></i>En cours</div>
-          <span class="spec-tag">ÉCH. N°09</span>
-          <div class="card-logo logo-equipfood"></div>
           <h3>Equip'Food</h3>
-          <p>Vitrine catalogue pour un fournisseur d'équipement pour cafés, hôtels et restaurants, bascule vers la vente en ligne en un réglage.</p>
+          <p>Vitrine catalogue pour un fournisseur d'équipement pour cafés, hôtels et restaurants.</p>
           <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
         </div>
-        <a class="card" href="https://formationiwana.fr">
-          <span class="spec-tag">ÉCH. N°10</span>
+      </div>
+      <a class="mini" href="https://formationiwana.fr" target="_blank" rel="noopener">
+        <div class="card-logo logo-iwana"></div>
+        <div class="mini-body">
           <div class="status live"><i></i>En ligne</div>
-          <div class="card-logo logo-iwana"></div>
           <h3>IWANA Formation</h3>
-          <p>Centre de formation aéroportuaire — présentation des formations, prise de contact.</p>
-          <div class="tags"><span class="tag">WordPress</span></div>
-        </a>
-        <div class="card">
-          <div class="status"><i></i>Livré</div>
-          <span class="spec-tag">ÉCH. N°11</span>
-          <div class="card-logo logo-amh"></div>
-          <h3>AMH Luxury</h3>
-          <p>Site vitrine livré.</p>
+          <p>Centre de formation aéroportuaire : formations, prise de contact.</p>
           <div class="tags"><span class="tag">WordPress</span></div>
         </div>
-        <div class="card">
+      </a>
+      <div class="mini">
+        <div class="card-logo logo-luminalab"></div>
+        <div class="mini-body">
           <div class="status"><i></i>Livré</div>
-          <span class="spec-tag">ÉCH. N°12</span>
-          <div class="card-logo logo-luminalab"></div>
           <h3>Lumina Lab</h3>
           <p>Boutique en ligne Shopify clé en main.</p>
           <div class="tags"><span class="tag">Shopify</span></div>
         </div>
-        <div class="card">
+      </div>
+      <div class="mini">
+        <div class="card-logo logo-amh"></div>
+        <div class="mini-body">
           <div class="status"><i></i>Livré</div>
-          <span class="spec-tag">ÉCH. N°13</span>
-          <div class="card-logo logo-xlparebrise"></div>
-          <h3>XL Pare-Brise</h3>
-          <p>Site vitrine — remplacement de pare-brise.</p>
+          <h3>AMH Luxury</h3>
+          <p>Site vitrine livré.</p>
           <div class="tags"><span class="tag">WordPress</span></div>
         </div>
-        <div class="real-more">+ une vingtaine d'autres sites livrés<br>(auto-école, dératisation, rénovation, e-commerce...)</div>
       </div>
-    </div>
-    <div class="wrap">
-      <div class="real-progress-track"><div class="real-progress-bar" id="realProgressBar"></div></div>
-      <div class="swipe-hint">◀ glisser ▶</div>
+      <div class="mini">
+        <div class="card-logo logo-xlparebrise"></div>
+        <div class="mini-body">
+          <div class="status"><i></i>Livré</div>
+          <h3>XL Pare-Brise</h3>
+          <p>Site vitrine pour un service de remplacement de pare-brise.</p>
+          <div class="tags"><span class="tag">WordPress</span></div>
+        </div>
+      </div>
+      <div class="mini">
+        <div class="card-logo mini-ini">JB</div>
+        <div class="mini-body">
+          <div class="status"><i></i>En cours</div>
+          <h3>Jemil Barber</h3>
+          <p>Cockpit de pilotage à distance pour un barbershop en équipe mixte salariés / indépendants.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span></div>
+        </div>
+      </div>
+      <p class="deliv-more">+ une vingtaine d'autres sites livrés<br>(auto-école, dératisation, rénovation, e-commerce…)</p>
     </div>
   </div>
 </div>
@@ -1545,7 +1585,6 @@
     window.addEventListener('resize', function(){ layout(); onScroll(); });
   }
   initHorizontalPin('tarifs', 'tarifsTrack', 'tarifsProgressBar');
-  initHorizontalPin('realisations', 'realTrack', 'realProgressBar');
 })();
 
   /* ---- « Ce qu'on propose » : réseau de points interactif (comme le CRM) ---- */
@@ -1590,6 +1629,84 @@
     else visible=true;
     resize(); raf=requestAnimationFrame(frame);
   })();
+
+/* ---- Protocole : le téléphone suit l'étape affichée à droite ---- */
+(function(){
+  var box=document.getElementById('p2Notifs'),dayEl=document.getElementById('p2Day'),timeEl=document.getElementById('p2Time');
+  var steps=[].slice.call(document.querySelectorAll('.proto2-step'));
+  if(!box||!steps.length)return;
+  var IC={
+    wa:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1.100-1.500-1.100-2.900s.7-2.100 1-2.400c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.5s.8 1.900.9 2c.1.100.1.300 0 .500-.1.200-.1.300-.3.500l-.4.500c-.1.100-.3.300-.1.600.2.300.7 1.100 1.500 1.800 1 .9 1.900 1.200 2.200 1.300.3.100.4.100.6-.1l.8-1c.2-.3.400-.2.700-.1l1.800.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400Z"/></svg>',
+    doc:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 13h8v1.5H8V13Zm0 3.5h8V18H8v-1.5Zm0-7h4V11H8V9.5Z"/></svg>',
+    cal:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm-2 8h14v10H5V10Z"/></svg>',
+    live:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 14.4-4-4 1.4-1.4 2.600 2.600 5.600-5.600L18 9.400l-7 7Z"/></svg>'
+  };
+  var PH='<svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.300.2 2.500.6 3.600.1.300 0 .700-.2 1l-2.200 2.600Z"/></svg>';
+  var SC=[
+    {day:'Aujourd’hui',time:'14:32',n:[['wa','WhatsApp','Diagnostic reçu : on vous appelle dans l’heure.'],['call']]},
+    {day:'Le jour même',time:'18:05',n:[['wa','WhatsApp','Votre devis est prêt : un prix fixe, sans surprise.'],['doc','Wanisite','50 % au départ, 50 % à la livraison.']]},
+    {day:'Pendant la semaine',time:'10:12',n:[['doc','Wanisite','La maquette est prête : à vous de valider.'],['cal','Calendrier','Point maquette avec Wanisite'],['wa','WhatsApp','Rien n’est mis en ligne sans votre accord.']]},
+    {day:'Jour 7',time:'09:30',n:[['live','Wanisite','Votre site est en ligne.'],['doc','Wanisite','Domaine, hébergement, accès admin : tout est à votre nom.']]}
+  ];
+  function node(it,i){
+    var el=document.createElement('div');
+    if(it[0]==='call'){
+      el.className='proto2-call';
+      el.innerHTML='<div class="proto2-call-avatar">W</div><div class="proto2-call-label">Appel entrant</div><div class="proto2-call-name">Wanisite · Diagnostic gratuit</div><div class="proto2-call-actions"><span class="proto2-call-btn decline">'+PH+'</span><span class="proto2-call-btn accept">'+PH+'</span></div>';
+    }else{
+      el.className='proto2-notif';
+      el.innerHTML='<div class="proto2-notif-ic '+it[0]+'">'+IC[it[0]]+'</div><div class="proto2-notif-body"><div class="proto2-notif-top"><b>'+it[1]+'</b><span>maintenant</span></div><div class="proto2-notif-txt">'+it[2]+'</div></div>';
+    }
+    el.style.setProperty('--d',(i*0.13+0.05)+'s');
+    return el;
+  }
+  var cur=-1,timer=null;
+  function show(i){
+    if(i===cur)return; cur=i;
+    steps.forEach(function(st,k){st.classList.toggle('is-active',k===i);});
+    clearTimeout(timer);
+    box.classList.add('out');
+    timer=setTimeout(function(){
+      box.innerHTML='';
+      var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
+      sc.n.forEach(function(it,k){box.appendChild(node(it,k));});
+      box.classList.remove('out');
+      void box.offsetWidth;
+      [].slice.call(box.children).forEach(function(c){c.classList.add('in');});
+    },box.children.length?170:0);
+  }
+  show(0);
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) show(steps.indexOf(e.target)); });
+  },{rootMargin:'-42% 0px -42% 0px',threshold:0});
+  steps.forEach(function(st){io.observe(st);});
+  /* mobile : le téléphone est au-dessus des étapes, on fait défiler les scènes tout seul */
+  var mq=window.matchMedia('(max-width:900px)'),auto=null,vis=false,k=0;
+  function tick(){k=(k+1)%SC.length;show(k);}
+  function sync(){
+    if(mq.matches&&vis&&!auto)auto=setInterval(tick,3400);
+    else if((!mq.matches||!vis)&&auto){clearInterval(auto);auto=null;}
+  }
+  var pf=document.querySelector('.proto2-phone-frame');
+  if(pf){new IntersectionObserver(function(es){vis=es[0].isIntersecting;sync();},{threshold:.4}).observe(pf);}
+  (mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));
+})();
+
+/* ---- Vidéo Equip'Food : lecture automatique quand elle est visible ---- */
+(function(){
+  var v=document.getElementById('efVideo'),b=document.getElementById('efSound');
+  if(!v)return;
+  var p=function(){var r=v.play();if(r&&r.catch)r.catch(function(){});};
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es[0].isIntersecting?p():v.pause();},{threshold:.35}).observe(v);
+  }else p();
+  if(b)b.addEventListener('click',function(){
+    v.muted=!v.muted; b.setAttribute('aria-pressed',String(!v.muted));
+    b.setAttribute('aria-label',v.muted?'Activer le son':'Couper le son');
+    if(!v.muted)p();
+  });
+})();
 </script>
 </body>
 </html>
