@@ -621,73 +621,88 @@
   /* ---- Protocole : téléphone (notifications au fil des étapes) + timeline
      verticale, à la place de l'ancienne galerie de 4 cartes trop vide. ---- */
   .proto2{position:relative;padding:20px 0 10px;}
-  .proto2-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;margin-top:48px;}
+  .proto2-grid{display:grid;grid-template-columns:300px 1fr;gap:64px;margin-top:48px;}
   @media (max-width:900px){.proto2-grid{grid-template-columns:1fr;gap:32px;}}
 
   .proto2-phone-col{position:relative;height:100%;}
   .proto2-phone-sticky{position:sticky;top:5vh;}
   @media (max-width:900px){.proto2-phone-sticky{position:static;}}
 
-  .proto2-phone-frame{position:relative;width:272px;margin:0 auto;}
-  @media (max-width:420px){.proto2-phone-frame{width:240px;}}
-
-  /* châssis — métal brossé, boutons latéraux, bords arrondis type iPhone */
-  .proto2-phone{position:relative;width:272px;height:572px;border-radius:52px;padding:14px;
-    background:linear-gradient(155deg,#3a3f47 0%,#17191d 18%,#0a0b0d 50%,#1d2024 82%,#44484f 100%);
-    box-shadow:0 45px 90px -30px rgba(0,201,201,.4),0 0 0 1px rgba(255,255,255,.06) inset,0 2px 0 rgba(255,255,255,.12) inset;}
-  .proto2-btn{position:absolute;background:linear-gradient(90deg,#1a1c20,#303339);border-radius:3px;}
-  .proto2-btn.vol1{left:-3px;top:118px;width:3px;height:34px;}
-  .proto2-btn.vol2{left:-3px;top:160px;width:3px;height:56px;}
-  .proto2-btn.pwr{right:-3px;top:146px;width:3px;height:76px;}
-  .proto2-screen{position:relative;overflow:hidden;height:100%;border-radius:40px;
+  /* iPhone réaliste : tout est dessiné en points iPhone (écran 393 × 852) puis mis à l'échelle par --s */
+  .proto2-phone-frame{--w:300px;--s:calc((var(--w) - 14px) / 393);position:relative;width:var(--w);margin:0 auto;}
+  @media (max-width:420px){.proto2-phone-frame{--w:262px;}}
+  .proto2-phone{position:relative;width:var(--w);height:calc(852 * var(--s) + 14px);border-radius:calc(62 * var(--s));padding:7px;
+    background:linear-gradient(145deg,#9a9ea6 0%,#4a4d54 14%,#202226 38%,#16171a 60%,#52555c 86%,#a4a8b0 100%);
+    box-shadow:0 50px 90px -34px rgba(0,201,201,.42),0 0 0 .5px rgba(255,255,255,.25) inset,0 0 0 1px rgba(0,0,0,.6);}
+  .proto2-btn{position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#2a2c31,#6b6f77 55%,#3a3d43);}
+  .proto2-btn.act{left:-2.5px;top:calc(124 * var(--s) + 7px);height:calc(30 * var(--s));}
+  .proto2-btn.vol1{left:-2.5px;top:calc(176 * var(--s) + 7px);height:calc(58 * var(--s));}
+  .proto2-btn.vol2{left:-2.5px;top:calc(246 * var(--s) + 7px);height:calc(58 * var(--s));}
+  .proto2-btn.pwr{right:-2.5px;left:auto;top:calc(200 * var(--s) + 7px);height:calc(92 * var(--s));background:linear-gradient(270deg,#2a2c31,#6b6f77 55%,#3a3d43);}
+  .proto2-screen{position:relative;overflow:hidden;width:100%;height:100%;border-radius:calc(55 * var(--s));color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",var(--sans);
     background:
-      radial-gradient(120% 70% at 20% 0%,rgba(0,201,201,.5),transparent 60%),
-      radial-gradient(100% 70% at 100% 100%,rgba(20,110,170,.45),transparent 60%),
-      linear-gradient(185deg,#0d1c2c 0%,#071220 55%,#04080f 100%);
-    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;}
-  .proto2-island{position:absolute;left:50%;top:14px;translate:-50% 0;width:78px;height:24px;border-radius:16px;background:#000;}
-  .proto2-statusbar{position:relative;display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0;color:#fff;}
-  .proto2-sb-time{font-size:14px;font-weight:700;letter-spacing:.2px;visibility:hidden;}  /* écran verrouillé : pas d'heure dans la barre, seule l'horloge du milieu */
-  .proto2-sb-icons{display:flex;align-items:center;gap:5px;}
-  .proto2-sb-icons svg{height:11px;fill:#fff;}
-  .sb-signal{width:16px;}.sb-wifi{width:14px;}.sb-batt{width:23px;}
-  .proto2-clock{text-align:center;padding:18px 0 16px;position:relative;}
-  .proto2-day{font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(255,255,255,.75);}
-  .proto2-time{font-size:62px;font-weight:600;color:#fff;letter-spacing:-1.5px;margin-top:0;line-height:1;}
+      radial-gradient(90% 55% at 12% 4%,rgba(0,201,201,.55),transparent 62%),
+      radial-gradient(80% 60% at 100% 92%,rgba(24,108,178,.55),transparent 62%),
+      radial-gradient(60% 40% at 80% 38%,rgba(0,150,170,.18),transparent 70%),
+      linear-gradient(185deg,#0b1a2a 0%,#06101c 55%,#03070d 100%);
+    box-shadow:0 0 0 5px #050506;}
+  .proto2-screen::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+    background:linear-gradient(118deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.025) 22%,transparent 40%);}
+  .proto2-island{position:absolute;left:50%;top:calc(11 * var(--s));translate:-50% 0;width:calc(126 * var(--s));height:calc(37 * var(--s));border-radius:999px;background:#000;z-index:3;}
+  .proto2-statusbar{position:absolute;left:0;right:0;top:0;height:calc(54 * var(--s));z-index:2;}
+  .proto2-sb-icons{position:absolute;right:calc(34 * var(--s));top:calc(18.5 * var(--s));display:flex;align-items:center;gap:calc(6 * var(--s));}
+  .proto2-sb-icons svg{height:calc(12.5 * var(--s));width:auto;fill:#fff;color:#fff;display:block;}
+  .proto2-clock{position:absolute;left:0;right:0;top:calc(62 * var(--s));text-align:center;}
+  .proto2-lock{display:block;margin:0 auto calc(10 * var(--s));height:calc(17 * var(--s));width:auto;color:rgba(255,255,255,.9);}
+  .proto2-day{font-size:calc(21 * var(--s));font-weight:600;color:rgba(255,255,255,.82);letter-spacing:-.01em;}
+  .proto2-time{font-size:calc(104 * var(--s));font-weight:600;line-height:.98;letter-spacing:-.035em;color:rgba(255,255,255,.93);margin-top:calc(2 * var(--s));font-variant-numeric:tabular-nums;}
 
-  .proto2-notifs{position:relative;display:flex;flex-direction:column;gap:9px;padding:0 10px;}
-  .proto2-notif{display:flex;gap:10px;padding:11px 12px;border-radius:16px;
-    background:rgba(255,255,255,.14);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
-    border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 20px -10px rgba(0,0,0,.5);}
-  .proto2-notif-ic{flex:none;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
-  .proto2-notif-ic svg{width:17px;height:17px;}
-  .proto2-notif-ic.wa{background:#25D366;color:#fff;}
-  .proto2-notif-ic.doc{background:#00C9C9;color:#04080f;}
-  .proto2-notif-ic.build{background:#f2ad3d;color:#2a1c02;}
-  .proto2-notif-ic.live{background:linear-gradient(135deg,#2b6bff,#9b4bff);color:#fff;}
+  .proto2-notifs{position:absolute;left:calc(8 * var(--s));right:calc(8 * var(--s));bottom:calc(112 * var(--s));display:flex;flex-direction:column;gap:calc(8 * var(--s));z-index:1;}
+  .proto2-notif{display:flex;gap:calc(11 * var(--s));align-items:flex-start;padding:calc(13 * var(--s));border-radius:calc(26 * var(--s));
+    background:rgba(60,66,78,.52);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);
+    box-shadow:0 0 0 .5px rgba(255,255,255,.12) inset;}
+  .proto2-notif-ic{flex:none;width:calc(38 * var(--s));height:calc(38 * var(--s));border-radius:calc(9.5 * var(--s));display:flex;align-items:center;justify-content:center;}
+  .proto2-notif-ic svg{width:58%;height:58%;}
+  .proto2-notif-ic.wa{background:linear-gradient(#5cf27c,#14b53a);color:#fff;}
+  .proto2-notif-ic.doc{background:linear-gradient(135deg,#23d7d7,#067f8c);color:#fff;}
+  .proto2-notif-ic.cal{background:#fff;color:#ff3b30;}
+  .proto2-notif-ic.live{background:linear-gradient(135deg,#3b7bff,#8a4bff);color:#fff;}
   .proto2-notif-body{min-width:0;flex:1;}
-  .proto2-notif-top{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:rgba(255,255,255,.6);margin-bottom:2px;}
-  .proto2-notif-top b{color:#fff;font-weight:700;font-size:12.5px;}
-  .proto2-notif-txt{font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.92);
+  .proto2-notif-top{display:flex;justify-content:space-between;gap:8px;font-size:calc(14 * var(--s));color:rgba(255,255,255,.55);margin-bottom:calc(1 * var(--s));line-height:1.25;}
+  .proto2-notif-top b{color:#fff;font-weight:600;font-size:calc(16 * var(--s));}
+  .proto2-notif-txt{font-size:calc(16 * var(--s));line-height:1.28;color:rgba(255,255,255,.94);
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 
-  /* écran d'appel entrant — simule l'appel de diagnostic reçu après les notifs */
-  .proto2-call{margin-top:10px;padding:16px 16px 14px;border-radius:20px;text-align:center;
-    background:rgba(255,255,255,.08);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
-    border:1px solid rgba(255,255,255,.14);}
-  .proto2-call-avatar{width:48px;height:48px;margin:0 auto 8px;border-radius:50%;
-    background:linear-gradient(135deg,#1be6e6,#0a7a8a);color:#04141a;font-family:var(--mono);font-weight:800;font-size:18px;
-    display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px rgba(0,201,201,.6);}
-  .proto2-call-label{font-size:11px;color:rgba(255,255,255,.62);margin-bottom:2px;}
-  .proto2-call-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:14px;}
-  .proto2-call-actions{display:flex;justify-content:center;align-items:center;gap:50px;}
-  .proto2-call-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
-  .proto2-call-btn svg{width:20px;height:20px;}
+  /* bandeau d'appel entrant, tel qu'iOS l'affiche */
+  .proto2-call{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"av lb ac" "av nm ac";column-gap:calc(11 * var(--s));align-items:center;padding:calc(13 * var(--s));border-radius:calc(30 * var(--s));text-align:left;
+    background:rgba(60,66,78,.52);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);
+    box-shadow:0 0 0 .5px rgba(255,255,255,.12) inset;}
+  .proto2-call-avatar{grid-area:av;width:calc(44 * var(--s));height:calc(44 * var(--s));border-radius:50%;
+    background:linear-gradient(135deg,#8aa0b0,#51606e);color:#fff;font-weight:600;font-size:calc(20 * var(--s));display:flex;align-items:center;justify-content:center;}
+  .proto2-call-label{grid-area:lb;font-size:calc(14 * var(--s));color:rgba(255,255,255,.55);align-self:end;}
+  .proto2-call-name{grid-area:nm;font-size:calc(17 * var(--s));font-weight:600;color:#fff;align-self:start;}
+  .proto2-call-actions{grid-area:ac;display:flex;gap:calc(10 * var(--s));}
+  .proto2-call-btn{width:calc(40 * var(--s));height:calc(40 * var(--s));border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+  .proto2-call-btn svg{width:50%;height:50%;}
   .proto2-call-btn.decline{background:#ff3b30;color:#fff;transform:rotate(135deg);}
-  .proto2-call-btn.accept{background:linear-gradient(135deg,#1be6cf,#00a3a3);color:#04141a;}
+  .proto2-call-btn.accept{background:#30d158;color:#fff;}
+
+  .proto2-widget{position:absolute;left:50%;top:calc(238 * var(--s));translate:-50% 0;width:calc(172 * var(--s));padding:calc(12 * var(--s)) calc(14 * var(--s));border-radius:calc(22 * var(--s));background:rgba(255,255,255,.13);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 0 0 .5px rgba(255,255,255,.14) inset;}
+  .proto2-widget .w-top{display:block;font-size:calc(12 * var(--s));font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+  .proto2-widget b{display:block;font-size:calc(18 * var(--s));font-weight:600;margin:calc(2 * var(--s)) 0 calc(9 * var(--s));color:#fff;}
+  .w-bar{display:block;height:calc(5 * var(--s));border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;}
+  .w-bar u{display:block;height:100%;width:25%;border-radius:inherit;background:#fff;transition:width .5s var(--ease);}
+
+  /* commandes du bas de l'écran verrouillé */
+  .proto2-qb{position:absolute;bottom:calc(46 * var(--s));width:calc(50 * var(--s));height:calc(50 * var(--s));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;z-index:1;
+    background:rgba(60,66,78,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+  .proto2-qb svg{width:44%;height:44%;}
+  .proto2-qb.l{left:calc(46 * var(--s));} .proto2-qb.r{right:calc(46 * var(--s));}
+  .proto2-home{position:absolute;left:50%;bottom:calc(8 * var(--s));translate:-50% 0;width:calc(136 * var(--s));height:calc(5 * var(--s));border-radius:99px;background:rgba(255,255,255,.88);z-index:1;}
 
   /* bandeau flottant — dépasse le bas du téléphone, comme une barre d'app */
-  .proto2-cta-float{position:static;transform:none;width:100%;margin-top:22px;
+  .proto2-cta-float{position:static;transform:none;width:100%;margin-top:26px;
     display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 16px 16px;border-radius:18px;text-align:center;
     background:var(--bg2);border:1px solid var(--borderl);
     box-shadow:0 20px 40px -20px rgba(0,201,201,.4),0 0 0 1px rgba(255,255,255,.04) inset;}
@@ -697,19 +712,6 @@
   .proto2-cta-float-sub{font-size:12.5px;color:var(--text2);margin-top:3px;}
   .proto2-cta-float-btn{display:block;width:100%;box-sizing:border-box;font-family:var(--sans);font-size:14px;font-weight:800;color:#04141a;
     background:linear-gradient(135deg,#1be6e6,#00a3a3);padding:12px 16px;border-radius:999px;text-decoration:none;}
-
-  @media (max-width:420px){
-    .proto2-phone{width:240px;height:536px;border-radius:46px;}
-    .proto2-screen{border-radius:34px;}
-    .proto2-time{font-size:48px;}
-    .proto2-clock{padding:14px 0 10px;}
-    .proto2-notifs{gap:7px;}
-    .proto2-notif{padding:9px 10px;}
-    .proto2-call{margin-top:8px;padding:12px 14px;}
-    .proto2-call-avatar{width:42px;height:42px;margin-bottom:6px;}
-    .proto2-call-name{margin-bottom:10px;font-size:13px;}
-    .proto2-call-btn{width:40px;height:40px;}
-  }
 
   .proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{opacity:0;transform:translateY(-8px) scale(.98);transition:opacity .16s ease,transform .16s ease;}
   .proto2-notif,.proto2-call{opacity:0;transform:translateY(16px) scale(.96);}
@@ -932,22 +934,24 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
         <div class="proto2-phone-sticky rv">
           <div class="proto2-phone-frame">
             <div class="proto2-phone">
-              <span class="proto2-btn vol1"></span><span class="proto2-btn vol2"></span><span class="proto2-btn pwr"></span>
+              <span class="proto2-btn act"></span><span class="proto2-btn vol1"></span><span class="proto2-btn vol2"></span><span class="proto2-btn pwr"></span>
               <div class="proto2-screen">
-                <div class="proto2-statusbar">
-                  <span class="proto2-sb-time">14:32</span>
-                  <span class="proto2-island"></span>
-                  <span class="proto2-sb-icons">
-                    <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx=".5"/><rect x="5" y="5" width="3" height="7" rx=".5"/><rect x="10" y="3" width="3" height="9" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
-                    <svg viewBox="0 0 16 12" class="sb-wifi"><path d="M8 10.3a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm-3.4-3.8a5 5 0 0 1 6.8 0 .6.6 0 0 1-.8.9 3.8 3.8 0 0 0-5.2 0 .6.6 0 1 1-.8-.9Zm-2.3-2.6a8.4 8.4 0 0 1 11.4 0 .6.6 0 1 1-.8.9 7.2 7.2 0 0 0-9.8 0 .6.6 0 1 1-.8-.9Z"/></svg>
-                    <svg viewBox="0 0 25 12" class="sb-batt"><rect x=".5" y=".5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="18" height="8" rx="1.3"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
-                  </span>
-                </div>
+                <span class="proto2-island"></span>
+                <div class="proto2-statusbar"><span class="proto2-sb-icons">
+                  <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx=".5"/><rect x="5" y="5" width="3" height="7" rx=".5"/><rect x="10" y="3" width="3" height="9" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                  <svg viewBox="0 0 16 12" class="sb-wifi"><path d="M8 10.3a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm-3.4-3.8a5 5 0 0 1 6.8 0 .6.6 0 0 1-.8.9 3.8 3.8 0 0 0-5.2 0 .6.6 0 1 1-.8-.9Zm-2.3-2.6a8.4 8.4 0 0 1 11.4 0 .6.6 0 1 1-.8.9 7.2 7.2 0 0 0-9.8 0 .6.6 0 1 1-.8-.9Z"/></svg>
+                  <svg viewBox="0 0 25 12" class="sb-batt"><rect x=".5" y=".5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="18" height="8" rx="1.3"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+                </span></div>
                 <div class="proto2-clock">
+                  <svg class="proto2-lock" viewBox="0 0 16 20" aria-hidden="true"><path fill="currentColor" d="M8 0a4.5 4.5 0 0 0-4.500 4.500V8H3a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3h-.500V4.500A4.500 4.500 0 0 0 8 0Zm-2.500 8V4.500a2.500 2.500 0 0 1 5 0V8h-5Z"/></svg>
                   <div class="proto2-day" id="p2Day">Aujourd’hui</div>
                   <div class="proto2-time" id="p2Time">14:32</div>
                 </div>
+                <div class="proto2-widget" aria-hidden="true"><span class="w-top">Mise en ligne</span><b id="p2WTitle">Étape 1 sur 4</b><i class="w-bar"><u id="p2WBar"></u></i></div>
                 <div class="proto2-notifs" id="p2Notifs" aria-live="polite"></div>
+                <span class="proto2-qb l" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 2h8v3l-1.500 2.500V9L16 10.500V22H8V10.500L9.500 9V7.500L8 5V2Zm4 8a1.500 1.500 0 1 0 0 3 1.500 1.500 0 0 0 0-3Z"/></svg></span>
+                <span class="proto2-qb r" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 3 7.500 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.500L15 3H9Zm3 5.500a4.500 4.500 0 1 1 0 9 4.500 4.500 0 0 1 0-9Zm0 2a2.500 2.500 0 1 0 0 5 2.500 2.500 0 0 0 0-5Z"/></svg></span>
+                <span class="proto2-home" aria-hidden="true"></span>
               </div>
             </div>
             <div class="proto2-cta-float">
@@ -1561,6 +1565,8 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     timer=setTimeout(function(){
       box.innerHTML='';
       var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
+      var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
+      if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
       sc.n.forEach(function(it,k){box.appendChild(node(it,k));});
       box.classList.remove('out');
       void box.offsetWidth;
