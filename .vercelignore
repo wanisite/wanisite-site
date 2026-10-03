@@ -1,0 +1,7 @@
+# Sources et essais non utilisés par le site : on ne les publie pas.
+assets/*.png
+assets/*.txt
+assets/Icone wanisite
+assets/icons-sm
+_archive
+_artifact-build.html

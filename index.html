@@ -66,9 +66,9 @@
     background-size:16px 16px, 16px 16px, 80px 80px, 80px 80px;
     -webkit-mask-image:radial-gradient(130% 120% at 50% 50%, #000 0%, #000 55%, transparent 96%);
             mask-image:radial-gradient(130% 120% at 50% 50%, #000 0%, #000 55%, transparent 96%);}
-  .lab-ambient .agrain{position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;
+  .lab-ambient .agrain{position:absolute;inset:0;opacity:.05;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");}
-  .lab-ambient .aglow{position:absolute;border-radius:50%;filter:blur(90px);opacity:1;}
+  .lab-ambient .aglow{position:absolute;border-radius:50%;opacity:1;}
   .lab-ambient .a1{width:40vw;height:40vw;left:-8vw;top:4vh;background:radial-gradient(circle, rgba(0,201,201,.7), transparent 70%);animation:ambientFloat 46s ease-in-out infinite;}
   .lab-ambient .a2{width:36vw;height:36vw;right:-6vw;top:42vh;background:radial-gradient(circle, rgba(20,130,190,.7), transparent 70%);animation:ambientFloat 52s ease-in-out infinite reverse;}
   .lab-ambient .a3{width:42vw;height:42vw;left:22vw;bottom:-8vh;background:radial-gradient(circle, rgba(0,201,201,.55), transparent 72%);animation:ambientFloat 60s ease-in-out infinite;}
@@ -93,7 +93,7 @@
       linear-gradient(90deg, rgba(0,201,201,.3) 1px, transparent 1px);
     background-size:16px 16px, 16px 16px, 80px 80px, 80px 80px;
     opacity:.4;}
-  .hero-bg .glow{position:absolute;border-radius:50%;filter:blur(90px);}
+  .hero-bg .glow{position:absolute;border-radius:50%;}
   .hero-bg .g1{width:60vw;height:52vh;left:0;top:-8vh;background:radial-gradient(circle, rgba(0,201,201,.5), transparent 68%);animation:glowFloat 26s ease-in-out infinite;}
   .hero-bg .g2{width:48vw;height:48vh;right:-4vw;top:10vh;background:radial-gradient(circle, rgba(20,110,170,.55), transparent 70%);animation:glowFloat 32s ease-in-out infinite reverse;}
   .hero-bg .g3{width:80vw;height:44vh;left:6vw;bottom:-18vh;background:radial-gradient(circle, rgba(4,8,15,.75), transparent 72%);animation:glowFloat 44s ease-in-out infinite;}
@@ -101,11 +101,13 @@
   .hero-bg .vignette{position:absolute;inset:0;
     background:radial-gradient(125% 100% at 46% 38%, transparent 58%, rgba(4,8,15,.22) 84%, rgba(4,8,15,.6) 100%),
                 linear-gradient(180deg, rgba(4,8,15,.14), rgba(4,8,15,0) 22%, rgba(4,8,15,0) 74%, var(--bg) 100%);}
-  .hero-bg .grain{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;
+  .hero-bg .grain{position:absolute;inset:0;opacity:.07;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");}
   @keyframes silkDrift{0%{transform:translateX(0) scale(1);}50%{transform:translateX(-2.2%) scale(1.05);}100%{transform:translateX(0) scale(1);}}
   @keyframes glowFloat{0%{transform:translate(0,0) scale(1);}50%{transform:translate(3%,-2%) scale(1.12);}100%{transform:translate(0,0) scale(1);}}
   @media (prefers-reduced-motion:reduce){.hero-bg .silk,.hero-bg .glow{animation:none;}}
+
+  @media (max-width:900px){.hero-bg .silk,.hero-bg .glow{animation:none;}}
 
   /* nav */
   .navbar{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:20px 20px;}
@@ -891,7 +893,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     <div class="vid-grid">
       <div class="vid-showcase rv">
         <div class="vid-frame">
-          <video id="efVideo" src="assets/video/equipfood.mp4" poster="assets/video/posters/equipfood.jpg" muted loop playsinline preload="metadata" aria-label="Présentation du site Equip'Food"></video>
+          <video id="efVideo" src="assets/video/equipfood.mp4" poster="assets/video/posters/equipfood.webp" muted loop playsinline preload="metadata" aria-label="Présentation du site Equip'Food"></video>
           <button class="vid-sound" id="efSound" type="button" aria-label="Activer le son" aria-pressed="false">
             <svg class="on" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-9v2.1a7 7 0 0 1 0 13.8V21a9 9 0 0 0 0-18Z"/></svg>
             <svg class="off" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7Z"/></svg>
@@ -1085,7 +1087,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     </div>
   </div>
   <div class="dv-marq" aria-label="Projets livrés">
-    <div class="dv-track dv-t1"><a class="dv-card" href="https://elite-car-silk.vercel.app" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/elitecars.jpg" alt="Capture du site ELITECARS" loading="lazy" draggable="false"></span><span class="dv-meta"><b>ELITECARS</b><span>CRM de location de véhicules : signature électronique, contrat PDF, disponibilité en temps réel.</span><em>elite-car-silk.vercel.app ↗</em></span></a><a class="dv-card" href="https://thomcutbarber.thomcutbarber.fr/login" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/thomcut.jpg" alt="Capture du site Thomcut Barber" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Thomcut Barber</b><span>CRM multi-salon : rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</span><em>thomcutbarber.fr ↗</em></span></a><a class="dv-card" href="https://streetcarwash.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/streetcarwash.jpg" alt="Capture du site Street Car Wash" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Street Car Wash</b><span>Réservation en 5 étapes, acompte PayPal, confirmation automatique.</span><em>streetcarwash.com ↗</em></span></a><a class="dv-card" href="https://cleanandpolish.fr" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/cleanpolish.jpg" alt="Capture du site Clean &amp; Polish" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Clean &amp; Polish</b><span>Site vitrine et campagne Meta Ads : 108 appels en 6 jours à 1,49 €/appel.</span><em>cleanandpolish.fr ↗</em></span></a><a class="dv-card" href="https://aestheticmenparis.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/aestheticmen.jpg" alt="Capture du site Aesthetic Men" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Aesthetic Men</b><span>Site vitrine et campagne Meta Ads : 51 appels en 9 jours à 2,39 €/appel.</span><em>aestheticmenparis.com ↗</em></span></a><a class="dv-card" href="https://a2ddistribution.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/a2d.jpg" alt="Capture du site A2D Distribution" loading="lazy" draggable="false"></span><span class="dv-meta"><b>A2D Distribution</b><span>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</span><em>a2ddistribution.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://elite-car-silk.vercel.app" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/elitecars.jpg" alt="Capture du site ELITECARS" loading="lazy" draggable="false"></span><span class="dv-meta"><b>ELITECARS</b><span>CRM de location de véhicules : signature électronique, contrat PDF, disponibilité en temps réel.</span><em>elite-car-silk.vercel.app ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://thomcutbarber.thomcutbarber.fr/login" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/thomcut.jpg" alt="Capture du site Thomcut Barber" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Thomcut Barber</b><span>CRM multi-salon : rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</span><em>thomcutbarber.fr ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://streetcarwash.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/streetcarwash.jpg" alt="Capture du site Street Car Wash" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Street Car Wash</b><span>Réservation en 5 étapes, acompte PayPal, confirmation automatique.</span><em>streetcarwash.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://cleanandpolish.fr" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/cleanpolish.jpg" alt="Capture du site Clean &amp; Polish" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Clean &amp; Polish</b><span>Site vitrine et campagne Meta Ads : 108 appels en 6 jours à 1,49 €/appel.</span><em>cleanandpolish.fr ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://aestheticmenparis.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/aestheticmen.jpg" alt="Capture du site Aesthetic Men" loading="lazy" draggable="false"></span><span class="dv-meta"><b>Aesthetic Men</b><span>Site vitrine et campagne Meta Ads : 51 appels en 9 jours à 2,39 €/appel.</span><em>aestheticmenparis.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://a2ddistribution.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/a2d.jpg" alt="Capture du site A2D Distribution" loading="lazy" draggable="false"></span><span class="dv-meta"><b>A2D Distribution</b><span>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</span><em>a2ddistribution.com ↗</em></span></a></div>
+    <div class="dv-track dv-t1"><a class="dv-card" href="https://elite-car-silk.vercel.app" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/elitecars.webp" alt="Capture du site ELITECARS" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>ELITECARS</b><span>CRM de location de véhicules : signature électronique, contrat PDF, disponibilité en temps réel.</span><em>elite-car-silk.vercel.app ↗</em></span></a><a class="dv-card" href="https://thomcutbarber.thomcutbarber.fr/login" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/thomcut.webp" alt="Capture du site Thomcut Barber" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Thomcut Barber</b><span>CRM multi-salon : rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</span><em>thomcutbarber.fr ↗</em></span></a><a class="dv-card" href="https://streetcarwash.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/streetcarwash.webp" alt="Capture du site Street Car Wash" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Street Car Wash</b><span>Réservation en 5 étapes, acompte PayPal, confirmation automatique.</span><em>streetcarwash.com ↗</em></span></a><a class="dv-card" href="https://cleanandpolish.fr" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/cleanpolish.webp" alt="Capture du site Clean &amp; Polish" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Clean &amp; Polish</b><span>Site vitrine et campagne Meta Ads : 108 appels en 6 jours à 1,49 €/appel.</span><em>cleanandpolish.fr ↗</em></span></a><a class="dv-card" href="https://aestheticmenparis.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/aestheticmen.webp" alt="Capture du site Aesthetic Men" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Aesthetic Men</b><span>Site vitrine et campagne Meta Ads : 51 appels en 9 jours à 2,39 €/appel.</span><em>aestheticmenparis.com ↗</em></span></a><a class="dv-card" href="https://a2ddistribution.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/a2d.webp" alt="Capture du site A2D Distribution" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>A2D Distribution</b><span>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</span><em>a2ddistribution.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://elite-car-silk.vercel.app" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/elitecars.webp" alt="Capture du site ELITECARS" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>ELITECARS</b><span>CRM de location de véhicules : signature électronique, contrat PDF, disponibilité en temps réel.</span><em>elite-car-silk.vercel.app ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://thomcutbarber.thomcutbarber.fr/login" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/thomcut.webp" alt="Capture du site Thomcut Barber" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Thomcut Barber</b><span>CRM multi-salon : rôles, planning, stock, formations. Utilisé au quotidien par plusieurs salons.</span><em>thomcutbarber.fr ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://streetcarwash.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/streetcarwash.webp" alt="Capture du site Street Car Wash" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Street Car Wash</b><span>Réservation en 5 étapes, acompte PayPal, confirmation automatique.</span><em>streetcarwash.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://cleanandpolish.fr" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/cleanpolish.webp" alt="Capture du site Clean &amp; Polish" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Clean &amp; Polish</b><span>Site vitrine et campagne Meta Ads : 108 appels en 6 jours à 1,49 €/appel.</span><em>cleanandpolish.fr ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://aestheticmenparis.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/aestheticmen.webp" alt="Capture du site Aesthetic Men" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>Aesthetic Men</b><span>Site vitrine et campagne Meta Ads : 51 appels en 9 jours à 2,39 €/appel.</span><em>aestheticmenparis.com ↗</em></span></a><a class="dv-card" aria-hidden="true" tabindex="-1" href="https://a2ddistribution.com" target="_blank" rel="noopener"><span class="dv-shot"><img src="assets/realisations/a2d.webp" alt="Capture du site A2D Distribution" loading="lazy" decoding="async" width="900" height="563" draggable="false"></span><span class="dv-meta"><b>A2D Distribution</b><span>Vitrine import/export de 10 pages avec formulaire de sourcing sur mesure.</span><em>a2ddistribution.com ↗</em></span></a></div>
   </div>
   <div class="dv-marq dv-marq2" aria-label="Autres projets livrés">
     <div class="dv-track dv-t2"><span class="dv-pill"><i class="dv-logo logo-123permis"></i><b>123 Permis</b><span>Auto-école</span></span><span class="dv-pill"><i class="dv-logo logo-equipfood"></i><b>Equip'Food</b><span>Équipement CHR</span></span><span class="dv-pill"><i class="dv-logo logo-iwana"></i><b>IWANA Formation</b><span>Formation aéroportuaire</span></span><span class="dv-pill"><i class="dv-logo logo-luminalab"></i><b>Lumina Lab</b><span>Boutique Shopify</span></span><span class="dv-pill"><i class="dv-logo logo-amh"></i><b>AMH Luxury</b><span>Site vitrine</span></span><span class="dv-pill"><i class="dv-logo logo-xlparebrise"></i><b>XL Pare-Brise</b><span>Pare-brise</span></span><span class="dv-pill"><i class="dv-logo dv-ini">JB</i><b>Jemil Barber</b><span>Cockpit de pilotage</span></span><span class="dv-pill"><i class="dv-logo logo-123permis"></i><b>123 Permis</b><span>Auto-école</span></span><span class="dv-pill"><i class="dv-logo logo-equipfood"></i><b>Equip'Food</b><span>Équipement CHR</span></span><span class="dv-pill"><i class="dv-logo logo-iwana"></i><b>IWANA Formation</b><span>Formation aéroportuaire</span></span><span class="dv-pill"><i class="dv-logo logo-luminalab"></i><b>Lumina Lab</b><span>Boutique Shopify</span></span><span class="dv-pill"><i class="dv-logo logo-amh"></i><b>AMH Luxury</b><span>Site vitrine</span></span><span class="dv-pill"><i class="dv-logo logo-xlparebrise"></i><b>XL Pare-Brise</b><span>Pare-brise</span></span><span class="dv-pill"><i class="dv-logo dv-ini">JB</i><b>Jemil Barber</b><span>Cockpit de pilotage</span></span><span class="dv-pill"><i class="dv-logo logo-123permis"></i><b>123 Permis</b><span>Auto-école</span></span><span class="dv-pill"><i class="dv-logo logo-equipfood"></i><b>Equip'Food</b><span>Équipement CHR</span></span><span class="dv-pill"><i class="dv-logo logo-iwana"></i><b>IWANA Formation</b><span>Formation aéroportuaire</span></span><span class="dv-pill"><i class="dv-logo logo-luminalab"></i><b>Lumina Lab</b><span>Boutique Shopify</span></span><span class="dv-pill"><i class="dv-logo logo-amh"></i><b>AMH Luxury</b><span>Site vitrine</span></span><span class="dv-pill"><i class="dv-logo logo-xlparebrise"></i><b>XL Pare-Brise</b><span>Pare-brise</span></span><span class="dv-pill"><i class="dv-logo dv-ini">JB</i><b>Jemil Barber</b><span>Cockpit de pilotage</span></span></div>
@@ -1164,7 +1166,10 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </footer>
 </div>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap"></noscript>
 
 <script>
 (function(){
@@ -1172,43 +1177,40 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 
   // sticky nav shrink state (purely cosmetic, never hides content)
   var nav = document.getElementById('navbar');
-  var ticking = false;
-  window.addEventListener('scroll', function(){
-    if(!ticking){
-      requestAnimationFrame(function(){
-        nav.classList.toggle('stuck', window.scrollY > 30);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
   // scroll progress bar
   var bar = document.getElementById('progress');
-  var pTicking = false;
   function updateProgress(){
     var h = document.documentElement;
     var scrollable = h.scrollHeight - h.clientHeight;
     var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
     bar.style.width = pct + '%';
-    pTicking = false;
   }
-  window.addEventListener('scroll', function(){
-    if(!pTicking){ requestAnimationFrame(updateProgress); pTicking = true; }
-  });
-  updateProgress();
-
   // active nav link while scrolling through sections
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navLinks a[data-nav]'));
   var navTargets = navLinks.map(function(a){ return document.getElementById(a.dataset.nav); }).filter(Boolean);
+  var navTops = [], lastNav = null;
+  function measureNav(){ navTops = navTargets.map(function(sec){ return sec.getBoundingClientRect().top + window.scrollY; }); }
   function updateActiveNav(){
-    var pos = window.scrollY + window.innerHeight * 0.3;
-    var current = null;
-    navTargets.forEach(function(sec){ if(sec.offsetTop <= pos) current = sec.id; });
+    var pos = window.scrollY + window.innerHeight * 0.3, current = null;
+    for(var i=0;i<navTops.length;i++){ if(navTops[i] <= pos) current = navTargets[i].id; }
+    if(current === lastNav) return;
+    lastNav = current;
     navLinks.forEach(function(a){ a.classList.toggle('active', a.dataset.nav === current); });
   }
-  window.addEventListener('scroll', function(){ requestAnimationFrame(updateActiveNav); });
-  updateActiveNav();
+  // un seul écouteur passif, une seule passe par image
+  var ticking = false;
+  function onScrollFrame(){
+    nav.classList.toggle('stuck', window.scrollY > 30);
+    updateProgress();
+    updateActiveNav();
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(onScrollFrame); }
+  }, {passive:true});
+  window.addEventListener('resize', function(){ measureNav(); updateActiveNav(); });
+  window.addEventListener('load', function(){ measureNav(); updateActiveNav(); });
+  measureNav(); updateProgress(); updateActiveNav();
 
   // reveal-on-scroll: same safe pattern throughout — nothing ever depends
   // on a scroll actually happening for content to become visible.
