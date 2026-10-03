@@ -568,12 +568,6 @@
   .vid-frame-bar i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);flex:none;}
   .vid-frame-bar b{margin-left:6px;font-family:var(--mono);font-weight:500;font-size:12px;color:rgba(255,255,255,.75);}
   @media (max-width:420px){.vid-frame{max-width:260px;}}
-  .vid-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;margin-top:48px;align-items:start;}
-  .vid-card .vid-frame{max-width:none;}
-  .vid-card h3{font-size:20px;font-weight:800;color:#fff;margin:18px 0 6px;letter-spacing:-.3px;}
-  .vid-card p{font-size:14.5px;line-height:1.65;color:var(--text2);margin:0;}
-  @media (max-width:900px){.vid-trio{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin-left:-20px;margin-right:-20px;padding:0 20px 8px;-webkit-overflow-scrolling:touch;}
-    .vid-card{flex:0 0 72%;max-width:300px;scroll-snap-align:center;}}
   .vid-info .card-logo{margin-bottom:18px;}
   .vid-info h3{font-size:28px;font-weight:800;color:#fff;margin:0 0 12px;letter-spacing:-.5px;}
   .vid-info p{font-size:16px;line-height:1.75;color:var(--text2);margin:0 0 22px;max-width:460px;}
@@ -837,37 +831,25 @@
 <div class="vid-block" id="presentation">
   <div class="wrap section">
     <div class="rv">
-      <div class="sec-tag">En vidéo</div>
-      <h2 class="sec-h">On vous <span class="italic hl-block">présente le travail.</span></h2>
-      <p class="sec-p">Trois vidéos courtes pour voir ce qu'on fait, concrètement.</p>
+      <div class="sec-tag">Coulisses</div>
+      <h2 class="sec-h">On vous <span class="italic hl-block">présente le site.</span></h2>
+      <p class="sec-p">Un exemple concret, en vidéo.</p>
     </div>
-    <div class="vid-trio">
-      <article class="vid-card rv">
-        <div class="vid-frame">
-          <span class="vid-frame-bar"><i></i><i></i><i></i><b>Wanisite</b></span>
-          <video src="assets/video/wanisite-pitch.mp4" poster="assets/video/posters/wanisite-pitch.jpg" controls preload="none" playsinline></video>
-        </div>
-        <h3>Votre activité, sous contrôle</h3>
-        <p>Badgeuse avec photos, bénéfice réel produit par produit : ce qu'un outil sur mesure change au quotidien.</p>
-      </article>
-      <article class="vid-card rv">
-        <div class="vid-frame">
-          <span class="vid-frame-bar"><i></i><i></i><i></i><b>Coulisses</b></span>
-          <video src="assets/video/wanisite-coulisses.mp4" poster="assets/video/posters/wanisite-coulisses.jpg" controls preload="none" playsinline></video>
-        </div>
-        <h3>Comment on construit un site</h3>
-        <p>Typographie, mise en page, mise en ligne : un site créé de A à Z pour des clients réels.</p>
-      </article>
-      <article class="vid-card rv">
+    <div class="vid-grid">
+      <div class="vid-showcase rv">
         <div class="vid-frame">
           <span class="vid-frame-bar"><i></i><i></i><i></i><b>Equip'Food</b></span>
-          <video src="assets/video/equipfood.mp4" poster="assets/video/posters/equipfood.jpg" controls preload="none" playsinline></video>
+          <video src="assets/video/equipfood.mp4" controls preload="metadata" playsinline></video>
         </div>
-        <h3>Un catalogue complet, devis par WhatsApp</h3>
-        <p>Vitrine catalogue pour un fournisseur d'équipement pour cafés, hôtels et restaurants.</p>
-      </article>
+      </div>
+      <div class="vid-info rv d1">
+        <div class="card-logo logo-equipfood"></div>
+        <h3>Equip'Food</h3>
+        <p>Vitrine catalogue pour un fournisseur d'équipement pour cafés, hôtels et restaurants, bascule vers la vente en ligne en un réglage.</p>
+        <div class="tags"><span class="tag">WordPress</span><span class="tag">WooCommerce</span></div>
+        <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a>
+      </div>
     </div>
-    <div style="text-align:center;margin-top:40px;"><a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a></div>
   </div>
 </div>
 
