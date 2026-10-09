@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wanisite — Le laboratoire digital de vos CRM, sites &amp; campagnes</title>
-<meta name="description" content="Wanisite conçoit des sites vitrines, boutiques e-commerce, CRM sur mesure et gère vos campagnes Meta Ads / Google Ads. Prix fixe, livraison garantie, devis gratuit sur WhatsApp.">
+<meta name="description" content="Sites vitrines, boutiques e-commerce, CRM sur mesure et campagnes Meta Ads. Prix fixe annoncé d'avance, livraison en 7 jours, diagnostic gratuit sur WhatsApp.">
 <link rel="canonical" href="https://wanisite-site.vercel.app/">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
@@ -516,6 +516,8 @@
   .field textarea{min-height:96px;resize:vertical;font-family:var(--sans);}
   .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300C9C9' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
     background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
+  .form-sent{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:rgba(0,201,201,.14);border:1px solid rgba(0,150,150,.45);font-size:14px;line-height:1.5;color:#0c2030;}
+  .form-sent b{color:#04141a;}
   .form-trust{text-align:center;font-size:12px;color:var(--text3);margin-top:18px;}
   .form-submit{width:100%;justify-content:center;margin-top:8px;padding:15px 24px;font-size:14.5px;}
   .cta-h{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin:0 0 20px 0;}
@@ -770,7 +772,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 
 <nav class="navbar" id="navbar">
   <div class="nav-pill">
-    <div class="nav-mark"><img class="nav-logo" src="/assets/img/nav-logo.webp" alt="Wanisite"></div>
+    <div class="nav-mark"><img width="368" height="240" class="nav-logo" src="/assets/img/nav-logo.webp" alt="Wanisite"></div>
     <div class="nav-links" id="navLinks">
       <a href="#tarifs" data-nav="tarifs" class="hide-sm">Tarifs</a>
       <a href="#realisations" data-nav="realisations" class="hide-sm">Réalisations</a>
@@ -826,7 +828,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
           <a class="btn-primary" href="#rdv">Diagnostic gratuit</a>
           <a class="btn-ghost" href="#tarifs">Voir les tarifs</a>
         </div>
-        <div class="hero-flask-wrap enter" id="flaskWrap"><img class="hero-flask" src="/assets/img/hero-flask.webp" alt=""></div>
+        <div class="hero-flask-wrap enter" id="flaskWrap"><img width="300" height="289" class="hero-flask" src="/assets/img/hero-flask.webp" alt=""></div>
       </div>
 
       <div id="viz-mount" style="position:relative;">
@@ -926,7 +928,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 <div class="proto2" id="protocole">
   <div class="wrap section">
     <div class="rv icon-row flip">
-        <img class="glossy-icon" src="/assets/img/glossy-icon.webp">
+        <img decoding="async" alt="" width="300" height="274" class="glossy-icon" src="/assets/img/glossy-icon.webp">
       <div>
         <div class="sec-tag">Protocole</div>
         <h2 class="sec-h">De zéro à en ligne <span class="italic hl-block">en 7 jours.</span></h2>
@@ -1020,7 +1022,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 <div class="light-block">
 <div class="wrap section">
   <div class="rv icon-row flip">
-    <img class="glossy-icon fade-lg" src="/assets/img/glossy-icon-2.webp" alt="">
+    <img decoding="async" width="300" height="274" class="glossy-icon fade-lg" src="/assets/img/glossy-icon-2.webp" alt="">
     <div>
       <div class="sec-tag">Gestion de budget publicitaire</div>
       <h2 class="sec-h">On gère votre <span class="italic hl-block">budget marketing.</span></h2>
@@ -1107,7 +1109,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 <div class="light-block">
 <div class="wrap section" id="rdv" style="padding-bottom:32px;">
   <div class="rv" style="text-align:center;max-width:640px;margin:0 auto 44px auto;">
-    <img class="glossy-icon" style="display:block;margin:0 auto 14px auto;" src="/assets/img/glossy-icon-3.webp" alt="">
+    <img decoding="async" width="300" height="300" class="glossy-icon" style="display:block;margin:0 auto 14px auto;" src="/assets/img/glossy-icon-3.webp" alt="">
     <div class="sec-tag" style="justify-content:center;">Prêt ?</div>
     <h2 class="cta-h">Prêt à débloquer<br><span class="italic hl-block">votre business ?</span></h2>
     <p class="cta-p">On vous dit honnêtement si on peut vous aider. Devis le jour même — ou décrivez votre projet ci-dessous, réponse sous 24h.</p>
@@ -1164,14 +1166,15 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
 
     <button type="submit" class="btn-primary form-submit">Recevoir mon audit offert →</button>
     <p class="form-trust">Aucune carte requise · réponse sous 24h · 100% confidentiel</p>
+    <p class="form-sent" id="rdvNote" role="status" hidden>WhatsApp s'ouvre avec votre message déjà rédigé : <b>appuyez sur « Envoyer »</b> dans WhatsApp pour nous l'adresser. Rien n'est parti tant que ce n'est pas fait.</p>
   </form>
   </div>
 </div>
 
 <div class="wrap">
   <footer>
-    <div class="nav-mark" style="color:var(--text2);"><img class="nav-logo" src="/assets/img/nav-logo.webp" alt="Wanisite"></div>
-    <div class="mono">© 2026 · waniscontact7679@gmail.com · +33 6 24 54 73 42</div>
+    <div class="nav-mark" style="color:var(--text2);"><img width="368" height="240" class="nav-logo" src="/assets/img/nav-logo.webp" alt="Wanisite"></div>
+    <div class="mono">© 2026 · <span style="white-space:nowrap">waniscontact7679@gmail.com</span> · <span style="white-space:nowrap">+33 6 24 54 73 42</span></div>
   </footer>
 </div>
 
@@ -1302,7 +1305,11 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
         'Budget : ' + v('budget')
       ];
       var message = lines.join('\n');
-      window.open('https://wa.me/33624547342?text=' + encodeURIComponent(message), '_blank', 'noopener');
+      var url = 'https://wa.me/33624547342?text=' + encodeURIComponent(message);
+      var w = window.open(url, '_blank', 'noopener');
+      var note = document.getElementById('rdvNote');
+      if(note){ note.hidden = false; }
+      if(!w){ window.location.href = url; }
     });
   }
 
