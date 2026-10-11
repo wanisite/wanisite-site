@@ -751,6 +751,137 @@
     .proto2-card p{font-size:13.5px;}
   }
   .proto2-cta{margin-top:44px;text-align:center;}
+
+  /* ===== v2 — retouches demandées (fiche Notion du 11/10) ===== */
+
+  /* Hero : les fonds de texte du titre ne se chevauchent plus, et le hero remplit l'écran */
+  .hero-h1{line-height:1.32;}
+  .hero-h1 .hl{padding:0 8px;}
+  .sec-h{line-height:1.2;}
+  .hl-block{padding:0 8px;}
+  .dot-grid{min-height:100vh;min-height:100svh;display:flex;}
+  .dot-grid>.wrap{width:100%;display:flex;align-items:center;}
+  .dot-grid .hero{width:100%;padding:104px 0 84px;}
+  .dot-grid .hero-left{padding-bottom:104px;}
+  @media (max-width:900px){.dot-grid .hero{padding:96px 0 40px;}}
+
+  /* Blocs plein écran, un par un */
+  .blk{position:relative;}
+  .blk-full{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;}
+  .blk-full>.wrap{width:100%;}
+  @media (min-width:901px) and (prefers-reduced-motion:no-preference){
+    html{scroll-snap-type:y proximity;}
+    .snap{scroll-snap-align:start;}
+    .blk:not(.blk-on){opacity:0;transform:translateY(54px) scale(.975);clip-path:inset(7% 3% 0 3% round 36px);}
+    .blk.blk-on{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 0);
+      transition:opacity .8s var(--ease),transform 1s var(--ease),clip-path 1.1s var(--ease);}
+    .blk.blk-done{clip-path:none;}
+  }
+
+  /* Coulisses : le logo se lit, le site « apparaît » */
+  .vid-block.blk-full{padding:0;}
+  .vid-block .section{padding-top:84px;padding-bottom:36px;}
+  .vid-block .sec-p{margin-bottom:0;}
+  @media (min-width:901px){
+    .vid-grid{margin-top:26px;gap:72px;grid-template-columns:minmax(0,max(250px,calc((100svh - 290px) * 9 / 16))) minmax(0,1fr);}
+    .vid-frame{max-width:none;}
+    .vid-info .card-logo{width:88px;height:88px;margin-bottom:18px;}
+    .vid-info p{font-size:17px;margin-bottom:16px;}
+    .vid-points{margin-bottom:18px;gap:9px;}.vid-info .tags{margin-bottom:20px;}
+  }
+  .vid-info .card-logo{width:104px;height:104px;border-radius:24px;background-color:#fff;background-origin:content-box;padding:14px;box-shadow:0 18px 40px -16px rgba(0,201,201,.55),0 0 0 1px rgba(255,255,255,.5) inset;margin-bottom:24px;}
+  .vid-frame{background:#0c1820 center/cover no-repeat url("assets/video/posters/equipfood.webp");transform-style:preserve-3d;}
+  .vid-showcase{perspective:1300px;position:relative;}
+  .vid-showcase::before{content:'';position:absolute;left:50%;top:50%;width:min(520px,92%);aspect-ratio:9/16;translate:-50% -50%;border-radius:40px;
+    background:radial-gradient(closest-side,rgba(0,201,201,.55),transparent 72%);filter:blur(26px);opacity:0;z-index:0;}
+  .vid-frame{z-index:1;}
+  .vid-frame::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:linear-gradient(90deg,transparent,#8ffff4,transparent);box-shadow:0 0 22px 5px rgba(0,201,201,.75);opacity:0;pointer-events:none;}
+  @media (prefers-reduced-motion:no-preference){
+    .vid-showcase.rv{opacity:1;transform:none;}
+    .vid-showcase.rv .vid-frame{opacity:0;}
+    .vid-showcase.rv.in .vid-frame{animation:siteSpawn 1.5s cubic-bezier(.16,.84,.24,1) .15s both;}
+    .vid-showcase.rv.in::before{animation:siteGlow 1.8s ease-out .1s both;}
+    .vid-showcase.rv.in .vid-frame::after{animation:siteScan 1.3s cubic-bezier(.5,0,.3,1) .3s both;}
+    .vid-info .vid-points li{opacity:0;transform:translateX(-14px);}
+    .vid-info.in .vid-points li{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease);}
+    .vid-info.in .vid-points li:nth-child(1){transition-delay:.9s}.vid-info.in .vid-points li:nth-child(2){transition-delay:1.05s}.vid-info.in .vid-points li:nth-child(3){transition-delay:1.2s}
+  }
+  @keyframes siteSpawn{
+    0%{opacity:0;transform:rotateX(26deg) rotateY(-20deg) scale(.62) translateY(70px);clip-path:inset(0 0 100% 0 round 26px);filter:blur(14px) saturate(0);}
+    55%{opacity:1;clip-path:inset(0 0 0 0 round 26px);filter:blur(2px) saturate(.6);}
+    100%{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 26px);filter:none;}}
+  @keyframes siteScan{0%{opacity:1;top:0;}85%{opacity:1;}100%{opacity:0;top:100%;}}
+  @keyframes siteGlow{0%{opacity:0;transform:scale(.6);}60%{opacity:.9;}100%{opacity:.55;transform:scale(1);}}
+
+  /* Protocole : cartes plus compactes, téléphone plus lumineux et plus réaliste */
+  .proto2-grid{gap:48px;margin-top:36px;}
+  .proto2-steps{gap:16px;}
+  .proto2-step::before{bottom:-16px;}
+  .proto2-card{padding:16px 20px 18px;border-radius:16px;}
+  .proto2-card-top{margin-bottom:4px;}
+  .proto2-num{font-size:40px;}
+  .proto2-num em{font-size:14px;}
+  .proto2-card h3{font-size:19px;margin:8px 0 5px;}
+  .proto2-card p{font-size:14.5px;line-height:1.55;}
+  .proto2-screen{background:
+      radial-gradient(70% 38% at 50% -6%,rgba(255,255,255,.55),transparent 70%),
+      radial-gradient(95% 60% at 8% 20%,rgba(64,238,226,.95),transparent 62%),
+      radial-gradient(85% 62% at 104% 56%,rgba(58,142,255,.9),transparent 64%),
+      radial-gradient(75% 48% at 30% 108%,rgba(18,86,176,.95),transparent 68%),
+      linear-gradient(176deg,#35d4cf 0%,#1a8fc4 46%,#124b9a 100%);}
+  .proto2-screen::after{background:linear-gradient(118deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.08) 26%,transparent 46%),
+      radial-gradient(120% 40% at 50% 100%,rgba(4,20,48,.42),transparent 70%);}
+  .proto2-notif,.proto2-call{background:rgba(18,32,52,.4);backdrop-filter:blur(26px) saturate(1.8);-webkit-backdrop-filter:blur(26px) saturate(1.8);
+    box-shadow:0 0 0 .5px rgba(255,255,255,.22) inset,0 8px 22px -10px rgba(2,18,46,.55);}
+  .proto2-widget{background:rgba(255,255,255,.26);box-shadow:0 0 0 .5px rgba(255,255,255,.3) inset;}
+  .proto2-qb{background:rgba(18,32,52,.4);}
+  .proto2-time{color:rgba(255,255,255,.97);text-shadow:0 2px 24px rgba(6,40,90,.28);}
+  .proto2-day{color:rgba(255,255,255,.92);}
+  .proto2-notif-top{color:rgba(255,255,255,.72);}
+  /* les notifications restent : les anciennes remontent et s'effacent en haut */
+  .proto2-notifs{max-height:calc(396 * var(--s));overflow:hidden;justify-content:flex-end;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24%);mask-image:linear-gradient(180deg,transparent 0,#000 24%);}
+  .proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{opacity:1;transform:none;}
+  .proto2-notif.gone,.proto2-call.gone{opacity:0 !important;transform:translateY(-10px) scale(.96) !important;transition:opacity .25s ease,transform .25s ease !important;}
+
+  /* Budget marketing : un vrai cas client, plein écran */
+  .budget.blk-full .sec-p{margin-bottom:28px;}
+  .case{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;margin-bottom:28px;}
+  @media (max-width:900px){.case{grid-template-columns:1fr;gap:28px;}}
+  .case-browser{border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(12,32,48,.14);
+    box-shadow:0 40px 80px -36px rgba(12,32,48,.5),0 2px 0 rgba(255,255,255,.8) inset;}
+  .case-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#e3eded;border-bottom:1px solid rgba(12,32,48,.1);}
+  .case-bar i{width:9px;height:9px;border-radius:50%;background:rgba(12,32,48,.2);}
+  .case-bar b{margin-left:8px;font-family:var(--mono);font-weight:500;font-size:11px;color:rgba(12,32,48,.55);}
+  .case-browser img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;}
+  .case-tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#007f7f;margin-bottom:10px;}
+  .case-big{font-weight:900;letter-spacing:-3px;line-height:.95;color:#0c2030;font-size:clamp(64px,10vw,132px);}
+  .case-big em{font-style:normal;color:#00a3a3;}
+  .case-big span{font-size:.28em;letter-spacing:-1px;margin-left:10px;}
+  .case-sub{font-size:18px;color:rgba(12,32,48,.7);margin:12px 0 22px;}
+  .case-sub b{color:#0c2030;}
+  .calls{display:grid;grid-template-columns:repeat(18,1fr);gap:5px;max-width:520px;}
+  .calls i{aspect-ratio:1;border-radius:50%;background:rgba(12,32,48,.1);transition:background .25s ease,transform .25s ease,box-shadow .25s ease;}
+  .calls i.on{background:#00b4b4;box-shadow:0 0 10px rgba(0,201,201,.55);transform:scale(1.08);}
+  .case-note{font-size:12.5px;color:rgba(12,32,48,.5);margin-top:10px;}
+  .budget .stats{grid-template-columns:repeat(2,1fr);}
+  @media (min-width:901px){
+    .budget .section{padding-top:92px;padding-bottom:36px;}
+    .budget .glossy-icon{width:112px;}
+    .budget.blk-full .sec-p{margin-bottom:6px;}
+    .budget .case{gap:44px;margin:14px 0 18px;}
+    .case-browser img{aspect-ratio:16/9;max-height:38vh;}
+    .case-big{font-size:clamp(64px,8vw,108px);}
+    .case-sub{margin:8px 0 16px;font-size:17px;}
+    .budget .stat{padding:16px 24px;}
+    .budget .stat .n{font-size:30px;}
+  }
+  @media (max-width:720px){.budget .stats{grid-template-columns:1fr;}.calls{grid-template-columns:repeat(12,1fr);}}
+
+  /* Réalisations : de vrais écrans de travail */
+  .deliv.blk-full{padding:0;}
+  .deliv.blk-full>.wrap.section{padding-top:56px;}
+  .rdv-blk.blk-full{padding:0;}
 </style>
 </head>
 <body>
@@ -781,7 +912,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </nav>
 
-<div class="dot-grid">
+<div class="dot-grid snap">
   <div class="hero-bg">
     <span class="glow g1"></span><span class="glow g2"></span><span class="glow g3"></span>
     <svg class="silk" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -862,7 +993,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </div>
 
-<div class="trust-showcase">
+<div class="trust-showcase blk">
   <h2 class="sec-h rv" style="text-align:center;">+ de <span class="italic hl-block">40 entreprises</span> nous ont fait confiance.</h2>
   <div class="trust-track-wrap rv">
     <div class="trust-grid">
@@ -892,7 +1023,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </div>
 
-<div class="vid-block" id="presentation">
+<div class="vid-block blk blk-full snap" id="presentation">
   <div class="wrap section">
     <div class="rv">
       <div class="sec-tag">Coulisses</div>
@@ -925,7 +1056,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </div>
 
-<div class="proto2" id="protocole">
+<div class="proto2 blk snap" id="protocole">
   <div class="wrap section">
     <div class="rv icon-row flip">
         <img decoding="async" alt="" width="300" height="274" class="glossy-icon" src="/assets/img/glossy-icon.webp">
@@ -1019,7 +1150,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </div>
 
-<div class="light-block">
+<div class="light-block budget blk blk-full snap" id="budget">
 <div class="wrap section">
   <div class="rv icon-row flip">
     <img decoding="async" width="300" height="274" class="glossy-icon fade-lg" src="/assets/img/glossy-icon-2.webp" alt="">
@@ -1029,15 +1160,29 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
       <p class="sec-p">Meta Ads, ciblage, créas, reporting — pas de promesses, des chiffres. Voilà ce que ça donne pour nos clients.</p>
     </div>
   </div>
+  <div class="case">
+    <div class="case-visual rv">
+      <div class="case-browser">
+        <div class="case-bar"><i></i><i></i><i></i><b>Clean &amp; Polish — le site derrière la pub</b></div>
+        <img src="assets/realisations/cleanpolish.webp" alt="Site Clean &amp; Polish, vers lequel mène la campagne Meta Ads" loading="lazy" decoding="async" width="900" height="563">
+      </div>
+    </div>
+    <div class="case-data rv d1">
+      <div class="case-tag">Cas client · Clean &amp; Polish · Meta Ads</div>
+      <div class="case-big"><em class="cnt" data-target="108">0</em><span>appels</span></div>
+      <p class="case-sub">en <b>6 jours</b>, à <b>1,49&nbsp;€</b> l'appel.</p>
+      <div class="calls" id="calls" aria-hidden="true"></div>
+      <p class="case-note">Chaque point est un appel reçu pendant la campagne.</p>
+    </div>
+  </div>
   <div class="stats rv">
     <div class="stat rv d1"><div class="l">Meta Ads — Aesthetic Men</div><div class="n"><em class="cnt" data-target="51">0</em><span class="unit">appels</span></div><div class="s">en 9 jours · 2,39&nbsp;€/appel</div></div>
-    <div class="stat rv d2"><div class="l">Meta Ads — Clean &amp; Polish</div><div class="n"><em class="cnt" data-target="108">0</em><span class="unit">appels</span></div><div class="s">en 6 jours · 1,49&nbsp;€/appel</div></div>
-    <div class="stat rv d3"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em><span class="unit">prospects</span></div><div class="s">en 10 jours · + automation Telegram</div></div>
+    <div class="stat rv d2"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em><span class="unit">prospects</span></div><div class="s">en 10 jours · + automation Telegram</div></div>
   </div>
 </div>
 </div>
 
-<div class="real-pin" id="tarifs">
+<div class="real-pin snap" id="tarifs">
   <div class="real-sticky">
     <canvas class="tarifs-net" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -1089,7 +1234,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   </div>
 </div>
 
-<div class="deliv" id="realisations">
+<div class="deliv blk blk-full snap" id="realisations">
   <div class="wrap section" style="padding-bottom:36px;">
     <div class="rv">
       <div class="sec-tag">Échantillons</div>
@@ -1106,7 +1251,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   <p class="dv-more">+ une vingtaine d'autres sites livrés : auto-école, dératisation, rénovation, e-commerce…</p>
 </div>
 
-<div class="light-block">
+<div class="light-block rdv-blk blk blk-full snap">
 <div class="wrap section" id="rdv" style="padding-bottom:32px;">
   <div class="rv" style="text-align:center;max-width:640px;margin:0 auto 44px auto;">
     <img decoding="async" width="300" height="300" class="glossy-icon" style="display:block;margin:0 auto 14px auto;" src="/assets/img/glossy-icon-3.webp" alt="">
@@ -1538,6 +1683,39 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     resize(); raf=requestAnimationFrame(frame);
   })();
 
+/* ---- Blocs plein écran : chaque bloc apparaît quand on y arrive ---- */
+(function(){
+  var bl=[].slice.call(document.querySelectorAll('.blk'));
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function on(el){el.classList.add('blk-on');setTimeout(function(){el.classList.add('blk-done');},1500);}
+  if(reduce||!('IntersectionObserver' in window)){bl.forEach(on);return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){on(e.target);io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -14% 0px'});
+  bl.forEach(function(el){io.observe(el);});
+  setTimeout(function(){bl.forEach(function(el){if(!el.classList.contains('blk-on')){var r=el.getBoundingClientRect();if(r.top<innerHeight)on(el);}});},1200);
+})();
+
+/* ---- Cas client : un point par appel reçu ---- */
+(function(){
+  var box=document.getElementById('calls');if(!box)return;
+  var N=108,dots=[],f=document.createDocumentFragment();
+  for(var i=0;i<N;i++){var d=document.createElement('i');dots.push(d);f.appendChild(d);}
+  box.appendChild(f);
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function run(){
+    if(reduce){dots.forEach(function(d){d.classList.add('on');});return;}
+    var t0=performance.now(),dur=1900,n=0;
+    function step(now){
+      var p=Math.min(1,(now-t0)/dur),k=Math.round((1-Math.pow(1-p,2.2))*N);
+      while(n<k){dots[n++].classList.add('on');}
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();run();}},{threshold:.5});io.observe(box);
+  }else run();
+})();
+
 /* ---- Protocole : le téléphone suit l'étape affichée à droite ---- */
 (function(){
   var box=document.getElementById('p2Notifs'),dayEl=document.getElementById('p2Day'),timeEl=document.getElementById('p2Time');
@@ -1568,22 +1746,32 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     el.style.setProperty('--d',(i*0.13+0.05)+'s');
     return el;
   }
-  var cur=-1,timer=null;
+  var cur=-1,groups=[];
+  function build(i){
+    var g=[],sc=SC[i];
+    sc.n.forEach(function(it,k){var el=node(it,k);el.dataset.step=i;box.appendChild(el);g.push(el);});
+    groups[i]=g;
+    void box.offsetWidth;
+    g.forEach(function(c){c.classList.add('in');});
+  }
+  function drop(i){
+    (groups[i]||[]).forEach(function(c){c.classList.add('gone');setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},260);});
+    groups[i]=null;
+  }
   function show(i){
-    if(i===cur)return; cur=i;
+    if(i===cur)return;
+    var back=i<cur; cur=i;
     steps.forEach(function(st,k){st.classList.toggle('is-active',k===i);});
-    clearTimeout(timer);
-    box.classList.add('out');
-    timer=setTimeout(function(){
-      box.innerHTML='';
-      var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
-      var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
-      if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
-      sc.n.forEach(function(it,k){box.appendChild(node(it,k));});
-      box.classList.remove('out');
-      void box.offsetWidth;
-      [].slice.call(box.children).forEach(function(c){c.classList.add('in');});
-    },box.children.length?170:0);
+    /* l'appel se termine quand on passe à l'étape suivante */
+    if(i>0&&groups[0]){groups[0].forEach(function(c){if(c.classList.contains('proto2-call')){c.classList.add('gone');setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},260);}});}
+    /* retour en arrière : on retire les étapes qui suivent */
+    if(i===0&&groups[0])drop(0);
+    for(var k=SC.length-1;k>i;k--){if(groups[k])drop(k);}
+    /* avance : on ajoute les étapes manquantes jusqu'à celle-ci, sans effacer les précédentes */
+    for(var j=0;j<=i;j++){if(!groups[j]){ if(j===0&&i>0){groups[0]=[];continue;} build(j);} }
+    var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
+    var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
+    if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
   }
   show(0);
   if(!('IntersectionObserver' in window))return;
