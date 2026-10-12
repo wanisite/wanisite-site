@@ -721,7 +721,7 @@
     background:linear-gradient(135deg,#1be6e6,#00a3a3);padding:12px 16px;border-radius:999px;text-decoration:none;}
 
   .proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{opacity:0;transform:translateY(-8px) scale(.98);transition:opacity .16s ease,transform .16s ease;}
-  .proto2-notif,.proto2-call{opacity:0;transform:translateY(16px) scale(.96);}
+  .proto2-notif,.proto2-call{opacity:0;transform:translateY(-14px) scale(.96);}
   .proto2-notif.in,.proto2-call.in{opacity:1;transform:none;transition:opacity .45s var(--ease) var(--d,0s),transform .5s var(--ease) var(--d,0s);}
   .proto2-time,.proto2-day{transition:opacity .2s ease;}
   .proto2-step .proto2-card{transition:border-color .35s ease,box-shadow .35s ease,opacity .35s ease,transform .35s ease;}
@@ -845,13 +845,16 @@
   .proto2-notif.gone,.proto2-call.gone{opacity:0 !important;transform:translateY(-10px) scale(.96) !important;transition:opacity .25s ease,transform .25s ease !important;}
 
 
-  /* notifications : elles s'empilent. Les anciennes se compactent (titre seul) et s'estompent, les nouvelles arrivent une à une en bas */
-  .proto2-notifs{max-height:calc(440 * var(--s));-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%);mask-image:linear-gradient(180deg,transparent 0,#000 9%);}
-  .proto2-notif.old{padding:calc(8 * var(--s)) calc(13 * var(--s));border-radius:calc(20 * var(--s));opacity:calc(1 - var(--age,1) * .15);transform:scale(calc(1 - var(--age,1) * .01));transition:opacity .45s var(--ease),transform .45s var(--ease),padding .35s var(--ease);}
-  .proto2-notif.old .proto2-notif-txt{display:none;}
-  .proto2-notif.old .proto2-notif-top{margin-bottom:0;}
-  .proto2-notif.old .proto2-notif-ic{width:calc(26 * var(--s));height:calc(26 * var(--s));border-radius:calc(7 * var(--s));}
-
+  /* notifications : comme sur un iPhone, la plus récente arrive en haut et les précédentes restent dessous, texte complet.
+     Quand la pile dépasse l'écran, les plus anciennes s'effacent en bas. */
+  .proto2-notifs{top:calc(326 * var(--s));bottom:calc(104 * var(--s));max-height:none;overflow:hidden;justify-content:flex-start;
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 84%,transparent 100%);}
+  .proto2-notif{flex:none;}
+  .proto2-notif.old{opacity:calc(1 - var(--age,1) * .1);transition:opacity .45s var(--ease),height .4s var(--ease);}
+  /* les plus anciennes se replient en bords de cartes sous la pile, comme les notifications groupées d'iOS */
+  .proto2-notif.peek{height:calc(10 * var(--s));padding:0;overflow:hidden;opacity:.5;transform:scale(.94,1);border-radius:calc(14 * var(--s));}
+  .proto2-notif.peek>*{opacity:0;}
+  .proto2-notifs.meas .proto2-notif{transition:none !important;}
 
   /* Ce qu'on a livré : fenêtres de navigateur sur de vrais sites, deux rangées qui défilent en sens inverse */
   .qd{position:relative;overflow:hidden;perspective:1800px;padding:16px 0 46px;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
@@ -1804,9 +1807,10 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     return el;
   }
   var cur=-1,groups=[];
-  function build(i){
+  function build(i,noCall){
     var g=[],sc=SC[i];
-    sc.n.forEach(function(it,k){var el=node(it,k);el.dataset.step=i;box.appendChild(el);g.push(el);});
+    var ref=box.firstChild;
+    sc.n.forEach(function(it,k){if(noCall&&it[0]==='call')return;var el=node(it,k);el.dataset.step=i;box.insertBefore(el,ref);g.push(el);});
     groups[i]=g;
     void box.offsetWidth;
     g.forEach(function(c){c.classList.add('in');});
@@ -1819,10 +1823,19 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     groups.forEach(function(g,j){
       if(!g)return;
       g.forEach(function(c){
-        if(j<i){c.classList.add('old');c.style.setProperty('--age',String(i-j));}
-        else{c.classList.remove('old');c.style.removeProperty('--age');}
+        var tm=c.querySelector('.proto2-notif-top span');
+        if(j<i){c.classList.add('old');c.classList.remove('peek');c.style.setProperty('--age',String(Math.min(4,i-j)));if(tm)tm.textContent=SC[j].time;}
+        else{c.classList.remove('old','peek');c.style.removeProperty('--age');if(tm)tm.textContent='maintenant';}
       });
     });
+    fit();
+  }
+  /* si la pile dépasse l'écran, les plus anciennes se replient une à une en bord de carte (de bas en haut) */
+  function fit(){
+    box.classList.add('meas');
+    var old=[].slice.call(box.children).filter(function(c){return c.classList.contains('old')&&!c.classList.contains('gone');});
+    for(var k=old.length-1;k>=0&&box.scrollHeight>box.clientHeight+1;k--){old[k].classList.add('peek');}
+    box.classList.remove('meas');
   }
   function show(i){
     if(i===cur)return;
@@ -1834,7 +1847,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     if(i===0&&groups[0])drop(0);
     for(var k=SC.length-1;k>i;k--){if(groups[k])drop(k);}
     /* avance : on ajoute les étapes manquantes jusqu'à celle-ci, sans effacer les précédentes */
-    for(var j=0;j<=i;j++){if(!groups[j]){ if(j===0&&i>0){groups[0]=[];continue;} build(j);} }
+    for(var j=0;j<=i;j++){if(!groups[j]){ if(j===0&&i>0){build(0,true);continue;} build(j);} }
     var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
     var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
     if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
@@ -1842,10 +1855,20 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   }
   show(0);
   if(!('IntersectionObserver' in window))return;
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting) show(steps.indexOf(e.target)); });
-  },{rootMargin:'-42% 0px -42% 0px',threshold:0});
-  steps.forEach(function(st){io.observe(st);});
+  /* ordinateur : l'étape affichée est la dernière qui a dépassé 58 % de la hauteur de l'écran ;
+     la dernière s'active dès qu'elle est entièrement visible (la fin de section arrête le défilement avant le milieu) */
+  var mq0=window.matchMedia('(max-width:900px)'),pend=false;
+  function pick(){
+    pend=false; if(mq0.matches)return;
+    var line=innerHeight*.58,best=0;
+    steps.forEach(function(st,k){if(st.getBoundingClientRect().top<=line)best=k;});
+    if(steps[steps.length-1].getBoundingClientRect().bottom<=innerHeight*.95)best=steps.length-1;
+    show(best);
+  }
+  function req(){if(!pend){pend=true;requestAnimationFrame(pick);}}
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  req();
   /* mobile : le téléphone est au-dessus des étapes, on fait défiler les scènes tout seul */
   var mq=window.matchMedia('(max-width:900px)'),auto=null,vis=false,k=0;
   function tick(){k=(k+1)%SC.length;show(k);}
