@@ -844,6 +844,14 @@
   .proto2-notifs.out .proto2-notif,.proto2-notifs.out .proto2-call{opacity:1;transform:none;}
   .proto2-notif.gone,.proto2-call.gone{opacity:0 !important;transform:translateY(-10px) scale(.96) !important;transition:opacity .25s ease,transform .25s ease !important;}
 
+
+  /* notifications : elles s'empilent. Les anciennes se compactent (titre seul) et s'estompent, les nouvelles arrivent une à une en bas */
+  .proto2-notifs{max-height:calc(440 * var(--s));-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%);mask-image:linear-gradient(180deg,transparent 0,#000 9%);}
+  .proto2-notif.old{padding:calc(8 * var(--s)) calc(13 * var(--s));border-radius:calc(20 * var(--s));opacity:calc(1 - var(--age,1) * .15);transform:scale(calc(1 - var(--age,1) * .01));transition:opacity .45s var(--ease),transform .45s var(--ease),padding .35s var(--ease);}
+  .proto2-notif.old .proto2-notif-txt{display:none;}
+  .proto2-notif.old .proto2-notif-top{margin-bottom:0;}
+  .proto2-notif.old .proto2-notif-ic{width:calc(26 * var(--s));height:calc(26 * var(--s));border-radius:calc(7 * var(--s));}
+
   /* Budget marketing : un vrai cas client, plein écran */
   .budget.blk-full .sec-p{margin-bottom:28px;}
   .case{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;margin-bottom:28px;}
@@ -1743,7 +1751,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
       el.className='proto2-notif';
       el.innerHTML='<div class="proto2-notif-ic '+it[0]+'">'+IC[it[0]]+'</div><div class="proto2-notif-body"><div class="proto2-notif-top"><b>'+it[1]+'</b><span>maintenant</span></div><div class="proto2-notif-txt">'+it[2]+'</div></div>';
     }
-    el.style.setProperty('--d',(i*0.13+0.05)+'s');
+    el.style.setProperty('--d',(i*0.42+0.08)+'s');
     return el;
   }
   var cur=-1,groups=[];
@@ -1757,6 +1765,15 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   function drop(i){
     (groups[i]||[]).forEach(function(c){c.classList.add('gone');setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},260);});
     groups[i]=null;
+  }
+  function restyle(i){
+    groups.forEach(function(g,j){
+      if(!g)return;
+      g.forEach(function(c){
+        if(j<i){c.classList.add('old');c.style.setProperty('--age',String(i-j));}
+        else{c.classList.remove('old');c.style.removeProperty('--age');}
+      });
+    });
   }
   function show(i){
     if(i===cur)return;
@@ -1772,6 +1789,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
     var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
     if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
+    restyle(i);
   }
   show(0);
   if(!('IntersectionObserver' in window))return;
