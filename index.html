@@ -650,16 +650,15 @@
   /* ---- Protocole : téléphone (notifications au fil des étapes) + timeline
      verticale, à la place de l'ancienne galerie de 4 cartes trop vide. ---- */
   .proto2{position:relative;padding:20px 0 10px;}
-  .proto2-grid{display:grid;grid-template-columns:300px 1fr;gap:64px;margin-top:48px;}
-  @media (max-width:900px){.proto2-grid{grid-template-columns:1fr;gap:32px;}}
+  .proto2-grid{display:grid;grid-template-columns:1fr;margin-top:32px;}
+  .proto2-grid>*{grid-area:1/1;}
 
   .proto2-phone-col{position:relative;height:100%;}
   .proto2-phone-sticky{position:sticky;top:5vh;}
-  @media (max-width:900px){.proto2-phone-sticky{position:static;}}
 
   /* iPhone réaliste : tout est dessiné en points iPhone (écran 393 × 852) puis mis à l'échelle par --s */
-  .proto2-phone-frame{--w:300px;--s:calc((var(--w) - 14px) / 393);position:relative;width:var(--w);margin:0 auto;}
-  @media (max-width:420px){.proto2-phone-frame{--w:262px;}}
+  .proto2-phone-frame{--w:min(350px,calc((88vh - 14px) * .4613 + 14px));--s:calc((var(--w) - 14px) / 393);position:relative;width:var(--w);margin:0 auto;}
+  @media (max-width:420px){.proto2-phone-frame{--w:min(262px,calc((82vh - 14px) * .4613 + 14px));}}
   .proto2-phone{position:relative;width:var(--w);height:calc(852 * var(--s) + 14px);border-radius:calc(62 * var(--s));padding:7px;
     background:linear-gradient(145deg,#9a9ea6 0%,#4a4d54 14%,#202226 38%,#16171a 60%,#52555c 86%,#a4a8b0 100%);
     box-shadow:0 50px 90px -34px rgba(0,201,201,.42),0 0 0 .5px rgba(255,255,255,.25) inset,0 0 0 1px rgba(0,0,0,.6);}
@@ -772,6 +771,16 @@
     .proto2-card h3{font-size:18px;}
     .proto2-card p{font-size:13.5px;}
   }
+
+  /* Étapes : le téléphone est seul au centre, les notifications suivent le défilement */
+  .proto2-steps{position:relative;pointer-events:none;gap:0;}
+  .proto2-step{display:block;height:62vh;min-height:360px;padding:0;}
+  .proto2-step::before{display:none;}
+  .proto2-phone-sticky{top:6vh;}
+  .proto2-list{list-style:none;margin:28px auto 0;padding:0;max-width:520px;display:none;}
+  .proto2-list li{padding:10px 0;border-bottom:1px solid var(--border);color:var(--text2);font-size:15px;}
+  .proto2-list b{color:#fff;}
+  @media (prefers-reduced-motion:reduce){.proto2-list{display:block;}}
   .proto2-cta{margin-top:44px;text-align:center;}
 
   /* ===== v2 — retouches demandées (fiche Notion du 11/10) ===== */
@@ -1131,8 +1140,8 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
         <img decoding="async" alt="" width="300" height="274" class="glossy-icon" src="/assets/img/glossy-icon.webp">
       <div>
         <div class="sec-tag">Protocole</div>
-        <h2 class="sec-h">De zéro à en ligne <span class="italic hl-block">en 7 jours.</span></h2>
-        <p class="sec-p">Après le diagnostic, voici exactement ce qui se passe, et quand.</p>
+        <h2 class="sec-h">Votre projet, <span class="italic hl-block">étape par étape.</span></h2>
+        <p class="sec-p">Faites défiler : chaque notification du téléphone correspond à une étape de votre projet.</p>
       </div>
     </div>
 
@@ -1161,58 +1170,29 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
                 <span class="proto2-home" aria-hidden="true"></span>
               </div>
             </div>
-            <div class="proto2-cta-float">
+
+          </div>
+        </div>
+      </div>
+
+      <ol class="proto2-steps" aria-hidden="true">
+        <li class="proto2-step" data-step="1"></li>
+        <li class="proto2-step" data-step="2"></li>
+        <li class="proto2-step" data-step="3"></li>
+        <li class="proto2-step" data-step="4"></li>
+        <li class="proto2-step" data-step="5"></li>
+      </ol>
+    </div>
+
+    <div style="max-width:420px;margin:28px auto 0;"><div class="proto2-cta-float">
               <div class="proto2-cta-float-ic">W</div>
               <div class="proto2-cta-float-body">
                 <div class="proto2-cta-float-top">On vous appelle sous l’heure</div>
                 <div class="proto2-cta-float-sub">100&nbsp;% gratuit · sans engagement</div>
               </div>
               <a class="proto2-cta-float-btn" href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ol class="proto2-steps">
-        <li class="proto2-step rv d1" data-step="1">
-          <div class="proto2-dot">1</div>
-          <div class="proto2-card">
-            <div class="proto2-card-top"><span class="proto2-tag">Étape 1</span><span class="proto2-badge">Immédiat</span></div>
-            <div class="proto2-num">30<em>min</em></div>
-            <h3>Diagnostic gratuit</h3>
-            <p>On vous appelle par WhatsApp pour comprendre votre activité, vos clients et ce dont votre site a vraiment besoin. Sans engagement.</p>
-          </div>
-        </li>
-        <li class="proto2-step rv d2" data-step="2">
-          <div class="proto2-dot">2</div>
-          <div class="proto2-card">
-            <div class="proto2-card-top"><span class="proto2-tag">Étape 2</span><span class="proto2-badge">Le jour même</span></div>
-            <div class="proto2-num">24<em>h</em></div>
-            <h3>Devis à prix fixe</h3>
-            <p>Vous recevez un prix clair par WhatsApp, sans surprise. 50&nbsp;% au départ, 50&nbsp;% à la livraison.</p>
-          </div>
-        </li>
-        <li class="proto2-step rv d3" data-step="3">
-          <div class="proto2-dot">3</div>
-          <div class="proto2-card">
-            <div class="proto2-card-top"><span class="proto2-tag">Étape 3</span><span class="proto2-badge">En 7 jours</span></div>
-            <div class="proto2-num">7<em>jours</em></div>
-            <h3>On construit, vous validez</h3>
-            <p>Chaque étape vous est présentée avant de continuer. Rien n’est mis en ligne sans votre accord.</p>
-          </div>
-        </li>
-        <li class="proto2-step rv d4" data-step="4">
-          <div class="proto2-dot">4</div>
-          <div class="proto2-card">
-            <div class="proto2-card-top"><span class="proto2-tag">Étape 4</span><span class="proto2-badge">À la livraison</span></div>
-            <div class="proto2-num">100<em>%</em></div>
-            <h3>Livraison &amp; liberté</h3>
-            <p>Domaine, hébergement, accès admin&nbsp;: tout est à votre nom. Zéro dépendance envers nous.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-
+            </div></div>
+    <ol class="proto2-list"><li><b>Diagnostic</b> · Votre diagnostic est terminé.</li><li><b>Devis</b> · Votre devis personnalisé est prêt.</li><li><b>Validation</b> · Votre projet a été validé.</li><li><b>Création</b> · Votre site est en cours de création.</li><li><b>Mise en ligne</b> · Votre site est maintenant en ligne.</li></ol>
     <div class="proto2-cta rv">
       <a class="btn-primary" href="https://wa.me/33624547342" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp →</a>
     </div>
@@ -1769,10 +1749,11 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   };
   var PH='<svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.300.2 2.500.6 3.600.1.300 0 .700-.2 1l-2.200 2.600Z"/></svg>';
   var SC=[
-    {day:'Aujourd’hui',time:'14:32',n:[['wa','WhatsApp','Diagnostic reçu : on vous appelle dans l’heure.'],['call']]},
-    {day:'Le jour même',time:'18:05',n:[['wa','WhatsApp','Votre devis est prêt : un prix fixe, sans surprise.'],['doc','Wanisite','50 % au départ, 50 % à la livraison.']]},
-    {day:'Pendant la semaine',time:'10:12',n:[['doc','Wanisite','La maquette est prête : à vous de valider.'],['cal','Calendrier','Point maquette avec Wanisite'],['wa','WhatsApp','Rien n’est mis en ligne sans votre accord.']]},
-    {day:'Jour 7',time:'09:30',n:[['live','Wanisite','Votre site est en ligne.'],['doc','Wanisite','Domaine, hébergement, accès admin : tout est à votre nom.']]}
+    {day:'Aujourd’hui',time:'14:32',n:[['doc','Wanisite','Votre diagnostic est terminé.'],['call']]},
+    {day:'Un peu plus tard',time:'16:10',n:[['doc','Wanisite','Votre devis personnalisé est prêt.'],['wa','WhatsApp','Un prix fixe, annoncé avant de commencer.']]},
+    {day:'Après votre accord',time:'10:12',n:[['live','Wanisite','Votre projet a été validé.'],['cal','Calendrier','Point maquette avec Wanisite']]},
+    {day:'Pendant la création',time:'15:47',n:[['doc','Wanisite','Votre site est en cours de création.'],['wa','WhatsApp','Rien n’est mis en ligne sans votre accord.']]},
+    {day:'Mise en ligne',time:'09:30',n:[['live','Wanisite','Votre site est maintenant en ligne.'],['doc','Wanisite','Domaine, hébergement, accès admin : tout est à votre nom.']]}
   ];
   function node(it,i){
     var el=document.createElement('div');
@@ -1830,16 +1811,16 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     for(var j=0;j<=i;j++){if(!groups[j]){ if(j===0&&i>0){build(0,true);continue;} build(j);} }
     var sc=SC[i]; dayEl.textContent=sc.day; timeEl.textContent=sc.time;
     var wt=document.getElementById('p2WTitle'),wb=document.getElementById('p2WBar');
-    if(wt){wt.textContent='Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
+    if(wt){wt.textContent=(i===SC.length-1)?'Projet terminé':'Étape '+(i+1)+' sur '+SC.length;} if(wb){wb.style.width=((i+1)/SC.length*100)+'%';}
     restyle(i);
   }
   show(0);
   if(!('IntersectionObserver' in window))return;
-  /* ordinateur : l'étape affichée est la dernière qui a dépassé 58 % de la hauteur de l'écran ;
+  /* ordinateur et mobile : l'étape affichée est la dernière qui a dépassé 58 % de la hauteur de l'écran ;
      la dernière s'active dès qu'elle est entièrement visible (la fin de section arrête le défilement avant le milieu) */
   var mq0=window.matchMedia('(max-width:900px)'),pend=false;
   function pick(){
-    pend=false; if(mq0.matches)return;
+    pend=false;
     var line=innerHeight*.58,best=0;
     steps.forEach(function(st,k){if(st.getBoundingClientRect().top<=line)best=k;});
     if(steps[steps.length-1].getBoundingClientRect().bottom<=innerHeight*.95)best=steps.length-1;
@@ -1849,16 +1830,6 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   window.addEventListener('scroll',req,{passive:true});
   window.addEventListener('resize',req);
   req();
-  /* mobile : le téléphone est au-dessus des étapes, on fait défiler les scènes tout seul */
-  var mq=window.matchMedia('(max-width:900px)'),auto=null,vis=false,k=0;
-  function tick(){k=(k+1)%SC.length;show(k);}
-  function sync(){
-    if(mq.matches&&vis&&!auto)auto=setInterval(tick,3400);
-    else if((!mq.matches||!vis)&&auto){clearInterval(auto);auto=null;}
-  }
-  var pf=document.querySelector('.proto2-phone-frame');
-  if(pf){new IntersectionObserver(function(es){vis=es[0].isIntersecting;sync();},{threshold:.4}).observe(pf);}
-  (mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));
 })();
 
 /* ---- Vidéo Equip'Food : lecture automatique quand elle est visible ---- */
