@@ -32,17 +32,6 @@ CASES = [
          image=('aestheticmen', 'Le site derrière la pub', 'Le site d\'Aesthetic Men, vers lequel mène la campagne.'),
          budget='Environ 120 € dépensés, soit 51 appels au coût moyen de 2,39 € par appel (calcul à partir de ces deux chiffres).',
          conclusion='Pour un soin spécialisé, 51 personnes ont appelé en neuf jours, à 2,39 € l\'appel.'),
-    dict(slug='garage-idf', nom='Garage IDF', nom_txt='Garage IDF',
-         title='Garage IDF : 48 prospects en 10 jours avec Meta Ads — Wanisite',
-         desc='Campagne Meta Ads pour un garage : 48 prospects générés en 10 jours, avec une automatisation Telegram.',
-         h1='48 prospects en 10&nbsp;jours pour <em class="it">Garage IDF</em>',
-         lead='Une campagne Meta Ads pour un garage qui partait de zéro présence en ligne.',
-         chiffres=[('48', 'prospects générés'), ('10 jours', 'de campagne'), ('Telegram', 'automatisation incluse')],
-         client='Garage IDF est un garage d\'Île-de-France. Il n\'avait aucune présence en ligne au départ.',
-         objectif='Générer des demandes de clients (des prospects) à partir de rien.',
-         mise_en_place='Une campagne Meta Ads, avec une automatisation Telegram incluse.',
-         image=None, budget=None,
-         conclusion='En dix jours, 48 prospects ont été générés pour un garage qui n\'avait aucune présence en ligne.'),
 ]
 
 def render(c):
