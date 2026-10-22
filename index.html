@@ -911,6 +911,21 @@
   .calls i{aspect-ratio:1;border-radius:50%;background:rgba(12,32,48,.1);transition:background .25s ease,transform .25s ease,box-shadow .25s ease;}
   .calls i.on{background:#00b4b4;box-shadow:0 0 10px rgba(0,201,201,.55);transform:scale(1.08);}
   .case-note{font-size:12.5px;color:rgba(12,32,48,.5);margin-top:10px;}
+
+  .rc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:8px;}
+  .rc{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(12,32,48,.12);border-radius:18px;overflow:hidden;text-decoration:none;color:#0c2030;transition:transform .2s ease,box-shadow .2s ease;}
+  .rc:hover,.rc:focus-visible{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(12,32,48,.5);}
+  .rc-img{aspect-ratio:16/10;background:#e3eded;border-bottom:1px solid rgba(12,32,48,.1);overflow:hidden;}
+  .rc-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .rc-img.none{display:grid;place-items:center;background:#0c2030;}
+  .rc-img.none span{font-weight:900;font-size:28px;letter-spacing:-.5px;color:#fff;}
+  .rc-body{display:flex;flex-direction:column;gap:2px;padding:20px 22px 22px;flex:1;}
+  .rc-tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#007f7f;}
+  .rc h3{margin:6px 0 10px;font-size:22px;font-weight:800;letter-spacing:-.4px;color:#0c2030;}
+  .rc-big{margin:0;font-size:19px;color:rgba(12,32,48,.75);} .rc-big b{font-size:38px;font-weight:900;letter-spacing:-1px;color:#00a3a3;margin-right:4px;}
+  .rc-sub{margin:2px 0 0;font-size:15px;color:rgba(12,32,48,.6);}
+  .rc-cta{margin-top:auto;padding-top:18px;font-weight:700;font-size:15px;color:#007f7f;}
+  @media (max-width:900px){.rc-grid{grid-template-columns:1fr;}}
   .budget .stats{grid-template-columns:repeat(2,1fr);}
   @media (min-width:901px){
     .budget .section{padding-top:92px;padding-bottom:36px;}
@@ -1214,24 +1229,19 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
       <p class="sec-p">Meta Ads, ciblage, créas, reporting — pas de promesses, des chiffres. Voilà ce que ça donne pour nos clients.</p>
     </div>
   </div>
-  <div class="case">
-    <div class="case-visual rv">
-      <div class="case-browser">
-        <div class="case-bar"><i></i><i></i><i></i><b>Clean &amp; Polish — le site derrière la pub</b></div>
-        <img src="assets/realisations/cleanpolish.webp" alt="Site Clean &amp; Polish, vers lequel mène la campagne Meta Ads" loading="lazy" decoding="async" width="900" height="563">
-      </div>
-    </div>
-    <div class="case-data rv d1">
-      <div class="case-tag">Cas client · Clean &amp; Polish · Meta Ads</div>
-      <div class="case-big"><em class="cnt" data-target="108">0</em><span>appels</span></div>
-      <p class="case-sub">en <b>6 jours</b>, à <b>1,49&nbsp;€</b> l'appel.</p>
-      <div class="calls" id="calls" aria-hidden="true"></div>
-      <p class="case-note">Chaque point est un appel reçu pendant la campagne.</p>
-    </div>
-  </div>
-  <div class="stats rv">
-    <div class="stat rv d1"><div class="l">Meta Ads — Aesthetic Men</div><div class="n"><em class="cnt" data-target="51">0</em><span class="unit">appels</span></div><div class="s">en 9 jours · 2,39&nbsp;€/appel</div></div>
-    <div class="stat rv d2"><div class="l">Meta Ads — Garage IDF</div><div class="n"><em class="cnt" data-target="48">0</em><span class="unit">prospects</span></div><div class="s">en 10 jours · + automation Telegram</div></div>
+  <div class="rc-grid rv">
+    <a class="rc" href="/realisations/clean-and-polish">
+      <div class="rc-img"><img src="assets/realisations/cleanpolish.webp" alt="Site Clean &amp; Polish, vers lequel mène la campagne" loading="lazy" decoding="async" width="900" height="562"></div>
+      <div class="rc-body"><span class="rc-tag">Campagne Meta Ads</span><h3>Clean &amp; Polish</h3><p class="rc-big"><b>108</b> appels en 6&nbsp;jours</p><p class="rc-sub">à 1,49&nbsp;€ par appel</p><span class="rc-cta">Voir l'étude de cas →</span></div>
+    </a>
+    <a class="rc" href="/realisations/aesthetic-men">
+      <div class="rc-img"><img src="assets/realisations/aestheticmen.webp" alt="Site Aesthetic Men, vers lequel mène la campagne" loading="lazy" decoding="async" width="900" height="562"></div>
+      <div class="rc-body"><span class="rc-tag">Campagne Meta Ads</span><h3>Aesthetic Men</h3><p class="rc-big"><b>51</b> appels en 9&nbsp;jours</p><p class="rc-sub">à 2,39&nbsp;€ par appel</p><span class="rc-cta">Voir l'étude de cas →</span></div>
+    </a>
+    <a class="rc" href="/realisations/garage-idf">
+      <div class="rc-img none" aria-hidden="true"><span>Garage IDF</span></div>
+      <div class="rc-body"><span class="rc-tag">Campagne Meta Ads</span><h3>Garage IDF</h3><p class="rc-big"><b>48</b> prospects en 10&nbsp;jours</p><p class="rc-sub">avec une automatisation Telegram</p><span class="rc-cta">Voir l'étude de cas →</span></div>
+    </a>
   </div>
 </div>
 </div>
@@ -1744,28 +1754,6 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){on(e.target);io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -14% 0px'});
   bl.forEach(function(el){io.observe(el);});
   setTimeout(function(){bl.forEach(function(el){if(!el.classList.contains('blk-on')){var r=el.getBoundingClientRect();if(r.top<innerHeight)on(el);}});},1200);
-})();
-
-/* ---- Cas client : un point par appel reçu ---- */
-(function(){
-  var box=document.getElementById('calls');if(!box)return;
-  var N=108,dots=[],f=document.createDocumentFragment();
-  for(var i=0;i<N;i++){var d=document.createElement('i');dots.push(d);f.appendChild(d);}
-  box.appendChild(f);
-  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function run(){
-    if(reduce){dots.forEach(function(d){d.classList.add('on');});return;}
-    var t0=performance.now(),dur=1900,n=0;
-    function step(now){
-      var p=Math.min(1,(now-t0)/dur),k=Math.round((1-Math.pow(1-p,2.2))*N);
-      while(n<k){dots[n++].classList.add('on');}
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();run();}},{threshold:.5});io.observe(box);
-  }else run();
 })();
 
 /* ---- Protocole : le téléphone suit l'étape affichée à droite ---- */
