@@ -43,8 +43,8 @@ def render(c):
     img = ''
     if c['image']:
         f, t, cap = c['image']
-        img = f'<section class="alt"><div class="wrap"><p class="eyebrow">Le support</p><h2>{t}.</h2><div class="shots" style="grid-template-columns:minmax(0,640px);"><figure><img src="/assets/realisations/{f}.webp" alt="{cap}" loading="lazy" style="aspect-ratio:16/10;"><figcaption>{cap}</figcaption></figure></div></div></section>'
-    budget = f'<section><div class="wrap"><p class="eyebrow">Le budget</p><h2>Ce que ça a coûté.</h2><p class="sec-intro">{c["budget"]}</p></div></section>' if c['budget'] else ''
+        img = f'<section class="alt"><div class="wrap"><p class="eyebrow">Le support</p><h2>Le site derrière <span class="italic hl-block">la pub.</span></h2><div class="shots" style="grid-template-columns:minmax(0,640px);"><figure><img src="/assets/realisations/{f}.webp" alt="{cap}" loading="lazy" style="aspect-ratio:16/10;"><figcaption>{cap}</figcaption></figure></div></div></section>'
+    budget = f'<section><div class="wrap"><p class="eyebrow">Le budget</p><h2>Ce que ça a <span class="italic hl-block">coûté.</span></h2><p class="sec-intro">{c["budget"]}</p></div></section>' if c['budget'] else ''
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,8 +65,8 @@ def render(c):
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&family=Playfair+Display:ital,wght@1,700&display=swap">
-<link rel="stylesheet" href="/assets/service-light.css?v=2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
+<link rel="stylesheet" href="/assets/service-da.css?v=5">
 </head>
 <body>
 <header class="top">
@@ -82,6 +82,7 @@ def render(c):
 <section class="hero" style="padding-bottom:40px;">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
+      <img class="glossy-icon" src="/assets/img/glossy-icon-4.webp" alt="" width="300" height="274" decoding="async">
       <p class="eyebrow">Étude de cas · Meta Ads</p>
       <h1>{c['h1']}</h1>
       <p class="lead">{c['lead']}</p>
@@ -89,12 +90,12 @@ def render(c):
   </div>
 </section>
 <section style="padding-top:0;"><div class="wrap"><div class="grid g3" style="margin-top:0;">{chiffres}</div></div></section>
-<section class="alt"><div class="wrap"><p class="eyebrow">La campagne</p><h2>Comment ça s'est passé.</h2><div class="grid g3">{texte}</div></div></section>
+<section class="alt"><div class="wrap"><p class="eyebrow">La campagne</p><h2>Comment ça s'est <span class="italic hl-block">passé.</span></h2><div class="grid g3">{texte}</div></div></section>
 {img}
 {budget}
-<section class="alt"><div class="wrap"><p class="eyebrow">En résumé</p><h2>Ce qu'il faut retenir.</h2><p class="sec-intro">{c['conclusion']}</p>
+<section class="alt"><div class="wrap"><p class="eyebrow">En résumé</p><h2>Ce qu'il faut <span class="italic hl-block">retenir.</span></h2><p class="sec-intro">{c['conclusion']}</p>
 <div class="note">Ce sont les résultats d'une campagne précise, pour une activité précise : ils ne sont pas une promesse pour une autre entreprise.</div></div></section>
-<section style="padding-top:0;"><div class="wrap"><div class="final"><h2>Et pour votre activité ?</h2><p>Dites-nous ce que vous vendez et à qui. On vous explique ce qu'une campagne peut raisonnablement apporter, avant de dépenser un euro.</p>
+<section style="padding-top:0;"><div class="wrap"><div class="final"><h2>Et pour votre <span class="italic hl-block">activité ?</span></h2><p>Dites-nous ce que vous vendez et à qui. On vous explique ce qu'une campagne peut raisonnablement apporter, avant de dépenser un euro.</p>
 <div class="actions"><a class="btn wa" href="{WA + quote(msg)}" target="_blank" rel="noopener">Demander un accompagnement</a><a class="btn ghost" href="/#budget">Voir les autres réalisations</a></div></div></div></section>
 </main>
 <footer><div class="wrap"><a href="/" style="text-decoration:none;font-weight:700;color:var(--ink);">Wanisite</a><span>© 2026 · waniscontact7679@gmail.com · +33 6 24 54 73 42</span></div></footer>

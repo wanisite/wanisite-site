@@ -8,6 +8,13 @@ def wa(msg):
     from urllib.parse import quote
     return WA + quote(msg)
 
+def acc(t):
+    """Surligne les deux derniers mots d'un titre, comme sur l'accueil."""
+    if '<' in t: return t
+    w = t.split(' ')
+    k = 1 if len(w) <= 3 else 2
+    return ' '.join(w[:-k]) + ' <span class="italic hl-block">' + ' '.join(w[-k:]) + '</span>'
+
 def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
     ld_faq = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, ensure_ascii=False)
@@ -39,10 +46,10 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&family=Playfair+Display:ital,wght@1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
 <script type="application/ld+json">{ld_svc}</script>
 <script type="application/ld+json">{ld_faq}</script>
-<link rel="stylesheet" href="/assets/service-light.css?v=2">
+<link rel="stylesheet" href="/assets/service-da.css?v=5">
 </head>
 <body>
 <header class="top">
@@ -62,14 +69,14 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
 <section id="faq">
   <div class="wrap" style="max-width:820px;">
     <p class="eyebrow">Questions fréquentes</p>
-    <h2>Ce que l'on nous demande souvent.</h2>
+    <h2>{acc("Ce que l'on nous demande souvent.")}</h2>
     {faq_html}
   </div>
 </section>
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="final">
-      <h2>Parlons de votre projet.</h2>
+      <h2>{acc("Parlons de votre projet.")}</h2>
       <p>Décrivez-nous votre activité en quelques mots. On revient vers vous avec des idées concrètes et un devis gratuit.</p>
       <div class="actions">
         <a class="btn wa" href="{wa(project_msg)}" target="_blank" rel="noopener">Demander un devis</a>
@@ -90,10 +97,11 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
 </html>
 '''
 
-def hero(eyebrow, h1, lead, cta1, cta2, visual, note, quote_msg):
+def hero(eyebrow, h1, lead, cta1, cta2, visual, note, quote_msg, icon='glossy-icon.webp'):
     return f'''<section class="hero">
   <div class="wrap">
     <div>
+      <img class="glossy-icon" src="/assets/img/{icon}" alt="" width="300" height="274" decoding="async">
       <p class="eyebrow">{eyebrow}</p>
       <h1>{h1}</h1>
       <p class="lead">{lead}</p>
@@ -112,7 +120,7 @@ def sec(eyebrow, h2, inner, alt=False, intro=None, sid=None):
     return f'''<section{' class="alt"' if alt else ''}{f' id="{sid}"' if sid else ''}>
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
-    <h2>{h2}</h2>
+    <h2>{acc(h2)}</h2>
     {i}
     {inner}
   </div>
@@ -144,7 +152,7 @@ def vitrine():
     h = hero('Site vitrine', 'Un site qui <em class="it">vous ressemble</em> et qui fait venir des clients.',
              'Pas besoin de quinze pages. Il faut un site clair, rapide sur mobile, avec votre numéro bien visible : c\'est ce qui fait appeler.',
              ('Voir les réalisations', '#exemples'), 'Demander un devis', v, 'exemple fictif, pour montrer l\'idée.',
-             'Bonjour, je voudrais un devis pour un site vitrine.')
+             'Bonjour, je voudrais un devis pour un site vitrine.', 'glossy-icon-7.webp')
     exs = [
         ('rmserrure', 'RM Serrure', 'Serrurier 24h/24 en Île-de-France', 'https://rmserrure.com'),
         ('streetcarwash', 'Street Car Wash', 'Lavage auto à domicile, avec réservation en ligne', 'https://streetcarwash.com'),
@@ -211,7 +219,7 @@ def ecommerce():
     h = hero('Boutique en ligne', 'Vendez en ligne, <em class="it">sans vous compliquer</em> la vie.',
              'Une boutique claire pour vos clients, un tableau de bord simple pour vous. De l\'idée à la première commande, on vous accompagne.',
              ('Voir les exemples', '#exemples'), 'Demander un devis', v, 'boutique fictive, produit d\'exemple.',
-             'Bonjour, je voudrais un devis pour une boutique en ligne.')
+             'Bonjour, je voudrais un devis pour une boutique en ligne.', 'glossy-icon-5.webp')
     cart = mock('Mon panier', '''<div class="m-line"><b>Savon d'Alep × 2</b><span>25,80 €</span></div><div class="m-line"><b>Huile d'olive × 1</b><span>9,50 €</span></div><div class="m-line"><span>Livraison</span><span>offerte</span></div><div class="m-total"><span>Total</span><span>35,30 €</span></div><span class="m-btn" style="width:100%;">Payer en ligne</span>''', 'Maquette de panier')
     dash = mock('Tableau de bord vendeur', '''<div class="kpis"><div class="kpi"><span>Commandes</span><b>24</b></div><div class="kpi"><span>Ventes</span><b>1 120 €</b></div><div class="kpi"><span>Stock bas</span><b>2</b></div></div>
       <div class="m-order"><span>#1042 · Marie L.</span><span class="tag warn">À préparer</span></div><div class="m-order"><span>#1041 · Karim B.</span><span class="tag ok">Expédiée</span></div>''', 'Maquette de tableau de bord vendeur')
@@ -275,7 +283,7 @@ def reservation():
     h = hero('Réservation en ligne', 'Vos clients réservent <em class="it">tout seuls</em>, vous gardez la main.',
              'Un agenda en ligne : le client choisit un créneau libre, vous êtes prévenu, il reçoit une confirmation. Plus de messages à rallonge pour caler une heure.',
              ('Voir un exemple', '#exemples'), 'Demander un devis', cal, 'agenda fictif, noms inventés.',
-             'Bonjour, je voudrais un devis pour un système de réservation en ligne.')
+             'Bonjour, je voudrais un devis pour un système de réservation en ligne.', 'glossy-icon-6.webp')
     exemple = '''<div class="grid g3" style="align-items:start;"><figure style="margin:0;">''' + cal + '''<figcaption class="cap"><b>Côté professionnel</b> · l'agenda et les créneaux pris.</figcaption></figure>
       <figure style="margin:0;">''' + page_c + '''<figcaption class="cap"><b>Côté client</b> · il choisit un créneau libre.</figcaption></figure>
       <figure style="margin:0;">''' + notifs + '''<figcaption class="cap"><b>Confirmations</b> · client et professionnel sont prévenus.</figcaption></figure></div>
