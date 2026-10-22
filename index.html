@@ -974,11 +974,12 @@
 <body>
 <div id="loader" role="status" aria-label="Chargement"><img src="/assets/img/nav-logo.webp" alt="" width="92" height="60"><span class="ld-bar"><i></i></span></div>
 <script>(function(){var d=document.documentElement,l=document.getElementById('loader'),t0=Date.now(),gone=false;d.classList.add('ld-lock');function hide(){if(gone)return;gone=true;l.classList.add('done');d.classList.remove('ld-lock');setTimeout(function(){l.remove();},600);}
-window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.now()-t0)));});setTimeout(hide,4000);})();</script>
+function ready(){setTimeout(hide,Math.max(0,450-(Date.now()-t0)));}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
+setTimeout(hide,2500);})();</script>
 <noscript><style>#loader{display:none}</style></noscript>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <div class="lab-ambient" aria-hidden="true">
   <span class="aglow a1"></span><span class="aglow a2"></span><span class="aglow a3"></span>
@@ -1150,7 +1151,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
     <div class="ef-grid">
       <div class="ef-vid rv">
         <div class="ef-vidframe">
-          <video id="efVideo" src="assets/video/equipfood.mp4" poster="assets/video/posters/equipfood.webp" muted loop playsinline preload="metadata" aria-label="Présentation du site Equip'Food"></video>
+          <video id="efVideo" src="assets/video/equipfood-v2.mp4" poster="assets/video/posters/equipfood.webp" muted loop playsinline preload="metadata" aria-label="Présentation du site Equip'Food"></video>
           <button class="ef-sound" id="efSound" type="button" aria-label="Activer le son" aria-pressed="false">
             <svg class="on" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-9v2.1a7 7 0 0 1 0 13.8V21a9 9 0 0 0 0-18Z"/></svg>
             <svg class="off" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7Z"/></svg>
@@ -1591,7 +1592,7 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
   }
 
   // three.js ambient turquoise particle field behind hero
-  try{
+  function initViz(){ try{
     if(typeof THREE === 'undefined') throw new Error('no three');
     var mount = document.getElementById('viz-mount');
     var w = mount.clientWidth || 480, h = mount.clientHeight || 480;
@@ -1638,7 +1639,12 @@ window.addEventListener('load',function(){setTimeout(hide,Math.max(0,650-(Date.n
       renderer.render(scene, camera);
     }
     tick();
-  }catch(e){}
+  }catch(e){} }
+  // Three.js (118 Ko) se charge après l'affichage de la page : il ne bloque plus jamais le rendu.
+  (function(){
+    function go(){ var s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'; s.async=true; s.onload=initViz; document.head.appendChild(s); }
+    if('requestIdleCallback' in window) requestIdleCallback(go,{timeout:1500}); else setTimeout(go,300);
+  })();
 
   // horizontal pin-scroll galleries (réalisations, pain points) — vertical
   // scroll drives each card row sideways while its section stays pinned.
