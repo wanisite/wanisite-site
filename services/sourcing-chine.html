@@ -50,7 +50,8 @@
 
   /* hero */
   .sc-hero{padding:56px 0 72px;}
-  .sc-hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;}
+  .sc-hero{padding-bottom:0;}
+  .sc-hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end;}
   .sc-hero h1{font-size:clamp(64px,10.5vw,138px);}
   .sc-hero .lead{margin-top:24px;font-size:clamp(18px,2.1vw,21px);color:var(--ink);}
   .sc-hero .lead span{color:var(--muted);}
@@ -59,17 +60,18 @@
   .sc-hero .actions{margin-top:30px;}
   .btn.big{min-height:56px;padding:0 26px;font-size:15.5px;}
 
-  /* usine 3D animée (rendu Blender en boucle, fond fondu dans la page) */
-  .usine{position:relative;margin:0;}
-  .usine video{display:block;width:100%;height:auto;aspect-ratio:1;background:#04080f;
-    -webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);}
-  .usine ol{list-style:none;margin:-6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-family:var(--mono);}
-  .usine li{padding:10px 10px 9px;border:1px solid var(--line);border-radius:10px;background:rgba(8,14,28,.7);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
-  .usine li b{display:block;color:var(--teal);margin-bottom:3px;}
-  .usine li span{display:block;text-transform:none;letter-spacing:0;color:var(--muted);font-family:var(--sans);font-size:12px;margin-top:2px;}
-  .usine .tag-wa{position:absolute;z-index:2;top:8%;right:4%;background:var(--teal);color:#04141a;font:700 11px var(--mono);letter-spacing:.1em;padding:6px 10px;border-radius:6px;text-transform:uppercase;}
-  .gate .usine-mini{display:block;width:min(260px,62vw);aspect-ratio:1;margin:0 auto -10px;
-    -webkit-mask-image:radial-gradient(closest-side,#000 70%,transparent 100%);mask-image:radial-gradient(closest-side,#000 70%,transparent 100%);}
+  .sc-aside{margin:0 0 6px;color:var(--muted);font-size:16px;max-width:34ch;border-left:2px solid var(--teal);padding-left:16px;}
+  /* scène 3D (Three.js) : usine → contrôle → envoi → chez vous */
+  .scene3d{position:relative;width:min(1240px,100% - 24px);margin:28px auto 0;height:clamp(420px,46vw,620px);overflow:hidden;touch-action:pan-y;border-radius:28px;
+    background:radial-gradient(120% 90% at 50% 10%,#ffffff 0%,#eef6f5 45%,#d9e9e8 100%);box-shadow:0 40px 80px -50px rgba(0,201,201,.6),inset 0 0 0 1px rgba(255,255,255,.6);}
+  .scene3d canvas{position:absolute;inset:0;width:100% !important;height:100% !important;display:block;}
+  .scene3d.sans3d{display:none;}
+  .scene3d .etq3d{position:absolute;left:0;top:0;pointer-events:none;white-space:nowrap;padding:8px 12px 9px;border-radius:10px;
+    background:#0c2030;color:#fff;box-shadow:0 12px 26px -12px rgba(12,32,48,.6);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:0;transition:opacity .4s;}
+  .scene3d.pret .etq3d{opacity:1;}
+  .scene3d .etq3d b{color:#5ff0f0;margin-right:6px;}
+  .scene3d .etq3d small{display:block;margin-top:2px;font-family:var(--sans);font-size:12px;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.7);}
+  .scene3d .etq3d::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:inherit;transform:translateX(-50%) rotate(45deg);}
 
   /* bandeau défilant */
   .marquee{overflow:hidden;border-block:1px solid var(--line);background:rgba(0,201,201,.06);padding:16px 0;}
@@ -139,7 +141,6 @@
 
   @media (max-width:980px){
     .sc-hero .wrap{grid-template-columns:1fr;}
-    .usine{max-width:520px;}
     .prods{grid-template-columns:repeat(2,minmax(0,1fr));}
     .circuit{grid-template-columns:repeat(2,minmax(0,1fr));}
     .circuit li:nth-child(2)::after{display:none;}
@@ -159,14 +160,14 @@
     .calc{padding:20px;}
     .calc .ctrl{justify-content:space-between;gap:12px;}
     .total{font-size:38px;}
-    .usine ol{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .scene3d{height:min(1050px,230vw);}
   }
 
   /* écran d'entrée : candidature ou code d'accès */
   .gate{display:none;}
   html.gated{overflow:hidden;}
-  html.gated body > *:not(.gate){filter:blur(14px);pointer-events:none;user-select:none;}
-  html.gated .gate{display:block;position:fixed;inset:0;z-index:100;overflow-y:auto;background:radial-gradient(60% 50% at 50% 0%,rgba(0,201,201,.16),transparent 70%),rgba(4,8,15,.86);}
+  html.gated body > *:not(.gate){filter:blur(5px);pointer-events:none;user-select:none;}
+  html.gated .gate{display:block;position:fixed;inset:0;z-index:100;overflow-y:auto;background:linear-gradient(180deg,rgba(4,8,15,.55),rgba(4,8,15,.9) 55%);}
   .gate-in{width:min(560px,100% - 32px);margin:0 auto;padding:28px 0 40px;min-height:100%;display:flex;flex-direction:column;}
   .gate-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
   .gate-top a{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;letter-spacing:.02em;font-size:13px;text-transform:none;}
@@ -214,10 +215,6 @@
     </div>
 
     <div class="gate-body" id="gAccueil">
-      <video class="usine-mini" autoplay muted loop playsinline preload="auto" poster="/assets/video/posters/usine-sourcing.webp" aria-hidden="true">
-        <source src="/assets/video/usine-sourcing.webm" type="video/webm">
-        <source src="/assets/video/usine-sourcing.mp4" type="video/mp4">
-      </video>
       <p class="num"><b>CN → FR</b> Sourcing Chine</p>
       <h2 class="xl" id="gateTitre">Le sourcing,<br><span class="t">sur candidature.</span></h2>
       <p class="intro">On suit un nombre limité de clients à la fois, <span>pour s’occuper de chaque commande de près. Dites-nous ce que vous voulez sourcer : on vous répond sur WhatsApp.</span></p>
@@ -302,20 +299,9 @@
         <li>Contrôle avant départ</li>
       </ul>
     </div>
-    <figure class="usine">
-      <span class="tag-wa">Devis sur WhatsApp</span>
-      <video autoplay muted loop playsinline preload="auto" poster="/assets/video/posters/usine-sourcing.webp" aria-label="Animation : une usine en Chine envoie des cartons vers un conteneur">
-        <source src="/assets/video/usine-sourcing.webm" type="video/webm">
-        <source src="/assets/video/usine-sourcing.mp4" type="video/mp4">
-      </video>
-      <ol>
-        <li><b>01</b>L’usine<span>Prix négocié</span></li>
-        <li><b>02</b>L’échantillon<span>Vérifié d’abord</span></li>
-        <li><b>03</b>Le contrôle<span>Avant le départ</span></li>
-        <li><b>04</b>L’envoi<span>Vers la France</span></li>
-      </ol>
-    </figure>
+    <p class="sc-aside">Une photo ou un lien suffit pour démarrer. Vous suivez chaque étape sur WhatsApp, du devis à la livraison.</p>
   </div>
+  <div class="scene3d" id="scene3d" aria-label="Animation 3D : une usine en Chine, le contrôle, l’envoi en bateau et en avion, puis la livraison chez vous" role="img"></div>
 </section>
 
 <div class="marquee" aria-hidden="true"><div>
@@ -525,5 +511,6 @@
   });
 })();
 </script>
+<script type="module" src="/assets/js/usine3d.js"></script>
 </body>
 </html>
