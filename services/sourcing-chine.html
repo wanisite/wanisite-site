@@ -36,8 +36,8 @@
   :root{--cond:var(--sans);}
   section{padding:88px 0;}
   .xl{font-family:var(--sans);font-weight:900;letter-spacing:-.035em;line-height:1.12;color:#fff;margin:0;font-size:clamp(34px,5vw,60px);max-width:none;}
-  .xl .t{font-family:var(--serif);font-style:italic;font-weight:700;letter-spacing:-.01em;color:#fff;padding:0 10px;margin-left:-2px;
-    background:linear-gradient(120deg,#19d3d3,#0fb0b0 55%,#0b7f7f);box-decoration-break:clone;-webkit-box-decoration-break:clone;box-shadow:0 10px 30px -10px rgba(11,127,127,.55);}
+  .xl .t{font-family:var(--serif);font-style:italic;font-weight:700;letter-spacing:-.01em;color:#fff;font-size:.86em;padding:.02em .2em .06em;
+    background:linear-gradient(120deg,#19d3d3,#0fb0b0 55%,#0b7f7f);box-decoration-break:clone;-webkit-box-decoration-break:clone;box-shadow:0 6px 16px -10px rgba(11,127,127,.5);}
   .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px;display:flex;gap:10px;align-items:center;}
   .num b{color:var(--teal);font-weight:700;}
   .num::after{content:"";flex:0 0 40px;height:1px;background:var(--line);}
@@ -165,6 +165,11 @@
     .calc .ctrl{justify-content:space-between;gap:12px;}
     .total{font-size:38px;}
     .scene3d{height:min(1050px,230vw);}
+    .xl{font-size:clamp(28px,8vw,38px);line-height:1.22;}
+    .sc-hero h1{font-size:clamp(36px,10.5vw,46px);}
+    .gate h2.xl{font-size:clamp(30px,8.6vw,40px);}
+    .end h2{font-size:clamp(34px,10vw,46px);}
+    .gate .scene3d.mini{height:clamp(190px,56vw,240px);}
   }
 
   /* écran d'entrée : candidature ou code d'accès */
