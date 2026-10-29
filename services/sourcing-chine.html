@@ -24,6 +24,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&family=Barlow+Condensed:wght@700;800&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Sourcing de fournisseurs en Chine", "provider": {"@type": "Organization", "name": "Wanisite", "url": "https://www.wanisitelab.com"}, "areaServed": "FR", "description": "Recherche d'usines en Chine, comparatif des offres, vérification des échantillons, suivi de production et contrôle avant expédition."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il commander de grosses quantités ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque usine fixe sa quantité minimum. On vous l'indique pour chaque offre et on cherche, quand c'est possible, des fournisseurs qui acceptent de petites séries."}}, {"@type": "Question", "name": "Comment être sûr de la qualité ?", "acceptedAnswer": {"@type": "Answer", "text": "Rien n'est commandé avant que l'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ."}}, {"@type": "Question", "name": "Qui paie le fournisseur ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez."}}, {"@type": "Question", "name": "Vous occupez-vous du transport et de la douane ?", "acceptedAnswer": {"@type": "Answer", "text": "On coordonne l'enlèvement de la marchandise avec le fournisseur et le transitaire. Transport, droits de douane et TVA à l'import sont à votre charge."}}, {"@type": "Question", "name": "Combien de temps faut-il ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend du produit et des délais de fabrication. Le calendrier est annoncé avec le devis, avant de commencer."}}]}</script>
+<script>
+  // Page sur candidature : l'écran d'entrée s'affiche tant que le visiteur n'a pas saisi un code valide.
+  try { if (localStorage.getItem('ws-sourcing-acces') !== '1') document.documentElement.classList.add('gated'); }
+  catch (e) { document.documentElement.classList.add('gated'); }
+</script>
 <link rel="stylesheet" href="/assets/service-da.css?v=5">
 <style>
   /* Page Sourcing : titres condensés en capitales, étiquettes mono numérotées, bandeau défilant. */
@@ -157,9 +162,107 @@
     .total{font-size:38px;}
     .label .route b{font-size:46px;}
   }
+
+  /* écran d'entrée : candidature ou code d'accès */
+  .gate{display:none;}
+  html.gated{overflow:hidden;}
+  html.gated body > *:not(.gate){filter:blur(14px);pointer-events:none;user-select:none;}
+  html.gated .gate{display:block;position:fixed;inset:0;z-index:100;overflow-y:auto;background:radial-gradient(60% 50% at 50% 0%,rgba(0,201,201,.16),transparent 70%),rgba(4,8,15,.86);}
+  .gate-in{width:min(560px,100% - 32px);margin:0 auto;padding:28px 0 40px;min-height:100%;display:flex;flex-direction:column;}
+  .gate-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .gate-top a{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;letter-spacing:.02em;font-size:13px;text-transform:none;}
+  .gate-top a img{height:26px;width:auto;}
+  .gate-top i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);margin-right:8px;font-style:normal;}
+  .gate-body{margin:auto 0;padding-top:36px;}
+  .gate h2.xl{font-size:clamp(52px,11vw,84px);max-width:none;}
+  .gate .intro{color:var(--ink);font-size:18px;margin:20px 0 0;}
+  .gate .intro span{color:var(--muted);}
+  .gate .btn.big{width:100%;margin-top:28px;}
+  .gate .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:12px 0 0;text-align:center;}
+  .gate .codebox{margin-top:30px;}
+  .gate .codebox label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .gate .codebox div{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(8,14,28,.8);}
+  .gate .codebox input{flex:1;min-width:0;height:54px;border:0;background:none;color:#fff;padding:0 16px;font:600 17px var(--mono);letter-spacing:.12em;text-transform:uppercase;}
+  .gate .codebox button{border:0;border-left:1px solid var(--line);background:none;color:#fff;padding:0 20px;font:700 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;}
+  .gate .codebox button:hover{color:var(--teal);}
+  .gate .msg{min-height:22px;margin:10px 0 0;font-size:14.5px;color:var(--alert);}
+  .gate .msg.ok{color:var(--ok);}
+  .gate form{display:grid;gap:12px;margin-top:24px;}
+  .gate form label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--ink);}
+  .gate form label small{font-weight:400;color:var(--muted);}
+  .gate form input,.gate form select,.gate form textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:rgba(8,14,28,.85);color:#fff;font:16px var(--sans);padding:13px 14px;}
+  .gate form textarea{min-height:96px;resize:vertical;}
+  .gate form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--teal) 50%),linear-gradient(135deg,var(--teal) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;}
+  .gate form :is(input,select,textarea):focus{outline:2px solid var(--teal);outline-offset:1px;border-color:transparent;}
+  .gate .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .gate .radios{display:flex;gap:8px;}
+  .gate .radios label{display:flex;align-items:center;gap:8px;font-weight:500;border:1px solid var(--line);border-radius:10px;padding:11px 16px;cursor:pointer;}
+  .gate .radios input{width:auto;accent-color:var(--teal);}
+  .gate .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .gate .back{background:none;border:0;color:var(--muted);font:600 14px var(--sans);cursor:pointer;padding:0;margin-top:22px;}
+  .gate .back:hover{color:#fff;}
+  .gate .legal{font-size:12.5px;color:var(--muted);margin:4px 0 0;}
+  .gate [hidden]{display:none !important;}
+  @media (max-width:520px){.gate .two{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
+<div class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitre">
+  <div class="gate-in">
+    <div class="gate-top">
+      <a href="/"><img src="/assets/img/nav-logo.webp" alt="" width="40" height="26">Wanisite</a>
+      <span><i></i>Accès sur candidature</span>
+    </div>
+
+    <div class="gate-body" id="gAccueil">
+      <p class="num"><b>CN → FR</b> Sourcing Chine</p>
+      <h2 class="xl" id="gateTitre">Le sourcing,<br><span class="t">sur candidature.</span></h2>
+      <p class="intro">On suit un nombre limité de clients à la fois, <span>pour s’occuper de chaque commande de près. Dites-nous ce que vous voulez sourcer : on vous répond sur WhatsApp.</span></p>
+      <button class="btn main big" type="button" id="gPostuler">Postuler ↗</button>
+      <p class="meta">2 minutes · réponse sur WhatsApp · code d’accès personnel</p>
+      <form class="codebox" id="gCode" novalidate>
+        <label for="gCodeInput">Déjà un code ?</label>
+        <div><input id="gCodeInput" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="WS-XXXXXX" maxlength="12"><button type="submit">Entrer →</button></div>
+        <p class="msg" id="gCodeMsg" role="status"></p>
+      </form>
+    </div>
+
+    <div class="gate-body" id="gForm" hidden>
+      <p class="num"><b>01</b> Votre candidature</p>
+      <h2 class="xl" style="font-size:clamp(44px,9vw,64px);">Parlez-nous<br><span class="t">de votre projet.</span></h2>
+      <form id="gCandidature" novalidate>
+        <div class="hp" aria-hidden="true"><label>Site web <input name="site" tabindex="-1" autocomplete="off"></label></div>
+        <div class="two">
+          <label>Nom et prénom<input name="nom" required maxlength="120" autocomplete="name"></label>
+          <label>Activité ou entreprise<input name="activite" required maxlength="200" autocomplete="organization" placeholder="Ex. boutique en ligne, restaurant"></label>
+        </div>
+        <div class="two">
+          <label>WhatsApp<input name="whatsapp" required type="tel" maxlength="30" autocomplete="tel" placeholder="06 12 34 56 78"></label>
+          <label>E-mail <small>(facultatif)</small><input name="email" type="email" maxlength="200" autocomplete="email"></label>
+        </div>
+        <label>Que voulez-vous sourcer ?<textarea name="produit" required maxlength="1500" placeholder="Le produit, la matière, les couleurs, votre logo… Un lien Alibaba ou Instagram aide aussi."></textarea></label>
+        <div class="two">
+          <label>Quantité envisagée<select name="quantite"><option value="">Je ne sais pas encore</option><option>Moins de 100</option><option>100 à 500</option><option>500 à 2 000</option><option>Plus de 2 000</option></select></label>
+          <label>Budget<select name="budget"><option value="">Je ne sais pas encore</option><option>Moins de 1 000 €</option><option>1 000 à 5 000 €</option><option>5 000 à 20 000 €</option><option>Plus de 20 000 €</option></select></label>
+        </div>
+        <fieldset style="border:0;padding:0;margin:0;"><legend style="font-size:14px;font-weight:600;margin-bottom:6px;">Avez-vous déjà importé de Chine ?</legend>
+          <div class="radios"><label><input type="radio" name="dejaImporte" value="Oui">Oui</label><label><input type="radio" name="dejaImporte" value="Non">Non</label></div>
+        </fieldset>
+        <p class="legal">Vos réponses servent uniquement à étudier votre demande. Elles ne sont ni revendues ni partagées.</p>
+        <button class="btn main big" type="submit" style="margin-top:6px;">Envoyer ma candidature ↗</button>
+        <p class="msg" id="gFormMsg" role="status"></p>
+      </form>
+      <button class="back" type="button" id="gRetour">← Retour</button>
+    </div>
+
+    <div class="gate-body" id="gMerci" hidden>
+      <p class="num"><b>✳</b> Candidature reçue</p>
+      <h2 class="xl" style="font-size:clamp(48px,10vw,76px);">Merci,<br><span class="t">c’est envoyé.</span></h2>
+      <p class="intro">On étudie votre demande <span>et on revient vers vous sur WhatsApp. Si elle est acceptée, vous recevez votre code d’accès personnel.</span></p>
+      <button class="back" type="button" id="gRetour2">← J’ai déjà un code</button>
+    </div>
+  </div>
+</div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/"><img src="/assets/img/nav-logo.webp" alt="" width="46" height="30"><span>Wanisite</span></a>
@@ -377,6 +480,49 @@
   kg.addEventListener('input', rendu);
   kg.addEventListener('change', () => { kg.value = Math.round(poids() * 2) / 2; rendu(); });
   rendu();
+})();
+</script>
+<script>
+(() => {
+  // Candidatures et codes d'accès : enregistrés dans le dashboard Wanisite (base Notion « Candidatures sourcing »).
+  const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
+  const $ = (id) => document.getElementById(id);
+  const vues = ['gAccueil', 'gForm', 'gMerci'];
+  const montrer = (v) => { vues.forEach((x) => { $(x).hidden = x !== v; }); document.querySelector('.gate').scrollTop = 0; const f = $(v).querySelector('input:not([tabindex="-1"]),button'); if (f) f.focus({ preventScroll: true }); };
+  const envoyer = async (route, body) => {
+    const r = await fetch(API + route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error || 'Erreur, réessayez.');
+    return d;
+  };
+  $('gPostuler').addEventListener('click', () => montrer('gForm'));
+  $('gRetour').addEventListener('click', () => montrer('gAccueil'));
+  $('gRetour2').addEventListener('click', () => { montrer('gAccueil'); $('gCodeInput').focus(); });
+
+  $('gCode').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = $('gCodeMsg'), code = $('gCodeInput').value.trim().toUpperCase();
+    msg.className = 'msg'; msg.textContent = code ? 'Vérification…' : 'Entrez votre code.';
+    if (!code) return;
+    try {
+      await envoyer('/api/public/sourcing/code', { code });
+      try { localStorage.setItem('ws-sourcing-acces', '1'); } catch (er) {}
+      msg.className = 'msg ok'; msg.textContent = 'Bienvenue.';
+      document.documentElement.classList.remove('gated');
+    } catch (er) { msg.textContent = er.message; }
+  });
+
+  $('gCandidature').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target, msg = $('gFormMsg'), bouton = f.querySelector('button[type="submit"]');
+    const manquant = [...f.querySelectorAll('[required]')].find((x) => !x.value.trim());
+    if (manquant) { msg.textContent = 'Merci de remplir : ' + manquant.closest('label').firstChild.textContent.trim() + '.'; manquant.focus(); return; }
+    const d = Object.fromEntries(new FormData(f));
+    bouton.disabled = true; msg.textContent = '';
+    try { await envoyer('/api/public/sourcing/candidature', d); f.reset(); montrer('gMerci'); }
+    catch (er) { msg.textContent = er.message; }
+    finally { bouton.disabled = false; }
+  });
 })();
 </script>
 </body>
