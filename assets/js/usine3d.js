@@ -35,7 +35,7 @@ function monter(stage) {
 
   /* ---------- couleurs : sable clair, blanc cassé, turquoise Wanisite, kraft ---------- */
   const C = {
-    dalle: 0xf1ede6, dalleCote: 0xc9c1b4, beton: 0xdcd6cc, blanc: 0xf8f6f2, gris: 0xb8c2c8, ardoise: 0x3d4a5c,
+    dalle: 0xeef2f5, dalleCote: 0xc3ced6, beton: 0xd9e1e6, blanc: 0xfbfcfd, // gris clair froid, pas de beige gris: 0xb8c2c8, ardoise: 0x3d4a5c,
     turquoise: 0x00c9c9, turquoiseFonce: 0x0a8f8f, kraft: 0xc99a62, eau: 0x3f9fd0, eauFonce: 0x2a7fb0,
     orange: 0xff8a3d, vert: 0x5fbf8f, bois: 0x9a6b45, coque: 0x1f3550, rouge: 0xe2574c,
   };
