@@ -27,7 +27,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il commander de grosses quantités ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque usine fixe sa quantité minimum. On vous l'indique pour chaque offre et on cherche, quand c'est possible, des fournisseurs qui acceptent de petites séries."}}, {"@type": "Question", "name": "Comment être sûr de la qualité ?", "acceptedAnswer": {"@type": "Answer", "text": "Rien n'est commandé avant que l'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ."}}, {"@type": "Question", "name": "Qui paie le fournisseur ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez."}}, {"@type": "Question", "name": "Vous occupez-vous du transport et de la douane ?", "acceptedAnswer": {"@type": "Answer", "text": "On coordonne l'enlèvement de la marchandise avec le fournisseur et le transitaire. Transport, droits de douane et TVA à l'import sont à votre charge."}}, {"@type": "Question", "name": "Combien de temps faut-il ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend du produit et des délais de fabrication. Le calendrier est annoncé avec le devis, avant de commencer."}}]}</script>
 <script>
   // Page sur candidature : l'écran d'entrée s'affiche tant que le visiteur n'a pas saisi un code valide.
-  try { if (localStorage.getItem('ws-sourcing-acces') !== '1') document.documentElement.classList.add('gated'); }
+  // « Voir le catalogue » ouvre la page pour la visite en cours (sessionStorage) ; un code valide l'ouvre pour de bon.
+  try { if (localStorage.getItem('ws-sourcing-acces') !== '1' && sessionStorage.getItem('ws-sourcing-visite') !== '1') document.documentElement.classList.add('gated'); }
   catch (e) { document.documentElement.classList.add('gated'); }
 </script>
 <link rel="stylesheet" href="/assets/service-da.css?v=5">
@@ -49,6 +50,7 @@
   .strip a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:7px 12px;border-radius:999px;background:rgba(8,14,28,.75);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
   .strip a b{color:var(--teal);margin-right:6px;font-weight:700;}
   .strip a:hover{color:#fff;border-color:var(--teal);}
+  .strip a.postuler{background:var(--teal);color:#04141a;border-color:var(--teal);font-weight:700;}
 
   /* hero */
   .sc-hero{padding:56px 0 72px;}
@@ -284,6 +286,7 @@
       <h2 class="xl" id="gateTitre">Le sourcing, <span class="t">sur candidature.</span><span class="sceau" aria-hidden="true">采购</span></h2>
       <p class="intro">On suit un nombre limité de clients à la fois, <span>pour s’occuper de chaque commande de près. Dites-nous ce que vous voulez sourcer : on vous répond sur WhatsApp.</span></p>
       <button class="btn main big" type="button" id="gPostuler">Postuler ↗</button>
+      <button class="btn ghost big" type="button" id="gCatalogue" style="margin-top:10px;">Voir le catalogue →</button>
       <p class="meta">2 minutes · réponse sur WhatsApp · code d’accès personnel</p>
       <form class="codebox" id="gCode" novalidate>
         <label for="gCodeInput">Déjà un code ?</label>
@@ -344,6 +347,7 @@
     <a href="#produits"><b>01</b>Produits</a>
     <a href="#circuit"><b>02</b>Circuit</a>
     <a href="#envoi"><b>03</b>Envoi</a>
+    <a href="#" id="ouvrirCandidature" class="postuler">Postuler ↗</a>
   </nav>
 </div>
 <main id="top">
@@ -547,6 +551,16 @@
     return d;
   };
   $('gPostuler').addEventListener('click', () => montrer('gForm'));
+  $('gCatalogue').addEventListener('click', () => {
+    try { sessionStorage.setItem('ws-sourcing-visite', '1'); } catch (er) {}
+    document.documentElement.classList.remove('gated');
+    document.getElementById('produits').scrollIntoView({ behavior: 'instant', block: 'start' });
+  });
+  $('ouvrirCandidature').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.documentElement.classList.add('gated');
+    montrer('gForm');
+  });
   $('gRetour').addEventListener('click', () => montrer('gAccueil'));
   $('gRetour2').addEventListener('click', () => { montrer('gAccueil'); $('gCodeInput').focus(); });
 
