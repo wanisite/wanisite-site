@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&text=采购原则产品流程物流问答工厂质检送达申请&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Sourcing de fournisseurs en Chine", "provider": {"@type": "Organization", "name": "Wanisite", "url": "https://www.wanisitelab.com"}, "areaServed": "FR", "description": "Recherche d'usines en Chine, comparatif des offres, vérification des échantillons, suivi de production et contrôle avant expédition."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il commander de grosses quantités ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque usine fixe sa quantité minimum. On vous l'indique pour chaque offre et on cherche, quand c'est possible, des fournisseurs qui acceptent de petites séries."}}, {"@type": "Question", "name": "Comment être sûr de la qualité ?", "acceptedAnswer": {"@type": "Answer", "text": "Rien n'est commandé avant que l'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ."}}, {"@type": "Question", "name": "Qui paie le fournisseur ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez."}}, {"@type": "Question", "name": "Vous occupez-vous du transport et de la douane ?", "acceptedAnswer": {"@type": "Answer", "text": "On coordonne l'enlèvement de la marchandise avec le fournisseur et le transitaire. Transport, droits de douane et TVA à l'import sont à votre charge."}}, {"@type": "Question", "name": "Combien de temps faut-il ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend du produit et des délais de fabrication. Le calendrier est annoncé avec le devis, avant de commencer."}}]}</script>
 <script>
@@ -245,6 +246,23 @@
   .fl.fr{background:linear-gradient(90deg,#002395 0 33.3%,#fff 33.3% 66.6%,#ED2939 66.6%);}
   .route-fl{display:inline-flex;align-items:center;gap:8px;}
   .route-fl i{font-style:normal;color:var(--teal);}
+
+  /* ===== Touches chinoises et argent : rouge de Chine, or, sceaux, ¥ → € ===== */
+  :root{--rouge:#c8281e;--or:#d9a12b;--zh:'Noto Serif SC','Songti SC','STSong','SimSun',serif;}
+  .zh{font-family:var(--zh);font-weight:900;color:var(--rouge);letter-spacing:.08em;font-size:13px;}
+  .sceau{display:inline-grid;place-items:center;writing-mode:vertical-rl;font-family:var(--zh);font-weight:900;font-style:normal;color:#fff;background:var(--rouge);
+    font-size:.32em;line-height:1;padding:.32em .22em;border-radius:.12em;margin-left:.3em;vertical-align:.35em;transform:rotate(-7deg);letter-spacing:.06em;
+    box-shadow:inset 0 0 0 .07em var(--rouge),inset 0 0 0 .12em rgba(255,255,255,.85);opacity:.94;}
+  .sc-hero{position:relative;overflow:hidden;}
+  .sc-hero::before{content:"采购";position:absolute;right:-2vw;top:10px;font-family:var(--zh);font-weight:900;font-size:clamp(160px,26vw,360px);line-height:1;
+    color:var(--rouge);opacity:.06;pointer-events:none;writing-mode:vertical-rl;}
+  .marquee{background:var(--rouge) !important;} .marquee span{color:#fff;} .marquee span i{color:#ffd76a !important;font-family:var(--sans);font-weight:900;}
+  .points li::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:9px;vertical-align:-1px;
+    background:radial-gradient(circle at 35% 35%,#ffe9a6,#e5b33f 55%,#a87411);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);}
+  .piece::before{content:"¥";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;margin-right:7px;font:800 10px var(--sans);color:#6b4a0c;
+    background:radial-gradient(circle at 35% 35%,#ffe9a6,#e5b33f 60%,#b07c18);vertical-align:-4px;}
+  .prod .badge{color:var(--rouge);border-color:rgba(200,40,30,.3);}
+  .scene3d .etq3d em{font-style:normal;font-family:var(--zh);font-weight:900;color:#ff8f86;margin-left:8px;letter-spacing:.06em;}
 </style>
 </head>
 <body>
@@ -258,7 +276,7 @@
     <div class="gate-body" id="gAccueil">
       <div class="scene3d mini" data-scene3d data-disposition="ligne" data-etiquettes="non" aria-hidden="true"></div>
       <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
-      <h2 class="xl" id="gateTitre">Le sourcing, <span class="t">sur candidature.</span></h2>
+      <h2 class="xl" id="gateTitre">Le sourcing, <span class="t">sur candidature.</span><span class="sceau" aria-hidden="true">采购</span></h2>
       <p class="intro">On suit un nombre limité de clients à la fois, <span>pour s’occuper de chaque commande de près. Dites-nous ce que vous voulez sourcer : on vous répond sur WhatsApp.</span></p>
       <button class="btn main big" type="button" id="gPostuler">Postuler ↗</button>
       <p class="meta">2 minutes · réponse sur WhatsApp · code d’accès personnel</p>
@@ -270,7 +288,7 @@
     </div>
 
     <div class="gate-body" id="gForm" hidden>
-      <p class="num"><b>01</b> Votre candidature</p>
+      <p class="num"><b>01</b> Votre candidature <span class="zh">申请</span></p>
       <h2 class="xl">Parlez-nous <span class="t">de votre projet.</span></h2>
       <form id="gCandidature" novalidate>
         <div class="hp" aria-hidden="true"><label>Site web <input name="site" tabindex="-1" autocomplete="off"></label></div>
@@ -329,7 +347,7 @@
   <div class="wrap">
     <div>
       <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
-      <h1 class="xl">Votre usine <span class="t">en Chine.</span></h1>
+      <h1 class="xl">Votre usine <span class="t">en Chine.</span><span class="sceau" aria-hidden="true">采购</span></h1>
       <p class="lead">Une photo ou un lien suffit. <span>On trouve l’usine, on négocie, on vérifie avant le départ. Vous, vous vendez.</span></p>
       <div class="actions">
         <a class="btn main big" href="#produits">Voir les idées de produits ↗</a>
@@ -347,13 +365,13 @@
 </section>
 
 <div class="marquee" aria-hidden="true"><div>
-  <span>Prix usine<i>✳</i></span><span>Échantillon vérifié<i>✳</i></span><span>Un seul interlocuteur<i>✳</i></span><span>Suivi sur WhatsApp<i>✳</i></span><span>Votre logo sur le produit<i>✳</i></span>
-  <span>Prix usine<i>✳</i></span><span>Échantillon vérifié<i>✳</i></span><span>Un seul interlocuteur<i>✳</i></span><span>Suivi sur WhatsApp<i>✳</i></span><span>Votre logo sur le produit<i>✳</i></span>
+  <span>Prix usine en ¥, livré en €<i>¥</i></span><span>Échantillon vérifié<i>€</i></span><span>Un seul interlocuteur<i>¥</i></span><span>Suivi sur WhatsApp<i>€</i></span><span>Votre logo sur le produit<i>¥</i></span>
+  <span>Prix usine en ¥, livré en €<i>€</i></span><span>Échantillon vérifié<i>¥</i></span><span>Un seul interlocuteur<i>€</i></span><span>Suivi sur WhatsApp<i>¥</i></span><span>Votre logo sur le produit<i>€</i></span>
 </div></div>
 
 <section id="principe">
   <div class="wrap">
-    <p class="num"><b>00</b> Le principe</p>
+    <p class="num"><b>00</b> Le principe <span class="zh">原则</span></p>
     <h2 class="xl">L’usine, <span class="t">sans les surprises.</span></h2>
     <div class="deal">
       <div><b>01</b><h3>Prix négocié</h3><p>On discute directement avec les fabricants et on compare plusieurs offres. Vous voyez d’où vient votre produit et à quel prix.</p></div>
@@ -365,7 +383,7 @@
 
 <section id="produits">
   <div class="wrap">
-    <p class="num"><b>01</b> Idées de produits</p>
+    <p class="num"><b>01</b> Idées de produits <span class="zh">产品</span></p>
     <h2 class="xl">Ce qu’on peut <span class="t">vous sourcer.</span></h2>
     <p class="sec-intro">Quelques idées pour démarrer, à votre marque ou non. Un produit vous intéresse ? Un clic, et on vous envoie un devis.</p>
     <div class="filters" role="group" aria-label="Filtrer par catégorie" id="filtres"></div>
@@ -376,7 +394,7 @@
 
 <section id="circuit">
   <div class="wrap">
-    <p class="num"><b>02</b> Le circuit</p>
+    <p class="num"><b>02</b> Le circuit <span class="zh">流程</span></p>
     <h2 class="xl">De l’usine <span class="t">à votre porte.</span></h2>
     <p class="sec-intro">Un seul interlocuteur, en français, du premier message à la réception.</p>
     <ol class="circuit">
@@ -390,7 +408,7 @@
 
 <section id="envoi">
   <div class="wrap">
-    <p class="num"><b>03</b> L’envoi</p>
+    <p class="num"><b>03</b> L’envoi <span class="zh">物流</span></p>
     <h2 class="xl">Combien coûte <span class="t">votre colis ?</span></h2>
     <div class="calc" id="calc">
       <div>
@@ -412,7 +430,7 @@
 
 <section id="faq">
   <div class="wrap" style="max-width:820px;">
-    <p class="num"><b>04</b> Questions fréquentes</p>
+    <p class="num"><b>04</b> Questions fréquentes <span class="zh">问答</span></p>
     <details><summary>Faut-il commander de grosses quantités ?</summary><p>Chaque usine fixe sa quantité minimum. On vous l'indique pour chaque offre et on cherche, quand c'est possible, des fournisseurs qui acceptent de petites séries.</p></details>
     <details><summary>Comment être sûr de la qualité ?</summary><p>Rien n'est commandé avant que l'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ.</p></details>
     <details><summary>Qui paie le fournisseur ?</summary><p>Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez.</p></details>
@@ -470,7 +488,7 @@
   const prods = document.getElementById('prods');
   prods.innerHTML = PRODUITS.map(([cat, badge, nom, desc]) =>
     `<article class="prod" data-cat="${cat}"><span class="kat">${esc(label[cat])}</span><span class="badge">${esc(badge)}</span><h3>${esc(nom)}</h3><p>${esc(desc)}</p>` +
-    `<div class="devis"><span>Prix sur devis</span><a href="${WA + encodeURIComponent('Bonjour, je voudrais un devis de sourcing pour : ' + nom)}" target="_blank" rel="noopener">Demander un devis ↗</a></div></article>`
+    `<div class="devis"><span class="piece">Prix sur devis</span><a href="${WA + encodeURIComponent('Bonjour, je voudrais un devis de sourcing pour : ' + nom)}" target="_blank" rel="noopener">Demander un devis ↗</a></div></article>`
   ).join('') +
     `<article class="prod own" data-cat="*"><span class="kat">Votre idée</span><h3>Votre produit n’est pas là ?</h3><p>Envoyez une photo ou un lien : on vous trouve l’usine.</p>` +
     `<div class="devis"><span></span><a href="${WA + encodeURIComponent('Bonjour, je cherche une usine pour ce produit :')}" target="_blank" rel="noopener">Envoyer mon idée ↗</a></div></article>`;
@@ -553,6 +571,6 @@
   });
 })();
 </script>
-<script type="module" src="/assets/js/usine3d.js"></script>
+<script type="module" src="/assets/js/usine3d.js?v=5"></script>
 </body>
 </html>

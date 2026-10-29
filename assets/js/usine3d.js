@@ -49,6 +49,8 @@ function monter(stage) {
     vitre: mat(0xbff3f3, { roughness: 0.2, emissive: 0x00c9c9, emissiveIntensity: 0.25 }),
     fumee: mat(0xffffff, { roughness: 1, transparent: true, opacity: 0.92 }),
     lumiere: new THREE.MeshBasicMaterial({ color: 0x9ff7f7 }),
+    rougeChine: mat(0xc8281e, { roughness: 0.5, emissive: 0x7a0f08, emissiveIntensity: 0.35 }),
+    or: mat(0xf2bd3f, { roughness: 0.35, metalness: 0.2, emissive: 0x8a5a08, emissiveIntensity: 0.35, flatShading: false }), // peu métallique : sans reflets autour, le métal sort marron
   };
   const areteMat = new THREE.LineBasicMaterial({ color: 0x2b3a4a, transparent: true, opacity: 0.28 });
 
@@ -116,10 +118,10 @@ function monter(stage) {
     usine.add(verre);
   }
   for (let i = 0; i < 4; i++) usine.add(cube(0.42, 0.42, 0.04, M.vitre, -1.6 + i * 0.75, 0.6, 0.81, false));
-  usine.add(cube(0.8, 0.9, 0.05, M.ardoise, 1.0, 0, 0.12, false)); // porte du quai, côté route
+  usine.add(cube(0.8, 0.9, 0.05, M.rougeChine, 1.0, 0, 0.12, false)); // porte du quai, côté route
   usine.add(cyl(0.24, 0.3, 3.5, M.blanc, -1.6, 0, -1.55));
-  usine.add(cyl(0.255, 0.255, 0.18, M.turquoise, -1.6, 2.6, -1.55));
-  usine.add(cyl(0.255, 0.255, 0.18, M.turquoise, -1.6, 3.0, -1.55));
+  usine.add(cyl(0.255, 0.255, 0.18, M.rougeChine, -1.6, 2.6, -1.55));
+  usine.add(cyl(0.255, 0.255, 0.18, M.or, -1.6, 3.0, -1.55));
   const fumees = [];
   for (let k = 0; k < 7; k++) {
     const f = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1), M.fumee);
@@ -134,13 +136,33 @@ function monter(stage) {
   const arbre = (x, z, s = 1) => { const a = new THREE.Group(); a.add(cyl(0.07 * s, 0.09 * s, 0.4 * s, M.bois, 0, 0, 0, 6)); const h = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42 * s, 0), M.vert); h.position.y = 0.72 * s; h.castShadow = true; a.add(h); a.position.set(x, 0, z); return a; };
   usine.add(arbre(-2.1, 1.7), arbre(-1.3, 2.1, 0.8));
   for (let k = 0; k < 3; k++) { const c = colis(0.4); c.position.set(-0.3 + (k % 2) * 0.45, (k > 1 ? 0.32 : 0), 1.55); usine.add(c); }
+  // lanternes rouges suspendues devant l'usine (elles se balancent)
+  const lanternes = [];
+  for (const [x, z] of [[-1.55, 0.95], [-0.15, 0.95]]) {
+    const pivot = new THREE.Group();
+    pivot.position.set(x, 1.45, z);
+    const fil = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.22, 4), M.ardoise); fil.position.y = -0.11;
+    const corps = new THREE.Mesh(new THREE.SphereGeometry(0.2, 14, 10), M.rougeChine); corps.scale.y = 1.15; corps.position.y = -0.42; corps.castShadow = true;
+    const haut = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.11, 0.06, 12), M.or); haut.position.y = -0.2;
+    const bas = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.06, 12), M.or); bas.position.y = -0.65;
+    const gland = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.22, 8), M.or); gland.position.y = -0.8; gland.rotation.x = Math.PI;
+    pivot.add(fil, corps, haut, bas, gland);
+    pivot.userData.decal = x;
+    usine.add(pivot); lanternes.push(pivot);
+  }
+  // piles de pièces d'or : le prix usine
+  const piece = (r = 0.17) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.05, 24), M.or); c.castShadow = true; return c; };
+  for (const [x, z, n] of [[0.75, 1.75, 5], [1.15, 1.95, 3], [0.95, 2.2, 7]]) {
+    for (let k = 0; k < n; k++) { const c = piece(); c.position.set(x + Math.sin(k * 1.7) * 0.015, 0.03 + k * 0.052, z); usine.add(c); }
+  }
   monde.add(usine);
 
   /* ---------- 2. le contrôle ---------- */
   const controle = new THREE.Group();
   controle.add(dalle(4.6, 4.6, 0, 0));
   controle.add(cube(2.2, 1.1, 1.8, M.blanc, -0.6, 0, -1.0));
-  controle.add(prisme([[0, 0], [2.3, 0], [1.15, 0.5]], 1.9, M.turquoiseFonce, -1.75, 1.1, -1.95));
+  controle.add(prisme([[0, 0], [2.3, 0], [1.15, 0.5]], 1.9, M.rougeChine, -1.75, 1.1, -1.95));
+  controle.add(cube(0.12, 0.1, 2.0, M.or, -0.6, 1.58, -1.0)); // faîtage doré
   controle.add(cube(0.6, 0.7, 0.05, M.ardoise, -0.2, 0, -0.08, false));
   // portique de contrôle au-dessus de la route
   const portique = new THREE.Group();
@@ -279,6 +301,22 @@ function monter(stage) {
   for (let k = 0; k < 26; k++) { const d = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 6), M.lumiere); d.userData.decal = k / 26; monde.add(d); traits.push(d); }
   const voyageurs = [];
   for (let k = 0; k < 5; k++) { const c = colis(0.36); c.userData.decal = k / 5; monde.add(c); voyageurs.push(c); }
+  // l'argent remonte la route dans l'autre sens : le client paie l'usine, la marchandise arrive
+  const pieces = [];
+  for (let k = 0; k < 7; k++) {
+    const g = new THREE.Group();
+    const c = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.06, 28), M.or); c.rotation.x = Math.PI / 2; c.castShadow = true;
+    const anneauP = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.018, 6, 28), M.or); anneauP.position.z = 0.032;
+    g.add(c, anneauP); g.userData.decal = k / 7 + 0.07;
+    monde.add(g); pieces.push(g);
+  }
+  // pluie de pièces à l'arrivée
+  const jaillissement = [];
+  for (let k = 0; k < 6; k++) {
+    const c = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.05, 22), M.or); c.castShadow = true;
+    c.userData.decal = k / 6; c.userData.ang = k * 2.4;
+    maison.add(c); jaillissement.push(c);
+  }
 
   const avion = new THREE.Group();
   const fuselage = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.1, 1.4, 10), M.blanc); fuselage.rotation.z = Math.PI / 2; fuselage.castShadow = true;
@@ -300,11 +338,11 @@ function monter(stage) {
   }
 
   /* ---------- étiquettes HTML ancrées sur les stations ---------- */
-  const textes = [['01', 'L’usine', 'Prix négocié'], ['02', 'Le contrôle', 'Échantillon vérifié'], ['03', 'L’envoi', 'Vers la France'], ['04', 'Chez vous', 'Livré']];
-  const etiquettes = !avecEtiquettes ? [] : textes.map(([n, t, s]) => {
+  const textes = [['01', 'L’usine', 'Prix négocié', '工厂'], ['02', 'Le contrôle', 'Échantillon vérifié', '质检'], ['03', 'L’envoi', 'Vers la France', '物流'], ['04', 'Chez vous', 'Livré', '送达']];
+  const etiquettes = !avecEtiquettes ? [] : textes.map(([n, t, s, zh]) => {
     const e = document.createElement('div');
     e.className = 'etq3d';
-    e.innerHTML = `<b>${n}</b><span>${t}</span><small>${s}</small>`;
+    e.innerHTML = `<b>${n}</b><span>${t}</span><em lang="zh">${zh}</em><small>${s}</small>`;
     stage.appendChild(e);
     return e;
   });
@@ -404,6 +442,22 @@ function monter(stage) {
     charge.position.set(1.8, -desc - 0.34, 0);
     cargo.position.y = -0.12 + Math.sin(t * 1.6) * 0.04;
     cargo.rotation.z = Math.sin(t * 1.1) * 0.03;
+    // lanternes qui se balancent
+    for (const l of lanternes) { l.rotation.z = Math.sin(t * 1.8 + l.userData.decal) * 0.14; l.rotation.x = Math.sin(t * 1.3 + l.userData.decal) * 0.06; }
+    // pièces : de l'arrivée vers l'usine, en tournant
+    if (courbe) for (const g of pieces) {
+      const p = 1 - ((t / BOUCLE * 1.3 + g.userData.decal) % 1);
+      courbe.getPointAt(p, v);
+      g.position.set(v.x, v.y + 0.55 + Math.sin(t * 3 + g.userData.decal * 20) * 0.05, v.z);
+      g.rotation.y = t * 3 + g.userData.decal * 10;
+    }
+    // jaillissement de pièces au-dessus des colis livrés
+    for (const c of jaillissement) {
+      const p = (t * 0.55 + c.userData.decal) % 1;
+      c.position.set(1.25 + Math.cos(c.userData.ang) * 0.5 * p, 0.6 + 2.2 * p - 2.0 * p * p, 0.8 + Math.sin(c.userData.ang) * 0.5 * p);
+      c.rotation.set(t * 4 + c.userData.ang, t * 2, 0);
+      c.scale.setScalar(Math.sin(Math.PI * p) * 1.1);
+    }
     // drapeaux : une onde qui part du mât
     for (const d of drapeaux) {
       const pos = d.geometry.attributes.position, base = d.userData.base;
