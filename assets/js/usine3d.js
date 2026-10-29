@@ -1,12 +1,16 @@
 /* Wanisite — scène 3D du sourcing : usine → contrôle → envoi → chez vous.
    Three.js en temps réel, rendu « maquette » clair : matériaux mats, arêtes fines, lumière de jour.
-   Pause hors écran, onglet caché ou mouvement réduit demandé. */
+   Pause hors écran, onglet caché, mouvement réduit demandé, ou quand l'autre cadre est celui qu'on voit. */
 import * as THREE from '../vendor/three.module.min.js';
 
-const stage = document.getElementById('scene3d');
-if (stage) monter(stage);
+// Chaque cadre [data-scene3d] reçoit sa scène. Options : data-disposition="ligne" (jamais en colonne),
+// data-etiquettes="non" (sans étiquettes). Celle de la page se met en pause sous l'écran de candidature.
+document.querySelectorAll('[data-scene3d]').forEach(monter);
 
 function monter(stage) {
+  const toujoursEnLigne = stage.dataset.disposition === 'ligne';
+  const avecEtiquettes = stage.dataset.etiquettes !== 'non';
+  const dansEcranEntree = !!stage.closest('.gate');
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); }
   catch (e) { stage.classList.add('sans3d'); return; }
@@ -250,7 +254,7 @@ function monter(stage) {
 
   /* ---------- étiquettes HTML ancrées sur les stations ---------- */
   const textes = [['01', 'L’usine', 'Prix négocié'], ['02', 'Le contrôle', 'Échantillon vérifié'], ['03', 'L’envoi', 'Vers la France'], ['04', 'Chez vous', 'Livré']];
-  const etiquettes = textes.map(([n, t, s]) => {
+  const etiquettes = !avecEtiquettes ? [] : textes.map(([n, t, s]) => {
     const e = document.createElement('div');
     e.className = 'etq3d';
     e.innerHTML = `<b>${n}</b><span>${t}</span><small>${s}</small>`;
@@ -262,7 +266,7 @@ function monter(stage) {
   /* ---------- placement : en ligne sur ordinateur, en colonne sur téléphone ---------- */
   // En vue isométrique, l'axe (1,0,-1) est horizontal à l'écran et l'axe (1,0,1) vertical.
   function placer() {
-    const vertical = stage.clientWidth / stage.clientHeight < 0.95;
+    const vertical = !toujoursEnLigne && stage.clientWidth / stage.clientHeight < 0.95;
     const pas = vertical ? 5.3 : 4.9;
     const dir = vertical ? new THREE.Vector3(1, 0, 1).normalize() : new THREE.Vector3(1, 0, -1).normalize();
     stations.forEach((s, i) => {
@@ -378,6 +382,7 @@ function monter(stage) {
   }
 
   function etiqueter() {
+    if (!etiquettes.length) return;
     const l = stage.clientWidth, h = stage.clientHeight;
     stations.forEach((s, i) => {
       v.set(...ancresEtq[i]);
@@ -391,7 +396,8 @@ function monter(stage) {
   const dessiner = () => { animer(temps); renderer.render(scene, camera); etiqueter(); };
   function boucle() {
     requestAnimationFrame(boucle);
-    const pause = !visible || document.hidden || reduit.matches; // reste animée derrière l'écran de candidature (floutée)
+    const entreeOuverte = document.documentElement.classList.contains('gated');
+    const pause = !visible || document.hidden || reduit.matches || (entreeOuverte !== dansEcranEntree);
     const dt = Math.min(horloge.getDelta(), 0.05);
     if (pause) return;
     temps += dt;
