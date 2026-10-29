@@ -325,8 +325,64 @@ def reservation():
                 'Vos clients choisissent un créneau libre, vous êtes prévenu, ils reçoivent une confirmation. Exemple réel, devis gratuit et prix fixe annoncé avant de commencer.',
                 'Système de réservation en ligne', 'Bonjour, je voudrais un devis pour un système de réservation en ligne.', 'Bonjour, je voudrais présenter mon projet de réservation en ligne.', h, body, faq)
 
+# =====================================================================
+# SOURCING CHINE
+# =====================================================================
+def sourcing():
+    comp = mock('Comparatif fournisseurs', '''<div class="kpis"><div class="kpi"><span>Contactés</span><b>12</b></div><div class="kpi"><span>Retenus</span><b>3</b></div><div class="kpi"><span>Échantillons</span><b>2</b></div></div>
+      <div class="m-order"><span>Usine A · Ningbo<br><small style="color:var(--muted);">2,40 $ / pièce · min. 500</small></span><span class="tag ok">Échantillon validé</span></div>
+      <div class="m-order"><span>Usine B · Yiwu<br><small style="color:var(--muted);">2,10 $ / pièce · min. 1 000</small></span><span class="tag warn">Échantillon en route</span></div>
+      <div class="m-order"><span>Usine C · Shenzhen<br><small style="color:var(--muted);">2,90 $ / pièce · min. 300</small></span><span class="tag new">Devis reçu</span></div>''',
+        'Maquette de comparatif de fournisseurs')
+    suivi = mock('Suivi de commande', '''<div class="m-notif"><i>✓</i><div><b>Échantillon validé</b><span>Couleur et finitions conformes au brief.</span></div></div>
+      <div class="m-notif"><i>⚙</i><div><b>Production lancée</b><span>Photos de l'atelier envoyées sur WhatsApp.</span></div></div>
+      <div class="m-notif"><i>!</i><div><b>Contrôle avant départ</b><span>Quantités, emballage et défauts vérifiés.</span></div></div>''', 'Maquette de suivi de commande')
+    h = hero('Sourcing Chine', 'Le bon fournisseur en Chine, <em class="it">sans y aller</em> vous-même.',
+             'Vous avez un produit en tête. On cherche les usines, on compare leurs offres, on vérifie les échantillons et on suit votre commande jusqu\'au départ de la marchandise.',
+             ('Voir comment ça marche', '#etapes'), 'Demander un devis', comp, 'usines et prix fictifs, pour montrer l\'idée.',
+             'Bonjour, je cherche un fournisseur en Chine pour un produit.', 'glossy-icon.webp')
+    exemple = '''<div class="grid g2" style="align-items:start;"><figure style="margin:0;">''' + comp + '''<figcaption class="cap"><b>Comparatif</b> · prix, quantité minimum et avancement, usine par usine.</figcaption></figure>
+      <figure style="margin:0;">''' + suivi + '''<figcaption class="cap"><b>Suivi</b> · vous êtes prévenu à chaque étape.</figcaption></figure></div>
+      <p class="sec-intro" style="margin-top:14px;"><b>Maquettes</b> : usines, prix et quantités fictifs, pour montrer ce que vous recevez.</p>'''
+    body = ''.join([
+        sec('En clair', 'Le sourcing, c\'est quoi ?', '', alt=True,
+            intro='C\'est trouver la bonne usine pour fabriquer ou fournir votre produit : au bon prix, avec la bonne qualité, et dans les délais. On fait la recherche, les échanges et les vérifications à votre place, et vous décidez sur des éléments concrets.'),
+        sec('Pourquoi', 'Commander seul en Chine, c\'est risqué.',
+            compare('Seul, depuis la France',
+                    ['Des centaines d\'offres qui se ressemblent, difficiles à comparer.', 'Impossible de savoir qui fabrique vraiment et qui revend.', 'Les échanges traînent à cause de la langue et du décalage horaire.', 'On découvre la qualité à l\'arrivée du colis.'],
+                    'Avec Wanisite',
+                    ['Une courte liste d\'usines sérieuses, comparées point par point.', 'Des échantillons vérifiés avant toute commande.', 'Un seul interlocuteur en français, sur WhatsApp.', 'Un contrôle de la marchandise avant son départ.'])),
+        sec('Comment ça se passe', 'De votre idée au départ de la marchandise.',
+            flow(['Vous décrivez le produit, les quantités et le prix visé', 'On recherche et on présélectionne des fournisseurs', 'On compare les offres : prix, quantité minimum, délais', 'On fait venir et on vérifie les échantillons', 'On visite l\'usine sur place quand c\'est utile', 'On négocie et vous validez la commande', 'On suit la production', 'On contrôle la marchandise avant l\'expédition']),
+            alt=True, sid='etapes'),
+        sec('Ce que vous recevez', 'Des éléments concrets pour décider.', exemple, sid='exemples'),
+        sec('Le détail', 'Ce qu\'on prend en charge.',
+            cards([('Recherche', 'Usines et fournisseurs adaptés à votre produit et à vos quantités.'),
+                   ('Comparatif', 'Prix, quantité minimum, délais et conditions, côte à côte.'),
+                   ('Échantillons', 'Commandés, reçus et vérifiés avant de lancer la production.'),
+                   ('Visite d\'usine', 'Photos et vidéos de l\'atelier, quand une visite s\'impose.'),
+                   ('Négociation', 'Prix, emballage, personnalisation, délais.'),
+                   ('Suivi', 'Des nouvelles à chaque étape, sans avoir à relancer.'),
+                   ('Contrôle', 'Quantités, finitions et emballage vérifiés avant le départ.'),
+                   ('Expédition', 'Coordination avec le fournisseur et votre transitaire.')], 4), alt=True),
+        sec('Pour qui', 'Pour ceux qui veulent acheter à la source.',
+            '<ul class="chips"><li>Marques e-commerce</li><li>Boutiques et revendeurs</li><li>Restaurants et CHR</li><li>Créateurs de produits</li><li>Entreprises qui achètent en volume</li></ul>'),
+        sec('Tarif', 'Un prix clair, avant de commencer.',
+            price_block('Le prix dépend du produit, du nombre de fournisseurs à consulter et du suivi voulu (échantillons, visite, contrôle). Vous le connaissez avant le début du travail. La marchandise, le transport, les droits de douane et la TVA à l\'import restent à votre charge.'), alt=True),
+    ])
+    faq = [
+        ('Faut-il commander de grosses quantités ?', 'Chaque usine fixe sa quantité minimum. On vous l\'indique pour chaque offre et on cherche, quand c\'est possible, des fournisseurs qui acceptent de petites séries.'),
+        ('Comment être sûr de la qualité ?', 'Rien n\'est commandé avant que l\'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ.'),
+        ('Qui paie le fournisseur ?', 'Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez.'),
+        ('Vous occupez-vous du transport et de la douane ?', 'On coordonne l\'enlèvement de la marchandise avec le fournisseur et votre transitaire. Transport, droits de douane et TVA à l\'import sont à votre charge.'),
+        ('Combien de temps faut-il ?', 'Cela dépend du produit et des délais de fabrication. Le calendrier est annoncé avec le devis, avant de commencer.'),
+    ]
+    return page('sourcing-chine', 'Sourcing en Chine : trouver un fournisseur fiable — Wanisite',
+                'On cherche les usines, on compare les offres, on vérifie les échantillons et on suit votre commande en Chine. Devis gratuit et prix fixe annoncé avant de commencer.',
+                'Sourcing de fournisseurs en Chine', 'Bonjour, je cherche un fournisseur en Chine pour un produit.', 'Bonjour, je voudrais présenter mon projet de sourcing en Chine.', h, body, faq)
+
 if __name__ == '__main__':
-    for name, fn in (('site-vitrine', vitrine), ('ecommerce', ecommerce), ('reservation', reservation)):
+    for name, fn in (('site-vitrine', vitrine), ('ecommerce', ecommerce), ('reservation', reservation), ('sourcing-chine', sourcing)):
         with open(f'{OUT}/{name}.html', 'w') as f:
             f.write(fn())
         print('écrit', name)
