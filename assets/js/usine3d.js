@@ -221,6 +221,53 @@ function monter(stage) {
   maison.add(arbre(-1.6, 1.4), arbre(1.6, -0.2, 0.7));
   monde.add(maison);
 
+  /* ---------- drapeaux qui flottent : Chine à l'usine, France à l'arrivée ---------- */
+  function texture(dessin) {
+    const c = document.createElement('canvas'); c.width = 192; c.height = 128;
+    dessin(c.getContext('2d'));
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+    return t;
+  }
+  const etoile = (g, x, y, r, rot = -Math.PI / 2) => {
+    g.beginPath();
+    for (let k = 0; k < 10; k++) { const a = rot + k * Math.PI / 5, rr = k % 2 ? r * 0.4 : r; g.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+    g.closePath(); g.fill();
+  };
+  const texChine = texture((g) => {
+    g.fillStyle = '#DE2910'; g.fillRect(0, 0, 192, 128);
+    g.fillStyle = '#FFDE00'; etoile(g, 32, 32, 19);
+    for (const [x, y] of [[64, 13], [77, 26], [77, 45], [64, 58]]) etoile(g, x, y, 6.5, Math.atan2(32 - y, 32 - x));
+  });
+  const texFrance = texture((g) => {
+    g.fillStyle = '#002395'; g.fillRect(0, 0, 64, 128);
+    g.fillStyle = '#FFFFFF'; g.fillRect(64, 0, 64, 128);
+    g.fillStyle = '#ED2939'; g.fillRect(128, 0, 64, 128);
+  });
+  const drapeaux = [];
+  function drapeau(tex, x, z, parent) {
+    const g = new THREE.Group();
+    g.add(cyl(0.035, 0.045, 2.6, M.blanc, 0, 0, 0, 8));
+    const pommeau = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 8), M.turquoise);
+    pommeau.position.y = 2.62;
+    g.add(pommeau);
+    const geo = new THREE.PlaneGeometry(1.05, 0.7, 14, 4);
+    geo.translate(0.525, 0, 0);
+    const toile = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, side: THREE.DoubleSide, roughness: 0.8 }));
+    toile.position.y = 2.2; toile.castShadow = true;
+    toile.userData.base = Float32Array.from(geo.attributes.position.array);
+    g.add(toile);
+    g.position.set(x, 0, z);
+    parent.add(g);
+    drapeaux.push(toile);
+  }
+  drapeau(texChine, 2.0, -1.95, usine);
+  drapeau(texFrance, -1.85, 0.75, maison);
+
+  // ombre douce au sol : la maquette tient sur la page sans panneau de fond
+  const sol = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ opacity: 0.16 }));
+  sol.rotation.x = -Math.PI / 2; sol.position.y = -0.7; sol.receiveShadow = true;
+  monde.add(sol);
+
   const stations = [usine, controle, envoi, maison];
 
   /* ---------- route, colis qui voyagent, avion, nuages ---------- */
@@ -246,7 +293,7 @@ function monter(stage) {
   for (let k = 0; k < 4; k++) {
     const n = new THREE.Group();
     for (const [x, y, z, r] of [[0, 0, 0, 0.55], [0.55, -0.08, 0.1, 0.4], [-0.5, -0.1, -0.05, 0.38], [0.15, 0.25, 0, 0.36]]) {
-      const b = new THREE.Mesh(new THREE.IcosahedronGeometry(r, 1), M.fumee); b.position.set(x, y, z); b.castShadow = true; n.add(b);
+      const b = new THREE.Mesh(new THREE.IcosahedronGeometry(r, 1), M.fumee); b.position.set(x, y, z); n.add(b); // pas d'ombre : elle tomberait hors des dalles
     }
     n.userData.decal = k / 4; n.userData.h = 5.2 + (k % 2) * 0.9;
     monde.add(n); nuages.push(n);
@@ -357,6 +404,16 @@ function monter(stage) {
     charge.position.set(1.8, -desc - 0.34, 0);
     cargo.position.y = -0.12 + Math.sin(t * 1.6) * 0.04;
     cargo.rotation.z = Math.sin(t * 1.1) * 0.03;
+    // drapeaux : une onde qui part du mât
+    for (const d of drapeaux) {
+      const pos = d.geometry.attributes.position, base = d.userData.base;
+      for (let k = 0; k < pos.count; k++) {
+        const x = base[k * 3], y = base[k * 3 + 1];
+        pos.setZ(k, Math.sin(x * 5 - t * 5) * 0.09 * x + Math.sin(y * 3 + t * 2) * 0.02 * x);
+      }
+      pos.needsUpdate = true;
+      d.geometry.computeVertexNormals();
+    }
     // repère qui rebondit et anneau qui s'élargit
     repere.position.y = 1.5 + Math.abs(Math.sin(t * 2.4)) * 0.35;
     repere.rotation.y = t * 1.2;

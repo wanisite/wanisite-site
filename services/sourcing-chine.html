@@ -205,6 +205,44 @@
   .gate .legal{font-size:12.5px;color:var(--muted);margin:4px 0 0;}
   .gate [hidden]{display:none !important;}
   @media (max-width:520px){.gate .two{grid-template-columns:1fr;}}
+
+  /* ===== Thème clair de la page (le reste du site garde sa DA sombre) ===== */
+  :root{--paper:#f6f4ef;--card:#ffffff;--ink:#0c2030;--muted:rgba(12,32,48,.62);--line:rgba(12,32,48,.12);--teal:#008a8a;--teal-soft:#d9f1ef;--sand:#ece7dd;--alert:#c9533f;--ok:#1d7a50;}
+  html,body{background:#f6f4ef;}
+  body{color:var(--ink);}
+  body::before{display:none;}
+  ::selection{background:#bdeeee;color:#0c2030;}
+  h1,h2,h3,.xl{color:var(--ink);}
+  header.top .wrap{background:rgba(255,255,255,.86);border:1px solid var(--line);box-shadow:0 18px 40px -26px rgba(12,32,48,.35);}
+  .brand{color:var(--ink);}
+  .menu a{color:var(--muted);} .menu a:hover{color:var(--ink);background:var(--sand);}
+  .btn.ghost{color:var(--ink);border-color:rgba(12,32,48,.25);} .btn.ghost:hover{background:var(--sand);border-color:var(--ink);}
+  .strip a{background:rgba(255,255,255,.85);} .strip a:hover{color:var(--ink);}
+  .marquee{background:#0c2030;border:0;} .marquee span{color:#fff;} .marquee span i{color:#5ff0f0;}
+  .filters button:hover{color:var(--ink);border-color:var(--ink);}
+  .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .prod{box-shadow:0 1px 0 rgba(12,32,48,.04);} .prod h3{color:var(--ink);} .prod .badge{border-color:rgba(0,138,138,.35);}
+  .prod.own{background:var(--teal-soft);border-color:rgba(0,138,138,.4);}
+  .circuit li:not(:last-child)::after{color:#fff;}
+  .calc{background:#fff;border-color:var(--line);}
+  .kg{background:var(--paper);} .kg button,.kg input{color:var(--ink);}
+  details{background:#fff;border-color:var(--line);} summary{color:var(--ink);} details p{color:var(--muted);}
+  footer{color:var(--muted);} footer a{color:var(--ink) !important;}
+  .scene3d{background:none;box-shadow:none;border-radius:0;}
+  html.gated .gate{background:rgba(246,244,239,.88);}
+  .gate-top a{color:var(--ink);}
+  .gate .codebox div{background:#fff;}
+  .gate .codebox input,.gate .codebox button{color:var(--ink);}
+  .gate form input,.gate form select,.gate form textarea{background:#fff;color:var(--ink);}
+  .gate .back:hover{color:var(--ink);}
+  .gate .scene3d.mini{border-radius:0;}
+
+  /* drapeaux Chine → France */
+  .fl{display:inline-block;width:22px;height:15px;border-radius:2px;vertical-align:-2px;box-shadow:0 0 0 1px rgba(12,32,48,.15);}
+  .fl.cn{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23DE2910'/%3E%3Cpolygon fill='%23FFDE00' points='5,2 6.2,5.6 10,5.6 7,7.8 8.1,11.4 5,9.2 1.9,11.4 3,7.8 0,5.6 3.8,5.6'/%3E%3Ccircle cx='11.5' cy='2.5' r='.9' fill='%23FFDE00'/%3E%3Ccircle cx='13' cy='5' r='.9' fill='%23FFDE00'/%3E%3Ccircle cx='13' cy='8' r='.9' fill='%23FFDE00'/%3E%3Ccircle cx='11.5' cy='10.3' r='.9' fill='%23FFDE00'/%3E%3C/svg%3E") center/cover;}
+  .fl.fr{background:linear-gradient(90deg,#002395 0 33.3%,#fff 33.3% 66.6%,#ED2939 66.6%);}
+  .route-fl{display:inline-flex;align-items:center;gap:8px;}
+  .route-fl i{font-style:normal;color:var(--teal);}
 </style>
 </head>
 <body>
@@ -217,7 +255,7 @@
 
     <div class="gate-body" id="gAccueil">
       <div class="scene3d mini" data-scene3d data-disposition="ligne" data-etiquettes="non" aria-hidden="true"></div>
-      <p class="num"><b>CN → FR</b> Sourcing Chine</p>
+      <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
       <h2 class="xl" id="gateTitre">Le sourcing,<br><span class="t">sur candidature.</span></h2>
       <p class="intro">On suit un nombre limité de clients à la fois, <span>pour s’occuper de chaque commande de près. Dites-nous ce que vous voulez sourcer : on vous répond sur WhatsApp.</span></p>
       <button class="btn main big" type="button" id="gPostuler">Postuler ↗</button>
@@ -288,7 +326,7 @@
 <section class="sc-hero">
   <div class="wrap">
     <div>
-      <p class="num"><b>CN → FR</b> Sourcing Chine</p>
+      <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
       <h1 class="xl">Votre usine<br><span class="t">en Chine.</span></h1>
       <p class="lead">Une photo ou un lien suffit. <span>On trouve l’usine, on négocie, on vérifie avant le départ. Vous, vous vendez.</span></p>
       <div class="actions">
