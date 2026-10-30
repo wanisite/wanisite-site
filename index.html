@@ -964,6 +964,11 @@
   .deliv .dv-more{margin-top:0;}
   .rdv-blk.blk-full{padding:0;}
 
+  /* laboratoire 3D (Three.js) à la place de la fenêtre de code */
+  .labo3d{position:relative;z-index:1;height:clamp(340px,34vw,460px);margin:0 -20px;touch-action:pan-y;}
+  .labo3d canvas{position:absolute;inset:0;width:100% !important;height:100% !important;display:block;}
+  .labo3d.sans3d{display:none;}
+  @media (max-width:900px){.labo3d{height:min(78vw,420px);margin:0 -10px;}}
   /* ===== Thème clair (2026-10-30 : « le site est beaucoup trop sombre ») =====
      On garde la structure, la typo et le turquoise ; on repeint le fond, les cartes et le texte.
      Le téléphone de démonstration (#protocole) garde son écran sombre, comme un vrai iPhone. */
@@ -1084,26 +1089,7 @@ setTimeout(hide,2500);})();</script>
           <div class="hero-step"><div class="num">2</div><div class="txt"><b>Devis gratuit</b> — prix fixe, aucune surprise</div></div>
           <div class="hero-step"><div class="num">3</div><div class="txt"><b>Mise en ligne</b> — délai annoncé avec le devis, le projet vous appartient</div></div>
         </div>
-        <div class="hero-code-win">
-          <div class="hcw-bar">
-            <div class="hcw-dot r"></div><div class="hcw-dot y"></div><div class="hcw-dot g"></div>
-            <span class="hcw-file">wanisite.config.js</span>
-          </div>
-          <div class="hcw-body">
-            <div><span class="cl-num">1</span><span class="cm">// Votre projet en 4 étapes</span></div>
-            <div><span class="cl-num">2</span></div>
-            <div><span class="cl-num">3</span><span class="kw">const </span><span class="fn">projet</span><span class="op"> = {</span></div>
-            <div><span class="cl-num">4</span><span style="padding-left:16px"><span class="pl">diagnostic</span><span class="op">: </span><span class="str">"gratuit"</span><span class="op">,</span></span></div>
-            <div><span class="cl-num">5</span><span style="padding-left:16px"><span class="pl">devis</span><span class="op">: </span><span class="str">"prix fixe"</span><span class="op">,</span></span></div>
-            <div><span class="cl-num">6</span><span style="padding-left:16px"><span class="pl">livraison</span><span class="op">: </span><span class="str">"annoncée"</span><span class="op">,</span></span></div>
-            <div><span class="cl-num">7</span><span style="padding-left:16px"><span class="pl">propriété</span><span class="op">: </span><span class="val">"vous"</span><span class="op">,</span></span></div>
-            <div><span class="cl-num">8</span><span style="padding-left:16px"><span class="pl">surprises</span><span class="op">: </span><span class="val">false</span></span></div>
-            <div><span class="cl-num">9</span><span class="op">}</span></div>
-            <div><span class="cl-num">10</span></div>
-            <div><span class="cl-num">11</span><span class="fn">launch</span><span class="op">(</span><span class="fn">projet</span><span class="op">)</span></div>
-            <div><span class="cl-num">12</span><span class="cm">// → résultats mesurables</span></div>
-          </div>
-        </div>
+        <div class="labo3d" id="labo3d" role="img" aria-label="Animation 3D : un laboratoire où un bras robot mélange les fioles Site, Shop, CRM et Ads dans le bécher de votre croissance"></div>
       </div>
     </section>
   </div>
@@ -1913,5 +1899,6 @@ setTimeout(hide,2500);})();</script>
   vs.forEach(function(v){io.observe(v);});
 })();
 </script>
+<script type="module" src="/assets/js/labo3d.js?v=2"></script>
 </body>
 </html>
