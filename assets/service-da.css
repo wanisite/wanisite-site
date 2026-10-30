@@ -274,3 +274,31 @@ footer{border-top:1px solid var(--line);color:rgba(216,238,238,.4);font-family:v
 footer a{color:#fff !important;}
 .menu .btn{white-space:nowrap;}
 @media (max-width:620px){header.top .wrap{padding:8px 8px 8px 16px;} .brand span{font-size:13px;} .menu .btn{padding:0 14px !important;min-height:40px !important;font-size:14px !important;width:auto;}}
+
+/* =====================================================================
+   Thème clair (2026-10-30 : « le site est beaucoup trop sombre »).
+   Même typo, même turquoise, mêmes surlignages : seuls le fond, les cartes et le texte passent au clair.
+   ===================================================================== */
+:root{--paper:#ffffff;--card:#f4f7f9;--ink:#0c2030;--muted:rgba(12,32,48,.64);--line:rgba(12,32,48,.12);
+  --teal:#008f8f;--teal-soft:#d9f1ef;--sand:#e9eff2;--amber:#b46a00;--ok:#1d7a50;--alert:#c9533f;}
+html,body{background:#ffffff;}
+body{color:var(--ink);}
+body::before{display:none;}
+::selection{background:#bdeeee;color:#0c2030;}
+h1,h2,h3{color:var(--ink);}
+header.top .wrap{background:rgba(255,255,255,.88);border:1px solid var(--line);box-shadow:0 18px 40px -26px rgba(12,32,48,.35);}
+.brand{color:var(--ink);}
+.menu a{color:var(--muted);} .menu a:hover{color:var(--ink);background:var(--sand);}
+.btn.ghost{color:var(--ink);border-color:rgba(12,32,48,.25);} .btn.ghost:hover{background:var(--sand);border-color:var(--ink);}
+.eyebrow::before{color:rgba(12,32,48,.3);}
+.cap{color:var(--muted);} .cap b{color:var(--ink);}
+.hero small{color:var(--muted);}
+.card{background:#ffffff;border-color:var(--line);box-shadow:0 1px 0 rgba(12,32,48,.03);}
+.ex{background:#ffffff;} .ex b{color:var(--ink);} .ex img,.shots img{background:#e9eff2;}
+.note{background:rgba(240,178,74,.14);color:#6b4a0c;}
+.flow li,.steps li,.price,.chips li{background:#ffffff;}
+.flow li::before,.steps li::before{color:#fff;}
+details{background:#ffffff;} summary{color:var(--ink);}
+.final{background:linear-gradient(160deg,#e6fafa,#f4fbfb 60%,#ffffff);border:1px solid rgba(0,143,143,.25);box-shadow:0 30px 70px -45px rgba(0,143,143,.5);}
+.final h2{color:var(--ink);} .final .btn.ghost{color:var(--ink);border-color:rgba(12,32,48,.25);}
+footer{color:var(--muted);} footer a{color:var(--ink) !important;}

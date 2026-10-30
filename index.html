@@ -963,6 +963,31 @@
   .deliv .sec-p{margin-bottom:8px;}
   .deliv .dv-more{margin-top:0;}
   .rdv-blk.blk-full{padding:0;}
+
+  /* ===== Thème clair (2026-10-30 : « le site est beaucoup trop sombre ») =====
+     On garde la structure, la typo et le turquoise ; on repeint le fond, les cartes et le texte.
+     Le téléphone de démonstration (#protocole) garde son écran sombre, comme un vrai iPhone. */
+  :root{--bg:#ffffff;--bg2:#f4f7f9;--bg3:#e9eff2;--text:#0c2030;--text2:rgba(12,32,48,.64);--text3:rgba(12,32,48,.38);
+    --border:rgba(12,32,48,.10);--borderl:rgba(12,32,48,.16);--tg:rgba(0,163,163,.12);--t:#00a8a8;}
+  html,body{background:#ffffff;}
+  #loader{background:#ffffff !important;}
+  .lab-ambient,.top-glow,.hero-bg .grain,.hero-bg .vignette,.hero-bg .g3{display:none !important;}
+  .hero-bg{background:radial-gradient(ellipse 80% 70% at 46% 30%,#e3fafa 0%,#f3fbfb 45%,#ffffff 80%) !important;}
+  .hero-bg .g1{background:radial-gradient(circle,rgba(0,201,201,.22),transparent 68%);}
+  .hero-bg .g2{background:radial-gradient(circle,rgba(20,130,190,.16),transparent 70%);}
+  .hero-bg .silk{opacity:.35;}
+  .hero-bg::before{opacity:.18;}
+  .dot-grid{background:#ffffff;}
+  .nav-mark,.nav-links a.active,.hero-h1,.hero-step .txt b,.sec-h,.stat .n,.price-card h3,.dv-pill b,.card h3,.cta-h,
+  .proto2-card h3,.proto2-list b,.qd-h,.qd-meta strong,.qd-cap b,.secu-i b,.rc-img.none span{color:#0c2030;}
+  .hero-h1 .hl,.italic.hl-block{color:#fff !important;}
+  .card-shot-bar{background:rgba(12,32,48,.06);}
+  .ef-sound{background:rgba(255,255,255,.8);color:#0c2030;}
+  .nav-pill{background:rgba(255,255,255,.88);border-color:rgba(12,32,48,.12);box-shadow:0 14px 34px -22px rgba(12,32,48,.4);}
+  footer{color:rgba(12,32,48,.6);}
+  #flip-word{color:#008f8f;text-shadow:none;}
+  .cl-num{color:rgba(12,32,48,.25);} .cm{color:rgba(12,32,48,.45);}
+  .kw{color:#8a3fc4;} .fn{color:#2f5fd0;} .pl{color:#007f7f;} .str{color:#3f7d1f;} .val{color:#b46a00;}
 </style>
 </head>
 <body>
