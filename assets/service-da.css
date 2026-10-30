@@ -281,9 +281,14 @@ footer a{color:#fff !important;}
    ===================================================================== */
 :root{--paper:#ffffff;--card:#f4f7f9;--ink:#0c2030;--muted:rgba(12,32,48,.64);--line:rgba(12,32,48,.12);
   --teal:#008f8f;--teal-soft:#d9f1ef;--sand:#e9eff2;--amber:#b46a00;--ok:#1d7a50;--alert:#c9533f;}
-html,body{background:#ffffff;}
-body{color:var(--ink);}
-body::before{display:none;}
+html{background:#ffffff;}
+body{color:var(--ink);background:transparent;}
+body::before{opacity:1;background-image:
+    radial-gradient(40vw 40vw at -4vw 12vh,rgba(0,201,201,.16),transparent 70%),
+    radial-gradient(36vw 36vw at 104vw 48vh,rgba(20,130,190,.12),transparent 70%),
+    radial-gradient(42vw 42vw at 30vw 108vh,rgba(0,201,201,.12),transparent 72%),
+    linear-gradient(rgba(0,143,143,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,143,.07) 1px,transparent 1px),
+    linear-gradient(rgba(0,143,143,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,143,.13) 1px,transparent 1px);}
 ::selection{background:#bdeeee;color:#0c2030;}
 h1,h2,h3{color:var(--ink);}
 header.top .wrap{background:rgba(255,255,255,.88);border:1px solid var(--line);box-shadow:0 18px 40px -26px rgba(12,32,48,.35);}

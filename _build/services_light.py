@@ -49,7 +49,7 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
 <script type="application/ld+json">{ld_svc}</script>
 <script type="application/ld+json">{ld_faq}</script>
-<link rel="stylesheet" href="/assets/service-da.css?v=6">
+<link rel="stylesheet" href="/assets/service-da.css?v=8">
 </head>
 <body>
 <header class="top">

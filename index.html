@@ -969,14 +969,22 @@
      Le téléphone de démonstration (#protocole) garde son écran sombre, comme un vrai iPhone. */
   :root{--bg:#ffffff;--bg2:#f4f7f9;--bg3:#e9eff2;--text:#0c2030;--text2:rgba(12,32,48,.64);--text3:rgba(12,32,48,.38);
     --border:rgba(12,32,48,.10);--borderl:rgba(12,32,48,.16);--tg:rgba(0,163,163,.12);--t:#00a8a8;}
-  html,body{background:#ffffff;}
+  html{background:#ffffff;} body{background:transparent;}
   #loader{background:#ffffff !important;}
-  .lab-ambient,.top-glow,.hero-bg .grain,.hero-bg .vignette,.hero-bg .g3{display:none !important;}
+  .hero-bg .grain,.hero-bg .vignette,.hero-bg .g3,.lab-ambient .agrain{display:none !important;}
+  /* l'ambiance « labo » reste : papier millimétré turquoise et halos doux, version claire */
+  .lab-ambient{background:radial-gradient(ellipse 100% 60% at 50% 0%,rgba(0,201,201,.12),transparent 72%);}
+  .lab-ambient::before{background-image:linear-gradient(rgba(0,143,143,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,143,.08) 1px,transparent 1px),
+    linear-gradient(rgba(0,143,143,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,143,.15) 1px,transparent 1px);}
+  .lab-ambient .aglow{opacity:.3;}
+  .top-glow{background:radial-gradient(ellipse 90% 100% at 50% -20%,rgba(0,201,201,.2),transparent 78%);}
+  .dot-grid{background:transparent;}
+  .light-block,.ef-block,.trust-showcase,.real-pin{background-image:linear-gradient(rgba(0,143,143,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,143,.06) 1px,transparent 1px);background-size:16px 16px;}
   .hero-bg{background:radial-gradient(ellipse 80% 70% at 46% 30%,#e3fafa 0%,#f3fbfb 45%,#ffffff 80%) !important;}
   .hero-bg .g1{background:radial-gradient(circle,rgba(0,201,201,.22),transparent 68%);}
   .hero-bg .g2{background:radial-gradient(circle,rgba(20,130,190,.16),transparent 70%);}
   .hero-bg .silk{opacity:.35;}
-  .hero-bg::before{opacity:.18;}
+  .hero-bg::before{opacity:.55;}
   .dot-grid{background:#ffffff;}
   .nav-mark,.nav-links a.active,.hero-h1,.hero-step .txt b,.sec-h,.stat .n,.price-card h3,.dv-pill b,.card h3,.cta-h,
   .proto2-card h3,.proto2-list b,.qd-h,.qd-meta strong,.qd-cap b,.secu-i b,.rc-img.none span{color:#0c2030;}
