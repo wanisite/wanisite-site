@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&text=采购原则产品流程物流问答工厂质检送达申请科技时尚运动家居餐饮&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&text=采购原则产品流程物流问答工厂质检送达申请科技时尚运动家居餐饮承诺寻源验货生产发货&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "Sourcing de fournisseurs en Chine", "provider": {"@type": "Organization", "name": "Wanisite", "url": "https://www.wanisitelab.com"}, "areaServed": "FR", "description": "Recherche d'usines en Chine, comparatif des offres, vérification des échantillons, suivi de production et contrôle avant expédition."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il commander de grosses quantités ?", "acceptedAnswer": {"@type": "Answer", "text": "Chaque usine fixe sa quantité minimum. On vous l'indique pour chaque offre et on cherche, quand c'est possible, des fournisseurs qui acceptent de petites séries."}}, {"@type": "Question", "name": "Comment être sûr de la qualité ?", "acceptedAnswer": {"@type": "Answer", "text": "Rien n'est commandé avant que l'échantillon soit validé. La marchandise est ensuite contrôlée avant son départ."}}, {"@type": "Question", "name": "Qui paie le fournisseur ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous, directement, selon les conditions négociées. On vous explique chaque paiement avant que vous le fassiez."}}, {"@type": "Question", "name": "Vous occupez-vous du transport et de la douane ?", "acceptedAnswer": {"@type": "Answer", "text": "On coordonne l'enlèvement de la marchandise avec le fournisseur et le transitaire. Transport, droits de douane et TVA à l'import sont à votre charge."}}, {"@type": "Question", "name": "Combien de temps faut-il ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend du produit et des délais de fabrication. Le calendrier est annoncé avec le devis, avant de commencer."}}]}</script>
 <script>
@@ -87,23 +87,8 @@
   @keyframes defile{to{transform:translateX(-50%);}}
   @media (prefers-reduced-motion:reduce){.marquee div{animation:none;}}
 
-  /* le principe */
-  .deal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:44px;border-top:1px solid var(--line);}
-  .deal div{padding:28px 26px 8px 0;border-right:1px solid var(--line);}
-  .deal div + div{padding-left:26px;}
-  .deal div:last-child{border-right:0;}
-  .deal b{display:block;font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.12em;margin-bottom:14px;}
-  .deal h3{font-size:24px;font-weight:800;line-height:1.15;letter-spacing:-.02em;}
-  .deal p{color:var(--muted);margin:12px 0 0;font-size:16px;}
 
 
-  /* circuit */
-  .circuit{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:c;}
-  .circuit li{position:relative;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--card);}
-  .circuit li b{display:block;font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.12em;}
-  .circuit li h3{font-size:28px;font-weight:900;line-height:1.1;margin:12px 0 8px;letter-spacing:-.03em;}
-  .circuit li p{margin:0;color:var(--muted);font-size:15.5px;}
-  .circuit li:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--teal);color:#04141a;font-size:13px;font-weight:700;z-index:1;}
 
   /* calculateur d'envoi */
   .calc{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;margin-top:36px;padding:26px 28px;border:1px solid rgba(0,201,201,.3);border-radius:18px;background:linear-gradient(120deg,rgba(0,201,201,.12),rgba(8,14,28,.9) 60%);}
@@ -128,8 +113,6 @@
 
   @media (max-width:980px){
     .sc-hero .wrap{grid-template-columns:1fr;}
-    .circuit{grid-template-columns:repeat(2,minmax(0,1fr));}
-    .circuit li:nth-child(2)::after{display:none;}
     .calc{grid-template-columns:1fr;}
   }
   @media (max-width:640px){
@@ -137,10 +120,6 @@
     .strip nav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;padding:0 12px;}
     .strip nav::-webkit-scrollbar{display:none;}
     .strip a{flex:none;}
-    .deal{grid-template-columns:1fr;}
-    .deal div,.deal div + div{padding:24px 0 20px;border-right:0;border-bottom:1px solid var(--line);}
-    .circuit{grid-template-columns:1fr;}
-    .circuit li:not(:last-child)::after{display:none;}
     .calc{padding:20px;}
     .calc .ctrl{justify-content:space-between;gap:12px;}
     .total{font-size:38px;}
@@ -207,7 +186,6 @@
   .btn.ghost{color:var(--ink);border-color:rgba(12,32,48,.25);} .btn.ghost:hover{background:var(--sand);border-color:var(--ink);}
   .strip a{background:rgba(255,255,255,.85);} .strip a:hover{color:var(--ink);}
   .marquee{background:#0c2030;border:0;} .marquee span{color:#fff;} .marquee span i{color:#5ff0f0;}
-  .circuit li:not(:last-child)::after{color:#fff;}
   .calc{background:#fff;border-color:var(--line);}
   .kg{background:var(--paper);} .kg button,.kg input{color:var(--ink);}
   details{background:#fff;border-color:var(--line);} summary{color:var(--ink);} details p{color:var(--muted);}
@@ -275,6 +253,41 @@
     .rayon li b{font-size:16px;}
     .rayon li b::after{display:none;}
     .tarif-pied a{margin-left:0;}
+  }
+
+  /* le principe : un engagement écrit, articles numérotés et sceau */
+  .engagement{max-width:820px;margin-top:40px;border-top:2px solid var(--ink);}
+  .eng-tete{display:flex;justify-content:space-between;align-items:baseline;margin:0;padding:12px 0;border-bottom:1px solid var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .engagement ol{list-style:none;margin:0;padding:0;}
+  .engagement li{display:grid;grid-template-columns:90px minmax(0,1fr);gap:0 20px;padding:22px 0;border-bottom:1px dashed var(--line);}
+  .engagement .art{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--rouge);padding-top:5px;}
+  .engagement li p{margin:0;font-size:clamp(17px,1.7vw,20px);line-height:1.55;color:var(--muted);}
+  .engagement li b{color:var(--ink);font-weight:800;}
+  .eng-pied{display:flex;justify-content:flex-end;align-items:center;gap:14px;margin:0;padding:18px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .sceau.grand{font-size:22px;margin:0;vertical-align:middle;}
+
+  /* le circuit : un suivi de colis, une ligne verticale et des étapes pointées */
+  .suivi{max-width:820px;margin-top:40px;}
+  .suivi-tete{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px;padding-bottom:12px;border-bottom:2px solid var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .suivi ol{list-style:none;margin:0;padding:0;}
+  .suivi li{position:relative;display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 48px;padding:22px 0 22px;}
+  .suivi li::before{content:"";position:absolute;left:213px;top:0;bottom:0;width:2px;background:var(--teal);opacity:.35;}
+  .suivi li:first-child::before{top:30px;} .suivi li.fin::before{bottom:auto;height:30px;}
+  .suivi li::after{content:"";position:absolute;left:207px;top:24px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--teal);}
+  .suivi li.fin::after{background:var(--rouge);border-color:var(--rouge);box-shadow:0 0 0 5px rgba(200,40,30,.15);}
+  .suivi .lieu{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);padding-top:6px;text-align:right;}
+  .suivi h3{margin:0;font-size:26px;font-weight:900;letter-spacing:-.03em;line-height:1.1;}
+  .suivi h3 .zh{font-size:14px;margin-left:6px;vertical-align:3px;}
+  .suivi li p{margin:6px 0 0;color:var(--muted);font-size:16px;}
+  @media (max-width:640px){
+    .engagement li{grid-template-columns:1fr;gap:6px;padding:18px 0;}
+    .engagement .art{padding-top:0;}
+    .suivi li{grid-template-columns:1fr;gap:4px;padding:16px 0 16px 34px;}
+    .suivi li::before{left:8px;} .suivi li::after{left:2px;top:19px;}
+    .suivi .lieu{text-align:left;padding-top:0;}
+    .suivi h3{font-size:22px;}
   }
 </style>
 </head>
@@ -388,10 +401,14 @@
   <div class="wrap">
     <p class="num"><b>00</b> Le principe <span class="zh">原则</span></p>
     <h2 class="xl">L’usine, <span class="t">sans les surprises.</span></h2>
-    <div class="deal">
-      <div><b>01</b><h3>Prix négocié</h3><p>On discute directement avec les fabricants et on compare plusieurs offres. Vous voyez d’où vient votre produit et à quel prix.</p></div>
-      <div><b>02</b><h3>Échantillon d’abord</h3><p>Rien n’est commandé tant que l’échantillon n’est pas validé : matière, couleur, finitions, emballage.</p></div>
-      <div><b>03</b><h3>Contrôlé avant départ</h3><p>Quantités, défauts et emballage sont vérifiés avant l’expédition, photos à l’appui. Vous validez, ça part.</p></div>
+    <div class="engagement">
+      <p class="eng-tete"><span>Engagement Wanisite · Sourcing Chine</span><span class="zh" lang="zh">承诺</span></p>
+      <ol>
+        <li><span class="art">Art. 1</span><p><b>Le prix est négocié en direct.</b> On discute avec les fabricants et on compare plusieurs offres : vous savez d’où vient votre produit et à quel prix.</p></li>
+        <li><span class="art">Art. 2</span><p><b>L’échantillon passe avant la commande.</b> Rien n’est commandé tant que l’échantillon n’est pas validé : matière, couleur, finitions, emballage.</p></li>
+        <li><span class="art">Art. 3</span><p><b>La marchandise est contrôlée avant de partir.</b> Quantités, défauts et emballage sont vérifiés, photos à l’appui. Vous validez, ça part.</p></li>
+      </ol>
+      <p class="eng-pied"><span>Wanisite</span><span class="sceau grand" aria-hidden="true">采购</span></p>
     </div>
   </div>
 </section>
@@ -434,12 +451,16 @@
     <p class="num"><b>02</b> Le circuit <span class="zh">流程</span></p>
     <h2 class="xl">De l’usine <span class="t">à votre porte.</span></h2>
     <p class="sec-intro">Un seul interlocuteur, en français, du premier message à la réception.</p>
-    <ol class="circuit">
-      <li><b>01</b><h3>Trouver</h3><p>On cherche les usines, on compare prix, quantités minimum et délais. Vous recevez un comparatif clair.</p></li>
-      <li><b>02</b><h3>Vérifier</h3><p>On fait venir l’échantillon et on le contrôle. On visite l’usine sur place quand c’est utile.</p></li>
-      <li><b>03</b><h3>Produire</h3><p>On négocie, vous validez la commande, on suit la production et on vous tient au courant.</p></li>
-      <li><b>04</b><h3>Expédier</h3><p>Contrôle avant départ, puis enlèvement coordonné avec le transitaire jusqu’en France.</p></li>
-    </ol>
+    <div class="suivi">
+      <p class="suivi-tete"><span>Suivi</span><span class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></span></p>
+      <ol>
+        <li><span class="lieu">Étape 1 · Chine</span><div><h3>Trouver <span class="zh" lang="zh">寻源</span></h3><p>On cherche les usines, on compare prix, quantités minimum et délais. Vous recevez un comparatif clair.</p></div></li>
+        <li><span class="lieu">Étape 2 · Chine</span><div><h3>Vérifier <span class="zh" lang="zh">验货</span></h3><p>On fait venir l’échantillon et on le contrôle. On visite l’usine sur place quand c’est utile.</p></div></li>
+        <li><span class="lieu">Étape 3 · Chine</span><div><h3>Produire <span class="zh" lang="zh">生产</span></h3><p>On négocie, vous validez la commande, on suit la production et on vous tient au courant.</p></div></li>
+        <li><span class="lieu">Étape 4 · Chine → France</span><div><h3>Expédier <span class="zh" lang="zh">发货</span></h3><p>Contrôle avant départ, puis enlèvement coordonné avec le transitaire jusqu’en France.</p></div></li>
+        <li class="fin"><span class="lieu">Arrivée · France</span><div><h3>Chez vous <span class="zh" lang="zh">送达</span></h3><p>Vous recevez la marchandise, vous vendez.</p></div></li>
+      </ol>
+    </div>
   </div>
 </section>
 
