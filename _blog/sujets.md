@@ -1,7 +1,7 @@
 # Sujets à publier (un article tous les deux jours, dans l'ordre ; cocher [x] quand c'est publié)
 
 - [x] Importer de Chine : les étapes d'un sourcing sans mauvaise surprise → /services/sourcing-chine.html
-- [ ] Fiche Google Business : les réglages pour être trouvé près de chez vous → /services/site-vitrine.html
+- [x] Fiche Google Business : les réglages pour être trouvé près de chez vous → /services/site-vitrine.html
 - [ ] Site vitrine ou page Instagram : de quoi a vraiment besoin un commerce de quartier ? → /services/site-vitrine.html
 - [ ] Réservation en ligne : comment réduire les rendez-vous oubliés dans un salon → /services/reservation.html
 - [ ] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing.html
