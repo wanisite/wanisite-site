@@ -343,7 +343,7 @@ def referencer_pages():
         ecrire(f, s)
     s = lire('index.html')
     s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
-    s = remplacer_bloc(s, 'blog-accueil', bloc_blog_accueil(PUBLIES), '<div class="secu blk"')
+    # bloc « Notes du labo » retiré de l'accueil le 2026-11-01 (demande de l'utilisateur) : la liste reste sur /blog/
     ecrire('index.html', s)
 
 

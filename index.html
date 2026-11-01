@@ -597,6 +597,11 @@
   #tarifs .price-card p{color:rgba(12,32,48,.68);}
   #tarifs .price-card .meta{color:rgba(12,32,48,.5);border-top-color:rgba(11,127,127,.2);}
   #tarifs .price-card .learn-more{color:#0b7f7f;}
+
+  /* Icônes 3D animées (Blender) des cartes de services : vignette blanche aux coins arrondis, identique sur tous les navigateurs */
+  .svc-ico{display:block;width:148px;height:148px;margin:0 0 22px 0;border-radius:30px;background:#fff;border:1px solid rgba(11,127,127,.16);box-shadow:0 10px 26px -14px rgba(11,127,127,.45);object-fit:cover;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1);}
+  .real-track .price-card:hover .svc-ico{transform:translateY(-4px) scale(1.04);}
+  @media (max-width:700px){.svc-ico{width:116px;height:116px;margin:0 0 16px 0;border-radius:24px;}}
   #tarifs .real-progress-track{background:rgba(11,127,127,.16);}
   #tarifs .real-progress-bar{background:linear-gradient(90deg,#0b9c9c,#19d3d3);}
   #tarifs .swipe-hint{color:rgba(12,32,48,.45);}
@@ -1167,36 +1172,42 @@ setTimeout(hide,1200);})();</script>
     <div class="real-track-wrap">
       <div class="real-track" id="tarifsTrack">
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/site.mp4" poster="/assets/icones/site.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">Site vitrine</div>
           <h3>Présence en ligne</h3>
           <p>Site pro responsive, fiche Google Business, référencement local, formulaire de contact. En 7 jours, vos clients vous trouvent.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/site-vitrine.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/resa.mp4" poster="/assets/icones/resa.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">Réservation</div>
           <h3>Prise de RDV en ligne</h3>
           <p>Système de réservation 24h/24, notifications automatiques, agenda synchronisé. Zéro appel manqué, zéro créneau perdu.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/reservation.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/shop.mp4" poster="/assets/icones/shop.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">E-commerce</div>
           <h3>Boutique en ligne</h3>
           <p>Boutique complète, agent fournisseur connecté, vidéos UGC IA, tunnel de vente optimisé. Vous encaissez, on gère tout.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/ecommerce.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/logiciel.mp4" poster="/assets/icones/logiciel.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">Logiciel sur mesure</div>
           <h3>Pilotage d'entreprise</h3>
           <p>CRM, dashboard, gestion clients / stock / équipe — un outil pensé pour votre métier, pas un logiciel générique qu'on vous impose.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/logiciel-sur-mesure.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/ads.mp4" poster="/assets/icones/ads.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">Ads</div>
           <h3>Gestion de budget marketing</h3>
           <p>Meta Ads, Google Ads — ciblage, budget, créas et reporting gérés de A à Z, pour des vrais résultats mesurables.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/budget-marketing.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
+          <video class="svc-ico" data-src="/assets/icones/sourcing.mp4" poster="/assets/icones/sourcing.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <div class="pt">Sourcing</div>
           <h3>Fournisseurs en Chine</h3>
           <p>Recherche d'usines, comparatif des offres, échantillons vérifiés, visite sur place et contrôle avant expédition.</p>
@@ -1346,22 +1357,6 @@ setTimeout(hide,1200);})();</script>
       <div class="rc-img"><img src="assets/realisations/aestheticmen.webp" alt="Site Aesthetic Men, vers lequel mène la campagne" loading="lazy" decoding="async" width="900" height="562"></div>
       <div class="rc-body"><span class="rc-tag">Campagne Meta Ads</span><h3>Aesthetic Men</h3><p class="rc-big"><b>51</b> appels en 9&nbsp;jours</p><p class="rc-sub">à 2,39&nbsp;€ par appel</p><span class="rc-cta">Voir l'étude de cas →</span></div>
     </a>
-  </div>
-</div>
-</div>
-
-<!--blog-accueil--><div class="blk" id="blog"><div class="wrap section"><div class="sec-tag">Blog</div><h2 class="sec-h">Les notes <span class="italic hl-block">du labo.</span></h2><ol class="ba-liste"><li><time datetime="2026-11-01">1 novembre 2026</time><a href="/blog/site-vitrine-ou-page-instagram.html">Site vitrine ou page Instagram : de quoi a besoin un commerce ?</a><p>Page Instagram, site vitrine ou les deux : ce que chaque outil fait bien, ses limites, et comment choisir selon votre commerce de quartier et vos clients.</p></li><li><time datetime="2026-10-31">31 octobre 2026</time><a href="/blog/fiche-google-business-reglages.html">Fiche Google Business : les réglages pour être trouvé près de chez vous</a><p>Catégorie, zone, horaires, photos, avis, lien vers le site : les réglages de la fiche Google Business qui aident un commerce à sortir dans les recherches locales.</p></li><li><time datetime="2026-10-30">30 octobre 2026</time><a href="/blog/importer-de-chine-etapes-sourcing.html">Importer de Chine : les étapes d&#x27;un sourcing sans mauvaise surprise</a><p>Trouver l&#x27;usine, comparer les offres, valider l&#x27;échantillon, contrôler avant le départ : les étapes pour importer de Chine sans mauvaise surprise.</p></li></ol><a class="ba-tout" href="/blog/">Tous les articles →</a></div></div><style>#blog{position:relative;z-index:1;}.ba-liste{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid #0c2030;}.ba-liste li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 22px;padding:20px 0;border-bottom:1px solid rgba(12,32,48,.12);}.ba-liste time{font-family:var(--mono);font-size:12px;color:rgba(12,32,48,.55);padding-top:5px;}.ba-liste a{font-size:21px;font-weight:800;letter-spacing:-.02em;color:#0c2030;text-decoration:none;line-height:1.25;}.ba-liste a:hover{color:#008f8f;}.ba-liste p{grid-column:2;margin:2px 0 0;color:rgba(12,32,48,.62);font-size:15.5px;}.ba-tout{display:inline-block;margin-top:18px;font-weight:800;color:#008f8f;text-decoration:none;}@media (max-width:620px){.ba-liste li{grid-template-columns:1fr;}.ba-liste p{grid-column:1;}}</style><!--/blog-accueil-->
-<div class="secu blk" id="securite">
-<div class="wrap section">
-  <div class="rv">
-    <div class="sec-tag">Sécurité</div>
-    <h2 class="sec-h">Vos données et vos accès <span class="italic hl-block">restent les vôtres.</span></h2>
-  </div>
-  <div class="secu-grid rv">
-    <div class="secu-i"><b>Des comptes personnels</b><span>Chaque personne se connecte avec son compte et ne voit que ce qui la concerne.</span></div>
-    <div class="secu-i"><b>Des accès à votre nom</b><span>Domaine, hébergement et accès administrateur vous sont remis : le projet vous appartient.</span></div>
-    <div class="secu-i"><b>Des mots de passe protégés</b><span>Ils ne sont jamais stockés en clair, et les échanges passent par une connexion sécurisée (HTTPS).</span></div>
-    <div class="secu-i"><b>Pas de suivi caché</b><span>Ce site n'utilise ni statistiques ni cookies de suivi.</span></div>
   </div>
 </div>
 </div>
@@ -1882,5 +1877,6 @@ setTimeout(hide,1200);})();</script>
 })();
 </script>
 <script type="module" src="/assets/js/labo3d.js?v=3"></script>
+<script src="/assets/js/svc-ico.js?v=1" defer></script>
 </body>
 </html>
