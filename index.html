@@ -598,10 +598,6 @@
   #tarifs .price-card .meta{color:rgba(12,32,48,.5);border-top-color:rgba(11,127,127,.2);}
   #tarifs .price-card .learn-more{color:#0b7f7f;}
 
-  /* Icônes 3D animées (Blender) des cartes de services : vignette blanche aux coins arrondis, identique sur tous les navigateurs */
-  .svc-ico{display:block;width:148px;height:148px;margin:0 0 22px 0;border-radius:30px;background:#fff;border:1px solid rgba(11,127,127,.16);box-shadow:0 10px 26px -14px rgba(11,127,127,.45);object-fit:cover;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1);}
-  .real-track .price-card:hover .svc-ico{transform:translateY(-4px) scale(1.04);}
-  @media (max-width:700px){.svc-ico{width:116px;height:116px;margin:0 0 16px 0;border-radius:24px;}}
   #tarifs .real-progress-track{background:rgba(11,127,127,.16);}
   #tarifs .real-progress-bar{background:linear-gradient(90deg,#0b9c9c,#19d3d3);}
   #tarifs .swipe-hint{color:rgba(12,32,48,.45);}
@@ -1035,6 +1031,49 @@
   #flip-word{color:#008f8f;text-shadow:none;}
   .cl-num{color:rgba(12,32,48,.25);} .cm{color:rgba(12,32,48,.45);}
   .kw{color:#8a3fc4;} .fn{color:#2f5fd0;} .pl{color:#007f7f;} .str{color:#3f7d1f;} .val{color:#b46a00;}
+
+  /* ===== Services : cartes en verre dépoli sur dégradés, icônes 3D (Blender) qui dépassent (2026-11-01 : « fonds trop IA », plus de défilement latéral) ===== */
+  #tarifs .real-sticky{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(25,211,211,.10) 34%,rgba(90,169,255,.12) 70%,rgba(255,255,255,0) 100%);}
+  #tarifs .real-track .price-card{position:relative;isolation:isolate;border-radius:26px;padding:30px 28px 26px;
+    background:
+      radial-gradient(120% 85% at 100% 0%,var(--c1,rgba(25,211,211,.6)) 0%,transparent 62%),
+      radial-gradient(95% 75% at 0% 100%,var(--c2,rgba(90,169,255,.36)) 0%,transparent 66%),
+      linear-gradient(165deg,rgba(255,255,255,.74),rgba(255,255,255,.44));
+    -webkit-backdrop-filter:blur(18px) saturate(1.7);backdrop-filter:blur(18px) saturate(1.7);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(11,127,127,.10),0 1px 2px rgba(11,100,140,.08),0 30px 54px -32px var(--sh,rgba(11,127,127,.55));
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;}
+  #tarifs .real-track .price-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+    background:linear-gradient(118deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 40%);}
+  #tarifs .real-track .price-card:hover{background:
+      radial-gradient(120% 85% at 100% 0%,var(--c1,rgba(25,211,211,.6)) 0%,transparent 62%),
+      radial-gradient(95% 75% at 0% 100%,var(--c2,rgba(90,169,255,.36)) 0%,transparent 66%),
+      linear-gradient(165deg,rgba(255,255,255,.8),rgba(255,255,255,.5));
+    transform:translateY(-5px);border-color:#fff;}
+  #tarifs .real-track .price-card:nth-child(1){--c1:rgba(25,211,211,.62);--c2:rgba(140,200,255,.38);--sh:rgba(11,127,127,.6);}
+  #tarifs .real-track .price-card:nth-child(2){--c1:rgba(90,169,255,.62);--c2:rgba(120,230,225,.36);--sh:rgba(30,100,200,.55);}
+  #tarifs .real-track .price-card:nth-child(3){--c1:rgba(130,145,255,.58);--c2:rgba(90,200,255,.34);--sh:rgba(60,70,200,.5);}
+  #tarifs .real-track .price-card:nth-child(4){--c1:rgba(60,220,170,.6);--c2:rgba(90,169,255,.32);--sh:rgba(10,140,100,.5);}
+  #tarifs .real-track .price-card:nth-child(5){--c1:rgba(255,205,80,.62);--c2:rgba(25,211,211,.32);--sh:rgba(190,130,0,.45);}
+  #tarifs .real-track .price-card:nth-child(6){--c1:rgba(60,140,235,.6);--c2:rgba(25,211,211,.36);--sh:rgba(20,80,180,.5);}
+  .price-card picture{display:contents;}
+  .svc-ico{display:block;width:150px;height:150px;margin:-60px 0 4px -8px;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+  #tarifs .real-track .price-card:hover .svc-ico{transform:translateY(-6px) scale(1.06) rotate(-2deg);}
+  @media (min-width:900px){#tarifs .real-track{row-gap:64px !important;}#tarifs .real-track-wrap{padding-top:70px !important;}}
+  @media (max-width:899px){
+    /* téléphone : toutes les cartes visibles d'un coup, empilées (aucun défilement latéral) */
+    #tarifs .real-track-wrap{overflow:visible !important;overflow-x:visible !important;scroll-snap-type:none !important;padding:18px 0 0 !important;max-width:none !important;}
+    #tarifs .real-track{display:grid !important;grid-template-columns:1fr;gap:14px;width:auto !important;padding:0 16px !important;transform:none !important;}
+    #tarifs .real-track .price-card{width:auto !important;max-width:none !important;flex:none;scroll-snap-align:none;display:grid;grid-template-columns:92px 1fr;column-gap:10px;align-items:center;padding:12px 16px 14px 8px;border-radius:24px;}
+    .svc-ico{width:92px;height:92px;margin:0;grid-row:1 / span 2;align-self:center;}
+    #tarifs .price-card .pt{grid-column:2;margin:0 0 4px;align-self:end;}
+    #tarifs .price-card h3{grid-column:2;margin:0;align-self:start;font-size:20px;}
+    #tarifs .price-card p{grid-column:1 / -1;margin:8px 8px 10px 10px;font-size:13.5px;line-height:1.55;}
+    #tarifs .price-card .meta{grid-column:1 / -1;margin:0 8px 0 10px;}
+    #tarifs .swipe-hint,#tarifs .real-progress-track{display:none !important;}
+  }
+  @media (prefers-reduced-motion:reduce){#tarifs .real-track .price-card,.svc-ico{transition:none;}}
+  #tarifs .real-sticky > .wrap:last-child{margin-top:38px;}
 </style>
 </head>
 <body>
@@ -1172,42 +1211,42 @@ setTimeout(hide,1200);})();</script>
     <div class="real-track-wrap">
       <div class="real-track" id="tarifsTrack">
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/site.mp4" poster="/assets/icones/site.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/site-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/site-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">Site vitrine</div>
           <h3>Présence en ligne</h3>
           <p>Site pro responsive, fiche Google Business, référencement local, formulaire de contact. En 7 jours, vos clients vous trouvent.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/site-vitrine.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/resa.mp4" poster="/assets/icones/resa.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/resa-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/resa-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">Réservation</div>
           <h3>Prise de RDV en ligne</h3>
           <p>Système de réservation 24h/24, notifications automatiques, agenda synchronisé. Zéro appel manqué, zéro créneau perdu.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/reservation.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/shop.mp4" poster="/assets/icones/shop.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/shop-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/shop-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">E-commerce</div>
           <h3>Boutique en ligne</h3>
           <p>Boutique complète, agent fournisseur connecté, vidéos UGC IA, tunnel de vente optimisé. Vous encaissez, on gère tout.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/ecommerce.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/logiciel.mp4" poster="/assets/icones/logiciel.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/logiciel-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/logiciel-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">Logiciel sur mesure</div>
           <h3>Pilotage d'entreprise</h3>
           <p>CRM, dashboard, gestion clients / stock / équipe — un outil pensé pour votre métier, pas un logiciel générique qu'on vous impose.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/logiciel-sur-mesure.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/ads.mp4" poster="/assets/icones/ads.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/ads-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/ads-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">Ads</div>
           <h3>Gestion de budget marketing</h3>
           <p>Meta Ads, Google Ads — ciblage, budget, créas et reporting gérés de A à Z, pour des vrais résultats mesurables.</p>
           <div class="meta">Sur devis <a class="learn-more" href="services/budget-marketing.html">En savoir plus →</a></div>
         </div>
         <div class="price-card">
-          <video class="svc-ico" data-src="/assets/icones/sourcing.mp4" poster="/assets/icones/sourcing.webp" width="180" height="180" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/sourcing-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/sourcing-3d.webp?v=2" alt="" width="150" height="150" loading="lazy" decoding="async"></picture>
           <div class="pt">Sourcing</div>
           <h3>Fournisseurs en Chine</h3>
           <p>Recherche d'usines, comparatif des offres, échantillons vérifiés, visite sur place et contrôle avant expédition.</p>
@@ -1877,6 +1916,5 @@ setTimeout(hide,1200);})();</script>
 })();
 </script>
 <script type="module" src="/assets/js/labo3d.js?v=3"></script>
-<script src="/assets/js/svc-ico.js?v=1" defer></script>
 </body>
 </html>
