@@ -5,7 +5,8 @@
 import * as THREE from '../vendor/three.module.min.js';
 
 const stage = document.getElementById('labo3d');
-if (stage) monter(stage);
+// démarre juste après le premier affichage : la 3D ne retarde jamais le texte
+if (stage) (window.requestIdleCallback || ((f) => setTimeout(f, 200)))(() => monter(stage), { timeout: 1200 });
 
 function monter(stage) {
   let renderer;

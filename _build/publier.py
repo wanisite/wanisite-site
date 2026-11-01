@@ -16,6 +16,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.wanisitelab.com'
 WA = 'https://wa.me/33624547342?text='
 AUJOURDHUI = datetime.date.today()
+PUBLIES = []
 
 SERVICES = [
     ('/services/site-vitrine.html', 'Site vitrine'),
@@ -151,6 +152,7 @@ GABARIT = '''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="theme-color" content="#ffffff">
 <title>{titre_page}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
@@ -171,7 +173,7 @@ GABARIT = '''<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&family=Playfair+Display:ital,wght@1,700&display=swap"></noscript>
 {jsonld}
 <link rel="stylesheet" href="/assets/service-da.css?v=8">
 <style>
@@ -199,6 +201,8 @@ GABARIT = '''<!DOCTYPE html>
   .liste-blog a{{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);text-decoration:none;line-height:1.25;}}
   .liste-blog a:hover{{color:var(--teal);}}
   .liste-blog p{{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:16px;}}
+  .lies{{margin:40px 0 0;padding-top:22px;border-top:2px solid var(--ink);}} .lies h2{{font-size:20px;margin:0 0 10px;max-width:none;}}
+  .lies ul{{margin:0;padding-left:20px;}} .lies li{{margin:8px 0;}} .lies a{{color:var(--teal);font-weight:700;}}
   @media (max-width:620px){{.liste-blog li{{grid-template-columns:1fr;}} .liste-blog p{{grid-column:1;}} .corps{{font-size:17px;}}}}
 </style>
 </head>
@@ -229,7 +233,7 @@ GABARIT = '''<!DOCTYPE html>
 ORGA = {"@type": "Organization", "name": "Wanisite", "url": SITE, "logo": SITE + "/assets/img/apple-touch-icon.png"}
 
 
-def page_article(a):
+def page_article(a, articles=()):
     url = f"{SITE}/blog/{a['slug']}.html"
     service = a.get('service', '')
     lien_service, nom_service = (service.split('|', 1) + [''])[:2] if '|' in service else ('', '')
@@ -247,7 +251,7 @@ def page_article(a):
     contenu = (f'<p class="fil"><a href="/">Accueil</a> / <a href="/blog/">Blog</a></p>'
                f'<article><h1>{html.escape(a["titre"])}</h1><p class="chapeau">{html.escape(a["description"])}</p>'
                f'<p class="meta-art">Publié le <time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time> · Wanisite · {temps_lecture(a["corps"])} min de lecture</p>'
-               f'<div class="corps">{markdown(a["corps"])}</div>{encart}</article>')
+               f'<div class="corps">{markdown(a["corps"])}</div>{encart}{articles_lies(a, articles)}</article>')
     return GABARIT.format(titre_page=html.escape(a['titre'] + ' — Wanisite'), titre_og=html.escape(a['titre']), description=html.escape(a['description']),
                           url=url, og_type='article', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
                           jsonld='<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + '</script>\n' +
@@ -294,6 +298,35 @@ def sitemap(articles):
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(lignes) + '\n</urlset>\n'
 
 
+def bloc_blog_accueil(articles):
+    """Les 3 derniers articles sur l'accueil : liens internes vers le blog, contenu qui bouge à chaque publication."""
+    if not articles:
+        return '<!--blog-accueil--><!--/blog-accueil-->'
+    items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}.html">{html.escape(a["titre"])}</a>'
+                    f'<p>{html.escape(a["description"])}</p></li>' for a in articles[:3])
+    return ('<!--blog-accueil--><div class="blk" id="blog"><div class="wrap section"><div class="sec-tag">Blog</div>'
+            '<h2 class="sec-h">Les notes <span class="italic hl-block">du labo.</span></h2>'
+            f'<ol class="ba-liste">{items}</ol><a class="ba-tout" href="/blog/">Tous les articles →</a></div></div>'
+            '<style>#blog{position:relative;z-index:1;}.ba-liste{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid #0c2030;}'
+            '.ba-liste li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 22px;padding:20px 0;border-bottom:1px solid rgba(12,32,48,.12);}'
+            '.ba-liste time{font-family:var(--mono);font-size:12px;color:rgba(12,32,48,.55);padding-top:5px;}'
+            '.ba-liste a{font-size:21px;font-weight:800;letter-spacing:-.02em;color:#0c2030;text-decoration:none;line-height:1.25;}'
+            '.ba-liste a:hover{color:#008f8f;}.ba-liste p{grid-column:2;margin:2px 0 0;color:rgba(12,32,48,.62);font-size:15.5px;}'
+            '.ba-tout{display:inline-block;margin-top:18px;font-weight:800;color:#008f8f;text-decoration:none;}'
+            '@media (max-width:620px){.ba-liste li{grid-template-columns:1fr;}.ba-liste p{grid-column:1;}}</style><!--/blog-accueil-->')
+
+
+def articles_lies(a, articles):
+    """2 ou 3 autres articles : d'abord ceux qui renvoient vers le même service, puis les plus récents."""
+    autres = [x for x in articles if x['slug'] != a['slug']]
+    meme = [x for x in autres if x.get('service', '').split('|')[0].strip() == a.get('service', '').split('|')[0].strip()]
+    choix = (meme + [x for x in autres if x not in meme])[:3]
+    if not choix:
+        return ''
+    return ('<aside class="lies"><h2>À lire aussi</h2><ul>' +
+            ''.join(f'<li><a href="/blog/{x["slug"]}.html">{html.escape(x["titre"])}</a></li>' for x in choix) + '</ul></aside>')
+
+
 def referencer_pages():
     """Pied de page avec liens internes + fil d'Ariane sur les pages services et réalisations ; lien Blog sur l'accueil."""
     for u, nom in SERVICES:
@@ -310,6 +343,7 @@ def referencer_pages():
         ecrire(f, s)
     s = lire('index.html')
     s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
+    s = remplacer_bloc(s, 'blog-accueil', bloc_blog_accueil(PUBLIES), '<div class="secu blk"')
     ecrire('index.html', s)
 
 
@@ -321,9 +355,11 @@ def main():
     if len(slugs) != len(set(slugs)):
         sys.exit('deux articles ont le même slug')
     for a in publies:
-        ecrire(f"blog/{a['slug']}.html", page_article(a))
+        ecrire(f"blog/{a['slug']}.html", page_article(a, publies))
     ecrire('blog/index.html', page_liste(publies))
     ecrire('blog/rss.xml', rss(publies))
+    global PUBLIES
+    PUBLIES = publies
     referencer_pages()
     ecrire('sitemap.xml', sitemap(publies))
     print(f'{len(publies)} article(s) publié(s), {len(tous) - len(publies)} programmé(s) plus tard')
