@@ -4,7 +4,7 @@
 - [x] Fiche Google Business : les réglages pour être trouvé près de chez vous → /services/site-vitrine.html
 - [x] Site vitrine ou page Instagram : de quoi a vraiment besoin un commerce de quartier ? → /services/site-vitrine.html
 - [x] Réservation en ligne : comment réduire les rendez-vous oubliés dans un salon → /services/reservation.html
-- [ ] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing.html
+- [x] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing.html
 - [ ] Échantillon, MOQ, incoterms : le vocabulaire de l'import expliqué simplement → /services/sourcing-chine.html
 - [ ] Comment vérifier un fournisseur sur Alibaba avant de commander → /services/sourcing-chine.html
 - [ ] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce.html
