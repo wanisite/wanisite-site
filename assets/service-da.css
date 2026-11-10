@@ -1,7 +1,7 @@
   :root{
     --paper:#f7f4ee; --card:#ffffff; --ink:#15213a; --muted:#5b6578; --line:#e4ded2;
     --teal:#0a8f8f; --teal-soft:#dff3f1; --sand:#f0e6d2; --amber:#d98a1f; --ok:#2f9e6b; --alert:#c9533f;
-    --sans:'Outfit',ui-sans-serif,system-ui,sans-serif; --serif:'Playfair Display',Georgia,serif;
+    --sans:'DM Sans',ui-sans-serif,system-ui,sans-serif; --serif:'Outfit',ui-sans-serif,system-ui,sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -307,3 +307,5 @@ details{background:#ffffff;} summary{color:var(--ink);}
 .final{background:linear-gradient(160deg,#e6fafa,#f4fbfb 60%,#ffffff);border:1px solid rgba(0,143,143,.25);box-shadow:0 30px 70px -45px rgba(0,143,143,.5);}
 .final h2{color:var(--ink);} .final .btn.ghost{color:var(--ink);border-color:rgba(12,32,48,.25);}
 footer{color:var(--muted);} footer a{color:var(--ink) !important;}
+
+h1,h2,h3,h4,h5,h6{font-family:Outfit,ui-sans-serif,system-ui,sans-serif;}
