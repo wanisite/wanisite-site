@@ -7,7 +7,7 @@
 - [x] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing.html
 - [x] Échantillon, MOQ, incoterms : le vocabulaire de l'import expliqué simplement → /services/sourcing-chine.html
 - [x] Comment vérifier un fournisseur sur Alibaba avant de commander → /services/sourcing-chine.html
-- [ ] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce.html
+- [x] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce.html
 - [ ] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine.html
 - [ ] Site lent sur mobile : les causes fréquentes et comment les corriger → /services/site-vitrine.html
 - [ ] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine.html
