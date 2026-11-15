@@ -292,6 +292,45 @@
   }
 
 h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
+
+  /* ===== Catalogue : cartes produit (secteur → marque → produit), photos, « à partir de », devis WhatsApp ===== */
+  .cat-bar{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;margin:30px 0 8px;position:sticky;top:64px;z-index:5;padding:10px 0;background:linear-gradient(180deg,var(--paper) 70%,rgba(244,247,249,0));}
+  .cat-bar[hidden]{display:none;}
+  .cat-chips,.cat-seg{display:flex;flex-wrap:wrap;gap:8px;}
+  .cat-chips button,.cat-seg button{font:inherit;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;border:1.5px solid rgba(12,32,48,.2);background:#fff;color:var(--ink);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+  .cat-chips button:hover,.cat-seg button:hover{border-color:var(--ink);}
+  .cat-chips button[aria-pressed="true"],.cat-seg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .cat-seg{padding:4px;border-radius:999px;background:var(--sand);} .cat-seg button{border-color:transparent;background:transparent;} .cat-seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(12,32,48,.15);}
+  .cat-sect{margin-top:34px;}
+  .cat-sect>h3{margin:0 0 4px;font-size:clamp(24px,3.4vw,34px);font-weight:900;letter-spacing:-.03em;display:flex;align-items:baseline;gap:12px;}
+  .cat-sect>h3 .zh{font-size:.55em;} .cat-sect>h3 small{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--muted);}
+  .cat-marque{margin:20px 0 10px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;}
+  .cat-marque::after{content:"";flex:1;height:1px;background:var(--line);}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px;}
+  .cat-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(12,32,48,.05),0 16px 32px -24px rgba(12,32,48,.35);transition:transform .2s,box-shadow .2s,border-color .2s;}
+  .cat-card:hover,.cat-card:focus-visible{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 1px 2px rgba(12,32,48,.05),0 26px 40px -24px rgba(0,138,138,.5);}
+  .cat-card:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+  .cat-img{position:relative;aspect-ratio:4/3;background:var(--sand) center/cover no-repeat;display:grid;place-items:center;color:rgba(12,32,48,.28);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;}
+  .cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .cat-tag{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.94);color:var(--ink);}
+  .cat-body{padding:14px 16px 16px;display:grid;gap:6px;}
+  .cat-body h4{margin:0;font-size:18px;font-weight:800;letter-spacing:-.015em;line-height:1.25;}
+  .cat-prix{display:flex;align-items:baseline;gap:6px;color:var(--muted);font-size:14px;} .cat-prix b{font-size:24px;font-weight:900;letter-spacing:-.02em;color:var(--teal);}
+  .cat-dispo{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--ok);} .cat-dispo::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;} .cat-dispo.cmd{color:#b27a12;}
+  .cat-vide{padding:40px 0;color:var(--muted);font-size:16px;}
+  .cat-pied{margin:30px 0 0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;font-size:16px;color:var(--muted);padding-top:18px;border-top:1px solid var(--line);} .cat-pied span{font-weight:800;color:var(--ink);} .cat-pied a{font-weight:800;color:var(--teal);text-decoration:none;margin-left:auto;} .cat-pied a:hover{text-decoration:underline;}
+  .cat-idees-intro{margin-top:26px;}
+  .cat-modal{position:fixed;inset:0;z-index:80;background:rgba(12,32,48,.62);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;overflow:auto;}
+  .cat-modal[hidden]{display:none;}
+  .cat-modal-box{position:relative;width:min(880px,100%);background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);}
+  .cat-x{position:absolute;right:12px;top:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.95);font-size:16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.2);}
+  .cat-det{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);}
+  .cat-gal{background:var(--sand);display:grid;grid-template-rows:1fr auto;} .cat-gal .big{position:relative;aspect-ratio:1/1;background:var(--sand) center/cover;display:grid;place-items:center;color:rgba(12,32,48,.28);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;} .cat-gal .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .cat-thumbs{display:flex;gap:6px;padding:8px;overflow-x:auto;} .cat-thumbs button{flex:0 0 58px;height:58px;border-radius:10px;border:2px solid transparent;padding:0;background:#fff center/cover;cursor:pointer;} .cat-thumbs button[aria-current="true"]{border-color:var(--teal);}
+  .cat-info{padding:30px 28px 28px;display:flex;flex-direction:column;gap:10px;}
+  .cat-info small{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);} .cat-info h3{margin:0;font-size:28px;font-weight:900;letter-spacing:-.025em;line-height:1.15;color:var(--ink);} .cat-info p{margin:0;color:var(--muted);font-size:16px;line-height:1.6;}
+  .cat-info .cat-prix b{font-size:32px;} .cat-info .btn{margin-top:auto;justify-content:center;}
+  @media (max-width:760px){.cat-det{grid-template-columns:1fr;}.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.cat-body{padding:12px;}.cat-body h4{font-size:15px;}.cat-prix b{font-size:20px;}.cat-bar{position:static;background:none;padding:0;}.cat-info{padding:22px 20px 22px;}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine.html"}]}</script><!--/ariane--></head>
 <body>
@@ -365,8 +404,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 </header>
 <div class="strip">
   <nav aria-label="Sections de la page">
-    <a href="#principe"><b>00</b>Le principe</a>
-    <a href="#produits"><b>01</b>Produits</a>
+    <a href="#produits"><b>00</b>Catalogue</a>
+    <a href="#principe"><b>01</b>Le principe</a>
     <a href="#circuit"><b>02</b>Circuit</a>
     <a href="#envoi"><b>03</b>Envoi</a>
     <a href="#" id="ouvrirCandidature" class="postuler">Postuler ↗</a>
@@ -381,7 +420,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       <h1 class="xl">Votre usine <span class="t">en Chine.</span><span class="sceau" aria-hidden="true">采购</span></h1>
       <p class="lead">Une photo ou un lien suffit. <span>On trouve l’usine, on négocie, on vérifie avant le départ. Vous, vous vendez.</span></p>
       <div class="actions">
-        <a class="btn main big" href="#produits">Voir les idées de produits ↗</a>
+        <a class="btn main big" href="#produits">Voir le catalogue ↗</a>
         <a class="btn ghost big" href="#envoi">Estimer mon envoi →</a>
       </div>
       <ul class="points">
@@ -400,28 +439,19 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   <span>Prix usine en ¥, livré en €<i>€</i></span><span>Échantillon vérifié<i>¥</i></span><span>Un seul interlocuteur<i>€</i></span><span>Suivi sur WhatsApp<i>¥</i></span><span>Votre logo sur le produit<i>€</i></span>
 </div></div>
 
-<section id="principe">
-  <div class="wrap">
-    <p class="num"><b>00</b> Le principe <span class="zh">原则</span></p>
-    <h2 class="xl">L’usine, <span class="t">sans les surprises.</span></h2>
-    <div class="engagement">
-      <p class="eng-tete"><span>Engagement Wanisite · Sourcing Chine</span><span class="zh" lang="zh">承诺</span></p>
-      <ol>
-        <li><span class="art">Art. 1</span><p><b>Le prix est négocié en direct.</b> On discute avec les fabricants et on compare plusieurs offres : vous savez d’où vient votre produit et à quel prix.</p></li>
-        <li><span class="art">Art. 2</span><p><b>L’échantillon passe avant la commande.</b> Rien n’est commandé tant que l’échantillon n’est pas validé : matière, couleur, finitions, emballage.</p></li>
-        <li><span class="art">Art. 3</span><p><b>La marchandise est contrôlée avant de partir.</b> Quantités, défauts et emballage sont vérifiés, photos à l’appui. Vous validez, ça part.</p></li>
-      </ol>
-      <p class="eng-pied"><span>Wanisite</span><span class="sceau grand" aria-hidden="true">采购</span></p>
-    </div>
-  </div>
-</section>
-
 <section id="produits">
   <div class="wrap">
-    <p class="num"><b>01</b> Idées de produits <span class="zh">产品</span></p>
-    <h2 class="xl">Ce qu’on peut <span class="t">vous sourcer.</span></h2>
-    <p class="sec-intro">Quelques idées pour démarrer, à votre marque ou non. Les prix se font sur devis : un clic sur la ligne, et on vous répond sur WhatsApp.</p>
-    <div class="tarif">
+    <p class="num"><b>00</b> Le catalogue <span class="zh">产品</span></p>
+    <h2 class="xl">Les produits <span class="t">disponibles.</span></h2>
+    <p class="sec-intro">Choisissez un secteur, ouvrez un produit. Les prix affichés sont des « à partir de » : pour le prix exact et la quantité, une demande de devis sur WhatsApp suffit.</p>
+    <div class="cat-bar" id="catBar" hidden>
+      <div class="cat-chips" id="catSecteurs" role="group" aria-label="Secteur"></div>
+      <div class="cat-seg" id="catVente" role="group" aria-label="Type de vente"><button type="button" data-v="" aria-pressed="true">Tout</button><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
+    </div>
+    <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
+    <div id="catIdees" hidden>
+      <p class="sec-intro cat-idees-intro">Le catalogue se remplit au fil de mes visites d’usines. En attendant, voici des idées de produits à partir desquelles on peut vous sourcer. Un clic sur la ligne, et on vous répond sur WhatsApp.</p>
+      <div class="tarif">
       <div class="tarif-tete" aria-hidden="true"><span>N°</span><span>Article</span><span>Détails</span><span>Prix</span></div>
       <div class="rayon">
         <h3><span>Tech</span><span class="zh" lang="zh">科技</span></h3>
@@ -445,9 +475,30 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       </div>
       <p class="tarif-pied"><span>Votre produit n’est pas dans la liste ?</span> Une photo ou un lien suffit. <a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20une%20usine%20pour%20ce%20produit%20%3A" target="_blank" rel="noopener">Envoyer mon idée ↗</a></p>
     </div>
-    <p class="moq-note">Prix sur devis · quantité minimum selon l’usine · plus la quantité est élevée, plus le prix unitaire baisse.</p>
+    </div>
+    <p class="cat-pied"><span>Vous ne trouvez pas votre produit ?</span> Une photo ou un lien suffit. <a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20une%20usine%20pour%20ce%20produit%20%3A" target="_blank" rel="noopener">Envoyer ma demande →</a></p>
+    <p class="moq-note">Prix sur devis · quantité minimum selon le produit · plus la quantité est élevée, plus le prix unitaire baisse.</p>
   </div>
 </section>
+<div class="cat-modal" id="catModal" hidden role="dialog" aria-modal="true" aria-labelledby="catModalNom"><div class="cat-modal-box"><button type="button" class="cat-x" id="catX" aria-label="Fermer">✕</button><div id="catModalBody"></div></div></div>
+
+<section id="principe">
+  <div class="wrap">
+    <p class="num"><b>01</b> Le principe <span class="zh">原则</span></p>
+    <h2 class="xl">L’usine, <span class="t">sans les surprises.</span></h2>
+    <div class="engagement">
+      <p class="eng-tete"><span>Engagement Wanisite · Sourcing Chine</span><span class="zh" lang="zh">承诺</span></p>
+      <ol>
+        <li><span class="art">Art. 1</span><p><b>Le prix est négocié en direct.</b> On discute avec les fabricants et on compare plusieurs offres : vous savez d’où vient votre produit et à quel prix.</p></li>
+        <li><span class="art">Art. 2</span><p><b>L’échantillon passe avant la commande.</b> Rien n’est commandé tant que l’échantillon n’est pas validé : matière, couleur, finitions, emballage.</p></li>
+        <li><span class="art">Art. 3</span><p><b>La marchandise est contrôlée avant de partir.</b> Quantités, défauts et emballage sont vérifiés, photos à l’appui. Vous validez, ça part.</p></li>
+      </ol>
+      <p class="eng-pied"><span>Wanisite</span><span class="sceau grand" aria-hidden="true">采购</span></p>
+    </div>
+  </div>
+</section>
+
+
 
 <section id="circuit">
   <div class="wrap">
@@ -544,6 +595,66 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   kg.addEventListener('input', rendu);
   kg.addEventListener('change', () => { kg.value = Math.round(poids() * 2) / 2; rendu(); });
   rendu();
+})();
+</script>
+<script>
+(() => {
+  // Catalogue : lu depuis le dashboard Wanisite (base Notion « Catalogue sourcing », produits publiés uniquement, jamais de prix réel).
+  const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
+  const WA = 'https://wa.me/33624547342?text=';
+  const $ = (id) => document.getElementById(id);
+  const ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Autre'];
+  const ZH = { 'Tech': '科技', 'Mode': '时尚', 'Sport': '运动', 'Maison': '家居', 'Pros & restaurants': '餐饮' };
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const photo = (p, n) => `${API}/api/public/catalogue/photo/${encodeURIComponent(p.id)}/${n}?v=${encodeURIComponent(p.version)}`;
+  const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+  const devis = (p) => WA + encodeURIComponent(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
+  let tous = [], secteur = '', vente = '';
+
+  const carte = (p) => `<button type="button" class="cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}, ouvrir la fiche">
+    <span class="cat-img">${p.nbPhotos ? `<img loading="lazy" decoding="async" alt="${esc(p.nom)}" src="${photo(p, 0)}">` : 'Photo à venir'}${p.vente ? `<span class="cat-tag">${esc(p.vente === 'Détail et gros' ? 'Détail · gros' : p.vente)}</span>` : ''}</span>
+    <span class="cat-body"><h4>${esc(p.nom)}</h4>${p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>'}<span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}</span></span></button>`;
+
+  function rendu() {
+    const liste = tous.filter((p) => (!secteur || (p.secteur || 'Autre') === secteur) && (!vente || p.vente === vente || p.vente === 'Détail et gros'));
+    const secs = ORDRE.concat([...new Set(liste.map((p) => p.secteur || 'Autre'))].filter((s) => !ORDRE.includes(s))).filter((s) => liste.some((p) => (p.secteur || 'Autre') === s));
+    $('catList').innerHTML = !liste.length ? '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>' : secs.map((s) => {
+      const ps = liste.filter((p) => (p.secteur || 'Autre') === s);
+      const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '' ) - (b === '') || a.localeCompare(b, 'fr'));
+      return `<div class="cat-sect"><h3>${esc(s)}${ZH[s] ? `<span class="zh" lang="zh">${ZH[s]}</span>` : ''}<small>${ps.length} produit${ps.length > 1 ? 's' : ''}</small></h3>` + marques.map((m) => `${marques.length > 1 || m ? `<p class="cat-marque">${esc(m || 'Autres marques')}</p>` : ''}<div class="cat-grid">${ps.filter((p) => (p.marque || '') === m).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(carte).join('')}</div>`).join('') + '</div>';
+    }).join('');
+  }
+  function barre() {
+    const ss = ORDRE.concat([...new Set(tous.map((p) => p.secteur || 'Autre'))].filter((s) => !ORDRE.includes(s))).filter((s) => tous.some((p) => (p.secteur || 'Autre') === s));
+    $('catSecteurs').innerHTML = ['', ...ss].map((s) => `<button type="button" data-s="${esc(s)}" aria-pressed="${s === secteur}">${s ? esc(s) : 'Tout le catalogue'}</button>`).join('');
+    $('catBar').hidden = false;
+  }
+  $('catSecteurs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; secteur = b.dataset.s; barre(); rendu(); });
+  $('catVente').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; vente = b.dataset.v; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); rendu(); });
+
+  // Fiche produit (galerie de photos, prix « à partir de », bouton devis WhatsApp)
+  function ouvrir(p) {
+    const n = p.nbPhotos;
+    $('catModalBody').innerHTML = `<div class="cat-det"><div class="cat-gal"><div class="big" id="catBig">${n ? `<img alt="${esc(p.nom)}" src="${photo(p, 0)}">` : 'Photo à venir'}</div>${n > 1 ? `<div class="cat-thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-current="${i === 0}" style="background-image:url(${photo(p, i)})"></button>`).join('')}</div>` : ''}</div>
+      <div class="cat-info"><small>${esc([p.secteur, p.marque, p.reference ? 'réf. ' + p.reference : ''].filter(Boolean).join(' · '))}</small><h3 id="catModalNom">${esc(p.nom)}</h3>
+      ${p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>'}
+      <span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}${p.vente ? ' · ' + esc(p.vente === 'Détail et gros' ? 'au détail et en gros' : p.vente === 'Gros' ? 'en gros' : 'au détail') : ''}</span>
+      ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.</p>
+      <a class="btn wa big" href="${devis(p)}" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div></div>`;
+    $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((b) => b.addEventListener('click', () => { $('catBig').innerHTML = `<img alt="${esc(p.nom)}" src="${photo(p, +b.dataset.i)}">`; $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((x) => x.setAttribute('aria-current', String(x === b))); }));
+    $('catModal').hidden = false; document.body.style.overflow = 'hidden'; $('catX').focus();
+  }
+  const fermer = () => { $('catModal').hidden = true; document.body.style.overflow = ''; };
+  $('catX').addEventListener('click', fermer);
+  $('catModal').addEventListener('click', (e) => { if (e.target === $('catModal')) fermer(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('catModal').hidden) fermer(); });
+  $('catList').addEventListener('click', (e) => { const c = e.target.closest('.cat-card'); if (!c) return; const p = tous.find((x) => x.id === c.dataset.id); if (p) ouvrir(p); });
+
+  fetch(API + '/api/public/catalogue').then((r) => r.json()).then((d) => {
+    tous = Array.isArray(d.produits) ? d.produits : [];
+    if (!tous.length) throw new Error('vide');
+    barre(); rendu();
+  }).catch(() => { $('catList').innerHTML = ''; $('catIdees').hidden = false; });
 })();
 </script>
 <script>
