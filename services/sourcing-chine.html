@@ -331,6 +331,32 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-info small{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);} .cat-info h3{margin:0;font-size:28px;font-weight:900;letter-spacing:-.025em;line-height:1.15;color:var(--ink);} .cat-info p{margin:0;color:var(--muted);font-size:16px;line-height:1.6;}
   .cat-info .cat-prix b{font-size:32px;} .cat-info .btn{margin-top:auto;justify-content:center;}
   @media (max-width:760px){.cat-det{grid-template-columns:1fr;}.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.cat-body{padding:12px;}.cat-body h4{font-size:15px;}.cat-prix b{font-size:20px;}.cat-bar{position:static;background:none;padding:0;}.cat-info{padding:22px 20px 22px;}}
+
+  /* ===== Typographie Limitless Wash (2026-11-15) : Outfit léger pour les titres, DM Sans pour le texte, très peu d'ornements ===== */
+  .xl,.cat-sect>h3,.cat-info h3,.cat-body h4,.cat-sec-n,.rayon h3,section h2,section h3{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;font-weight:300;letter-spacing:-.025em;}
+  .xl{font-size:clamp(40px,6.4vw,76px);line-height:1.03;letter-spacing:-.03em;}
+  .sc-hero .xl{font-size:clamp(46px,7.4vw,88px);}
+  .xl .t,.cat-sect>h3 .t{font-family:inherit;font-style:normal;font-weight:300;font-size:1em;padding:0;box-shadow:none;background:linear-gradient(100deg,#0b8f8f 0%,#17b3d1 48%,#5a6cf2 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .sec-intro,.lead{font-weight:400;color:var(--muted);}
+  .btn{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-weight:500;border-radius:8px;}
+  .btn.main{background:#141c24;border-color:#141c24;color:#fff;box-shadow:none;} .btn.main:hover{background:#000;}
+  .btn.wa{background:#141c24;border-color:#141c24;color:#fff;box-shadow:none;} .btn.wa:hover{background:#000;}
+  .num{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;letter-spacing:.08em;}
+  #produits .zh,#produits .sceau{display:none;}
+  /* catalogue : sobre — filet fin, pas d'ombre, images pleines */
+  #produits .cat-sect>h3{font-size:clamp(28px,3.4vw,40px);} #produits .cat-sect>h3 small{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;}
+  .cat-marque{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.08em;}
+  .cat-chips button,.cat-seg button{font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;border-width:1px;}
+  .cat-card{border-radius:14px;box-shadow:none;border:1px solid rgba(12,32,48,.1);} .cat-card:hover,.cat-card:focus-visible{transform:none;border-color:#141c24;box-shadow:none;}
+  .cat-body h4{font-size:20px;font-weight:400;letter-spacing:-.02em;}
+  .cat-prix{font-size:14px;} .cat-prix b{font-family:'Outfit',sans-serif;font-size:26px;font-weight:300;letter-spacing:-.02em;color:var(--ink);}
+  .cat-dispo{font-weight:500;font-size:13px;} .cat-tag{font-family:'DM Sans',sans-serif;font-weight:500;font-size:11px;}
+  .cat-info h3{font-size:34px;} .cat-info .cat-prix b{font-size:38px;} .cat-info small{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.06em;}
+  .cat-vide-txt{max-width:640px;color:var(--muted);font-size:18px;line-height:1.6;margin:22px 0 26px;}
+  .cat-secteurs{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}
+  .cat-card.cat-sec{padding:26px 22px;gap:34px;min-height:150px;justify-content:space-between;text-decoration:none;color:var(--ink);}
+  .cat-sec-n{font-size:30px;line-height:1.1;} .cat-sec-l{font-size:14px;color:var(--muted);} .cat-card.cat-sec:hover .cat-sec-l{color:var(--ink);}
+  .cat-pied a,.cat-pied span{font-weight:500;}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine.html"}]}</script><!--/ariane--></head>
 <body>
@@ -449,32 +475,16 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       <div class="cat-seg" id="catVente" role="group" aria-label="Type de vente"><button type="button" data-v="" aria-pressed="true">Tout</button><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
     </div>
     <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
-    <div id="catIdees" hidden>
-      <p class="sec-intro cat-idees-intro">Le catalogue se remplit au fil de mes visites d’usines. En attendant, voici des idées de produits à partir desquelles on peut vous sourcer. Un clic sur la ligne, et on vous répond sur WhatsApp.</p>
-      <div class="tarif">
-      <div class="tarif-tete" aria-hidden="true"><span>N°</span><span>Article</span><span>Détails</span><span>Prix</span></div>
-      <div class="rayon">
-        <h3><span>Tech</span><span class="zh" lang="zh">科技</span></h3>
-        <ol><li><span class="no">01</span><b>Coque de téléphone</b><span class="det">Imprimée à votre logo ou à vos motifs.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Coque%20de%20t%C3%A9l%C3%A9phone" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">02</span><b>Support téléphone voiture</b><span class="det">Magnétique, à grille d’aération ou à ventouse.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Support%20t%C3%A9l%C3%A9phone%20voiture" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">03</span><b>Écouteurs sans fil</b><span class="det">Boîtier personnalisable, plusieurs coloris.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20%C3%89couteurs%20sans%20fil" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">04</span><b>Lampe LED de bureau</b><span class="det">Avec ou sans chargeur sans fil intégré.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Lampe%20LED%20de%20bureau" target="_blank" rel="noopener">Devis ↗</a></li></ol>
+    <div id="catVide" hidden>
+      <p class="cat-vide-txt">Le catalogue ouvre bientôt, avec les photos de mes visites d’usines. En attendant, choisissez un secteur : on vous répond sur WhatsApp.</p>
+      <div class="cat-grid cat-secteurs">
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Tech" target="_blank" rel="noopener"><span class="cat-sec-n">Tech</span><span class="cat-sec-l">Demander des produits →</span></a>
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Mode" target="_blank" rel="noopener"><span class="cat-sec-n">Mode</span><span class="cat-sec-l">Demander des produits →</span></a>
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Sport" target="_blank" rel="noopener"><span class="cat-sec-n">Sport</span><span class="cat-sec-l">Demander des produits →</span></a>
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Maison" target="_blank" rel="noopener"><span class="cat-sec-n">Maison</span><span class="cat-sec-l">Demander des produits →</span></a>
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Pros%20%26%20restaurants" target="_blank" rel="noopener"><span class="cat-sec-n">Pros &amp; restaurants</span><span class="cat-sec-l">Demander des produits →</span></a>
+        <a class="cat-card cat-sec" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20des%20produits%20dans%20le%20secteur%20%3A%20Beaut%C3%A9" target="_blank" rel="noopener"><span class="cat-sec-n">Beauté</span><span class="cat-sec-l">Demander des produits →</span></a>
       </div>
-      <div class="rayon">
-        <h3><span>Mode</span><span class="zh" lang="zh">时尚</span></h3>
-        <ol><li><span class="no">05</span><b>Casquette brodée</b><span class="det">Votre logo brodé, coloris au choix.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Casquette%20brod%C3%A9e" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">06</span><b>Tote bag imprimé</b><span class="det">Coton épais, impression ou broderie.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Tote%20bag%20imprim%C3%A9" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">07</span><b>Bijoux en acier inoxydable</b><span class="det">Ne noircit pas, se vend toute l’année.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Bijoux%20en%20acier%20inoxydable" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">08</span><b>Chaussettes à motifs</b><span class="det">Motif et étiquette à votre image.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Chaussettes%20%C3%A0%20motifs" target="_blank" rel="noopener">Devis ↗</a></li></ol>
-      </div>
-      <div class="rayon">
-        <h3><span>Sport</span><span class="zh" lang="zh">运动</span></h3>
-        <ol><li><span class="no">09</span><b>Gourde isotherme</b><span class="det">Inox double paroi, logo gravé.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Gourde%20isotherme" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">10</span><b>Tapis de yoga</b><span class="det">Épaisseurs et couleurs au choix.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Tapis%20de%20yoga" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">11</span><b>Bandes élastiques</b><span class="det">Plusieurs résistances, sac de rangement.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Bandes%20%C3%A9lastiques" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">12</span><b>Serviette microfibre</b><span class="det">Séchage rapide, logo brodé.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Serviette%20microfibre" target="_blank" rel="noopener">Devis ↗</a></li></ol>
-      </div>
-      <div class="rayon">
-        <h3><span>Maison</span><span class="zh" lang="zh">家居</span></h3>
-        <ol><li><span class="no">13</span><b>Bougie parfumée</b><span class="det">Pot, couvercle et étiquette personnalisés.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Bougie%20parfum%C3%A9e" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">14</span><b>Diffuseur d’huiles</b><span class="det">Brume et lumière douce.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Diffuseur%20d%E2%80%99huiles" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">15</span><b>Mug en céramique</b><span class="det">Impression ou gravure de votre logo.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Mug%20en%20c%C3%A9ramique" target="_blank" rel="noopener">Devis ↗</a></li></ol>
-      </div>
-      <div class="rayon">
-        <h3><span>Pros &amp; restaurants</span><span class="zh" lang="zh">餐饮</span></h3>
-        <ol><li><span class="no">16</span><b>Tablier brodé</b><span class="det">Pour restaurants, cafés et salons.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Tablier%20brod%C3%A9" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">17</span><b>Gobelets imprimés</b><span class="det">Gobelets en carton à votre logo.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Gobelets%20imprim%C3%A9s" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">18</span><b>Boîtes repas kraft</b><span class="det">Pour la vente à emporter.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Bo%C3%AEtes%20repas%20kraft" target="_blank" rel="noopener">Devis ↗</a></li><li><span class="no">19</span><b>Cape de coupe personnalisée</b><span class="det">Pour salons de coiffure et barbiers.</span><a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20%3A%20Cape%20de%20coupe%20personnalis%C3%A9e" target="_blank" rel="noopener">Devis ↗</a></li></ol>
-      </div>
-      <p class="tarif-pied"><span>Votre produit n’est pas dans la liste ?</span> Une photo ou un lien suffit. <a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20une%20usine%20pour%20ce%20produit%20%3A" target="_blank" rel="noopener">Envoyer mon idée ↗</a></p>
-    </div>
     </div>
     <p class="cat-pied"><span>Vous ne trouvez pas votre produit ?</span> Une photo ou un lien suffit. <a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20une%20usine%20pour%20ce%20produit%20%3A" target="_blank" rel="noopener">Envoyer ma demande →</a></p>
     <p class="moq-note">Prix sur devis · quantité minimum selon le produit · plus la quantité est élevée, plus le prix unitaire baisse.</p>
@@ -654,7 +664,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     tous = Array.isArray(d.produits) ? d.produits : [];
     if (!tous.length) throw new Error('vide');
     barre(); rendu();
-  }).catch(() => { $('catList').innerHTML = ''; $('catIdees').hidden = false; });
+  }).catch(() => { $('catList').innerHTML = ''; $('catVide').hidden = false; });
 })();
 </script>
 <script>
