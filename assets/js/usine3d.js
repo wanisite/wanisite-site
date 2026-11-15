@@ -10,6 +10,8 @@ document.querySelectorAll('[data-scene3d]').forEach(monter);
 function monter(stage) {
   const toujoursEnLigne = stage.dataset.disposition === 'ligne';
   const avecEtiquettes = stage.dataset.etiquettes !== 'non';
+  const deux = stage.dataset.stations === '2';      // hero : seulement l'usine (Chine) et la boutique (France)
+  const logoSrc = stage.dataset.logo || '';          // image du logo qui flotte entre les deux
   const dansEcranEntree = !!stage.closest('.gate');
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); }
@@ -186,7 +188,7 @@ function monter(stage) {
   portique.rotation.y = Math.PI / 4;
   controle.add(portique);
   controle.add(arbre(1.5, -1.5, 0.9));
-  monde.add(controle);
+  if (!deux) monde.add(controle);
 
   /* ---------- 3. l'envoi : quai, grue, cargo ---------- */
   const envoi = new THREE.Group();
@@ -216,7 +218,7 @@ function monter(stage) {
   grue.add(fleche);
   grue.position.set(-0.9, 0, -1.2);
   envoi.add(grue);
-  monde.add(envoi);
+  if (!deux) monde.add(envoi);
 
   /* ---------- 4. chez vous : boutique livrée ---------- */
   const maison = new THREE.Group();
@@ -290,7 +292,13 @@ function monter(stage) {
   sol.rotation.x = -Math.PI / 2; sol.position.y = -0.7; sol.receiveShadow = true;
   monde.add(sol);
 
-  const stations = [usine, controle, envoi, maison];
+  const stations = deux ? [usine, maison] : [usine, controle, envoi, maison];
+  let logo = null;
+  if (logoSrc) {
+    const tex = new THREE.TextureLoader().load(logoSrc); tex.colorSpace = THREE.SRGBColorSpace;
+    logo = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    logo.scale.set(4.8, 3.12, 1); monde.add(logo);
+  }
 
   /* ---------- route, colis qui voyagent, avion, nuages ---------- */
   const routeMat = mat(C.turquoise, { roughness: 0.5 });
@@ -339,7 +347,7 @@ function monter(stage) {
 
   /* ---------- étiquettes HTML ancrées sur les stations ---------- */
   const textes = [['01', 'L’usine', 'Prix négocié', '工厂'], ['02', 'Le contrôle', 'Échantillon vérifié', '质检'], ['03', 'L’envoi', 'Vers la France', '物流'], ['04', 'Chez vous', 'Livré', '送达']];
-  const etiquettes = !avecEtiquettes ? [] : textes.map(([n, t, s, zh]) => {
+  const etiquettes = !avecEtiquettes ? [] : (deux ? [textes[0], ['02', ...textes[3].slice(1)]] : textes).map(([n, t, s, zh]) => {
     const e = document.createElement('div');
     e.className = 'etq3d';
     e.innerHTML = `<b>${n}</b><span>${t}</span><em lang="zh">${zh}</em><small>${s}</small>`;
@@ -352,21 +360,24 @@ function monter(stage) {
   // En vue isométrique, l'axe (1,0,-1) est horizontal à l'écran et l'axe (1,0,1) vertical.
   function placer() {
     const vertical = !toujoursEnLigne && stage.clientWidth / stage.clientHeight < 0.95;
-    const pas = vertical ? 5.3 : 4.9;
+    const pas = (vertical ? 5.3 : 4.9) * (deux ? 1.45 : 1);
     const dir = vertical ? new THREE.Vector3(1, 0, 1).normalize() : new THREE.Vector3(1, 0, -1).normalize();
     stations.forEach((s, i) => {
-      const p = dir.clone().multiplyScalar((i - 1.5) * pas * Math.SQRT2);
+      const p = dir.clone().multiplyScalar((i - (stations.length - 1) / 2) * pas * Math.SQRT2);
       s.position.set(p.x, 0, p.z);
       s.rotation.y = vertical ? -Math.PI / 2 : 0;
     });
     if (route) { monde.remove(route); route.geometry.dispose(); }
     // points de passage dans chaque station (repère local) : sortie du tapis, portique, quai, porte de la boutique
-    const ancres = [[2.5, 0.06, 0.4], [0.9, 0.06, 0.9], [-0.6, 0.06, 1.6], [0.4, 0.06, 1.3]];
+    const ancresTous = [[2.5, 0.06, 0.4], [0.9, 0.06, 0.9], [-0.6, 0.06, 1.6], [0.4, 0.06, 1.3]];
+    const ancres = deux ? [ancresTous[0], ancresTous[3]] : ancresTous;
+    if (logo) { const m = new THREE.Vector3(); stations.forEach((s) => m.add(s.position)); m.multiplyScalar(1 / stations.length); logo.userData.base = new THREE.Vector3(m.x, 5.4, m.z); logo.position.copy(logo.userData.base); }
     const pts = stations.map((s, i) => { s.updateMatrixWorld(true); return s.localToWorld(new THREE.Vector3(...ancres[i])); });
     courbe = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.25);
     // position du portique sur le trajet, pour allumer le scanner au bon moment
     let mieux = 1e9;
-    for (let k = 0; k <= 400; k++) { const d = courbe.getPointAt(k / 400, tmp).distanceTo(pts[1]); if (d < mieux) { mieux = d; pPortique = k / 400; } }
+    if (!deux) for (let k = 0; k <= 400; k++) { const d = courbe.getPointAt(k / 400, tmp).distanceTo(pts[1]); if (d < mieux) { mieux = d; pPortique = k / 400; } }
+    else pPortique = -1;
     route = new THREE.Mesh(new THREE.TubeGeometry(courbe, 200, 0.07, 6, false), routeMat);
     route.receiveShadow = true;
     monde.add(route);
@@ -386,6 +397,7 @@ function monter(stage) {
       boite.setFromObject(st, true);
       for (const x of [boite.min.x, boite.max.x]) for (const y of [boite.min.y, boite.max.y + 1.6]) for (const z of [boite.min.z, boite.max.z]) coins.push(new THREE.Vector3(x, y, z).applyMatrix4(camera.matrixWorldInverse));
     }
+    if (logo && logo.userData.base) { const b = logo.userData.base; for (const dx of [-2.4, 2.4]) for (const dy of [-1.6, 1.6]) for (const dz of [-2.4, 2.4]) coins.push(new THREE.Vector3(b.x + dx, b.y + dy, b.z + dz).applyMatrix4(camera.matrixWorldInverse)); }
     const xs = coins.map(c => c.x), ys = coins.map(c => c.y);
     const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
     let w = (Math.max(...xs) - Math.min(...xs)) * 1.1, hh = (Math.max(...ys) - Math.min(...ys)) * 1.1;
@@ -476,17 +488,18 @@ function monter(stage) {
     anneau.material.opacity = 0.9 * (1 - a);
     // avion en boucle au-dessus du trajet
     const ang = t * 0.35;
-    const centre = stations[2].position;
+    const centre = deux ? stations[0].position.clone().lerp(stations[1].position, 0.5) : stations[2].position;
     avion.position.set(centre.x + Math.cos(ang) * 6.5, 6.4 + Math.sin(t * 0.9) * 0.25, centre.z + Math.sin(ang) * 4.2);
     avion.rotation.set(0, -ang - Math.PI / 2, Math.sin(ang) * 0.12 - 0.15);
     // nuages qui dérivent
-    const centre0 = stations[0].position, centre3 = stations[3].position;
+    const centre0 = stations[0].position, centre3 = stations[stations.length - 1].position;
     for (const n of nuages) {
       const p = (t * 0.018 + n.userData.decal) % 1;
       n.position.lerpVectors(centre0, centre3, p * 1.4 - 0.2);
       n.position.y = n.userData.h;
       n.position.x += n.userData.decal * 3 - 1.5; n.position.z -= n.userData.decal * 2 - 1;
     }
+    if (logo && logo.userData.base) logo.position.y = logo.userData.base.y + Math.sin(t * 1.4) * 0.2;   // le logo flotte
     // suivi du pointeur
     rot += (cibleRot - rot) * 0.06;
     monde.rotation.y = rot;
@@ -496,7 +509,7 @@ function monter(stage) {
     if (!etiquettes.length) return;
     const l = stage.clientWidth, h = stage.clientHeight;
     stations.forEach((s, i) => {
-      v.set(...ancresEtq[i]);
+      v.set(...ancresEtq[deux ? [0, 3][i] : i]);
       s.localToWorld(v);
       v.project(camera);
       etiquettes[i].style.transform = `translate(${(v.x * 0.5 + 0.5) * l}px, ${(-v.y * 0.5 + 0.5) * h}px) translate(-50%, -100%)`;
