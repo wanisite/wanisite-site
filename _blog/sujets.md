@@ -8,7 +8,7 @@
 - [x] Échantillon, MOQ, incoterms : le vocabulaire de l'import expliqué simplement → /services/sourcing-chine.html
 - [x] Comment vérifier un fournisseur sur Alibaba avant de commander → /services/sourcing-chine.html
 - [x] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce.html
-- [ ] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine.html
+- [x] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine.html
 - [ ] Site lent sur mobile : les causes fréquentes et comment les corriger → /services/site-vitrine.html
 - [ ] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine.html
 - [ ] Catalogue en ligne avec demande de devis : quand c'est mieux qu'une boutique (exemple Equip'Food) → /services/ecommerce.html
