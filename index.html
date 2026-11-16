@@ -1482,6 +1482,27 @@ setTimeout(hide,1200);})();</script>
   .stat .n{font-weight:300;letter-spacing:-.03em;}
   .hero-prompt,.sec-tag,.stat .l,.price-card .pt,.price-card .meta,.status,.nav-mark{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-weight:500;letter-spacing:.08em;}
   .hcw-file,.hcw-body,.hcw-tag{font-family:'JetBrains Mono',ui-monospace,monospace;}
+
+  /* ===== Services : refonte sobre (2026-11-16) — cartes blanches, filet fin, une seule teinte, icônes dans des pastilles identiques (plus de halos de couleur ni de reflets) ===== */
+  #tarifs .real-sticky{background:none !important;}
+  #tarifs .real-track .price-card,#tarifs .real-track .price-card:hover,
+  #tarifs .real-track .price-card:nth-child(n){background:#fff !important;border:1px solid rgba(12,32,48,.10);border-radius:18px;box-shadow:none !important;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none;padding:26px 26px 22px;}
+  #tarifs .real-track .price-card::before{display:none;}
+  #tarifs .real-track .price-card:hover{border-color:#141c24;}
+  #tarifs .real-track .price-card:hover .svc-ico{transform:none;}
+  .svc-ico{width:96px;height:96px;margin:0 0 18px;padding:3px;border-radius:22px;object-fit:contain;background:linear-gradient(160deg,#e8f6f6 0%,#e4effb 100%);}
+  @media (min-width:900px){#tarifs .real-track{row-gap:22px !important;}#tarifs .real-track-wrap{padding-top:18px !important;}}
+  #tarifs .price-card .pt{font-weight:500;color:#0b8f8f;}
+  #tarifs .price-card h3{font-size:26px;margin:0 0 10px;}
+  #tarifs .price-card p{color:rgba(12,32,48,.7);}
+  #tarifs .price-card .meta{border-top:1px solid rgba(12,32,48,.1);}
+  @media (max-width:899px){
+    #tarifs .real-track .price-card{grid-template-columns:76px 1fr;column-gap:14px;padding:16px;border-radius:16px;}
+    .svc-ico{width:80px;height:80px;margin:0;padding:3px;border-radius:18px;}
+    #tarifs .price-card h3{font-size:22px;}
+    #tarifs .price-card p{margin:10px 0 8px;}
+    #tarifs .price-card .meta{margin:0;}
+  }
 </style><!--/pied-liens--></footer>
 </div>
 
