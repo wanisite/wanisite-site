@@ -364,6 +364,17 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-marques>div{display:flex;flex-wrap:wrap;gap:6px 22px;}
   .cat-marques a{font-size:17px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(12,32,48,.2);padding:2px 0;}
   .cat-marques a:hover{border-color:var(--ink);} .cat-marques small{margin-left:6px;font-size:12px;color:var(--muted);}
+  /* filtres du catalogue : menu texte pour les types, interrupteur détail / gros (pas de pastilles) */
+  .cat-bar{background:var(--paper) !important;border-bottom:1px solid rgba(12,32,48,.12);padding:6px 0 0 !important;align-items:flex-end;}
+  .cat-types{display:flex;flex-wrap:wrap;gap:0 26px;}
+  .cat-types button{font:500 16px 'DM Sans',sans-serif;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:10px 0 12px;margin-bottom:-1px;cursor:pointer;}
+  .cat-types button:hover{color:var(--ink);}
+  .cat-types button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink);}
+  .cat-vente{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin-bottom:10px;}
+  .cat-vente button{font:600 15px 'DM Sans',sans-serif;padding:12px 26px;border:0;background:#fff;color:var(--ink);cursor:pointer;}
+  .cat-vente button+button{border-left:1.5px solid var(--ink);}
+  .cat-vente button[aria-pressed="true"]{background:var(--ink);color:#fff;}
+  @media (max-width:640px){.cat-bar{flex-direction:column-reverse;align-items:stretch;} .cat-types{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;} .cat-types button{white-space:nowrap;} .cat-vente button{padding:12px 10px;}}
   .hero-fallback{display:none;} .hero-vis .scene3d.sans3d + .hero-fallback{display:block;}
   @media (max-width:900px){.hero-vis .scene3d{height:clamp(240px,62vw,380px);}}
 
@@ -416,8 +427,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <p class="sec-intro">Choisissez un secteur, ouvrez un produit. Les prix affichés sont des « à partir de » : pour le prix exact et la quantité, une demande de devis sur WhatsApp suffit.</p>
     <nav class="cat-fil" id="catFil" aria-label="Fil d’Ariane du catalogue" hidden></nav>
     <div class="cat-bar" id="catBar" hidden>
-      <div class="cat-chips" id="catSecteurs" role="group" aria-label="Type de produit"></div>
-      <div class="cat-seg" id="catVente" role="group" aria-label="Type de vente"><button type="button" data-v="" aria-pressed="true">Tout</button><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
+      <nav class="cat-types" id="catSecteurs" aria-label="Type de produit"></nav>
+      <div class="cat-vente" id="catVente" role="group" aria-label="Vente au détail ou en gros"><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
     </div>
     <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
     <div class="cat-pied" id="catPiedBase"><div><b>Vous ne trouvez pas votre produit ?</b><span>Une photo suffit : on cherche l’usine pour vous.</span></div><a class="btn main big" href="#demande">Envoyer ma demande <span aria-hidden="true">→</span></a></div>
@@ -431,10 +442,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <p class="num"><b>01</b> Comment ça marche</p>
     <h2 class="xl">De l’usine <span class="t">à votre porte.</span></h2>
     <ol class="etapes" id="etapes">
-      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-usine-v1-fixe.webp"><img src="/assets/sourcing/etape-usine-v1.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">1</span><h3>On trouve l’usine</h3><p>Prix négociés en direct.</p></li>
-      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-colis-v1-fixe.webp"><img src="/assets/sourcing/etape-colis-v1.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">2</span><h3>On valide l’échantillon</h3><p>Rien n’est commandé avant.</p></li>
-      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-taches-v1-fixe.webp"><img src="/assets/sourcing/etape-taches-v1.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">3</span><h3>On contrôle avant le départ</h3><p>Quantités, défauts, emballage : photos à l’appui.</p></li>
-      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-livraison-v1-fixe.webp"><img src="/assets/sourcing/etape-livraison-v1.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">4</span><h3>Livré chez vous</h3><p>Suivi sur WhatsApp, du devis à la porte.</p></li>
+      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-usine-v2-fixe.webp"><img src="/assets/sourcing/etape-usine-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">1</span><h3>On trouve l’usine</h3><p>Prix négociés en direct.</p></li>
+      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-colis-v2-fixe.webp"><img src="/assets/sourcing/etape-colis-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">2</span><h3>On valide l’échantillon</h3><p>Rien n’est commandé avant.</p></li>
+      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-taches-v2-fixe.webp"><img src="/assets/sourcing/etape-taches-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">3</span><h3>On contrôle avant le départ</h3><p>Quantités, défauts, emballage : photos à l’appui.</p></li>
+      <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-livraison-v2-fixe.webp"><img src="/assets/sourcing/etape-livraison-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">4</span><h3>Livré chez vous</h3><p>Suivi sur WhatsApp, du devis à la porte.</p></li>
     </ol>
   </div>
 </section>
@@ -546,7 +557,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const enc = encodeURIComponent;
   const wa = (t) => WA + enc(t);
   const photo = (p, n) => `${API}/api/public/catalogue/photo/${enc(p.id)}/${n}?v=${enc(p.version)}`;
-  const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v1${fixe ? '-fixe' : ''}.webp">` : `<span class="ini" aria-hidden="true">${esc(String(s || '?').charAt(0))}</span>`;
+  const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v2${fixe ? '-fixe' : ''}.webp">` : `<span class="ini" aria-hidden="true">${esc(String(s || '?').charAt(0))}</span>`;
   const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
   const devis = (p) => wa(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
   let tous = [], type = '', vente = '';
@@ -591,7 +602,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     fil([]); $('catBar').hidden = true;
     $('catList').innerHTML = `<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
-      return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les marques');
+      return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les produits');
     }).join('')}</div>`;
   }
 
@@ -608,7 +619,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     // D'abord les produits du secteur (filtre par type), ensuite les marques.
     const types = [...new Set(ps.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
     if (type && !types.includes(type)) type = '';
-    $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout'}</button>`).join('') : '';
+    $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout voir'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !ps.some((p) => p.vente && p.vente !== 'Détail et gros');
     const liste = ps.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros'))
       .sort((a, b) => rang(ORDRE_MARQUES, a.marque || '') - rang(ORDRE_MARQUES, b.marque || '') || rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
@@ -624,7 +635,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const base = tous.filter((p) => sect(p) === s && (p.marque || '') === m);
     const types = [...new Set(base.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
     if (type && !types.includes(type)) type = '';
-    $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout'}</button>`).join('') : '';
+    $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout voir'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !base.some((p) => p.vente && p.vente !== 'Détail et gros');
     const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros')).sort((a, b) => rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
     $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
@@ -635,7 +646,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   function afficher(defiler) {
     const r = route() || { s: '', m: null };
     const cle = JSON.stringify(r);
-    if (cle !== dernier) { type = ''; vente = ''; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(!x.dataset.v))); }
+    if (cle !== dernier) { type = ''; vente = ''; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', 'false')); }
     dernier = cle;
     $('catPiedBase').hidden = !!r.s;
     if (!r.s) accueil(); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
@@ -643,7 +654,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   }
   window.addEventListener('hashchange', () => afficher(true));
   $('catSecteurs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; type = b.dataset.t; afficher(false); });
-  $('catVente').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; vente = b.dataset.v; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); afficher(false); });
+  $('catVente').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; vente = vente === b.dataset.v ? '' : b.dataset.v; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === vente))); afficher(false); });
 
   // ---- fiche produit (galerie, prix « à partir de », devis WhatsApp) ----
   function ouvrir(p) {
