@@ -308,7 +308,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .strip a{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;letter-spacing:0;text-transform:none;font-weight:500;padding:8px 14px;}
   .strip a.postuler{background:#141c24;border-color:#141c24;color:#fff;}
   .sc-hero2{padding:44px 0 30px;} .sc-hero2::before,.sc-hero2::after{display:none !important;}
-  .sc-hero2 .wrap{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:30px;align-items:center;}
+  .sc-hero2 .wrap{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:24px;align-items:center;}
   .sc-hero2 h1{font-size:clamp(44px,6vw,84px);} .sc-hero2 h1 .t{white-space:normal;}
   .sc-hero2 .lead{font-size:clamp(18px,1.9vw,21px);color:var(--muted);max-width:30ch;margin-top:22px;}
   .hero-vis img{display:block;width:100%;height:auto;}
@@ -350,7 +350,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   .hero-vis .scene3d{width:100%;margin:0;height:clamp(320px,36vw,500px);border-radius:0;}
   @media (max-width:640px){.hero-vis .etq3d{display:none;}}
-  .hero-fallback{display:none;} .hero-vis .scene3d.sans3d + .hero-fallback{display:block;}
+  .hero-blender{display:block;} .hero-blender img{display:block;width:100%;height:auto;}
+  @media (min-width:901px){.hero-blender img{width:112%;max-width:none;margin:0 -4% 0 -8%;}}
   @media (max-width:900px){.hero-vis .scene3d{height:clamp(240px,62vw,380px);}}
 
   /* espacement resserré entre les sections + note de prix en texte normal (2026-11-15 : « trop de padding ») */
@@ -391,7 +392,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
         <a class="btn ghost big" href="#demande">Envoyer ma demande</a>
       </div>
     </div>
-    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" data-logo="/assets/img/wanisite-logo-3d.webp" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France, et le logo Wanisite au milieu" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
+    <div class="hero-vis"><picture class="hero-blender"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </section>
 
@@ -523,11 +524,11 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
   const WA = 'https://wa.me/33624547342?text=';
   const $ = (id) => document.getElementById(id);
-  let ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Autre'];
-  let ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute' };
+  let ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Auto & moto', 'Autre'];
+  let ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
-  let RAYONS = { 'Mode': ['T-shirts & polos', 'Ensembles & survêtements', 'Doudounes', 'Vestes & coupe-vent', 'Baskets & running', 'Casquettes', 'Bonnets', 'Gants', 'Sacs & bagages', 'Bijoux', 'Lunettes', 'Montres'], 'Sport': ['Running', 'Maillots de foot', 'Casques'], 'Tech': ['Électronique', 'Coques & accessoires'], 'Maison': ['Canapés', 'Déco & luminaires'], 'Beauté': ['Soins', 'Maquillage'], 'Parfums': ['Parfums'], 'Jouets': ['Briques de construction'], 'Pros & restaurants': ['Vaisselle', 'Équipement'] };
-  let DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail' };
+  let RAYONS = { 'Mode': ['T-shirts & polos', 'Ensembles & survêtements', 'Doudounes', 'Vestes & coupe-vent', 'Baskets & running', 'Casquettes', 'Bonnets', 'Gants', 'Sacs & bagages', 'Bijoux', 'Lunettes', 'Montres'], 'Sport': ['Running', 'Maillots de foot', 'Casques'], 'Tech': ['Électronique', 'Coques & accessoires'], 'Maison': ['Canapés', 'Déco & luminaires'], 'Beauté': ['Soins', 'Maquillage'], 'Parfums': ['Parfums'], 'Jouets': ['Briques de construction'], 'Auto & moto': ['Pièces auto', 'Accessoires auto', 'Équipement moto'], 'Pros & restaurants': ['Vaisselle', 'Équipement'] };
+  let DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail', 'Auto & moto': 'Pièces, accessoires auto, équipement moto' };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const enc = encodeURIComponent;
   const wa = (t) => WA + enc(t);
@@ -686,6 +687,5 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   });
 })();
 </script>
-<script type="module" src="/assets/js/usine3d.js?v=8"></script>
 </body>
 </html>
