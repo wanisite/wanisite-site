@@ -381,6 +381,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .etapes h3{margin:8px 0 0;font-size:22px;line-height:1.2;} .etapes p{margin:0;color:var(--muted);font-size:16px;max-width:22ch;}
   @media (prefers-reduced-motion:reduce){.etapes li,.etapes::before{transition:none;opacity:1;transform:none;}}
   /* cartes de catalogue : photo (icône 3D en attendant les vraies photos) + bouton d'action bien visible */
+  .cat-img .ini{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(44px,8vw,72px);line-height:1;color:rgba(12,32,48,.16);text-transform:none;letter-spacing:0;}
   .cat-img img.ph{position:absolute;left:50%;top:50%;right:auto;bottom:auto;width:66%;height:66%;transform:translate(-50%,-50%);object-fit:contain;}
   .cat-img{background:linear-gradient(160deg,#eaf3f5,#dfe9f2);}
   .cat-card.cat-sec{padding:0;gap:0;min-height:0;} .cat-sec .cat-body{padding:16px 18px 18px;gap:8px;} .cat-sec .cat-body h4{font-size:24px;}
@@ -637,19 +638,37 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
   const WA = 'https://wa.me/33624547342?text=';
   const $ = (id) => document.getElementById(id);
-  const ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Autre'];
-  const ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute' };
+  let ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Autre'];
+  let ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
-  const RAYONS = { 'Mode': ['T-shirts & polos', 'Ensembles & survêtements', 'Doudounes', 'Vestes & coupe-vent', 'Baskets & running', 'Casquettes', 'Bonnets', 'Gants', 'Sacs & bagages', 'Bijoux', 'Lunettes', 'Montres'], 'Sport': ['Running', 'Maillots de foot', 'Casques'], 'Tech': ['Électronique', 'Coques & accessoires'], 'Maison': ['Canapés', 'Déco & luminaires'], 'Beauté': ['Soins', 'Maquillage'], 'Parfums': ['Parfums'], 'Jouets': ['Briques de construction'], 'Pros & restaurants': ['Vaisselle', 'Équipement'] };
-  const DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail' };
+  let RAYONS = { 'Mode': ['T-shirts & polos', 'Ensembles & survêtements', 'Doudounes', 'Vestes & coupe-vent', 'Baskets & running', 'Casquettes', 'Bonnets', 'Gants', 'Sacs & bagages', 'Bijoux', 'Lunettes', 'Montres'], 'Sport': ['Running', 'Maillots de foot', 'Casques'], 'Tech': ['Électronique', 'Coques & accessoires'], 'Maison': ['Canapés', 'Déco & luminaires'], 'Beauté': ['Soins', 'Maquillage'], 'Parfums': ['Parfums'], 'Jouets': ['Briques de construction'], 'Pros & restaurants': ['Vaisselle', 'Équipement'] };
+  let DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail' };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const enc = encodeURIComponent;
   const wa = (t) => WA + enc(t);
   const photo = (p, n) => `${API}/api/public/catalogue/photo/${enc(p.id)}/${n}?v=${enc(p.version)}`;
-  const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v1${fixe ? '-fixe' : ''}.webp">` : '';
+  const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v1${fixe ? '-fixe' : ''}.webp">` : `<span class="ini" aria-hidden="true">${esc(String(s || '?').charAt(0))}</span>`;
   const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
   const devis = (p) => wa(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
   let tous = [], type = '', vente = '';
+  // Ordre et rangement choisis dans le dashboard (Catalogue → Secteurs, types et marques).
+  let ORDRE_TYPES = [], ORDRE_MARQUES = [], depuisDash = false;
+  const rang = (liste, v) => { const i = liste.indexOf(v); return i < 0 ? 1e4 : i; };
+  function appliquerCategories(c) {
+    if (!c || !Array.isArray(c.secteurs) || !c.secteurs.length) return;
+    depuisDash = true;
+    ORDRE = c.secteurs.map((x) => x.nom);
+    ICO = {}; DESC = {};
+    c.secteurs.forEach((x) => { if (x.illustration) ICO[x.nom] = x.illustration; if (x.description) DESC[x.nom] = x.description; });
+    const rayons = {};
+    (c.types || []).forEach((t) => { if (t.secteur) (rayons[t.secteur] = rayons[t.secteur] || []).push(t.nom); });
+    RAYONS = Object.assign({}, RAYONS, rayons);
+    Object.keys(RAYONS).forEach((k) => { if (!ORDRE.includes(k)) delete RAYONS[k]; });
+    ORDRE_TYPES = (c.types || []).map((t) => t.nom);
+    ORDRE_MARQUES = (c.marques || []).map((m) => m.nom);
+    const caches = c.masques || [];
+    tous = tous.filter((p) => !caches.includes(p.secteur || 'Autre'));
+  }
   const sect = (p) => p.secteur || 'Autre';
   const secteursPresents = () => ORDRE.concat([...new Set(tous.map(sect))].filter((s) => !ORDRE.includes(s)));
 
@@ -671,7 +690,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    $('catList').innerHTML = `<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
+    $('catList').innerHTML = `<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
       return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les marques');
     }).join('')}</div>`;
@@ -687,9 +706,9 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
         (rs.length ? `<div class="cat-grid cat-secteurs">${rs.map((r) => tuile(wa('Bonjour, je cherche des produits : ' + r + ' (' + s + '). '), ph(s, true), 'Photos bientôt', r, 'Sur demande · prix à partir de X € bientôt', 'Demander ce rayon', true)).join('')}</div>` : '') + demande;
       return;
     }
-    const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '') - (b === '') || a.localeCompare(b, 'fr'));
+    const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '') - (b === '') || rang(ORDRE_MARQUES, a) - rang(ORDRE_MARQUES, b) || a.localeCompare(b, 'fr'));
     $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(marques.length, 'marque', 'marques')} · ${pluriel(ps.length, 'produit', 'produits')}</small></h3><div class="cat-grid cat-secteurs">${marques.map((m) => {
-      const mp = ps.filter((p) => (p.marque || '') === m), avecPhoto = mp.find((p) => p.nbPhotos), avecLogo = m ? mp.find((p) => p.logo) : null, types = [...new Set(mp.map((p) => p.type).filter(Boolean))];
+      const mp = ps.filter((p) => (p.marque || '') === m), avecPhoto = mp.find((p) => p.nbPhotos), avecLogo = m ? mp.find((p) => p.logo) : null, types = [...new Set(mp.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
       return tuile(lien(s, m), avecLogo ? `<img class="logo" loading="lazy" decoding="async" alt="Logo ${esc(m)}" src="${photo(avecLogo, 'logo')}">` : avecPhoto ? `<img loading="lazy" decoding="async" alt="" src="${photo(avecPhoto, 0)}">` : ph(s, true), pluriel(mp.length, 'produit', 'produits'), m || 'Autres marques', types.join(' · ') || 'Voir les produits', 'Voir la marque');
     }).join('')}</div>${demande}`;
   }
@@ -697,11 +716,11 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   function marque(s, m) {
     fil([['Catalogue', '#produits'], [s, lien(s)], [m || 'Autres marques']]);
     const base = tous.filter((p) => sect(p) === s && (p.marque || '') === m);
-    const types = [...new Set(base.map((p) => p.type).filter(Boolean))];
+    const types = [...new Set(base.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
     if (type && !types.includes(type)) type = '';
     $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !base.some((p) => p.vente && p.vente !== 'Détail et gros');
-    const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros'));
+    const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros')).sort((a, b) => rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
     $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
       `<div class="cat-pied"><div><b>Un autre modèle de ${esc(m || s)} ?</b><span>Dites-nous lequel : on vous répond sur WhatsApp.</span></div><a class="btn main big" href="${wa('Bonjour, je cherche d’autres produits' + (m ? ' de la marque ' + m : '') + ' dans le secteur ' + s + '. ')}" target="_blank" rel="noopener">Demander un modèle <span aria-hidden="true">→</span></a></div>`;
   }
@@ -740,7 +759,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   // Les secteurs s'affichent tout de suite ; les produits arrivent ensuite depuis le dashboard (sans réponse, les secteurs restent « bientôt »).
   afficher(false);
-  fetch(API + '/api/public/catalogue').then((r) => r.json()).then((d) => { tous = Array.isArray(d.produits) ? d.produits : []; afficher(false); }).catch(() => {});
+  fetch(API + '/api/public/catalogue').then((r) => r.json()).then((d) => { tous = Array.isArray(d.produits) ? d.produits : []; appliquerCategories(d.categories); afficher(false); }).catch(() => {});
 })();
 </script>
 <script>
