@@ -351,13 +351,19 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .hero-vis .scene3d{width:100%;margin:0;height:clamp(320px,36vw,500px);border-radius:0;}
   @media (max-width:640px){.hero-vis .etq3d{display:none;}}
   /* héros : scène 3D en haut, boutons juste dessous, puis le titre */
+  .sc-hero3{padding-top:0 !important;}
   .sc-hero3 .wrap{grid-template-columns:1fr !important;gap:0;justify-items:center;text-align:center;}
   .sc-hero3 .hero-vis{width:100%;}
-  .sc-hero3 .hero-vis .scene3d{height:clamp(320px,44vw,560px);}
+  .sc-hero3 .hero-vis .scene3d{height:clamp(300px,38vw,540px);}
   .sc-hero3 .hero-actions{justify-content:center;margin-top:6px;}
   .sc-hero3 .hero-txt{margin-top:34px;display:grid;justify-items:center;}
   .sc-hero3 .lead{margin-left:auto;margin-right:auto;}
-  @media (max-width:900px){.sc-hero3 .hero-vis .scene3d{height:clamp(260px,70vw,420px);}}
+  @media (max-width:900px){.sc-hero3 .hero-vis .scene3d{height:clamp(250px,54vw,400px);}}
+  .cat-marques{margin-top:34px;border-top:1px solid rgba(12,32,48,.14);padding-top:18px;}
+  .cat-marques h4{margin:0 0 12px;font-size:15px;font-weight:600;color:var(--muted);}
+  .cat-marques>div{display:flex;flex-wrap:wrap;gap:6px 22px;}
+  .cat-marques a{font-size:17px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(12,32,48,.2);padding:2px 0;}
+  .cat-marques a:hover{border-color:var(--ink);} .cat-marques small{margin-left:6px;font-size:12px;color:var(--muted);}
   .hero-fallback{display:none;} .hero-vis .scene3d.sans3d + .hero-fallback{display:block;}
   @media (max-width:900px){.hero-vis .scene3d{height:clamp(240px,62vw,380px);}}
 
@@ -390,7 +396,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section class="sc-hero sc-hero2 sc-hero3">
   <div class="wrap">
-    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" data-logo="/assets/img/wanisite-logo-3d.webp" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France, et le logo Wanisite au milieu" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
+    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
     <div class="actions hero-actions">
         <a class="btn main big" href="#produits">Voir le catalogue</a>
         <a class="btn ghost big" href="#demande">Envoyer ma demande</a>
@@ -599,11 +605,18 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
         (rs.length ? `<div class="cat-grid cat-secteurs">${rs.map((r) => tuile(wa('Bonjour, je cherche des produits : ' + r + ' (' + s + '). '), ph(s, true), 'Photos bientôt', r, 'Sur demande · prix à partir de X € bientôt', 'Demander ce rayon', true)).join('')}</div>` : '') + demande;
       return;
     }
+    // D'abord les produits du secteur (filtre par type), ensuite les marques.
+    const types = [...new Set(ps.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
+    if (type && !types.includes(type)) type = '';
+    $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout'}</button>`).join('') : '';
+    $('catBar').hidden = types.length < 2 && !ps.some((p) => p.vente && p.vente !== 'Détail et gros');
+    const liste = ps.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros'))
+      .sort((a, b) => rang(ORDRE_MARQUES, a.marque || '') - rang(ORDRE_MARQUES, b.marque || '') || rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
     const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '') - (b === '') || rang(ORDRE_MARQUES, a) - rang(ORDRE_MARQUES, b) || a.localeCompare(b, 'fr'));
-    $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(marques.length, 'marque', 'marques')} · ${pluriel(ps.length, 'produit', 'produits')}</small></h3><div class="cat-grid cat-secteurs">${marques.map((m) => {
-      const mp = ps.filter((p) => (p.marque || '') === m), avecPhoto = mp.find((p) => p.nbPhotos), avecLogo = m ? mp.find((p) => p.logo) : null, types = [...new Set(mp.map((p) => p.type).filter(Boolean))].sort((a, b) => rang(ORDRE_TYPES, a) - rang(ORDRE_TYPES, b));
-      return tuile(lien(s, m), avecLogo ? `<img class="logo" loading="lazy" decoding="async" alt="Logo ${esc(m)}" src="${photo(avecLogo, 'logo')}">` : avecPhoto ? `<img loading="lazy" decoding="async" alt="" src="${photo(avecPhoto, 0)}">` : ph(s, true), pluriel(mp.length, 'produit', 'produits'), m || 'Autres marques', types.join(' · ') || 'Voir les produits', 'Voir la marque');
-    }).join('')}</div>${demande}`;
+    const avecMarque = marques.filter(Boolean);
+    $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(liste.length, 'produit', 'produits')}</small></h3>` +
+      (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
+      (avecMarque.length ? `<div class="cat-marques"><h4>Les marques ${esc(s)}</h4><div>${avecMarque.map((m) => `<a href="${lien(s, m)}">${esc(m)}<small>${ps.filter((p) => p.marque === m).length}</small></a>`).join('')}</div></div>` : '') + demande;
   }
 
   function marque(s, m) {
@@ -694,6 +707,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   });
 })();
 </script>
-<script type="module" src="/assets/js/usine3d.js?v=8"></script>
+<script type="module" src="/assets/js/usine3d.js?v=9"></script>
 </body>
 </html>

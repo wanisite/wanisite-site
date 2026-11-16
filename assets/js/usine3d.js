@@ -134,10 +134,10 @@ function monter(stage) {
   usine.add(cube(1.6, 0.08, 0.5, M.ardoise, 1.95, 0.4, 0.12));
   for (const x of [1.3, 2.6]) usine.add(cube(0.08, 0.4, 0.42, M.gris, x, 0, 0.12));
   const tapis = [];
-  for (let k = 0; k < 3; k++) { const c = colis(0.34); c.userData.decal = k / 3; usine.add(c); tapis.push(c); }
+  for (let k = 0; k < 1; k++) { const c = colis(0.34); c.userData.decal = k; usine.add(c); tapis.push(c); }
   const arbre = (x, z, s = 1) => { const a = new THREE.Group(); a.add(cyl(0.07 * s, 0.09 * s, 0.4 * s, M.bois, 0, 0, 0, 6)); const h = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42 * s, 0), M.vert); h.position.y = 0.72 * s; h.castShadow = true; a.add(h); a.position.set(x, 0, z); return a; };
   usine.add(arbre(-2.1, 1.7), arbre(-1.3, 2.1, 0.8));
-  for (let k = 0; k < 3; k++) { const c = colis(0.4); c.position.set(-0.3 + (k % 2) * 0.45, (k > 1 ? 0.32 : 0), 1.55); usine.add(c); }
+  { const c = colis(0.4); c.position.set(-0.1, 0, 1.55); usine.add(c); }
   // lanternes rouges suspendues devant l'usine (elles se balancent)
   const lanternes = [];
   for (const [x, z] of [[-1.55, 0.95], [-0.15, 0.95]]) {
@@ -154,7 +154,7 @@ function monter(stage) {
   }
   // piles de pièces d'or : le prix usine
   const piece = (r = 0.17) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.05, 24), M.or); c.castShadow = true; return c; };
-  for (const [x, z, n] of [[0.75, 1.75, 5], [1.15, 1.95, 3], [0.95, 2.2, 7]]) {
+  for (const [x, z, n] of []) { // (piles de pièces retirées : scène plus simple)
     for (let k = 0; k < n; k++) { const c = piece(); c.position.set(x + Math.sin(k * 1.7) * 0.015, 0.03 + k * 0.052, z); usine.add(c); }
   }
   monde.add(usine);
@@ -231,7 +231,7 @@ function monter(stage) {
   }
   maison.add(cube(0.5, 0.8, 0.05, M.ardoise, 0.3, 0, 0.21, false));
   maison.add(cube(0.8, 0.5, 0.05, M.vitre, -0.75, 0.35, 0.21, false));
-  for (const [s, x, y, z] of [[0.42, 1.1, 0, 0.9], [0.36, 1.55, 0, 0.6], [0.32, 1.25, 0.33, 0.85]]) { const c = colis(s); c.position.set(x, y, z); maison.add(c); }
+  for (const [s, x, y, z] of [[0.42, 1.2, 0, 0.8]]) { const c = colis(s); c.position.set(x, y, z); maison.add(c); }
   const repere = new THREE.Group();
   const cone = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.7, 16), M.turquoise); cone.rotation.x = Math.PI; cone.position.y = 0.35; cone.castShadow = true;
   const tete = new THREE.Mesh(new THREE.SphereGeometry(0.3, 18, 12), M.turquoise); tete.position.y = 0.8; tete.castShadow = true;
@@ -306,12 +306,12 @@ function monter(stage) {
   let pPortique = 0.33;
   let route = null, courbe = null;
   const traits = [];
-  for (let k = 0; k < 26; k++) { const d = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 6), M.lumiere); d.userData.decal = k / 26; monde.add(d); traits.push(d); }
+  for (let k = 0; k < 10; k++) { const d = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 6), M.lumiere); d.userData.decal = k / 10; monde.add(d); traits.push(d); }
   const voyageurs = [];
-  for (let k = 0; k < 5; k++) { const c = colis(0.36); c.userData.decal = k / 5; monde.add(c); voyageurs.push(c); }
+  for (let k = 0; k < 2; k++) { const c = colis(0.36); c.userData.decal = k / 2; monde.add(c); voyageurs.push(c); }
   // l'argent remonte la route dans l'autre sens : le client paie l'usine, la marchandise arrive
   const pieces = [];
-  for (let k = 0; k < 7; k++) {
+  for (let k = 0; k < 0; k++) { // (pièces sur la route retirées)
     const g = new THREE.Group();
     const c = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.06, 28), M.or); c.rotation.x = Math.PI / 2; c.castShadow = true;
     const anneauP = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.018, 6, 28), M.or); anneauP.position.z = 0.032;
@@ -320,7 +320,7 @@ function monter(stage) {
   }
   // pluie de pièces à l'arrivée
   const jaillissement = [];
-  for (let k = 0; k < 6; k++) {
+  for (let k = 0; k < 0; k++) { // (pluie de pièces retirée)
     const c = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.05, 22), M.or); c.castShadow = true;
     c.userData.decal = k / 6; c.userData.ang = k * 2.4;
     maison.add(c); jaillissement.push(c);
@@ -336,12 +336,12 @@ function monter(stage) {
   monde.add(avion);
 
   const nuages = [];
-  for (let k = 0; k < 4; k++) {
+  for (let k = 0; k < 2; k++) {
     const n = new THREE.Group();
     for (const [x, y, z, r] of [[0, 0, 0, 0.55], [0.55, -0.08, 0.1, 0.4], [-0.5, -0.1, -0.05, 0.38], [0.15, 0.25, 0, 0.36]]) {
       const b = new THREE.Mesh(new THREE.IcosahedronGeometry(r, 1), M.fumee); b.position.set(x, y, z); n.add(b); // pas d'ombre : elle tomberait hors des dalles
     }
-    n.userData.decal = k / 4; n.userData.h = 5.2 + (k % 2) * 0.9;
+    n.userData.decal = k / 2; n.userData.h = 5.2 + (k % 2) * 0.9;
     monde.add(n); nuages.push(n);
   }
 
@@ -395,7 +395,7 @@ function monter(stage) {
     const coins = [];
     for (const st of stations) {
       boite.setFromObject(st, true);
-      for (const x of [boite.min.x, boite.max.x]) for (const y of [boite.min.y, boite.max.y + 1.6]) for (const z of [boite.min.z, boite.max.z]) coins.push(new THREE.Vector3(x, y, z).applyMatrix4(camera.matrixWorldInverse));
+      for (const x of [boite.min.x, boite.max.x]) for (const y of [boite.min.y, boite.max.y + 0.8]) for (const z of [boite.min.z, boite.max.z]) coins.push(new THREE.Vector3(x, y, z).applyMatrix4(camera.matrixWorldInverse));
     }
     if (logo && logo.userData.base) { const b = logo.userData.base; for (const dx of [-2.4, 2.4]) for (const dy of [-1.6, 1.6]) for (const dz of [-2.4, 2.4]) coins.push(new THREE.Vector3(b.x + dx, b.y + dy, b.z + dz).applyMatrix4(camera.matrixWorldInverse)); }
     const xs = coins.map(c => c.x), ys = coins.map(c => c.y);
@@ -487,10 +487,13 @@ function monter(stage) {
     anneau.scale.setScalar(1 + a * 2.2);
     anneau.material.opacity = 0.9 * (1 - a);
     // avion en boucle au-dessus du trajet
-    const ang = t * 0.35;
-    const centre = deux ? stations[0].position.clone().lerp(stations[1].position, 0.5) : stations[2].position;
-    avion.position.set(centre.x + Math.cos(ang) * 6.5, 6.4 + Math.sin(t * 0.9) * 0.25, centre.z + Math.sin(ang) * 4.2);
-    avion.rotation.set(0, -ang - Math.PI / 2, Math.sin(ang) * 0.12 - 0.15);
+    { // traversée simple : de la Chine vers la France, à plat, puis on recommence
+      const a = stations[0].position, b = stations[stations.length - 1].position;
+      const p = (t / 9) % 1, d = b.clone().sub(a);
+      avion.position.set(a.x + d.x * (p * 1.3 - 0.15), 5.6 + Math.sin(t * 0.9) * 0.12, a.z + d.z * (p * 1.3 - 0.15));
+      avion.rotation.set(0, Math.atan2(-d.z, d.x), 0);
+      avion.visible = p > 0.02 && p < 0.98;
+    }
     // nuages qui dérivent
     const centre0 = stations[0].position, centre3 = stations[stations.length - 1].position;
     for (const n of nuages) {
