@@ -308,7 +308,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .strip a{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;letter-spacing:0;text-transform:none;font-weight:500;padding:8px 14px;}
   .strip a.postuler{background:#141c24;border-color:#141c24;color:#fff;}
   .sc-hero2{padding:44px 0 30px;} .sc-hero2::before,.sc-hero2::after{display:none !important;}
-  .sc-hero2 .wrap{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:24px;align-items:center;}
+  .sc-hero2 .wrap{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:30px;align-items:center;}
   .sc-hero2 h1{font-size:clamp(44px,6vw,84px);} .sc-hero2 h1 .t{white-space:normal;}
   .sc-hero2 .lead{font-size:clamp(18px,1.9vw,21px);color:var(--muted);max-width:30ch;margin-top:22px;}
   .hero-vis img{display:block;width:100%;height:auto;}
@@ -350,8 +350,15 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   .hero-vis .scene3d{width:100%;margin:0;height:clamp(320px,36vw,500px);border-radius:0;}
   @media (max-width:640px){.hero-vis .etq3d{display:none;}}
-  .hero-blender{display:block;} .hero-blender img{display:block;width:100%;height:auto;}
-  @media (min-width:901px){.hero-blender img{width:112%;max-width:none;margin:0 -4% 0 -8%;}}
+  /* héros : scène 3D en haut, boutons juste dessous, puis le titre */
+  .sc-hero3 .wrap{grid-template-columns:1fr !important;gap:0;justify-items:center;text-align:center;}
+  .sc-hero3 .hero-vis{width:100%;}
+  .sc-hero3 .hero-vis .scene3d{height:clamp(320px,44vw,560px);}
+  .sc-hero3 .hero-actions{justify-content:center;margin-top:6px;}
+  .sc-hero3 .hero-txt{margin-top:34px;display:grid;justify-items:center;}
+  .sc-hero3 .lead{margin-left:auto;margin-right:auto;}
+  @media (max-width:900px){.sc-hero3 .hero-vis .scene3d{height:clamp(260px,70vw,420px);}}
+  .hero-fallback{display:none;} .hero-vis .scene3d.sans3d + .hero-fallback{display:block;}
   @media (max-width:900px){.hero-vis .scene3d{height:clamp(240px,62vw,380px);}}
 
   /* espacement resserré entre les sections + note de prix en texte normal (2026-11-15 : « trop de padding ») */
@@ -381,18 +388,18 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 </header>
 <main id="top">
 
-<section class="sc-hero sc-hero2">
+<section class="sc-hero sc-hero2 sc-hero3">
   <div class="wrap">
+    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" data-logo="/assets/img/wanisite-logo-3d.webp" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France, et le logo Wanisite au milieu" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
+    <div class="actions hero-actions">
+        <a class="btn main big" href="#produits">Voir le catalogue</a>
+        <a class="btn ghost big" href="#demande">Envoyer ma demande</a>
+      </div>
     <div class="hero-txt">
       <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
       <h1 class="xl">Je vous ramène tout <span class="t">à la source.</span></h1>
       <p class="lead">Une photo suffit. Je trouve l’usine, je négocie, je contrôle avant le départ.</p>
-      <div class="actions">
-        <a class="btn main big" href="#produits">Voir le catalogue</a>
-        <a class="btn ghost big" href="#demande">Envoyer ma demande</a>
-      </div>
     </div>
-    <div class="hero-vis"><picture class="hero-blender"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </section>
 
@@ -687,5 +694,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   });
 })();
 </script>
+<script type="module" src="/assets/js/usine3d.js?v=8"></script>
 </body>
 </html>
