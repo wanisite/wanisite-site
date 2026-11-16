@@ -3,7 +3,7 @@ titre: Importer de Chine : les étapes d'un sourcing sans mauvaise surprise
 description: Trouver l'usine, comparer les offres, valider l'échantillon, contrôler avant le départ : les étapes pour importer de Chine sans mauvaise surprise.
 date: 2026-10-30
 slug: importer-de-chine-etapes-sourcing
-service: /services/sourcing-chine.html | Sourcing en Chine
+service: /services/sourcing-chine | Sourcing en Chine
 mots_cles: importer de Chine, sourcing Chine, trouver un fournisseur en Chine, échantillon, contrôle qualité
 ---
 Commander directement à une usine chinoise peut faire baisser fortement le prix de revient d'un produit. Mais entre les offres qui se ressemblent toutes, la langue, le décalage horaire et la qualité qu'on découvre à l'arrivée du colis, beaucoup de premières commandes se passent mal. Voici les étapes à suivre, dans l'ordre, pour importer sans mauvaise surprise.
@@ -69,4 +69,4 @@ Un transitaire peut s'occuper du transport et des formalités de dédouanement. 
 
 Importer de Chine sans mauvaise surprise, c'est surtout une question de méthode : un brief précis, plusieurs offres comparées, un échantillon validé, une commande écrite, une production suivie et un contrôle avant le départ. Chaque étape sautée fait gagner quelques jours et peut coûter une commande entière.
 
-Si vous ne voulez pas gérer tout cela seul, Wanisite peut s'en occuper : recherche des usines, comparatif, échantillons, suivi et contrôle, avec un seul interlocuteur en français. Tout est expliqué sur la page [Sourcing en Chine](/services/sourcing-chine.html).
+Si vous ne voulez pas gérer tout cela seul, Wanisite peut s'en occuper : recherche des usines, comparatif, échantillons, suivi et contrôle, avec un seul interlocuteur en français. Tout est expliqué sur la page [Sourcing en Chine](/services/sourcing-chine).

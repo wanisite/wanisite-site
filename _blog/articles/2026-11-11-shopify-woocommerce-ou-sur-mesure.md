@@ -3,7 +3,7 @@ titre: Shopify, WooCommerce ou sur mesure : quelle boutique choisir ?
 description: Shopify, WooCommerce ou boutique sur mesure : ce que chaque solution implique en coûts, en autonomie et en entretien, pour choisir selon votre activité.
 date: 2026-11-11
 slug: shopify-woocommerce-ou-sur-mesure
-service: /services/ecommerce.html | Boutique en ligne
+service: /services/ecommerce | Boutique en ligne
 mots_cles: Shopify ou WooCommerce, créer une boutique en ligne, boutique sur mesure, choisir solution e-commerce, site e-commerce petite entreprise
 ---
 Vous voulez vendre en ligne, et trois noms reviennent sans cesse : Shopify, WooCommerce, ou une boutique développée sur mesure. Chacun a ses défenseurs, et les comparatifs se contredisent souvent. Le bon choix ne dépend pas de la solution « la meilleure », mais de ce que vous vendez, de votre temps et de la façon dont vous voulez travailler.
@@ -81,7 +81,7 @@ Avant de choisir une solution, posez-vous une question simple : vos clients ont-
 
 Si vos prix se discutent, si chaque commande demande un échange, ou si vous vendez surtout à des professionnels, un **catalogue en ligne avec demande de devis** peut être plus adapté qu'un panier. C'est le choix d'Equip'Food, qui fournit en matériel les cafés, hôtels et restaurants : le catalogue est en ligne avec des filtres et des fiches produit, et la demande de devis part directement par WhatsApp.
 
-De la même façon, si vous vendez peu de produits à une clientèle locale, un site vitrine bien fait peut suffire au début. Nous avons détaillé cette question dans l'article [Site vitrine ou page Instagram](/blog/site-vitrine-ou-page-instagram.html).
+De la même façon, si vous vendez peu de produits à une clientèle locale, un site vitrine bien fait peut suffire au début. Nous avons détaillé cette question dans l'article [Site vitrine ou page Instagram](/blog/site-vitrine-ou-page-instagram).
 
 ## Les questions à vous poser avant de choisir
 
@@ -111,4 +111,4 @@ Une boutique Shopify mal présentée vendra moins qu'une boutique WooCommerce so
 
 Shopify si vous voulez démarrer vite sans vous occuper de technique, WooCommerce si vous voulez rester propriétaire de votre site et pouvez l'entretenir, sur mesure si votre façon de vendre sort du cadre. Et parfois, un catalogue avec demande de devis répond mieux au besoin qu'une boutique complète.
 
-Si vous hésitez, nous pouvons regarder votre activité avec vous et vous dire quelle solution nous semble adaptée, avant de proposer quoi que ce soit. Découvrez notre accompagnement [boutique en ligne](/services/ecommerce.html) : devis gratuit, prix fixe annoncé avant de commencer.
+Si vous hésitez, nous pouvons regarder votre activité avec vous et vous dire quelle solution nous semble adaptée, avant de proposer quoi que ce soit. Découvrez notre accompagnement [boutique en ligne](/services/ecommerce) : devis gratuit, prix fixe annoncé avant de commencer.

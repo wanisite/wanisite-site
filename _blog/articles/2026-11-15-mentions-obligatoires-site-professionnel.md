@@ -3,7 +3,7 @@ titre: Mentions obligatoires d'un site professionnel en France
 description: Mentions légales, données personnelles, cookies, conditions de vente : les informations qu'un site professionnel doit afficher, et où vérifier les règles.
 date: 2026-11-15
 slug: mentions-obligatoires-site-professionnel
-service: /services/site-vitrine.html | Site vitrine
+service: /services/site-vitrine | Site vitrine
 mots_cles: mentions obligatoires site internet, mentions légales site professionnel, site vitrine obligations, politique de confidentialité, bandeau cookies, CGV site
 ---
 Un site professionnel ne sert pas seulement à présenter votre activité. Dès qu'il est en ligne, il doit aussi afficher certaines informations prévues par la loi : qui l'édite, qui l'héberge, ce que vous faites des données des visiteurs et, si vous vendez, vos conditions de vente. Beaucoup de petits sites les oublient ou recopient un modèle qui ne correspond pas à leur situation. Voici les grandes catégories à connaître, pour savoir quoi vérifier sur votre site.
@@ -79,7 +79,7 @@ Une boutique en ligne qui vend à des particuliers a des obligations supplément
 
 Le droit de rétractation et la médiation de la consommation ont des règles détaillées, avec des cas particuliers selon les produits. La page de economie.gouv.fr consacrée à la vente à distance et le site de la DGCCRF sont les références à consulter.
 
-Si vous hésitez encore sur la façon de vendre en ligne, nous avons comparé les solutions possibles dans l'article [Shopify, WooCommerce ou sur mesure](/blog/shopify-woocommerce-ou-sur-mesure.html). Quelle que soit l'option choisie, ces pages restent à rédiger vous-même ou avec un professionnel du droit.
+Si vous hésitez encore sur la façon de vendre en ligne, nous avons comparé les solutions possibles dans l'article [Shopify, WooCommerce ou sur mesure](/blog/shopify-woocommerce-ou-sur-mesure). Quelle que soit l'option choisie, ces pages restent à rédiger vous-même ou avec un professionnel du droit.
 
 ## Où placer ces informations sur le site
 
@@ -109,4 +109,4 @@ Un changement d'adresse, de statut ou d'hébergeur est souvent oublié : pensez 
 
 Les mentions obligatoires ne sont pas la partie la plus intéressante d'un site, mais elles rassurent les visiteurs et vous évitent des ennuis. Retenez trois blocs : qui vous êtes (mentions légales), ce que vous faites des données (confidentialité et cookies), et vos conditions si vous vendez (CGV). Pour le détail, fiez-vous aux sites officiels plutôt qu'à un modèle trouvé au hasard.
 
-Si vous faites créer votre site, demandez que ces pages soient prévues dès le départ, avec un pied de page clair et un bandeau cookies adapté à ce que le site utilise vraiment. C'est ce que nous regardons avec vous lorsque nous créons un [site vitrine](/services/site-vitrine.html) : le prix est sur devis, fixe et annoncé avant de commencer.
+Si vous faites créer votre site, demandez que ces pages soient prévues dès le départ, avec un pied de page clair et un bandeau cookies adapté à ce que le site utilise vraiment. C'est ce que nous regardons avec vous lorsque nous créons un [site vitrine](/services/site-vitrine) : le prix est sur devis, fixe et annoncé avant de commencer.

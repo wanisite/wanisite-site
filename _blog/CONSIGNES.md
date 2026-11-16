@@ -33,7 +33,7 @@ titre: …
 description: …
 date: AAAA-MM-JJ
 slug: mots-cles-en-minuscules-avec-tirets
-service: /services/xxx.html | Nom du service mis en avant
+service: /services/xxx | Nom du service mis en avant
 mots_cles: mot 1, mot 2, mot 3
 ---
 ```

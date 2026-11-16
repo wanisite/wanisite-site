@@ -3,7 +3,7 @@ titre: Fiche Google Business : les réglages pour être trouvé près de chez vo
 description: Catégorie, zone, horaires, photos, avis, lien vers le site : les réglages de la fiche Google Business qui aident un commerce à sortir dans les recherches locales.
 date: 2026-10-31
 slug: fiche-google-business-reglages
-service: /services/site-vitrine.html | Site vitrine
+service: /services/site-vitrine | Site vitrine
 mots_cles: fiche Google Business, Google Business Profile, référencement local, Google Maps commerce, être trouvé sur Google
 ---
 Quand quelqu'un tape « boulangerie », « serrurier » ou « coiffeur » suivi du nom de sa ville, Google affiche souvent une carte avec quelques commerces avant même les sites web. Ces résultats viennent des fiches Google Business (anciennement Google My Business). La fiche est gratuite, mais beaucoup de commerces la laissent à moitié remplie. Voici les réglages qui comptent, dans l'ordre où les faire.
@@ -56,8 +56,8 @@ Rien n'agace plus un client que de trouver porte close alors que Google annonça
 ## 6. Téléphone, site web et lien de réservation
 
 - **Téléphone** : un numéro qui répond, de préférence celui que vos clients connaissent déjà.
-- **Site web** : le lien vers votre site donne au client tout ce que la fiche ne peut pas montrer (prestations détaillées, photos, tarifs, zone d'intervention) et à Google des informations en plus pour comprendre votre activité. Si vous n'avez qu'une page Instagram, c'est souvent là que ça coince : un [site vitrine](/services/site-vitrine.html) simple, avec votre adresse, vos horaires et vos services, complète bien la fiche.
-- **Lien de réservation ou de prise de rendez-vous** : selon votre catégorie, Google propose un champ dédié. Si vous avez un module de [réservation en ligne](/services/reservation.html), mettez-le ici, le client réserve sans passer par le standard.
+- **Site web** : le lien vers votre site donne au client tout ce que la fiche ne peut pas montrer (prestations détaillées, photos, tarifs, zone d'intervention) et à Google des informations en plus pour comprendre votre activité. Si vous n'avez qu'une page Instagram, c'est souvent là que ça coince : un [site vitrine](/services/site-vitrine) simple, avec votre adresse, vos horaires et vos services, complète bien la fiche.
+- **Lien de réservation ou de prise de rendez-vous** : selon votre catégorie, Google propose un champ dédié. Si vous avez un module de [réservation en ligne](/services/reservation), mettez-le ici, le client réserve sans passer par le standard.
 
 ## 7. Description, services et produits
 

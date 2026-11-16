@@ -3,7 +3,7 @@ titre: Site vitrine ou page Instagram : de quoi a besoin un commerce ?
 description: Page Instagram, site vitrine ou les deux : ce que chaque outil fait bien, ses limites, et comment choisir selon votre commerce de quartier et vos clients.
 date: 2026-11-01
 slug: site-vitrine-ou-page-instagram
-service: /services/site-vitrine.html | Site vitrine
+service: /services/site-vitrine | Site vitrine
 mots_cles: site vitrine ou Instagram, site internet commerce de quartier, page Instagram commerce, faut-il un site internet, site vitrine commerce local
 ---
 Beaucoup de commerçants se posent la question : « J'ai déjà une page Instagram qui marche bien, est-ce que j'ai vraiment besoin d'un site ? » La réponse dépend de ce que vos clients cherchent, de la façon dont ils vous trouvent et de ce que vous voulez leur faire faire. Voici de quoi trancher, sans parti pris.
@@ -51,7 +51,7 @@ Un site vitrine est une présentation de votre commerce qui vous appartient, à 
 - **Faire agir** : un bouton pour appeler, un formulaire de contact, une prise de rendez-vous, une demande de devis.
 - **Rester en place** quoi qu'il arrive à vos réseaux sociaux.
 
-Le site travaille aussi avec votre fiche Google Business : la fiche renvoie vers le site, le site confirme les informations de la fiche. Si vous n'avez pas encore réglé la vôtre, commencez par là, nous avons détaillé les réglages dans [cet article sur la fiche Google Business](/blog/fiche-google-business-reglages.html).
+Le site travaille aussi avec votre fiche Google Business : la fiche renvoie vers le site, le site confirme les informations de la fiche. Si vous n'avez pas encore réglé la vôtre, commencez par là, nous avons détaillé les réglages dans [cet article sur la fiche Google Business](/blog/fiche-google-business-reglages).
 
 ## Comment choisir selon votre commerce
 
@@ -100,4 +100,4 @@ Le site doit surtout être rapide et lisible sur téléphone, car beaucoup de vo
 
 Instagram et un site vitrine ne sont pas concurrents. Instagram montre votre activité à ceux qui vous suivent déjà ou qui tombent sur vos publications. Le site vous rend trouvable par ceux qui cherchent votre métier sur Google, et leur donne tout ce qu'il faut pour vous contacter.
 
-Si vous voulez un site simple, pensé pour votre commerce et lisible sur mobile, découvrez notre offre de [site vitrine](/services/site-vitrine.html) : le prix est fixé sur devis et annoncé avant de commencer.
+Si vous voulez un site simple, pensé pour votre commerce et lisible sur mobile, découvrez notre offre de [site vitrine](/services/site-vitrine) : le prix est fixé sur devis et annoncé avant de commencer.

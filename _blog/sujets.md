@@ -1,32 +1,32 @@
 # Sujets à publier (un article tous les deux jours, dans l'ordre ; cocher [x] quand c'est publié)
 
-- [x] Importer de Chine : les étapes d'un sourcing sans mauvaise surprise → /services/sourcing-chine.html
-- [x] Fiche Google Business : les réglages pour être trouvé près de chez vous → /services/site-vitrine.html
-- [x] Site vitrine ou page Instagram : de quoi a vraiment besoin un commerce de quartier ? → /services/site-vitrine.html
-- [x] Réservation en ligne : comment réduire les rendez-vous oubliés dans un salon → /services/reservation.html
-- [x] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing.html
-- [x] Échantillon, MOQ, incoterms : le vocabulaire de l'import expliqué simplement → /services/sourcing-chine.html
-- [x] Comment vérifier un fournisseur sur Alibaba avant de commander → /services/sourcing-chine.html
-- [x] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce.html
-- [x] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine.html
-- [ ] Site lent sur mobile : les causes fréquentes et comment les corriger → /services/site-vitrine.html
-- [ ] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine.html
-- [ ] Catalogue en ligne avec demande de devis : quand c'est mieux qu'une boutique (exemple Equip'Food) → /services/ecommerce.html
-- [ ] Personnaliser un produit à son logo : ce qu'il faut savoir avant de commander en Chine → /services/sourcing-chine.html
-- [ ] Transport Chine-France : maritime, aérien, ferroviaire ou express, comment comparer → /services/sourcing-chine.html
-- [ ] Droits de douane et TVA à l'import : comprendre le coût réel d'un produit → /services/sourcing-chine.html
-- [ ] WhatsApp Business pour les commerçants : les fonctions vraiment utiles → /services/site-vitrine.html
-- [ ] Les chiffres à suivre chaque semaine dans un commerce → /services/logiciel-sur-mesure.html
-- [ ] Gérer le stock d'un commerce sans se perdre dans un tableur → /services/logiciel-sur-mesure.html
-- [ ] Choisir son nom de domaine : les bonnes pratiques → /services/site-vitrine.html
-- [ ] Créer un site vitrine : les étapes, de l'idée à la mise en ligne → /services/site-vitrine.html
-- [ ] Boutique en ligne : les pages indispensables avant de lancer → /services/ecommerce.html
-- [ ] Restaurant, food truck : ce qu'un site doit montrer (menu, horaires, réservation, avis) → /services/reservation.html
-- [ ] Contrôle qualité avant expédition : ce qu'on vérifie en usine → /services/sourcing-chine.html
-- [ ] Photos produit : réussir de bonnes photos avec un téléphone → /services/ecommerce.html
-- [ ] Page d'arrivée d'une publicité Meta : la structure qui fait appeler (cas Aesthetic Men) → /services/budget-marketing.html
-- [ ] Fidéliser ses clients sans les harceler : messages, offres, rythme → /services/logiciel-sur-mesure.html
-- [ ] Première importation de Chine : les erreurs les plus fréquentes → /services/sourcing-chine.html
-- [ ] Prise de rendez-vous : site, appli ou téléphone, que choisir ? → /services/reservation.html
-- [ ] CRM pour une petite entreprise : à quoi ça sert concrètement ? → /services/logiciel-sur-mesure.html
-- [ ] Google Ads ou Meta Ads : lequel choisir pour un commerce local ? → /services/budget-marketing.html
+- [x] Importer de Chine : les étapes d'un sourcing sans mauvaise surprise → /services/sourcing-chine
+- [x] Fiche Google Business : les réglages pour être trouvé près de chez vous → /services/site-vitrine
+- [x] Site vitrine ou page Instagram : de quoi a vraiment besoin un commerce de quartier ? → /services/site-vitrine
+- [x] Réservation en ligne : comment réduire les rendez-vous oubliés dans un salon → /services/reservation
+- [x] Meta Ads pour un commerce local : par où commencer avec un petit budget (cas Clean & Polish) → /services/budget-marketing
+- [x] Échantillon, MOQ, incoterms : le vocabulaire de l'import expliqué simplement → /services/sourcing-chine
+- [x] Comment vérifier un fournisseur sur Alibaba avant de commander → /services/sourcing-chine
+- [x] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce
+- [x] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine
+- [ ] Site lent sur mobile : les causes fréquentes et comment les corriger → /services/site-vitrine
+- [ ] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine
+- [ ] Catalogue en ligne avec demande de devis : quand c'est mieux qu'une boutique (exemple Equip'Food) → /services/ecommerce
+- [ ] Personnaliser un produit à son logo : ce qu'il faut savoir avant de commander en Chine → /services/sourcing-chine
+- [ ] Transport Chine-France : maritime, aérien, ferroviaire ou express, comment comparer → /services/sourcing-chine
+- [ ] Droits de douane et TVA à l'import : comprendre le coût réel d'un produit → /services/sourcing-chine
+- [ ] WhatsApp Business pour les commerçants : les fonctions vraiment utiles → /services/site-vitrine
+- [ ] Les chiffres à suivre chaque semaine dans un commerce → /services/logiciel-sur-mesure
+- [ ] Gérer le stock d'un commerce sans se perdre dans un tableur → /services/logiciel-sur-mesure
+- [ ] Choisir son nom de domaine : les bonnes pratiques → /services/site-vitrine
+- [ ] Créer un site vitrine : les étapes, de l'idée à la mise en ligne → /services/site-vitrine
+- [ ] Boutique en ligne : les pages indispensables avant de lancer → /services/ecommerce
+- [ ] Restaurant, food truck : ce qu'un site doit montrer (menu, horaires, réservation, avis) → /services/reservation
+- [ ] Contrôle qualité avant expédition : ce qu'on vérifie en usine → /services/sourcing-chine
+- [ ] Photos produit : réussir de bonnes photos avec un téléphone → /services/ecommerce
+- [ ] Page d'arrivée d'une publicité Meta : la structure qui fait appeler (cas Aesthetic Men) → /services/budget-marketing
+- [ ] Fidéliser ses clients sans les harceler : messages, offres, rythme → /services/logiciel-sur-mesure
+- [ ] Première importation de Chine : les erreurs les plus fréquentes → /services/sourcing-chine
+- [ ] Prise de rendez-vous : site, appli ou téléphone, que choisir ? → /services/reservation
+- [ ] CRM pour une petite entreprise : à quoi ça sert concrètement ? → /services/logiciel-sur-mesure
+- [ ] Google Ads ou Meta Ads : lequel choisir pour un commerce local ? → /services/budget-marketing

@@ -3,7 +3,7 @@ titre: Vérifier un fournisseur sur Alibaba avant de commander
 description: Usine ou revendeur, licence commerciale, échantillon, appel vidéo, compte bancaire : les vérifications à faire sur un fournisseur Alibaba avant de payer.
 date: 2026-11-09
 slug: verifier-fournisseur-alibaba
-service: /services/sourcing-chine.html | Sourcing en Chine
+service: /services/sourcing-chine | Sourcing en Chine
 mots_cles: vérifier fournisseur Alibaba, fournisseur fiable Chine, arnaque Alibaba, usine ou trading company, licence commerciale chinoise, importer de Chine
 ---
 Sur Alibaba, des dizaines de vendeurs proposent souvent le même produit, avec des photos proches et des prix qui varient du simple au double. Certains sont de vraies usines, d'autres des revendeurs, et quelques-uns ne sont pas sérieux du tout. Avant de verser un acompte, quelques vérifications simples permettent d'écarter la plupart des mauvaises surprises.
@@ -61,7 +61,7 @@ L'échantillon reste l'étape qu'il ne faut jamais sauter. Il permet de vérifie
 - Envoie-t-il bien ce qui a été demandé, ou un produit approchant ?
 - Répond-il clairement quand vous signalez un défaut ?
 
-Commander des échantillons chez deux ou trois fournisseurs permet de comparer à produit égal. Gardez l'échantillon validé et prenez-le en photo : il servira de référence pour la production. Si les mots *MOQ*, *échantillon de pré-production* ou *proforma* ne vous sont pas familiers, notre article sur [le vocabulaire de l'import](/blog/vocabulaire-import-moq-echantillon-incoterms.html) les explique simplement.
+Commander des échantillons chez deux ou trois fournisseurs permet de comparer à produit égal. Gardez l'échantillon validé et prenez-le en photo : il servira de référence pour la production. Si les mots *MOQ*, *échantillon de pré-production* ou *proforma* ne vous sont pas familiers, notre article sur [le vocabulaire de l'import](/blog/vocabulaire-import-moq-echantillon-incoterms) les explique simplement.
 
 ## Les signaux qui doivent vous alerter
 
@@ -91,6 +91,6 @@ Une fois la production terminée, un contrôle avant le départ permet de vérif
 
 ## En résumé
 
-Vérifier un fournisseur Alibaba, c'est croiser plusieurs informations plutôt que se fier à une seule : la fiche, la licence, un appel vidéo, un échantillon, un paiement au bon nom et un contrôle avant expédition. Cela prend un peu de temps au début, mais c'est ce qui évite de perdre un acompte ou de recevoir un stock invendable. Vous trouverez la démarche complète dans notre article sur [les étapes d'un sourcing en Chine](/blog/importer-de-chine-etapes-sourcing.html).
+Vérifier un fournisseur Alibaba, c'est croiser plusieurs informations plutôt que se fier à une seule : la fiche, la licence, un appel vidéo, un échantillon, un paiement au bon nom et un contrôle avant expédition. Cela prend un peu de temps au début, mais c'est ce qui évite de perdre un acompte ou de recevoir un stock invendable. Vous trouverez la démarche complète dans notre article sur [les étapes d'un sourcing en Chine](/blog/importer-de-chine-etapes-sourcing).
 
-Si vous préférez être accompagné, notre service de [sourcing en Chine](/services/sourcing-chine.html) s'occupe de chercher et comparer les usines, de vérifier les échantillons, de suivre la production et de faire contrôler la marchandise avant son départ. Vous payez le fournisseur directement, et chaque paiement vous est expliqué avant que vous le fassiez. Le prix de l'accompagnement est sur devis, fixe et annoncé avant de commencer.
+Si vous préférez être accompagné, notre service de [sourcing en Chine](/services/sourcing-chine) s'occupe de chercher et comparer les usines, de vérifier les échantillons, de suivre la production et de faire contrôler la marchandise avant son départ. Vous payez le fournisseur directement, et chaque paiement vous est expliqué avant que vous le fassiez. Le prix de l'accompagnement est sur devis, fixe et annoncé avant de commencer.

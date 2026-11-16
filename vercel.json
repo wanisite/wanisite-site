@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(html)",
+      "source": "/((?!assets/).*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -19,14 +19,6 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/realisations/clean-and-polish",
-      "destination": "/realisations/clean-and-polish.html"
-    },
-    {
-      "source": "/realisations/aesthetic-men",
-      "destination": "/realisations/aesthetic-men.html"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }

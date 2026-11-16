@@ -3,7 +3,7 @@ titre: Meta Ads pour un commerce local : démarrer avec un petit budget
 description: Objectif, zone, budget, visuel, page d'arrivée : par où commencer une campagne Meta Ads pour un commerce local, avec l'exemple réel de Clean & Polish.
 date: 2026-11-05
 slug: meta-ads-commerce-local-petit-budget
-service: /services/budget-marketing.html | Meta Ads et Google Ads
+service: /services/budget-marketing | Meta Ads et Google Ads
 mots_cles: meta ads commerce local, publicité facebook petit budget, publicité instagram commerce, campagne meta ads appels, pub facebook artisan
 ---
 Vous avez un commerce, un atelier ou un service à domicile, et vous vous demandez si la publicité sur Facebook et Instagram peut vous apporter des clients. La plupart des gérants hésitent pour la même raison : ils ont peur de dépenser de l'argent sans rien voir revenir. C'est une crainte légitime. Une campagne Meta Ads mal réglée peut effectivement coûter sans rapporter. Bien préparée, elle peut faire sonner le téléphone dès les premiers jours, même avec un budget modeste.
@@ -25,7 +25,7 @@ Ce choix compte aussi pour la plateforme. Quand vous créez une campagne, Meta v
 
 Clean & Polish propose du lavage auto et du remplacement de pare-brise à Aulnay-sous-Bois. Leur besoin était clair : recevoir des appels de clients. Pas de la visibilité, pas des abonnés, des appels.
 
-La campagne a donc été montée avec l'objectif « Appels ». Le clic mène au site de l'entreprise, avec le numéro bien visible. Résultat : **108 appels en 6 jours**, pour environ 160 € dépensés, soit **1,49 € par appel** en moyenne. Le détail est sur la page [Clean & Polish](/realisations/clean-and-polish.html).
+La campagne a donc été montée avec l'objectif « Appels ». Le clic mène au site de l'entreprise, avec le numéro bien visible. Résultat : **108 appels en 6 jours**, pour environ 160 € dépensés, soit **1,49 € par appel** en moyenne. Le détail est sur la page [Clean & Polish](/realisations/clean-and-polish).
 
 Ces chiffres sont ceux d'une campagne précise, pour une activité précise, dans une zone précise. Ils ne sont pas une promesse pour un autre commerce. Ce qu'ils montrent, en revanche, c'est qu'un objectif clair et un parcours simple comptent davantage que la taille du budget.
 
@@ -78,7 +78,7 @@ Vérifiez que la page d'arrivée :
 
 Dans le cas de Clean & Polish, le clic mène au site de l'entreprise, sur lequel le numéro est bien visible. C'est un détail, mais c'est souvent lui qui transforme un clic en appel.
 
-Si vous n'avez pas encore de site, une page simple et rapide vaut mieux qu'un renvoi vers un profil Instagram où le numéro est difficile à trouver. Nous en parlions dans l'article [Site vitrine ou page Instagram](/blog/site-vitrine-ou-page-instagram.html).
+Si vous n'avez pas encore de site, une page simple et rapide vaut mieux qu'un renvoi vers un profil Instagram où le numéro est difficile à trouver. Nous en parlions dans l'article [Site vitrine ou page Instagram](/blog/site-vitrine-ou-page-instagram).
 
 ## Suivre les résultats chaque semaine
 
@@ -105,4 +105,4 @@ Si une publicité ne donne rien, changez une chose à la fois : le visuel, le te
 
 Pour démarrer Meta Ads avec un petit budget, il ne faut pas tout maîtriser. Il faut un objectif clair, une zone bien délimitée, un visuel qui montre votre travail, une page d'arrivée où l'on vous trouve facilement, et un suivi régulier.
 
-Si vous préférez être accompagné, nous créons et suivons des campagnes Meta Ads et Google Ads pour les commerces et les indépendants : ciblage, visuels, textes et suivi des résultats. On vous explique d'abord ce qu'une campagne peut raisonnablement apporter à votre activité, avant de dépenser un euro. Le tarif est sur devis, avec un prix fixe annoncé avant de commencer. Tout est détaillé sur la page [Meta Ads et Google Ads](/services/budget-marketing.html).
+Si vous préférez être accompagné, nous créons et suivons des campagnes Meta Ads et Google Ads pour les commerces et les indépendants : ciblage, visuels, textes et suivi des résultats. On vous explique d'abord ce qu'une campagne peut raisonnablement apporter à votre activité, avant de dépenser un euro. Le tarif est sur devis, avec un prix fixe annoncé avant de commencer. Tout est détaillé sur la page [Meta Ads et Google Ads](/services/budget-marketing).

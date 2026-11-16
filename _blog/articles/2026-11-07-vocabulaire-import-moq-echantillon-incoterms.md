@@ -3,7 +3,7 @@ titre: MOQ, échantillon, incoterms : le vocabulaire de l'import
 description: MOQ, échantillon, proforma, FOB, EXW, DDP, code douanier : les mots que l'on croise en important de Chine, expliqués simplement pour comparer les offres.
 date: 2026-11-07
 slug: vocabulaire-import-moq-echantillon-incoterms
-service: /services/sourcing-chine.html | Sourcing en Chine
+service: /services/sourcing-chine | Sourcing en Chine
 mots_cles: MOQ, incoterms, échantillon, vocabulaire import, importer de Chine, FOB, EXW, DDP
 ---
 Le premier devis reçu d'une usine chinoise ressemble souvent à une suite de sigles : MOQ, FOB, PI, T/T, lead time. Ces mots ne sont pas compliqués, mais les confondre peut fausser une comparaison entre deux fournisseurs, ou vous faire payer des frais que vous n'aviez pas prévus. Voici les termes que l'on rencontre le plus, regroupés par étape, avec ce qu'il faut vérifier à chaque fois.
@@ -91,6 +91,6 @@ Avant de payer le solde, la marchandise peut être contrôlée sur place : nombr
 
 ## En résumé
 
-Comprendre ces mots permet surtout de comparer les offres sur les mêmes bases : même quantité, même échantillon validé, même incoterm, même lieu. Deux devis qui semblent proches peuvent cacher des écarts importants une fois le transport, la douane et la TVA ajoutés. Pour voir comment ces étapes s'enchaînent, lisez aussi notre article sur [les étapes d'un sourcing sans mauvaise surprise](/blog/importer-de-chine-etapes-sourcing.html).
+Comprendre ces mots permet surtout de comparer les offres sur les mêmes bases : même quantité, même échantillon validé, même incoterm, même lieu. Deux devis qui semblent proches peuvent cacher des écarts importants une fois le transport, la douane et la TVA ajoutés. Pour voir comment ces étapes s'enchaînent, lisez aussi notre article sur [les étapes d'un sourcing sans mauvaise surprise](/blog/importer-de-chine-etapes-sourcing).
 
-Si vous préférez être accompagné, Wanisite recherche les usines, compare les offres, fait valider les échantillons, suit la production et contrôle la marchandise avant son départ, avec un seul interlocuteur en français. Le détail est sur la page [Sourcing en Chine](/services/sourcing-chine.html).
+Si vous préférez être accompagné, Wanisite recherche les usines, compare les offres, fait valider les échantillons, suit la production et contrôle la marchandise avant son départ, avec un seul interlocuteur en français. Le détail est sur la page [Sourcing en Chine](/services/sourcing-chine).

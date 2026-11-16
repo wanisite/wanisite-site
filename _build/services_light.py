@@ -21,7 +21,7 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
     ld_svc = json.dumps({"@context": "https://schema.org", "@type": "Service", "serviceType": svc_name,
         "provider": {"@type": "Organization", "name": "Wanisite", "url": "https://www.wanisitelab.com"},
         "areaServed": "FR", "description": desc}, ensure_ascii=False)
-    url = f'https://www.wanisitelab.com/services/{slug}.html'
+    url = f'https://www.wanisitelab.com/services/{slug}'
     faq_html = ''.join(f'<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>' for q, a in faq)
     return f'''<!DOCTYPE html>
 <html lang="fr">
@@ -326,7 +326,7 @@ def reservation():
                 'Vos clients choisissent un créneau libre, vous êtes prévenu, ils reçoivent une confirmation. Exemple réel, devis gratuit et prix fixe annoncé avant de commencer.',
                 'Système de réservation en ligne', 'Bonjour, je voudrais un devis pour un système de réservation en ligne.', 'Bonjour, je voudrais présenter mon projet de réservation en ligne.', h, body, faq)
 
-# La page Sourcing Chine (services/sourcing-chine.html) est écrite à la main : design à part, inspiré du style « Source Club ».
+# La page Sourcing Chine (services/sourcing-chine) est écrite à la main : design à part, inspiré du style « Source Club ».
 
 if __name__ == '__main__':
     for name, fn in (('site-vitrine', vitrine), ('ecommerce', ecommerce), ('reservation', reservation)):

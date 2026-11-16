@@ -3,7 +3,7 @@
 
   python3 _build/publier.py
 
-1. Articles : _blog/articles/AAAA-MM-JJ-slug.md → blog/<slug>.html (un article n'est publié que si sa date est passée).
+1. Articles : _blog/articles/AAAA-MM-JJ-slug.md → blog/<slug>.html, servi à l'adresse /blog/<slug> (un article n'est publié que si sa date est passée).
 2. Page de liste blog/index.html et flux blog/rss.xml.
 3. sitemap.xml complet, avec dates de mise à jour.
 4. Sur chaque page : pied de page avec les liens internes et fil d'Ariane (JSON-LD), entre des marqueurs.
@@ -19,12 +19,12 @@ AUJOURDHUI = datetime.date.today()
 PUBLIES = []
 
 SERVICES = [
-    ('/services/site-vitrine.html', 'Site vitrine'),
-    ('/services/reservation.html', 'Réservation en ligne'),
-    ('/services/ecommerce.html', 'Boutique en ligne'),
-    ('/services/logiciel-sur-mesure.html', 'Logiciel sur mesure'),
-    ('/services/budget-marketing.html', 'Meta Ads et Google Ads'),
-    ('/services/sourcing-chine.html', 'Sourcing en Chine'),
+    ('/services/site-vitrine', 'Site vitrine'),
+    ('/services/reservation', 'Réservation en ligne'),
+    ('/services/ecommerce', 'Boutique en ligne'),
+    ('/services/logiciel-sur-mesure', 'Logiciel sur mesure'),
+    ('/services/budget-marketing', 'Meta Ads et Google Ads'),
+    ('/services/sourcing-chine', 'Sourcing en Chine'),
 ]
 REALISATIONS = [('/realisations/clean-and-polish', 'Clean & Polish'), ('/realisations/aesthetic-men', 'Aesthetic Men')]
 
@@ -234,7 +234,7 @@ ORGA = {"@type": "Organization", "name": "Wanisite", "url": SITE, "logo": SITE +
 
 
 def page_article(a, articles=()):
-    url = f"{SITE}/blog/{a['slug']}.html"
+    url = f"{SITE}/blog/{a['slug']}"
     service = a.get('service', '')
     lien_service, nom_service = (service.split('|', 1) + [''])[:2] if '|' in service else ('', '')
     encart = ''
@@ -255,7 +255,7 @@ def page_article(a, articles=()):
     return GABARIT.format(titre_page=html.escape(a['titre'] + ' — Wanisite'), titre_og=html.escape(a['titre']), description=html.escape(a['description']),
                           url=url, og_type='article', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
                           jsonld='<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + '</script>\n' +
-                          ariane([('/', 'Accueil'), ('/blog/', 'Blog'), (f"/blog/{a['slug']}.html", a['titre'])]), contenu=contenu, pied=pied_liens())
+                          ariane([('/', 'Accueil'), ('/blog/', 'Blog'), (f"/blog/{a['slug']}", a['titre'])]), contenu=contenu, pied=pied_liens())
 
 
 MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
@@ -264,13 +264,13 @@ def temps_lecture(md): return max(1, round(len(re.findall(r'\w+', md)) / 220))
 
 
 def page_liste(articles):
-    items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}.html">{html.escape(a["titre"])}</a>'
+    items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}">{html.escape(a["titre"])}</a>'
                     f'<p>{html.escape(a["description"])}</p></li>' for a in articles)
     contenu = ('<p class="fil"><a href="/">Accueil</a> / Blog</p><h1>Le blog Wanisite</h1>'
                '<p class="chapeau">Sites internet, réservation, e-commerce, publicité et sourcing en Chine : des conseils concrets pour les commerces et les indépendants.</p>'
                + (f'<ol class="liste-blog">{items}</ol>' if items else '<p class="meta-art">Premier article bientôt en ligne.</p>'))
     jsonld = {"@context": "https://schema.org", "@type": "Blog", "name": "Le blog Wanisite", "url": SITE + "/blog/", "inLanguage": "fr-FR", "publisher": ORGA,
-              "blogPost": [{"@type": "BlogPosting", "headline": a['titre'], "url": f"{SITE}/blog/{a['slug']}.html", "datePublished": a['date']} for a in articles[:20]]}
+              "blogPost": [{"@type": "BlogPosting", "headline": a['titre'], "url": f"{SITE}/blog/{a['slug']}", "datePublished": a['date']} for a in articles[:20]]}
     return GABARIT.format(titre_page='Blog Wanisite : site internet, e-commerce, publicité et sourcing', titre_og='Le blog Wanisite',
                           description='Conseils concrets pour les commerces et les indépendants : site internet, réservation en ligne, boutique, publicité Meta et sourcing en Chine.',
                           url=SITE + '/blog/', og_type='website', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
@@ -279,7 +279,7 @@ def page_liste(articles):
 
 
 def rss(articles):
-    items = ''.join(f'''  <item><title>{html.escape(a["titre"])}</title><link>{SITE}/blog/{a["slug"]}.html</link><guid>{SITE}/blog/{a["slug"]}.html</guid>
+    items = ''.join(f'''  <item><title>{html.escape(a["titre"])}</title><link>{SITE}/blog/{a["slug"]}</link><guid>{SITE}/blog/{a["slug"]}</guid>
     <pubDate>{format_datetime(datetime.datetime.combine(a["date_obj"], datetime.time(8), datetime.timezone.utc))}</pubDate><description>{html.escape(a["description"])}</description></item>
 ''' for a in articles[:30])
     return f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -291,10 +291,10 @@ def rss(articles):
 
 
 def sitemap(articles):
-    pages = [('/', 'index.html', '1.0', 'weekly')] + [(u, u.lstrip('/'), '0.8', 'monthly') for u, _ in SERVICES] \
+    pages = [('/', 'index.html', '1.0', 'weekly')] + [(u, u.lstrip('/') + '.html', '0.8', 'monthly') for u, _ in SERVICES] \
         + [(u, u.lstrip('/') + '.html', '0.7', 'monthly') for u, _ in REALISATIONS] + [('/blog/', 'blog/index.html', '0.7', 'weekly')]
     lignes = [f'  <url><loc>{SITE}{u}</loc><lastmod>{date_git(f)}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>' for u, f, p, c in pages]
-    lignes += [f'  <url><loc>{SITE}/blog/{a["slug"]}.html</loc><lastmod>{a.get("maj", a["date"])}</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>' for a in articles]
+    lignes += [f'  <url><loc>{SITE}/blog/{a["slug"]}</loc><lastmod>{a.get("maj", a["date"])}</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>' for a in articles]
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(lignes) + '\n</urlset>\n'
 
 
@@ -302,7 +302,7 @@ def bloc_blog_accueil(articles):
     """Les 3 derniers articles sur l'accueil : liens internes vers le blog, contenu qui bouge à chaque publication."""
     if not articles:
         return '<!--blog-accueil--><!--/blog-accueil-->'
-    items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}.html">{html.escape(a["titre"])}</a>'
+    items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}">{html.escape(a["titre"])}</a>'
                     f'<p>{html.escape(a["description"])}</p></li>' for a in articles[:3])
     return ('<!--blog-accueil--><div class="blk" id="blog"><div class="wrap section"><div class="sec-tag">Blog</div>'
             '<h2 class="sec-h">Les notes <span class="italic hl-block">du labo.</span></h2>'
@@ -324,13 +324,13 @@ def articles_lies(a, articles):
     if not choix:
         return ''
     return ('<aside class="lies"><h2>À lire aussi</h2><ul>' +
-            ''.join(f'<li><a href="/blog/{x["slug"]}.html">{html.escape(x["titre"])}</a></li>' for x in choix) + '</ul></aside>')
+            ''.join(f'<li><a href="/blog/{x["slug"]}">{html.escape(x["titre"])}</a></li>' for x in choix) + '</ul></aside>')
 
 
 def referencer_pages():
     """Pied de page avec liens internes + fil d'Ariane sur les pages services et réalisations ; lien Blog sur l'accueil."""
     for u, nom in SERVICES:
-        f = u.lstrip('/')
+        f = u.lstrip('/') + '.html'
         s = lire(f)
         s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
         s = remplacer_bloc(s, 'ariane', ariane([('/', 'Accueil'), (u, nom)]), '</head>')

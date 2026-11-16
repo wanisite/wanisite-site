@@ -3,7 +3,7 @@ titre: Réservation en ligne : réduire les rendez-vous oubliés au salon
 description: Rappel, confirmation, règle d'annulation claire, acompte : les réglages concrets pour limiter les rendez-vous oubliés dans un salon qui prend des réservations.
 date: 2026-11-03
 slug: reservation-en-ligne-rendez-vous-oublies
-service: /services/reservation.html | Réservation en ligne
+service: /services/reservation | Réservation en ligne
 mots_cles: rendez-vous oubliés salon, réservation en ligne salon, rappel rendez-vous client, lapin rendez-vous coiffeur, agenda en ligne salon
 ---
 Un client qui ne vient pas, c'est un créneau bloqué pour rien et souvent un autre client à qui vous avez dit non. Dans un salon de coiffure, un barbier ou un institut, ces absences ont un vrai coût, même quand elles restent occasionnelles. La bonne nouvelle : la plupart des oublis s'évitent avec quelques réglages simples, surtout si vos rendez-vous passent par une réservation en ligne.
@@ -97,10 +97,10 @@ Mis bout à bout, ces réglages forment un ensemble cohérent :
 
 Vous passez moins de temps au téléphone et dans les messages, et vous voyez toute votre journée dans un seul agenda. Ce principe ne se limite pas aux salons : chez Street Car Wash, un service de lavage auto à domicile en Île-de-France, les clients réservent leur lavage en ligne, directement depuis le site.
 
-Si votre salon n'a pas encore de site, la réservation peut aussi en être le point de départ. Nous avons expliqué dans [cet article sur le site vitrine et Instagram](/blog/site-vitrine-ou-page-instagram.html) pourquoi une prise de rendez-vous en ligne évite de gérer toutes les demandes par messages privés.
+Si votre salon n'a pas encore de site, la réservation peut aussi en être le point de départ. Nous avons expliqué dans [cet article sur le site vitrine et Instagram](/blog/site-vitrine-ou-page-instagram) pourquoi une prise de rendez-vous en ligne évite de gérer toutes les demandes par messages privés.
 
 ## En résumé
 
 Les rendez-vous oubliés ne viennent presque jamais de mauvaise volonté. Une confirmation écrite, un rappel au bon moment, une annulation facile et une règle connue à l'avance suffisent à en éviter une bonne partie. L'acompte reste un outil à réserver aux prestations longues.
 
-Pour mettre tout cela en place sans y passer vos soirées, découvrez notre service de [réservation en ligne](/services/reservation.html) : agenda, confirmations, rappels en option et gestion des annulations, avec un prix fixe annoncé sur devis avant de commencer.
+Pour mettre tout cela en place sans y passer vos soirées, découvrez notre service de [réservation en ligne](/services/reservation) : agenda, confirmations, rappels en option et gestion des annulations, avec un prix fixe annoncé sur devis avant de commencer.
