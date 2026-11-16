@@ -637,9 +637,9 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
   const WA = 'https://wa.me/33624547342?text=';
   const $ = (id) => document.getElementById(id);
-  const ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Jouets', 'Autre'];
-  const ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute' };
-  const DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Parfums, soins, maquillage' };
+  const ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Autre'];
+  const ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute' };
+  const DESC = { 'Tech': 'Électronique, coques, câbles, écouteurs', 'Mode': 'Vêtements, doudounes, baskets, sacs, casquettes', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail' };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const enc = encodeURIComponent;
   const wa = (t) => WA + enc(t);
