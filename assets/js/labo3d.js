@@ -10,17 +10,18 @@ if (stage) (window.requestIdleCallback || ((f) => setTimeout(f, 200)))(() => mon
 
 function monter(stage) {
   let renderer;
-  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); }
+  const leger0 = matchMedia('(max-width: 760px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  try { renderer = new THREE.WebGLRenderer({ antialias: !leger0, alpha: true, powerPreference: leger0 ? 'default' : 'high-performance' }); }
   catch (e) { stage.classList.add('sans3d'); return; }
   if (!renderer.getContext()) { stage.classList.add('sans3d'); return; }
 
   const reduit = matchMedia('(prefers-reduced-motion: reduce)');
   const leger = matchMedia('(max-width: 760px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, leger ? 1.75 : 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, leger ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = leger ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   stage.prepend(renderer.domElement);
   renderer.domElement.setAttribute('aria-hidden', 'true');
 
@@ -307,14 +308,15 @@ function monter(stage) {
   stage.addEventListener('pointermove', (e) => { const r = stage.getBoundingClientRect(); cibleRot = ((e.clientX - r.left) / r.width - 0.5) * 0.14; });
   stage.addEventListener('pointerleave', () => { cibleRot = 0; });
 
-  let visible = true, temps = 4.2;
+  let visible = true, temps = 4.2, cadre = false;
   const horloge = new THREE.Clock();
   const dessiner = () => { animer(temps); renderer.render(scene, camera); };
   (function boucle() {
     requestAnimationFrame(boucle);
     const dt = Math.min(horloge.getDelta(), 0.05);
     if (!visible || document.hidden || reduit.matches) return;
-    temps += dt; dessiner();
+    if (leger && (cadre = !cadre)) return;
+    temps += dt * (leger ? 2 : 1); dessiner();
   })();
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { rootMargin: '100px' }).observe(stage);
   new ResizeObserver(() => { cadrer(); dessiner(); }).observe(stage);
