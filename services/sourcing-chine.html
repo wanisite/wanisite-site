@@ -414,6 +414,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .moq-note{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;letter-spacing:0;text-transform:none;margin-top:14px;}
   @media (max-width:640px){section{padding:40px 0;} #produits{padding:32px 0 26px;} #methode{padding:26px 0 36px;} #envoi,#faq{padding:36px 0;} .end{padding:40px 0 48px;} .etapes{margin-top:24px;}}
 
+  .cat-img img.logo{position:absolute;left:50%;top:50%;right:auto;bottom:auto;width:64%;height:64%;transform:translate(-50%,-50%);object-fit:contain;} .cat-img:has(img.logo){background:#fff;}
   /* navigation secteur → marques → produits */
   #produits{scroll-margin-top:70px;}
   .cat-fil{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:26px 0 6px;font-size:15px;color:var(--muted);} .cat-fil a{color:var(--teal);text-decoration:none;font-weight:500;} .cat-fil a:hover{text-decoration:underline;} .cat-fil i{font-style:normal;opacity:.5;} .cat-fil [aria-current]{color:var(--ink);font-weight:500;}
@@ -681,8 +682,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     if (!ps.length) { $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}</h3><div class="cat-grid cat-secteurs"></div>${demande}`; return; }
     const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '') - (b === '') || a.localeCompare(b, 'fr'));
     $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(marques.length, 'marque', 'marques')} · ${pluriel(ps.length, 'produit', 'produits')}</small></h3><div class="cat-grid cat-secteurs">${marques.map((m) => {
-      const mp = ps.filter((p) => (p.marque || '') === m), avecPhoto = mp.find((p) => p.nbPhotos), types = [...new Set(mp.map((p) => p.type).filter(Boolean))];
-      return tuile(lien(s, m), avecPhoto ? `<img loading="lazy" decoding="async" alt="" src="${photo(avecPhoto, 0)}">` : ph(s, true), pluriel(mp.length, 'produit', 'produits'), m || 'Autres marques', types.join(' · ') || 'Voir les produits', 'Voir la marque');
+      const mp = ps.filter((p) => (p.marque || '') === m), avecPhoto = mp.find((p) => p.nbPhotos), avecLogo = m ? mp.find((p) => p.logo) : null, types = [...new Set(mp.map((p) => p.type).filter(Boolean))];
+      return tuile(lien(s, m), avecLogo ? `<img class="logo" loading="lazy" decoding="async" alt="Logo ${esc(m)}" src="${photo(avecLogo, 'logo')}">` : avecPhoto ? `<img loading="lazy" decoding="async" alt="" src="${photo(avecPhoto, 0)}">` : ph(s, true), pluriel(mp.length, 'produit', 'produits'), m || 'Autres marques', types.join(' · ') || 'Voir les produits', 'Voir la marque');
     }).join('')}</div>${demande}`;
   }
 
