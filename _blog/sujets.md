@@ -10,7 +10,7 @@
 - [x] Boutique en ligne : Shopify, WooCommerce ou sur mesure, comment choisir ? → /services/ecommerce
 - [x] Les mentions obligatoires d'un site professionnel en France → /services/site-vitrine
 - [x] Site lent sur mobile : les causes fréquentes et comment les corriger → /services/site-vitrine
-- [ ] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine
+- [x] Avis Google : en obtenir plus, sans enfreindre les règles → /services/site-vitrine
 - [ ] Catalogue en ligne avec demande de devis : quand c'est mieux qu'une boutique (exemple Equip'Food) → /services/ecommerce
 - [ ] Personnaliser un produit à son logo : ce qu'il faut savoir avant de commander en Chine → /services/sourcing-chine
 - [ ] Transport Chine-France : maritime, aérien, ferroviaire ou express, comment comparer → /services/sourcing-chine
