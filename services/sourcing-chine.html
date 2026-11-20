@@ -560,11 +560,11 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const $ = (id) => document.getElementById(id);
   // Telegram : 3 groupes publics (un sujet par catégorie) + un lien de dossier qui les fait rejoindre tous d'un coup.
   const TG_DOSSIER = 'https://t.me/addlist/uIApVfUPlioxNjE0';
-  const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Maison', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
+  const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Parfums', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
   // Catégorie du site → [groupe, numéro du sujet dans ce groupe] (null = la page du groupe)
   // Rayons d'une catégorie = les sujets de son groupe Telegram (même nom, même ordre).
   const TG_RAYONS = { 'Articles de luxe': [['Casquettes & bonnets', 2], ['Vêtements', 3], ['Baskets & chaussures', 4], ['Sacs & maroquinerie', 5], ['Montres & bijoux', 6], ['Lunettes & accessoires', 7]] };
-  const TG_CAT = { 'Articles de luxe': ['luxe', null], 'Mode': ['luxe', null], 'Whoop': ['acc', 2], 'Tech': ['acc', 2], 'Sport': ['acc', 4], 'Auto & moto': ['acc', 10], 'Autre': ['acc', 11], 'Beauté': ['beaute', 2], 'Parfums': ['beaute', 3], 'Maison': ['beaute', 4], 'Pros & restaurants': ['beaute', 5] };
+  const TG_CAT = { 'Articles de luxe': ['luxe', null], 'Mode': ['luxe', null], 'Whoop': ['acc', 2], 'Tech': ['acc', 2], 'Sport': ['acc', 4], 'Auto & moto': ['acc', 10], 'Autre': ['acc', 11], 'Beauté & cosmétiques': ['beaute', 2], 'Beauté': ['beaute', 2], 'Parfums': ['beaute', 3], 'Pros & restaurants': ['beaute', 5] };
   const motCle = (m) => String(m).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   const escTg = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const btnTg = (s) => {
@@ -574,11 +574,11 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   };
   // Bloc d'accueil du catalogue : le lien unique + les 3 groupes.
   const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues sur Telegram</b><span>Photos, lots et nouveautés en direct, un sujet par catégorie. Un seul lien pour rejoindre les 3 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre les 3 groupes <i aria-hidden="true">→</i></a><div class="tg-groupes">${Object.values(TG_GROUPES).map((g) => `<a href="${g.url}" target="_blank" rel="noopener"><span aria-hidden="true">${g.ico}</span> ${escTg(g.nom.replace('Wanisite ', ''))}</a>`).join('')}</div></div>`;
-  let ORDRE = ['Articles de luxe', 'Whoop', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Auto & moto', 'Autre'];
-  let ICO = { 'Whoop': 'tech', 'Articles de luxe': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
+  let ORDRE = ['Articles de luxe', 'Whoop', 'Sport', 'Auto & moto', 'Autre', 'Beauté & cosmétiques', 'Parfums', 'Pros & restaurants'];
+  let ICO = { 'Whoop': 'tech', 'Articles de luxe': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Beauté & cosmétiques': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
   let RAYONS = { 'Articles de luxe': ['T-shirts & polos', 'Ensembles & survêtements', 'Doudounes', 'Vestes & coupe-vent', 'Baskets & running', 'Casquettes', 'Bonnets', 'Gants', 'Sacs & bagages', 'Bijoux', 'Lunettes', 'Montres'], 'Sport': ['Running', 'Maillots de foot', 'Casques'], 'Whoop': ['Bracelets', 'Accessoires'], 'Maison': ['Canapés', 'Déco & luminaires'], 'Beauté': ['Soins', 'Maquillage'], 'Parfums': ['Parfums'], 'Auto & moto': ['Pièces auto', 'Accessoires auto', 'Équipement moto'], 'Pros & restaurants': ['Vaisselle', 'Équipement'] };
-  let DESC = { 'Whoop': 'Bracelets Whoop et accessoires', 'Articles de luxe': 'Sacs, montres, bijoux, vêtements, chaussures', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail', 'Auto & moto': 'Pièces, accessoires auto, équipement moto' };
+  let DESC = { 'Beauté & cosmétiques': 'Soins, maquillage, cosmétiques, accessoires', 'Whoop': 'Bracelets Whoop et accessoires', 'Articles de luxe': 'Sacs, montres, bijoux, vêtements, chaussures', 'Sport': 'Running, maillots de foot, casques, fitness', 'Maison': 'Canapés, déco, luminaires, bougies', 'Pros & restaurants': 'Vaisselle, tabliers, équipement', 'Beauté': 'Soins, maquillage, accessoires', 'Parfums': 'Parfums en gros et au détail', 'Auto & moto': 'Pièces, accessoires auto, équipement moto' };
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const enc = encodeURIComponent;
   const wa = (t) => WA + enc(t);
