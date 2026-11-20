@@ -391,6 +391,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-tg-ligne{margin:0 0 22px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;color:var(--muted);font-size:15px;}
   .cat-tg{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(100deg,#0aa6a0,#10b4cf 55%,#1f8be6);color:#fff !important;font-weight:600;font-size:14.5px;text-decoration:none;}
   .cat-tg:hover{filter:brightness(1.06);} .cat-tg i{font-style:normal;}
+  .cat-prix-2{display:grid;gap:3px;} .cat-prix-2 .cat-prix{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;} .cat-prix i{font-style:normal;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);} .cat-prix small{font-size:12.5px;color:var(--muted);} .cat-prix-2 b{font-size:21px !important;}
   .cat-titre{margin:18px 0 22px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);letter-spacing:-.03em;line-height:1.05;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;} .cat-titre small{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;letter-spacing:0;color:var(--muted);}
   .cat-secteurs:empty{display:none;} .cat-pied[hidden]{display:none;}
 </style>
@@ -549,6 +550,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   // Groupe Telegram public (un sujet par secteur) : t.me/wanisitesourcing/<numéro du sujet>
   const TG = 'https://t.me/wanisitesourcing';
   const TGSUJET = { 'Tech': 2, 'Mode': 3, 'Sport': 4, 'Maison': 5, 'Pros & restaurants': 6, 'Beauté': 7, 'Parfums': 8, 'Jouets': 9, 'Auto & moto': 10, 'Autre': 11 };
+  const motCle = (m) => String(m).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   const btnTg = (s) => `<a class="cat-tg" href="${TGSUJET[s] ? TG + '/' + TGSUJET[s] : TG}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> ${s ? 'Rejoindre le canal ' + String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) + ' sur Telegram' : 'Rejoindre le groupe Telegram du catalogue'} <i aria-hidden="true">→</i></a>`;
   let ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Auto & moto', 'Autre'];
   let ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
@@ -561,6 +563,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const photo = (p, n) => `${API}/api/public/catalogue/photo/${enc(p.id)}/${n}?v=${enc(p.version)}`;
   const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v2${fixe ? '-fixe' : ''}.webp">` : `<span class="ini" aria-hidden="true">${esc(String(s || '?').charAt(0))}</span>`;
   const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+  // Deux prix séparés : au détail (à la pièce) et en gros (par pièce, dès N pièces).
+  const prixHtml = (p) => {
+    const l = [];
+    if (p.aPartirDe != null) l.push(`<span class="cat-prix"><i>Détail</i> dès <b>${eur(p.aPartirDe)}</b></span>`);
+    if (p.aPartirDeGros != null) l.push(`<span class="cat-prix"><i>Gros</i> dès <b>${eur(p.aPartirDeGros)}</b>${p.minGros ? `<small>dès ${p.minGros} pièces</small>` : ''}</span>`);
+    return l.length ? `<span class="cat-prix-2">${l.join('')}</span>` : '<span class="cat-prix">Prix sur devis</span>';
+  };
   const devis = (p) => wa(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
   let tous = [], type = '', vente = '';
   // Ordre et rangement choisis dans le dashboard (Catalogue → Secteurs, types et marques).
@@ -590,7 +599,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   const carte = (p) => `<button type="button" class="cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}, ouvrir la fiche">
     <span class="cat-img">${p.nbPhotos ? `<img loading="lazy" decoding="async" alt="${esc(p.nom)}" src="${photo(p, 0)}">` : ph(sect(p), true)}${p.vente ? `<span class="cat-tag">${esc(p.vente === 'Détail et gros' ? 'Détail · gros' : p.vente)}</span>` : ''}</span>
-    <span class="cat-body"><h4>${esc(p.nom)}</h4>${p.type ? `<span class="cat-sec-l">${esc(p.type)}</span>` : ''}${p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>'}<span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}</span></span></button>`;
+    <span class="cat-body"><h4>${esc(p.nom)}</h4>${p.type ? `<span class="cat-sec-l">${esc(p.type)}</span>` : ''}${prixHtml(p)}<span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}</span></span></button>`;
 
   const tuile = (href, img, tag, titre, sous, cta, externe) => `<a class="cat-card cat-sec" href="${href}"${externe ? ' target="_blank" rel="noopener"' : ''}><span class="cat-img">${img}${tag ? `<span class="cat-tag">${esc(tag)}</span>` : ''}</span><span class="cat-body"><h4>${esc(titre)}</h4><span class="cat-sec-l">${esc(sous)}</span><span class="cat-cta">${esc(cta)} <i aria-hidden="true">→</i></span></span></a>`;
   const pluriel = (n, un, plus) => n + ' ' + (n > 1 ? plus : un);
@@ -640,7 +649,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout voir'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !base.some((p) => p.vente && p.vente !== 'Détail et gros');
     const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros')).sort((a, b) => rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
-    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
+    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}${m ? ` <span>Dans le canal, cherchez <b>#${motCle(m)}</b></span>` : ''}</p>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
       `<div class="cat-pied"><div><b>Un autre modèle de ${esc(m || s)} ?</b><span>Dites-nous lequel : on vous répond sur WhatsApp.</span></div><a class="btn main big" href="${wa('Bonjour, je cherche d’autres produits' + (m ? ' de la marque ' + m : '') + ' dans le secteur ' + s + '. ')}" target="_blank" rel="noopener">Demander un modèle <span aria-hidden="true">→</span></a></div>`;
   }
 
@@ -663,7 +672,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const n = p.nbPhotos;
     $('catModalBody').innerHTML = `<div class="cat-det"><div class="cat-gal"><div class="big" id="catBig">${n ? `<img alt="${esc(p.nom)}" src="${photo(p, 0)}">` : ph(sect(p), false)}</div>${n > 1 ? `<div class="cat-thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-current="${i === 0}" style="background-image:url(${photo(p, i)})"></button>`).join('')}</div>` : ''}</div>
       <div class="cat-info"><small>${esc([p.secteur, p.marque, p.type, p.reference ? 'réf. ' + p.reference : ''].filter(Boolean).join(' · '))}</small><h3 id="catModalNom">${esc(p.nom)}</h3>
-      ${p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>'}
+      ${prixHtml(p)}
       <span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}${p.vente ? ' · ' + esc(p.vente === 'Détail et gros' ? 'au détail et en gros' : p.vente === 'Gros' ? 'en gros' : 'au détail') : ''}</span>
       ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.</p>
       <a class="btn wa big" href="${devis(p)}" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div></div>`;
