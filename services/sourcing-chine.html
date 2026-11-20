@@ -388,6 +388,9 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   #produits{scroll-margin-top:70px;}
   .cat-fil{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:26px 0 6px;font-size:15px;color:var(--muted);} .cat-fil a{color:var(--teal);text-decoration:none;font-weight:500;} .cat-fil a:hover{text-decoration:underline;} .cat-fil i{font-style:normal;opacity:.5;} .cat-fil [aria-current]{color:var(--ink);font-weight:500;}
   .cat-fil[hidden]{display:none;}
+  .cat-tg-ligne{margin:0 0 22px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;color:var(--muted);font-size:15px;}
+  .cat-tg{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(100deg,#0aa6a0,#10b4cf 55%,#1f8be6);color:#fff !important;font-weight:600;font-size:14.5px;text-decoration:none;}
+  .cat-tg:hover{filter:brightness(1.06);} .cat-tg i{font-style:normal;}
   .cat-titre{margin:18px 0 22px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);letter-spacing:-.03em;line-height:1.05;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;} .cat-titre small{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;letter-spacing:0;color:var(--muted);}
   .cat-secteurs:empty{display:none;} .cat-pied[hidden]{display:none;}
 </style>
@@ -543,6 +546,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
   const WA = 'https://wa.me/33624547342?text=';
   const $ = (id) => document.getElementById(id);
+  // Groupe Telegram public (un sujet par secteur) : t.me/wanisitesourcing/<numéro du sujet>
+  const TG = 'https://t.me/wanisitesourcing';
+  const TGSUJET = { 'Tech': 2, 'Mode': 3, 'Sport': 4, 'Maison': 5, 'Pros & restaurants': 6, 'Beauté': 7, 'Parfums': 8, 'Jouets': 9, 'Auto & moto': 10, 'Autre': 11 };
+  const btnTg = (s) => `<a class="cat-tg" href="${TGSUJET[s] ? TG + '/' + TGSUJET[s] : TG}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> ${s ? 'Rejoindre le canal ' + String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) + ' sur Telegram' : 'Rejoindre le groupe Telegram du catalogue'} <i aria-hidden="true">→</i></a>`;
   let ORDRE = ['Tech', 'Mode', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Jouets', 'Auto & moto', 'Autre'];
   let ICO = { 'Tech': 'tech', 'Mode': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
@@ -595,7 +602,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    $('catList').innerHTML = `<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
+    $('catList').innerHTML = `<p class="cat-tg-ligne">Chaque catégorie a son canal : photos, lots et nouveautés en direct. ${btnTg('')}</p><div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
       return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les produits');
     }).join('')}</div>`;
@@ -607,7 +614,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const demande = `<div class="cat-pied"><div><b>${ps.length ? 'Une marque que vous ne voyez pas ?' : 'Ce secteur ouvre bientôt.'}</b><span>${ps.length ? 'Dites-nous laquelle : on vous répond sur WhatsApp.' : 'Dites-nous ce que vous cherchez : on vous répond sur WhatsApp.'}</span></div><a class="btn main big" href="${wa('Bonjour, je cherche des produits dans le secteur : ' + s)}" target="_blank" rel="noopener">Demander des produits ${esc(s)} <span aria-hidden="true">→</span></a></div>`;
     if (!ps.length) {
       const rs = RAYONS[s] || [];
-      $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${rs.length ? pluriel(rs.length, 'rayon', 'rayons') + ' · photos bientôt' : 'Bientôt'}</small></h3>` +
+      $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${rs.length ? pluriel(rs.length, 'rayon', 'rayons') + ' · photos bientôt' : 'Bientôt'}</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` +
         (rs.length ? `<div class="cat-grid cat-secteurs">${rs.map((r) => tuile(wa('Bonjour, je cherche des produits : ' + r + ' (' + s + '). '), ph(s, true), 'Photos bientôt', r, 'Sur demande · prix à partir de X € bientôt', 'Demander ce rayon', true)).join('')}</div>` : '') + demande;
       return;
     }
@@ -620,7 +627,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       .sort((a, b) => rang(ORDRE_MARQUES, a.marque || '') - rang(ORDRE_MARQUES, b.marque || '') || rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
     const marques = [...new Set(ps.map((p) => p.marque || ''))].sort((a, b) => (a === '') - (b === '') || rang(ORDRE_MARQUES, a) - rang(ORDRE_MARQUES, b) || a.localeCompare(b, 'fr'));
     const avecMarque = marques.filter(Boolean);
-    $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(liste.length, 'produit', 'produits')}</small></h3>` +
+    $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` +
       (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
       (avecMarque.length ? `<div class="cat-marques"><h4>Les marques ${esc(s)}</h4><div>${avecMarque.map((m) => `<a href="${lien(s, m)}">${esc(m)}<small>${ps.filter((p) => p.marque === m).length}</small></a>`).join('')}</div></div>` : '') + demande;
   }
@@ -633,7 +640,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout voir'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !base.some((p) => p.vente && p.vente !== 'Détail et gros');
     const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros')).sort((a, b) => rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
-    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
+    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
       `<div class="cat-pied"><div><b>Un autre modèle de ${esc(m || s)} ?</b><span>Dites-nous lequel : on vous répond sur WhatsApp.</span></div><a class="btn main big" href="${wa('Bonjour, je cherche d’autres produits' + (m ? ' de la marque ' + m : '') + ' dans le secteur ' + s + '. ')}" target="_blank" rel="noopener">Demander un modèle <span aria-hidden="true">→</span></a></div>`;
   }
 
