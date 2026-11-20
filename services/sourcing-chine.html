@@ -391,6 +391,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-tg-ligne{margin:0 0 22px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;color:var(--muted);font-size:15px;}
   .cat-tg{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(100deg,#0aa6a0,#10b4cf 55%,#1f8be6);color:#fff !important;font-weight:600;font-size:14.5px;text-decoration:none;}
   .cat-tg:hover{filter:brightness(1.06);} .cat-tg i{font-style:normal;}
+  .cat-tg-ou{font-size:14px;color:var(--muted);} .cat-tg-ou b{color:var(--ink);font-weight:600;}
+  .tg-bloc{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:center;margin:0 0 26px;padding:18px 20px;border-radius:18px;border:1px solid rgba(16,180,207,.28);background:linear-gradient(100deg,rgba(10,166,160,.07),rgba(31,139,230,.07));}
+  .tg-bloc-t{display:grid;gap:4px;} .tg-bloc-t b{font-family:'Outfit',sans-serif;font-weight:500;font-size:19px;color:var(--ink);} .tg-bloc-t span{font-size:14.5px;color:var(--muted);}
+  .tg-groupes{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;}
+  .tg-groupes a{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(12,32,48,.16);background:#fff;color:var(--ink);font-weight:600;font-size:14px;text-decoration:none;}
+  .tg-groupes a:hover{border-color:#10b4cf;}
+  @media (max-width:640px){.tg-bloc{grid-template-columns:1fr;} .tg-bloc .cat-tg{justify-content:center;}}
   .cat-prix-2{display:grid;gap:3px;} .cat-prix-2 .cat-prix{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;} .cat-prix i{font-style:normal;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);} .cat-prix small{font-size:12.5px;color:var(--muted);} .cat-prix-2 b{font-size:21px !important;}
   .cat-titre{margin:18px 0 22px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);letter-spacing:-.03em;line-height:1.05;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;} .cat-titre small{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;letter-spacing:0;color:var(--muted);}
   .cat-secteurs:empty{display:none;} .cat-pied[hidden]{display:none;}
@@ -547,11 +554,20 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
   const WA = 'https://wa.me/33624547342?text=';
   const $ = (id) => document.getElementById(id);
-  // Groupe Telegram public (un sujet par secteur) : t.me/wanisitesourcing/<numéro du sujet>
-  const TG = 'https://t.me/wanisitesourcing';
-  const TGSUJET = { 'Tech': 2, 'Mode': 3, 'Whoop': 2, 'Articles de luxe': 3, 'Sport': 4, 'Maison': 5, 'Pros & restaurants': 6, 'Beauté': 7, 'Parfums': 8, 'Auto & moto': 10, 'Autre': 11 };
+  // Telegram : 3 groupes publics (un sujet par catégorie) + un lien de dossier qui les fait rejoindre tous d'un coup.
+  const TG_DOSSIER = 'https://t.me/addlist/uIApVfUPlioxNjE0';
+  const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Maison', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
+  // Catégorie du site → [groupe, numéro du sujet dans ce groupe] (null = la page du groupe)
+  const TG_CAT = { 'Articles de luxe': ['luxe', null], 'Mode': ['luxe', null], 'Whoop': ['acc', 2], 'Tech': ['acc', 2], 'Sport': ['acc', 4], 'Auto & moto': ['acc', 10], 'Autre': ['acc', 11], 'Beauté': ['beaute', 2], 'Parfums': ['beaute', 3], 'Maison': ['beaute', 4], 'Pros & restaurants': ['beaute', 5] };
   const motCle = (m) => String(m).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
-  const btnTg = (s) => `<a class="cat-tg" href="${TGSUJET[s] ? TG + '/' + TGSUJET[s] : TG}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> ${s ? 'Rejoindre le canal ' + String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) + ' sur Telegram' : 'Rejoindre le groupe Telegram du catalogue'} <i aria-hidden="true">→</i></a>`;
+  const escTg = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const btnTg = (s) => {
+    const c = s && TG_CAT[s], g = c && TG_GROUPES[c[0]];
+    if (!g) return `<a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre nos 3 groupes Telegram <i aria-hidden="true">→</i></a>`;
+    return `<a class="cat-tg" href="${g.url}${c[1] ? '/' + c[1] : ''}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Voir ${escTg(s)} sur Telegram <i aria-hidden="true">→</i></a><span class="cat-tg-ou">dans le groupe <b>${g.ico} ${escTg(g.nom)}</b></span>`;
+  };
+  // Bloc d'accueil du catalogue : le lien unique + les 3 groupes.
+  const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues sur Telegram</b><span>Photos, lots et nouveautés en direct, un sujet par catégorie. Un seul lien pour rejoindre les 3 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre les 3 groupes <i aria-hidden="true">→</i></a><div class="tg-groupes">${Object.values(TG_GROUPES).map((g) => `<a href="${g.url}" target="_blank" rel="noopener"><span aria-hidden="true">${g.ico}</span> ${escTg(g.nom.replace('Wanisite ', ''))}</a>`).join('')}</div></div>`;
   let ORDRE = ['Articles de luxe', 'Whoop', 'Sport', 'Maison', 'Pros & restaurants', 'Beauté', 'Parfums', 'Auto & moto', 'Autre'];
   let ICO = { 'Whoop': 'tech', 'Articles de luxe': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
@@ -606,7 +622,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    $('catList').innerHTML = `<p class="cat-tg-ligne">Chaque catégorie a son canal : photos, lots et nouveautés en direct. ${btnTg('')}</p><div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
+    $('catList').innerHTML = `${blocTg()}<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
       return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les produits');
     }).join('')}</div>`;
@@ -644,7 +660,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     $('catSecteurs').innerHTML = types.length > 1 ? ['', ...types].map((t) => `<button type="button" data-t="${esc(t)}" aria-pressed="${t === type}">${t ? esc(t) : 'Tout voir'}</button>`).join('') : '';
     $('catBar').hidden = types.length < 2 && !base.some((p) => p.vente && p.vente !== 'Détail et gros');
     const liste = base.filter((p) => (!type || p.type === type) && (!vente || p.vente === vente || p.vente === 'Détail et gros')).sort((a, b) => rang(ORDRE_TYPES, a.type) - rang(ORDRE_TYPES, b.type));
-    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}${m ? ` <span>Dans le canal, cherchez <b>#${motCle(m)}</b></span>` : ''}</p>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
+    $('catList').innerHTML = `<h3 class="cat-titre">${esc(m || 'Autres marques')}<small>${esc(s)} · ${pluriel(liste.length, 'produit', 'produits')}</small></h3><p class="cat-tg-ligne">${btnTg(s)}${m ? ` <span>Dans le groupe, cherchez <b>#${motCle(m)}</b></span>` : ''}</p>` + (liste.length ? `<div class="cat-grid">${liste.map(carte).join('')}</div>` : '<div class="cat-vide">Aucun produit dans cette sélection pour l’instant.</div>') +
       `<div class="cat-pied"><div><b>Un autre modèle de ${esc(m || s)} ?</b><span>Dites-nous lequel : on vous répond sur WhatsApp.</span></div><a class="btn main big" href="${wa('Bonjour, je cherche d’autres produits' + (m ? ' de la marque ' + m : '') + ' dans le secteur ' + s + '. ')}" target="_blank" rel="noopener">Demander un modèle <span aria-hidden="true">→</span></a></div>`;
   }
 
