@@ -131,7 +131,7 @@ def pied_liens():
 
 
 # Réseaux affichés dans le pied de page de l'accueil : (nom, adresse). Vide = la colonne n'apparaît pas.
-RESEAUX = []
+RESEAUX = [("TikTok", "https://www.tiktok.com/@wanisite"), ("Instagram", "https://www.instagram.com/wanisite/")]
 
 
 def pied_pro():
@@ -139,7 +139,8 @@ def pied_pro():
     svc = ''.join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for u, n in SERVICES)
     res = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a></li>' for n, u in RESEAUX)
     colonne_res = f'<nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul>{res}</ul></nav>' if RESEAUX else ''
-    return ('<!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=2"><div class="fp">'
+    classe = 'fp fp-5' if RESEAUX else 'fp'
+    return ('<!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=3">' f'<div class="{classe}">'
             '<div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a>'
             '<p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p>'
             '<a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div>'
