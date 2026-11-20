@@ -563,13 +563,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const photo = (p, n) => `${API}/api/public/catalogue/photo/${enc(p.id)}/${n}?v=${enc(p.version)}`;
   const ph = (s, fixe) => ICO[s] ? `<img class="ph" loading="lazy" decoding="async" alt="" src="/assets/sourcing/secteur-${ICO[s]}-v2${fixe ? '-fixe' : ''}.webp">` : `<span class="ini" aria-hidden="true">${esc(String(s || '?').charAt(0))}</span>`;
   const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
-  // Deux prix séparés : au détail (à la pièce) et en gros (par pièce, dès N pièces).
-  const prixHtml = (p) => {
-    const l = [];
-    if (p.aPartirDe != null) l.push(`<span class="cat-prix"><i>Détail</i> dès <b>${eur(p.aPartirDe)}</b></span>`);
-    if (p.aPartirDeGros != null) l.push(`<span class="cat-prix"><i>Gros</i> dès <b>${eur(p.aPartirDeGros)}</b>${p.minGros ? `<small>dès ${p.minGros} pièces</small>` : ''}</span>`);
-    return l.length ? `<span class="cat-prix-2">${l.join('')}</span>` : '<span class="cat-prix">Prix sur devis</span>';
-  };
+  // Un seul prix affiché : « à partir de » au détail. Le prix de gros est donné sur WhatsApp (jamais publié).
+  const prixHtml = (p) => (p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>');
   const devis = (p) => wa(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
   let tous = [], type = '', vente = '';
   // Ordre et rangement choisis dans le dashboard (Catalogue → Secteurs, types et marques).
@@ -674,7 +669,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       <div class="cat-info"><small>${esc([p.secteur, p.marque, p.type, p.reference ? 'réf. ' + p.reference : ''].filter(Boolean).join(' · '))}</small><h3 id="catModalNom">${esc(p.nom)}</h3>
       ${prixHtml(p)}
       <span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}${p.vente ? ' · ' + esc(p.vente === 'Détail et gros' ? 'au détail et en gros' : p.vente === 'Gros' ? 'en gros' : 'au détail') : ''}</span>
-      ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.</p>
+      ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.${p.vente && p.vente !== 'Détail' ? ' Vous achetez en gros ? Le prix de gros vous est donné sur WhatsApp.' : ''}</p>
       <a class="btn wa big" href="${devis(p)}" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div></div>`;
     $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((b) => b.addEventListener('click', () => { $('catBig').innerHTML = `<img alt="${esc(p.nom)}" src="${photo(p, +b.dataset.i)}">`; $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((x) => x.setAttribute('aria-current', String(x === b))); }));
     $('catModal').hidden = false; document.body.style.overflow = 'hidden'; $('catX').focus();
