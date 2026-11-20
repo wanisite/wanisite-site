@@ -130,6 +130,38 @@ def pied_liens():
             '<style>.pied-liens a{color:inherit;opacity:.75;text-decoration:none;}.pied-liens a:hover{opacity:1;text-decoration:underline;}</style><!--/pied-liens-->')
 
 
+# Réseaux affichés dans le pied de page de l'accueil : (nom, adresse). Vide = la colonne n'apparaît pas.
+RESEAUX = []
+
+
+def pied_pro():
+    """Pied de page structuré de l'accueil (colonnes). Le contenu entre les repères <!--pied-liens--> est régénéré ici."""
+    svc = ''.join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for u, n in SERVICES)
+    res = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a></li>' for n, u in RESEAUX)
+    colonne_res = f'<nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul>{res}</ul></nav>' if RESEAUX else ''
+    return ('<!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=2"><div class="fp">'
+            '<div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a>'
+            '<p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p>'
+            '<a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div>'
+            f'<nav class="fp-col" aria-label="Services"><h2>Services</h2><ul>{svc}</ul></nav>'
+            '<nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li>'
+            '<li><a href="/#protocole">Comment ça marche</a></li><li><a href="/blog/">Blog</a></li></ul></nav>'
+            f'{colonne_res}'
+            '<div class="fp-col"><h2>Contact</h2><ul><li><a href="mailto:wanisitepro@gmail.com">wanisitepro@gmail.com</a></li>'
+            '<li><a href="tel:+33624547342">+33 6 24 54 73 42</a></li><li><a href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a></li>'
+            '<li class="fp-note">Réponse sous 24 h</li></ul></div>'
+            '<p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens-->')
+
+
+def moderniser_pied(s, index=False):
+    """Même pied de page partout : <footer class="fpied"> + bloc structuré (le style est dans /assets/pied.css)."""
+    bloc = pied_pro()
+    if index:  # l'accueil garde son bloc de style dans le pied : on ne remplace que le bloc régénéré
+        s = re.sub(r'<footer(?: class="fpied")?>', '<footer class="fpied">', s, count=1)
+        return remplacer_bloc(s, 'pied-liens', bloc, '</footer>')
+    return re.sub(r'<footer\b[^>]*>.*?</footer>', lambda m: '<footer class="fpied">' + bloc + '</footer>', s, count=1, flags=re.S)
+
+
 def ariane(elements):
     data = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i, "name": n, "item": SITE + u} for i, (u, n) in enumerate(elements, 1)]}
@@ -220,12 +252,7 @@ GABARIT = '''<!DOCTYPE html>
 <main class="blog"><div class="wrap">
 {contenu}
 </div></main>
-<footer>
-  <div class="wrap">
-    <a href="/" style="text-decoration:none;font-weight:700;color:var(--ink);">Wanisite</a>
-    <span>© 2026 · waniscontact7679@gmail.com · +33 6 24 54 73 42</span>
-  </div>
-{pied}</footer>
+<footer class="fpied">{pied}</footer>
 </body>
 </html>
 '''
@@ -255,7 +282,7 @@ def page_article(a, articles=()):
     return GABARIT.format(titre_page=html.escape(a['titre'] + ' — Wanisite'), titre_og=html.escape(a['titre']), description=html.escape(a['description']),
                           url=url, og_type='article', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
                           jsonld='<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + '</script>\n' +
-                          ariane([('/', 'Accueil'), ('/blog/', 'Blog'), (f"/blog/{a['slug']}", a['titre'])]), contenu=contenu, pied=pied_liens())
+                          ariane([('/', 'Accueil'), ('/blog/', 'Blog'), (f"/blog/{a['slug']}", a['titre'])]), contenu=contenu, pied=pied_pro())
 
 
 MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
@@ -275,7 +302,7 @@ def page_liste(articles):
                           description='Conseils concrets pour les commerces et les indépendants : site internet, réservation en ligne, boutique, publicité Meta et sourcing en Chine.',
                           url=SITE + '/blog/', og_type='website', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
                           jsonld='<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + '</script>\n' + ariane([('/', 'Accueil'), ('/blog/', 'Blog')]),
-                          contenu=contenu, pied=pied_liens())
+                          contenu=contenu, pied=pied_pro())
 
 
 def rss(articles):
@@ -332,17 +359,17 @@ def referencer_pages():
     for u, nom in SERVICES:
         f = u.lstrip('/') + '.html'
         s = lire(f)
-        s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
+        s = moderniser_pied(s)
         s = remplacer_bloc(s, 'ariane', ariane([('/', 'Accueil'), (u, nom)]), '</head>')
         ecrire(f, s)
     for u, nom in REALISATIONS:
         f = u.lstrip('/') + '.html'
         s = lire(f)
-        s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
+        s = moderniser_pied(s)
         s = remplacer_bloc(s, 'ariane', ariane([('/', 'Accueil'), ('/#realisations', 'Réalisations'), (u, nom)]), '</head>')
         ecrire(f, s)
     s = lire('index.html')
-    s = remplacer_bloc(s, 'pied-liens', pied_liens(), '</footer>')
+    s = moderniser_pied(s, index=True)
     # bloc « Notes du labo » retiré de l'accueil le 2026-11-01 (demande de l'utilisateur) : la liste reste sur /blog/
     ecrire('index.html', s)
 

@@ -99,7 +99,7 @@ def render(c):
 <section style="padding-top:0;"><div class="wrap"><div class="final"><h2>Et pour votre <span class="italic hl-block">activité ?</span></h2><p>Dites-nous ce que vous vendez et à qui. On vous explique ce qu'une campagne peut raisonnablement apporter, avant de dépenser un euro.</p>
 <div class="actions"><a class="btn wa" href="{WA + quote(msg)}" target="_blank" rel="noopener">Demander un accompagnement</a><a class="btn ghost" href="/#budget">Voir les autres réalisations</a></div></div></div></section>
 </main>
-<footer><div class="wrap"><a href="/" style="text-decoration:none;font-weight:700;color:var(--ink);">Wanisite</a><span>© 2026 · waniscontact7679@gmail.com · +33 6 24 54 73 42</span></div></footer>
+<footer><div class="wrap"><a href="/" style="text-decoration:none;font-weight:700;color:var(--ink);">Wanisite</a><span>© 2026 · wanisitepro@gmail.com · +33 6 24 54 73 42</span></div></footer>
 </body>
 </html>
 '''

@@ -91,7 +91,7 @@ def page(slug, title, desc, svc_name, quote_msg, project_msg, hero, body, faq):
 <footer>
   <div class="wrap">
     <a href="/" style="text-decoration:none;font-weight:700;color:var(--ink);">Wanisite</a>
-    <span>© 2026 · waniscontact7679@gmail.com · +33 6 24 54 73 42</span>
+    <span>© 2026 · wanisitepro@gmail.com · +33 6 24 54 73 42</span>
   </div>
 </footer>
 </body>
