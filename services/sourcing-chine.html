@@ -392,6 +392,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-tg{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(100deg,#0aa6a0,#10b4cf 55%,#1f8be6);color:#fff !important;font-weight:600;font-size:14.5px;text-decoration:none;}
   .cat-tg:hover{filter:brightness(1.06);} .cat-tg i{font-style:normal;}
   .cat-tg-ou{font-size:14px;color:var(--muted);} .cat-tg-ou b{color:var(--ink);font-weight:600;}
+  .cat-groupe{margin:0 0 34px;} .cat-groupe-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid rgba(12,32,48,.12);}
+  .cat-groupe-h h3{margin:0;font-family:'Outfit',sans-serif;font-weight:400;font-size:clamp(22px,3vw,28px);letter-spacing:-.01em;color:var(--ink);}
+  .cat-groupe-h a{font-weight:600;font-size:14.5px;text-decoration:none;color:#0a8fa8;} .cat-groupe-h a:hover{text-decoration:underline;} .cat-groupe-h a i{font-style:normal;}
+  .cat-groupe.g-luxe .cat-groupe-h a{color:#a8801e;} .cat-groupe.g-beaute .cat-groupe-h a{color:#c2477f;}
   .tg-bloc{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:center;margin:0 0 26px;padding:18px 20px;border-radius:18px;border:1px solid rgba(16,180,207,.28);background:linear-gradient(100deg,rgba(10,166,160,.07),rgba(31,139,230,.07));}
   .tg-bloc-t{display:grid;gap:4px;} .tg-bloc-t b{font-family:'Outfit',sans-serif;font-weight:500;font-size:19px;color:var(--ink);} .tg-bloc-t span{font-size:14.5px;color:var(--muted);}
   .tg-groupes{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;}
@@ -558,6 +562,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const TG_DOSSIER = 'https://t.me/addlist/uIApVfUPlioxNjE0';
   const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Maison', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
   // Catégorie du site → [groupe, numéro du sujet dans ce groupe] (null = la page du groupe)
+  // Rayons d'une catégorie = les sujets de son groupe Telegram (même nom, même ordre).
+  const TG_RAYONS = { 'Articles de luxe': [['Casquettes & bonnets', 2], ['Vêtements', 3], ['Baskets & chaussures', 4], ['Sacs & maroquinerie', 5], ['Montres & bijoux', 6], ['Lunettes & accessoires', 7]] };
   const TG_CAT = { 'Articles de luxe': ['luxe', null], 'Mode': ['luxe', null], 'Whoop': ['acc', 2], 'Tech': ['acc', 2], 'Sport': ['acc', 4], 'Auto & moto': ['acc', 10], 'Autre': ['acc', 11], 'Beauté': ['beaute', 2], 'Parfums': ['beaute', 3], 'Maison': ['beaute', 4], 'Pros & restaurants': ['beaute', 5] };
   const motCle = (m) => String(m).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
   const escTg = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -622,16 +628,32 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    $('catList').innerHTML = `${blocTg()}<div class="cat-grid cat-secteurs">${ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s)).map((s) => {
+    // Le catalogue est rangé comme Telegram : un bloc par groupe, avec ses catégories.
+    const secs = ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s));
+    const carteSecteur = (s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
       return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les produits');
-    }).join('')}</div>`;
+    };
+    const groupe = (k) => {
+      const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
+      if (!l.length) return '';
+      return `<section class="cat-groupe g-${k}"><div class="cat-groupe-h"><h3><span aria-hidden="true">${g.ico}</span> ${esc(g.nom)}</h3><a href="${g.url}" target="_blank" rel="noopener">Rejoindre ce groupe sur Telegram <i aria-hidden="true">→</i></a></div><div class="cat-grid cat-secteurs">${l.map(carteSecteur).join('')}</div></section>`;
+    };
+    const horsGroupe = secs.filter((s) => !TG_CAT[s]);
+    $('catList').innerHTML = blocTg() + ['luxe', 'acc', 'beaute'].map(groupe).join('') + (horsGroupe.length ? `<div class="cat-grid cat-secteurs">${horsGroupe.map(carteSecteur).join('')}</div>` : '');
   }
 
   function secteur(s) {
     fil([['Catalogue', '#produits'], [s]]); $('catBar').hidden = true;
     const ps = tous.filter((p) => sect(p) === s);
     const demande = `<div class="cat-pied"><div><b>${ps.length ? 'Une marque que vous ne voyez pas ?' : 'Ce secteur ouvre bientôt.'}</b><span>${ps.length ? 'Dites-nous laquelle : on vous répond sur WhatsApp.' : 'Dites-nous ce que vous cherchez : on vous répond sur WhatsApp.'}</span></div><a class="btn main big" href="${wa('Bonjour, je cherche des produits dans le secteur : ' + s)}" target="_blank" rel="noopener">Demander des produits ${esc(s)} <span aria-hidden="true">→</span></a></div>`;
+    if (!ps.length && TG_RAYONS[s] && TG_CAT[s]) {
+      // Rayons = sujets du groupe Telegram : chaque tuile ouvre son sujet.
+      const g = TG_GROUPES[TG_CAT[s][0]], rs = TG_RAYONS[s];
+      $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(rs.length, 'rayon', 'rayons')} · photos sur Telegram</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` +
+        `<div class="cat-grid cat-secteurs">${rs.map(([r, n]) => tuile(g.url + '/' + n, ph(s, true), 'Sujet Telegram', r, 'Photos et lots dans le groupe ' + g.nom, 'Voir sur Telegram', true)).join('')}</div>` + demande;
+      return;
+    }
     if (!ps.length) {
       const rs = RAYONS[s] || [];
       $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${rs.length ? pluriel(rs.length, 'rayon', 'rayons') + ' · photos bientôt' : 'Bientôt'}</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` +
