@@ -402,6 +402,41 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .tg-groupes a{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(12,32,48,.16);background:#fff;color:var(--ink);font-weight:600;font-size:14px;text-decoration:none;}
   .tg-groupes a:hover{border-color:#10b4cf;}
   @media (max-width:640px){.tg-bloc{grid-template-columns:1fr;} .tg-bloc .cat-tg{justify-content:center;}}
+
+  /* ===== Catalogue : cartes en verre, tuiles compactes (2026-11-21) ===== */
+  #produits{position:relative;isolation:isolate;}
+  #produits::before{content:"";position:absolute;inset:-40px 0;z-index:-1;pointer-events:none;
+    background:radial-gradient(520px 320px at 8% 12%,rgba(16,180,207,.22),transparent 70%),radial-gradient(560px 340px at 92% 40%,rgba(31,139,230,.18),transparent 70%),radial-gradient(480px 300px at 30% 92%,rgba(10,166,160,.16),transparent 70%);}
+  .tg-bloc,.cat-groupe,.cat-card,.cat-pied,.cat-marques{-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);}
+  .tg-bloc{border:1px solid rgba(255,255,255,.75);background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(255,255,255,.35));box-shadow:0 18px 40px -28px rgba(8,110,140,.55),inset 0 1px 0 rgba(255,255,255,.9);border-radius:24px;padding:20px 24px;margin-bottom:22px;}
+  .tg-bloc-t b{font-size:21px;font-weight:400;} .tg-groupes{display:none;}
+  .cat-groupe{margin:0 0 20px;padding:20px 22px 22px;border-radius:28px;border:1px solid rgba(255,255,255,.75);background:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.28));box-shadow:0 22px 46px -32px rgba(8,110,140,.55),inset 0 1px 0 rgba(255,255,255,.9);}
+  .cat-groupe-h{border-bottom:0;padding-bottom:0;margin:0 0 16px;align-items:center;}
+  .cat-groupe-h h3{font-weight:300;font-size:clamp(24px,3vw,32px);}
+  .cat-groupe-btn,.cat-groupe .cat-groupe-h a.cat-groupe-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(16,180,207,.4);color:#0b7f8f !important;font-weight:600;font-size:14px;text-decoration:none !important;}
+  .cat-groupe-btn:hover{background:#fff;} .cat-groupe-btn i{font-style:normal;}
+  .cat-groupe.g-luxe .cat-groupe-h a,.cat-groupe.g-beaute .cat-groupe-h a{color:#0b7f8f;}
+  /* tuile de catégorie : image 3D à gauche, texte court, pastille Telegram */
+  .gt{position:relative;}
+  .cat-card.cat-sec{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:0 16px;padding:14px 16px;min-height:0;border-radius:22px;border:1px solid rgba(255,255,255,.8);background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.4));box-shadow:0 14px 30px -22px rgba(8,110,140,.55),inset 0 1px 0 rgba(255,255,255,.95);}
+  .cat-card.cat-sec:hover{transform:translateY(-2px);border-color:#fff;box-shadow:0 22px 38px -22px rgba(8,140,170,.6),inset 0 1px 0 #fff;}
+  .cat-sec .cat-img{width:78px;height:78px;aspect-ratio:1;border-radius:20px;background:linear-gradient(160deg,rgba(228,247,248,.95),rgba(206,230,250,.9));}
+  .cat-sec .cat-img img.ph{width:92%;height:92%;}
+  .cat-sec .cat-img .ini{font-size:34px;}
+  .cat-sec .cat-body{padding:0;gap:3px;} .cat-sec .cat-body h4{font-size:21px;font-weight:400;}
+  .cat-sec .cat-sec-l{font-size:13.5px;min-height:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .cat-sec .cat-tag{display:none;}
+  .cat-sec .cat-cta{display:none;}
+  .cat-sec .cat-body{padding-right:34px;}
+  .gt-tg{position:absolute;right:14px;top:14px;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:rgba(16,180,207,.16);color:#0b7f8f !important;font-size:0;text-decoration:none;}
+  .gt-tg span{font-size:15px;line-height:1;} .gt-tg:hover{background:#0b8f8f;color:#fff !important;}
+  .cat-secteurs{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+  @media (max-width:900px){.cat-secteurs{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:640px){.cat-secteurs{grid-template-columns:1fr;gap:10px;} .cat-groupe{padding:16px 14px 16px;border-radius:24px;} .cat-sec .cat-sec-l{-webkit-line-clamp:1;}}
+  /* fiches produit : même verre, images pleines */
+  button.cat-card{background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.42));border:1px solid rgba(255,255,255,.85);border-radius:24px;box-shadow:0 16px 34px -24px rgba(8,110,140,.55),inset 0 1px 0 rgba(255,255,255,.95);}
+  button.cat-card .cat-img{border-radius:20px;margin:8px 8px 0;background:linear-gradient(160deg,#e4f6f7,#d2e6fa);} button.cat-card .cat-body{padding:12px 16px 16px;}
+  .cat-pied,.cat-marques{border:1px solid rgba(255,255,255,.8);background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.35));border-radius:24px;}
   .cat-prix-2{display:grid;gap:3px;} .cat-prix-2 .cat-prix{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;} .cat-prix i{font-style:normal;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);} .cat-prix small{font-size:12.5px;color:var(--muted);} .cat-prix-2 b{font-size:21px !important;}
   .cat-titre{margin:18px 0 22px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);letter-spacing:-.03em;line-height:1.05;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;} .cat-titre small{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;letter-spacing:0;color:var(--muted);}
   .cat-secteurs:empty{display:none;} .cat-pied[hidden]{display:none;}
@@ -523,7 +558,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   </div>
 </section>
 </main>
-<footer class="fpied"><!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=3"><div class="fp fp-5"><div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a><p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p><a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div><nav class="fp-col" aria-label="Services"><h2>Services</h2><ul><li><a href="/services/site-vitrine">Site vitrine</a></li><li><a href="/services/reservation">Réservation en ligne</a></li><li><a href="/services/ecommerce">Boutique en ligne</a></li><li><a href="/services/logiciel-sur-mesure">Logiciel sur mesure</a></li><li><a href="/services/budget-marketing">Meta Ads et Google Ads</a></li><li><a href="/services/sourcing-chine">Sourcing en Chine</a></li></ul></nav><nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li><li><a href="/#protocole">Comment ça marche</a></li><li><a href="/blog/">Blog</a></li></ul></nav><nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul><li><a href="https://www.tiktok.com/@wanisite" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.instagram.com/wanisite/" target="_blank" rel="noopener">Instagram</a></li></ul></nav><div class="fp-col"><h2>Contact</h2><ul><li><a href="mailto:wanisitepro@gmail.com">wanisitepro@gmail.com</a></li><li><a href="tel:+33624547342">+33 6 24 54 73 42</a></li><li><a href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a></li><li class="fp-note">Réponse sous 24 h</li></ul></div><p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens--></footer>
+<footer class="fpied"><!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=4"><div class="fp fp-5"><div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a><p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p><a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div><nav class="fp-col" aria-label="Services"><h2>Services</h2><ul><li><a href="/services/site-vitrine">Site vitrine</a></li><li><a href="/services/reservation">Réservation en ligne</a></li><li><a href="/services/ecommerce">Boutique en ligne</a></li><li><a href="/services/logiciel-sur-mesure">Logiciel sur mesure</a></li><li><a href="/services/budget-marketing">Meta Ads et Google Ads</a></li><li><a href="/services/sourcing-chine">Sourcing en Chine</a></li></ul></nav><nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li><li><a href="/#protocole">Comment ça marche</a></li><li><a href="/blog/">Blog</a></li></ul></nav><nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul><li><a href="https://www.tiktok.com/@wanisite" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.instagram.com/wanisite/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://t.me/addlist/uIApVfUPlioxNjE0" target="_blank" rel="noopener">Telegram</a></li></ul></nav><div class="fp-col"><h2>Contact</h2><ul><li><a href="mailto:wanisitepro@gmail.com">wanisitepro@gmail.com</a></li><li><a href="tel:+33624547342">+33 6 24 54 73 42</a></li><li><a href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a></li><li class="fp-note">Réponse sous 24 h</li></ul></div><p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens--></footer>
 <script>
 (() => {
   const WA = 'https://wa.me/33624547342?text=';
@@ -573,7 +608,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     return `<a class="cat-tg" href="${g.url}${c[1] ? '/' + c[1] : ''}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Voir ${escTg(s)} sur Telegram <i aria-hidden="true">→</i></a><span class="cat-tg-ou">dans le groupe <b>${g.ico} ${escTg(g.nom)}</b></span>`;
   };
   // Bloc d'accueil du catalogue : le lien unique + les 3 groupes.
-  const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues sur Telegram</b><span>Photos, lots et nouveautés en direct, un sujet par catégorie. Un seul lien pour rejoindre les 3 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre les 3 groupes <i aria-hidden="true">→</i></a><div class="tg-groupes">${Object.values(TG_GROUPES).map((g) => `<a href="${g.url}" target="_blank" rel="noopener"><span aria-hidden="true">${g.ico}</span> ${escTg(g.nom.replace('Wanisite ', ''))}</a>`).join('')}</div></div>`;
+  const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues en direct sur Telegram</b><span>Photos, lots et nouveautés, un sujet par catégorie. Un seul lien pour rejoindre les 3 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Tout rejoindre <i aria-hidden="true">→</i></a></div>`;
   let ORDRE = ['Articles de luxe', 'Whoop', 'Sport', 'Auto & moto', 'Autre', 'Beauté & cosmétiques', 'Parfums', 'Pros & restaurants'];
   let ICO = { 'Whoop': 'tech', 'Articles de luxe': 'mode', 'Sport': 'sport', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Beauté & cosmétiques': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
@@ -632,12 +667,14 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const secs = ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s));
     const carteSecteur = (s) => {
       const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
-      return tuile(lien(s), ph(s, false), ps.length ? pluriel(ps.length, 'produit', 'produits') : 'Photos bientôt', s, ps.length ? `${pluriel(nm, 'marque', 'marques')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir les produits');
+      const c = TG_CAT[s], g = c && TG_GROUPES[c[0]];
+      const tg = g ? `<a class="gt-tg" href="${g.url}${c[1] ? '/' + c[1] : ''}" target="_blank" rel="noopener" aria-label="Voir ${escTg(s)} sur Telegram" title="Voir sur Telegram"><span aria-hidden="true">✈</span></a>` : '';
+      return `<div class="gt">${tuile(lien(s), ph(s, true), '', s, ps.length ? `${pluriel(ps.length, 'produit', 'produits')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir')}${tg}</div>`;
     };
     const groupe = (k) => {
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
       if (!l.length) return '';
-      return `<section class="cat-groupe g-${k}"><div class="cat-groupe-h"><h3><span aria-hidden="true">${g.ico}</span> ${esc(g.nom)}</h3><a href="${g.url}" target="_blank" rel="noopener">Rejoindre ce groupe sur Telegram <i aria-hidden="true">→</i></a></div><div class="cat-grid cat-secteurs">${l.map(carteSecteur).join('')}</div></section>`;
+      return `<section class="cat-groupe g-${k}"><div class="cat-groupe-h"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3><a class="cat-groupe-btn" href="${g.url}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre <i aria-hidden="true">→</i></a></div><div class="cat-grid cat-secteurs">${l.map(carteSecteur).join('')}</div></section>`;
     };
     const horsGroupe = secs.filter((s) => !TG_CAT[s]);
     $('catList').innerHTML = blocTg() + ['luxe', 'acc', 'beaute'].map(groupe).join('') + (horsGroupe.length ? `<div class="cat-grid cat-secteurs">${horsGroupe.map(carteSecteur).join('')}</div>` : '');
@@ -651,7 +688,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       // Rayons = sujets du groupe Telegram : chaque tuile ouvre son sujet.
       const g = TG_GROUPES[TG_CAT[s][0]], rs = TG_RAYONS[s];
       $('catList').innerHTML = `<h3 class="cat-titre">${esc(s)}<small>${pluriel(rs.length, 'rayon', 'rayons')} · photos sur Telegram</small></h3><p class="cat-tg-ligne">${btnTg(s)}</p>` +
-        `<div class="cat-grid cat-secteurs">${rs.map(([r, n]) => tuile(g.url + '/' + n, ph(s, true), 'Sujet Telegram', r, 'Photos et lots dans le groupe ' + g.nom, 'Voir sur Telegram', true)).join('')}</div>` + demande;
+        `<div class="cat-grid cat-secteurs">${rs.map(([r, n]) => tuile(g.url + '/' + n, ph(s, true), 'Sujet Telegram', r, 'Voir le sujet sur Telegram', 'Ouvrir', true)).join('')}</div>` + demande;
       return;
     }
     if (!ps.length) {
