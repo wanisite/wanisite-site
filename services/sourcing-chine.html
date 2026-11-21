@@ -494,6 +494,20 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .gc-btns{display:grid;gap:10px;align-self:end;}
   .gc-wa{display:flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;border:1px solid rgba(12,32,48,.2);background:rgba(255,255,255,.55);color:#0c2030 !important;font-weight:500;font-size:15px;text-decoration:none;}
   .gc-wa:hover{background:#fff;border-color:#0c2030;}
+  /* Étiquettes de la scène 3D : bulles blanches claires, police normale, posées au-dessus des bâtiments */
+  .scene3d .etq3d{padding:9px 16px 10px;border-radius:16px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#0c2030;border:1px solid rgba(255,255,255,.95);box-shadow:0 16px 32px -18px rgba(8,110,140,.6);font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;letter-spacing:0;text-transform:none;text-align:center;line-height:1.25;}
+  .scene3d .etq3d b,.scene3d .etq3d em{display:none;}
+  .scene3d .etq3d span{display:block;font-family:'Outfit',ui-sans-serif,sans-serif;font-weight:500;font-size:17px;letter-spacing:-.01em;}
+  .scene3d .etq3d small{color:#5b6874;font-size:13px;margin-top:1px;}
+  .scene3d .etq3d::after{background:rgba(255,255,255,.88);border-right:1px solid rgba(255,255,255,.95);border-bottom:1px solid rgba(255,255,255,.95);}
+  /* Cartes groupes : liste verticale nette, boutons alignés en bas */
+  .gc-liste{list-style:none;padding:0;margin:0;display:grid;align-content:start;font-size:15.5px;line-height:1.35;color:#2a3947;}
+  .gc-liste li{padding:11px 0;border-top:1px solid rgba(12,32,48,.09);} .gc-liste li:first-child{border-top:0;padding-top:2px;}
+  .gc-wa{gap:9px;} .gc-wa svg{flex:none;}
+  .fin-cta{justify-items:center;text-align:center;} .fin-cta .sec-intro{max-width:520px;margin:0 auto;} .fin-cta h2{margin:0;}
+  .fin-ico{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#0aa6a0,#1f8be6);color:#fff;box-shadow:0 18px 36px -16px rgba(16,140,200,.7);}
+  .fin-cta .btn{display:inline-flex;align-items:center;gap:10px;}
+  .gc-h{min-height:64px;} .gc-h h3{font-size:clamp(22px,2.3vw,28px);}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -535,7 +549,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       <div class="cat-vente" id="catVente" role="group" aria-label="Vente au détail ou en gros"><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
     </div>
     <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
-    <div class="cat-pied" id="catPiedBase"><div><b>Vous ne trouvez pas votre produit ?</b><span>Une photo suffit : on cherche l’usine pour vous.</span></div><a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo sur WhatsApp <span aria-hidden="true">→</span></a></div>
   </div>
 </section>
 <div class="cat-modal" id="catModal" hidden role="dialog" aria-modal="true" aria-labelledby="catModalNom"><div class="cat-modal-box"><button type="button" class="cat-x" id="catX" aria-label="Fermer">✕</button><div id="catModalBody"></div></div></div>
@@ -567,9 +580,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section id="demande" class="end">
   <div class="wrap fin-cta">
+    <span class="fin-ico"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg></span>
     <h2 class="xl">Une photo <span class="t">suffit.</span></h2>
     <p class="sec-intro">Prenez en photo le produit que vous cherchez et envoyez-la-nous sur WhatsApp. On revient vers vous avec des usines, des prix et un calendrier.</p>
-    <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo de mon produit <span aria-hidden="true">→</span></a>
+    <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer la photo de mon produit</a>
   </div>
 </section>
 </main>
@@ -656,7 +670,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
       if (!l.length) return '';
       const mots = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : [s]));
-      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><p class="gc-liste">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener">Envoyer une photo sur WhatsApp</a></div></article>`;
+      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><ul class="gc-liste">${mots.map((m) => '<li>' + esc(m) + '</li>').join('')}</ul><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo</a></div></article>`;
     };
     $('catList').innerHTML = `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
       (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
@@ -711,7 +725,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const cle = JSON.stringify(r);
     if (cle !== dernier) { type = ''; vente = ''; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', 'false')); }
     dernier = cle;
-    $('catPiedBase').hidden = !!r.s;
+    const pb = $('catPiedBase'); if (pb) pb.hidden = !!r.s;
     if (!r.s) accueil(); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
     if (defiler && route()) { const t = $('produits'); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }
   }
@@ -751,6 +765,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   if (et) { if (!('IntersectionObserver' in window)) et.classList.add('vu'); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { et.classList.add('vu'); o.disconnect(); } }, { threshold: 0.25 }).observe(et); }
 })();
 </script>
-<script type="module" src="/assets/js/usine3d.js?v=9"></script>
+<script type="module" src="/assets/js/usine3d.js?v=10"></script>
 </body>
 </html>

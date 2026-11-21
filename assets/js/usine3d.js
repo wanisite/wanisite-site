@@ -354,7 +354,7 @@ function monter(stage) {
     stage.appendChild(e);
     return e;
   });
-  const ancresEtq = [[1.4, 3.0, -1.9], [-0.6, 2.4, -1.0], [-0.9, 3.6, -1.2], [-0.3, 2.3, -0.7]]; // au-dessus de chaque bâtiment, à côté de la cheminée
+  const ancresEtq = [[1.4, 4.7, -1.9], [-0.6, 3.6, -1.0], [-0.9, 4.9, -1.2], [-0.3, 3.9, -0.7]]; // au-dessus de chaque bâtiment, à côté de la cheminée
 
   /* ---------- placement : en ligne sur ordinateur, en colonne sur téléphone ---------- */
   // En vue isométrique, l'axe (1,0,-1) est horizontal à l'écran et l'axe (1,0,1) vertical.
