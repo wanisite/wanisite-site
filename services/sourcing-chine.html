@@ -468,6 +468,28 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     .cx-gh{grid-template-columns:40px 1fr;} .cx-gh img{width:40px;height:40px;} .cx-join{grid-column:1/-1;justify-self:start;}
     .cx-top .cx-btn{width:100%;}
   }
+
+  /* ===== Catalogue : 3 cartes de groupe, un seul bouton (2026-11-21) ===== */
+  #produits{position:relative;isolation:isolate;}
+  #produits::before{content:"";position:absolute;inset:-30px 0;z-index:-1;pointer-events:none;background:radial-gradient(520px 300px at 8% 20%,rgba(16,180,207,.2),transparent 70%),radial-gradient(560px 320px at 92% 70%,rgba(31,139,230,.16),transparent 70%);}
+  .gc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0 10px;}
+  .gc{display:grid;gap:16px;grid-template-rows:auto 1fr auto;align-content:stretch;padding:24px;border-radius:28px;border:1px solid rgba(255,255,255,.85);background:linear-gradient(145deg,rgba(255,255,255,.74),rgba(255,255,255,.38));-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);box-shadow:0 22px 46px -32px rgba(8,110,140,.55),inset 0 1px 0 rgba(255,255,255,.95);}
+  .gc-h{display:flex;align-items:center;gap:14px;} .gc-h img{width:52px;height:52px;border-radius:50%;display:block;flex:none;}
+  .gc-h h3{margin:0;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(25px,2.6vw,32px);letter-spacing:-.025em;line-height:1.1;color:#0c2030;}
+  .gc-tags{display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;margin:0;} .gc-tags span{padding:5px 11px;border-radius:999px;background:rgba(16,180,207,.12);color:#0b6f80;font-size:13px;line-height:1.3;}
+  .gc-btn{margin-top:4px;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-radius:14px;background:#0c1116;color:#fff !important;font-weight:500;font-size:15px;text-decoration:none;transition:background .2s;}
+  .gc-btn:hover{background:#0b8f8f;} .gc-btn i{font-style:normal;}
+  .gc-sous{margin:30px 0 14px;font-family:'Outfit',sans-serif;font-weight:300;font-size:26px;}
+  .fin-cta{display:grid;gap:18px;justify-items:start;}
+  @media (max-width:900px){.gc-grid{grid-template-columns:1fr;gap:12px;}}
+
+  /* Haut de page : titre + boutons d'abord (le catalogue remonte), la scène 3D explique le trajet plus bas */
+  .sc-hero{padding:44px 0 34px;}
+  .sc-hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
+  .sc-hero .hero-txt{order:1;} .sc-hero .hero-actions{order:2;margin-top:26px;justify-content:center;}
+  #methode .hero-vis{margin:6px 0 10px;} #methode .scene3d{margin:12px auto 0;height:clamp(300px,36vw,460px);}
+  @media (max-width:900px){#methode .scene3d{height:min(560px,120vw);}}
+  #produits .xl{font-size:clamp(34px,4.6vw,54px);} #produits{padding-top:26px;} #produits .sec-intro{margin-top:10px;}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -485,10 +507,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section class="sc-hero sc-hero2 sc-hero3">
   <div class="wrap">
-    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
+    
     <div class="actions hero-actions">
-        <a class="btn main big" href="#produits">Voir le catalogue</a>
-        <a class="btn ghost big" href="#demande">Envoyer ma demande</a>
+        <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo de mon produit</a>
+        <a class="btn ghost big" href="#produits">Voir le catalogue</a>
       </div>
     <div class="hero-txt">
       <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
@@ -500,23 +522,22 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section id="produits">
   <div class="wrap">
-    <p class="num"><b>00</b> Le catalogue <span class="zh">产品</span></p>
-    <h2 class="xl">Les produits <span class="t">disponibles.</span></h2>
-    <p class="sec-intro">Choisissez un secteur, ouvrez un produit. Les prix affichés sont des « à partir de » : pour le prix exact et la quantité, une demande de devis sur WhatsApp suffit.</p>
+    <h2 class="xl">Le catalogue <span class="t">complet.</span></h2>
+    <p class="sec-intro">Trois groupes Telegram, avec toutes les photos et le prix au détail. Pour le prix de gros, envoyez-nous un message sur WhatsApp.</p>
     <nav class="cat-fil" id="catFil" aria-label="Fil d’Ariane du catalogue" hidden></nav>
     <div class="cat-bar" id="catBar" hidden>
       <nav class="cat-types" id="catSecteurs" aria-label="Type de produit"></nav>
       <div class="cat-vente" id="catVente" role="group" aria-label="Vente au détail ou en gros"><button type="button" data-v="Détail" aria-pressed="false">Au détail</button><button type="button" data-v="Gros" aria-pressed="false">En gros</button></div>
     </div>
     <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
-    <div class="cat-pied" id="catPiedBase"><div><b>Vous ne trouvez pas votre produit ?</b><span>Une photo suffit : on cherche l’usine pour vous.</span></div><a class="btn main big" href="#demande">Envoyer ma demande <span aria-hidden="true">→</span></a></div>
-    <p class="moq-note">Prix sur devis · quantité minimum selon le produit · plus la quantité est élevée, plus le prix unitaire baisse.</p>
+    <div class="cat-pied" id="catPiedBase"><div><b>Vous ne trouvez pas votre produit ?</b><span>Une photo suffit : on cherche l’usine pour vous.</span></div><a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo sur WhatsApp <span aria-hidden="true">→</span></a></div>
   </div>
 </section>
 <div class="cat-modal" id="catModal" hidden role="dialog" aria-modal="true" aria-labelledby="catModalNom"><div class="cat-modal-box"><button type="button" class="cat-x" id="catX" aria-label="Fermer">✕</button><div id="catModalBody"></div></div></div>
 
 <section id="methode">
   <div class="wrap">
+    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
     <p class="num"><b>01</b> Comment ça marche</p>
     <h2 class="xl">De l’usine <span class="t">à votre porte.</span></h2>
     <ol class="etapes" id="etapes">
@@ -525,28 +546,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-taches-v2-fixe.webp"><img src="/assets/sourcing/etape-taches-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">3</span><h3>On contrôle avant le départ</h3><p>Quantités, défauts, emballage : photos à l’appui.</p></li>
       <li><span class="e-ico"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/etape-livraison-v2-fixe.webp"><img src="/assets/sourcing/etape-livraison-v2.webp" alt="" width="130" height="130" loading="lazy" decoding="async"></picture></span><span class="e-n">4</span><h3>Livré chez vous</h3><p>Suivi sur WhatsApp, du devis à la porte.</p></li>
     </ol>
-  </div>
-</section>
-
-<section id="envoi">
-  <div class="wrap">
-    <p class="num"><b>02</b> L’envoi</p>
-    <h2 class="xl">Combien coûte <span class="t">votre colis ?</span></h2>
-    <div class="calc" id="calc">
-      <div>
-        <h3>Estimez votre envoi</h3>
-        <p id="calcNote">Envoi par avion, Chine → France. Estimation indicative, le prix exact est confirmé avec le devis.</p>
-      </div>
-      <div class="ctrl" id="calcCtrl">
-        <div class="kg">
-          <button type="button" data-step="-1" aria-label="Retirer un demi-kilo">−</button>
-          <input id="kg" type="number" inputmode="decimal" min="0.5" max="30" step="0.5" value="1" aria-label="Poids du colis en kilos">
-          <span>kg</span>
-          <button type="button" data-step="1" aria-label="Ajouter un demi-kilo">+</button>
-        </div>
-        <div class="total" id="total" aria-live="polite"></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -562,59 +561,14 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 </section>
 
 <section id="demande" class="end">
-  <div class="wrap demande-wrap">
-    <div class="demande-txt">
-      <p class="num"><b>04</b> Votre demande</p>
-      <h2 class="xl">Une photo <span class="t">suffit.</span></h2>
-      <p class="sec-intro">Montrez-nous le produit. On revient vers vous sur WhatsApp avec des usines, des prix et un calendrier.</p>
-    </div>
-    <form class="dem-form" id="demForm" novalidate>
-      <input type="file" id="demCam" accept="image/*" capture="environment" hidden><input type="file" id="demGal" accept="image/*" hidden>
-      <div class="dem-photo" id="demPhoto">
-        <div class="dem-prev" id="demPrev" hidden><img alt="Photo du produit" id="demImg"><button type="button" id="demRetirer" aria-label="Retirer la photo">✕</button></div>
-        <div class="dem-btns" id="demBtns"><button type="button" class="dem-b" id="demPrendre"><span aria-hidden="true">📷</span><b>Prendre une photo</b></button><button type="button" class="dem-b" id="demChoisir"><span aria-hidden="true">🖼</span><b>Choisir dans la galerie</b></button></div>
-      </div>
-      <textarea id="demProduit" rows="2" maxlength="1500" placeholder="Le produit en une phrase, ou un lien (Alibaba, 1688…)" aria-label="Le produit"></textarea>
-      <div class="dem-2"><input id="demNom" autocomplete="name" placeholder="Votre nom" aria-label="Votre nom" maxlength="120"><input id="demWa" type="tel" inputmode="tel" autocomplete="tel" placeholder="WhatsApp (06…)" aria-label="Votre numéro WhatsApp" maxlength="30"></div>
-      <select id="demQte" aria-label="Quantité souhaitée"><option value="">Quantité souhaitée (facultatif)</option><option>Moins de 100</option><option>100 à 500</option><option>500 à 2 000</option><option>Plus de 2 000</option></select>
-      <input id="demSite" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Ne pas remplir">
-      <button class="btn main big dem-go" type="submit" id="demGo">Envoyer ma demande <span aria-hidden="true">→</span></button>
-      <p class="dem-err" id="demErr" role="alert" hidden></p>
-      <p class="dem-note">Ou écrivez-nous directement : <a href="https://wa.me/33624547342?text=Bonjour%2C%20je%20voudrais%20un%20devis%20de%20sourcing%20pour%20ce%20produit%20%3A" target="_blank" rel="noopener">WhatsApp ↗</a></p>
-    </form>
-    <div class="dem-ok" id="demOk" hidden><h3>C’est envoyé.</h3><p>On vous répond sur WhatsApp très vite, avec des usines et des prix.</p><a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20viens%20d%E2%80%99envoyer%20une%20demande%20sur%20le%20site.%20Voici%20d%E2%80%99autres%20photos%20%3A" target="_blank" rel="noopener">Ajouter des photos sur WhatsApp ↗</a></div>
+  <div class="wrap fin-cta">
+    <h2 class="xl">Une photo <span class="t">suffit.</span></h2>
+    <p class="sec-intro">Prenez en photo le produit que vous cherchez et envoyez-la-nous sur WhatsApp. On revient vers vous avec des usines, des prix et un calendrier.</p>
+    <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo de mon produit <span aria-hidden="true">→</span></a>
   </div>
 </section>
 </main>
 <footer class="fpied"><!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=4"><div class="fp fp-5"><div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a><p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p><a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div><nav class="fp-col" aria-label="Services"><h2>Services</h2><ul><li><a href="/services/site-vitrine">Site vitrine</a></li><li><a href="/services/reservation">Réservation en ligne</a></li><li><a href="/services/ecommerce">Boutique en ligne</a></li><li><a href="/services/logiciel-sur-mesure">Logiciel sur mesure</a></li><li><a href="/services/budget-marketing">Meta Ads et Google Ads</a></li><li><a href="/services/sourcing-chine">Sourcing en Chine</a></li></ul></nav><nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li><li><a href="/#protocole">Comment ça marche</a></li><li><a href="/blog/">Blog</a></li></ul></nav><nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul><li><a href="https://www.tiktok.com/@wanisite" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.instagram.com/wanisite/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://t.me/addlist/uIApVfUPlioxNjE0" target="_blank" rel="noopener">Telegram</a></li></ul></nav><div class="fp-col"><h2>Contact</h2><ul><li><a href="mailto:wanisitepro@gmail.com">wanisitepro@gmail.com</a></li><li><a href="tel:+33624547342">+33 6 24 54 73 42</a></li><li><a href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a></li><li class="fp-note">Réponse sous 24 h</li></ul></div><p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens--></footer>
-<script>
-(() => {
-  const WA = 'https://wa.me/33624547342?text=';
-  // Calculateur d'envoi. Tarifs à renseigner (en euros) : tant qu'ils sont vides,
-  // le bloc propose de demander le prix sur WhatsApp au lieu d'afficher un montant.
-  const TARIF = { premierKg: null, kgSup: null };
-  const kg = document.getElementById('kg'), total = document.getElementById('total');
-  if (TARIF.premierKg == null || TARIF.kgSup == null) {
-    document.getElementById('calcCtrl').innerHTML = `<a class="btn main big" href="${WA + encodeURIComponent("Bonjour, combien coûte l'envoi d'un colis de Chine vers la France ?")}" target="_blank" rel="noopener">Demander le prix de l’envoi ↗</a>`;
-    document.getElementById('calcNote').textContent = 'Envoi Chine → France. Donnez-nous le poids et le volume : on vous répond avec le prix exact.';
-    return;
-  }
-  const minus = document.querySelector('#calc [data-step="-1"]'), plus = document.querySelector('#calc [data-step="1"]');
-  const poids = () => { const v = Number(String(kg.value).replace(',', '.')); return Number.isFinite(v) ? Math.min(30, Math.max(0.5, v)) : 1; };
-  function rendu() {
-    const facture = Math.max(1, Math.ceil(poids() * 2) / 2);
-    const prix = TARIF.premierKg + (facture - 1) * TARIF.kgSup;
-    total.innerHTML = prix.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '<small>€ estimés</small>';
-    minus.disabled = poids() <= 0.5; plus.disabled = poids() >= 30;
-  }
-  document.querySelectorAll('#calc [data-step]').forEach((b) => b.addEventListener('click', () => {
-    kg.value = Math.min(30, Math.max(0.5, Math.round(poids() * 2) / 2 + Number(b.dataset.step) * 0.5)); rendu();
-  }));
-  kg.addEventListener('input', rendu);
-  kg.addEventListener('change', () => { kg.value = Math.round(poids() * 2) / 2; rendu(); });
-  rendu();
-})();
-</script>
 <script>
 (() => {
   // Catalogue : secteur → marques → produits. Lu depuis le dashboard Wanisite (produits publiés uniquement, jamais de prix réel).
@@ -691,29 +645,16 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    // Catalogue rangé comme Telegram : un bloc par groupe, une ligne par catégorie.
-    // Chaque ligne = un avant-goût (ce qu'on y trouve, ou les photos publiées) + 2 actions : WhatsApp / catalogue complet sur Telegram.
     const secs = ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s));
-    const urlTg = (s) => { const c = TG_CAT[s], g = c && TG_GROUPES[c[0]]; return g ? g.url + (c[1] ? '/' + c[1] : '') : TG_DOSSIER; };
-    const gout = (s) => {
-      const ps = tous.filter((p) => sect(p) === s && p.nbPhotos).slice(0, 4);
-      if (ps.length) return `<div class="cx-photos">${ps.map((p) => `<button type="button" class="cx-ph cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}"><img loading="lazy" decoding="async" alt="" src="${photo(p, 0)}"></button>`).join('')}</div>`;
-      const mots = (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : (RAYONS[s] && RAYONS[s].length > 1 ? RAYONS[s] : [])).filter(Boolean).slice(0, 8);
-      if (mots.length) return `<p class="cx-gout">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p>`;
-      return DESC[s] ? `<p class="cx-gout">${esc(DESC[s])}</p>` : '';
-    };
-    const ligne = (s) => {
-      const n = tous.filter((p) => sect(p) === s).length;
-      return `<article class="cx-row"><div class="cx-t"><a class="cx-name" href="${lien(s)}"><h4>${esc(s)}</h4></a>${n ? `<span class="cx-n">${pluriel(n, 'produit', 'produits')}</span>` : ''}</div>${gout(s)}<div class="cx-act"><a class="cx-btn" href="${wa('Bonjour, je veux un produit de la catégorie ' + s + ' : ')}" target="_blank" rel="noopener">Je veux un produit</a><a class="cx-link" href="${urlTg(s)}" target="_blank" rel="noopener">Voir le catalogue complet <span aria-hidden="true">→</span></a></div></article>`;
-    };
-    const groupe = (k) => {
+    // Une carte par groupe Telegram : son nom, ses catégories (simple repère), un seul bouton.
+    const carteGroupe = (k) => {
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
       if (!l.length) return '';
-      return `<section class="cx-g"><header class="cx-gh"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="44" height="44"><div><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3><span>Groupe Telegram · ${pluriel(l.length, 'catégorie', 'catégories')}</span></div><a class="cx-join" href="${g.url}" target="_blank" rel="noopener">Rejoindre le groupe</a></header>${l.map(ligne).join('')}</section>`;
+      const mots = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : [s]));
+      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><p class="gc-tags">${mots.map((m) => `<span>${esc(m)}</span>`).join('')}</p><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a></article>`;
     };
-    const horsGroupe = secs.filter((s) => !TG_CAT[s]);
-    $('catList').innerHTML = `<div class="cx"><div class="cx-top"><p>Tout le catalogue est en direct sur Telegram : <b>3 groupes</b>, un sujet par catégorie, un seul lien pour tout rejoindre.</p><a class="cx-btn" href="${TG_DOSSIER}" target="_blank" rel="noopener">Rejoindre les 3 groupes</a></div>` +
-      ['luxe', 'acc', 'beaute'].map(groupe).join('') + (horsGroupe.length ? `<section class="cx-g">${horsGroupe.map(ligne).join('')}</section>` : '') + `</div>`;
+    $('catList').innerHTML = `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
+      (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
   }
 
   function secteur(s) {
@@ -803,36 +744,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   // Étapes : le trait se trace et les icônes arrivent une à une quand la section entre à l'écran.
   const et = $('etapes');
   if (et) { if (!('IntersectionObserver' in window)) et.classList.add('vu'); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { et.classList.add('vu'); o.disconnect(); } }, { threshold: 0.25 }).observe(et); }
-  // Demande : photo (appareil ou galerie, réduite avant l'envoi), produit, nom, WhatsApp.
-  let photo = null;
-  const reduire = async (f) => {
-    const bmp = await createImageBitmap(f), k = Math.min(1, 1400 / Math.max(bmp.width, bmp.height));
-    const cv = document.createElement('canvas'); cv.width = Math.round(bmp.width * k); cv.height = Math.round(bmp.height * k); cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height);
-    const blob = await new Promise((ok, ko) => cv.toBlob((b) => (b ? ok(b) : ko(new Error('photo'))), 'image/jpeg', 0.82));
-    return new File([blob], 'photo.jpg', { type: 'image/jpeg' });
-  };
-  const choisir = async (e) => {
-    const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return;
-    try { photo = await reduire(f); } catch (x) { photo = f; }
-    $('demImg').src = URL.createObjectURL(photo); $('demPrev').hidden = false; $('demBtns').hidden = true;
-  };
-  $('demPrendre').addEventListener('click', () => $('demCam').click()); $('demChoisir').addEventListener('click', () => $('demGal').click());
-  $('demCam').addEventListener('change', choisir); $('demGal').addEventListener('change', choisir);
-  $('demRetirer').addEventListener('click', () => { photo = null; $('demPrev').hidden = true; $('demBtns').hidden = false; });
-  $('demForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); const err = $('demErr'); err.hidden = true;
-    const nom = $('demNom').value.trim(), wa = $('demWa').value.trim(), produit = $('demProduit').value.trim() || (photo ? 'Voir la photo jointe' : '');
-    if (!photo && produit.length < 3) { err.textContent = 'Ajoutez une photo ou décrivez le produit.'; err.hidden = false; return; }
-    if (nom.length < 2) { err.textContent = 'Indiquez votre nom.'; err.hidden = false; return; }
-    if (!/^\+?[0-9 .()-]{8,20}$/.test(wa)) { err.textContent = 'Indiquez un numéro WhatsApp valide.'; err.hidden = false; return; }
-    const fd = new FormData(); fd.append('nom', nom); fd.append('whatsapp', wa); fd.append('produit', produit); fd.append('quantite', $('demQte').value); fd.append('site', $('demSite').value); if (photo) fd.append('photo', photo);
-    const go = $('demGo'); go.disabled = true; go.firstChild.textContent = 'Envoi… ';
-    try {
-      const r = await fetch(API + '/api/public/sourcing/demande', { method: 'POST', body: fd }); const d = await r.json().catch(() => ({}));
-      if (!r.ok) throw new Error(d.error || 'Erreur, réessayez ou écrivez-nous sur WhatsApp.');
-      $('demForm').hidden = true; $('demOk').hidden = false;
-    } catch (x) { err.textContent = x.message; err.hidden = false; go.disabled = false; go.firstChild.textContent = 'Envoyer ma demande '; }
-  });
 })();
 </script>
 <script type="module" src="/assets/js/usine3d.js?v=9"></script>
