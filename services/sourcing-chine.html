@@ -487,9 +487,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .sc-hero{padding:44px 0 34px;}
   .sc-hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
   .sc-hero .hero-txt{order:1;} .sc-hero .hero-actions{order:2;margin-top:26px;justify-content:center;}
-  #methode .hero-vis{margin:6px 0 10px;} #methode .scene3d{margin:12px auto 0;height:clamp(300px,36vw,460px);}
-  @media (max-width:900px){#methode .scene3d{height:min(560px,120vw);}}
+  .sc-hero .hero-vis{order:0;width:100%;} .sc-hero .scene3d{margin:0 auto;height:clamp(210px,24vw,280px);} .sc-hero h1.xl{font-size:clamp(40px,5.4vw,64px);} .sc-hero{padding-top:22px;}
+  @media (max-width:900px){.sc-hero .scene3d{height:min(520px,112vw);}}
   #produits .xl{font-size:clamp(34px,4.6vw,54px);} #produits{padding-top:26px;} #produits .sec-intro{margin-top:10px;}
+  .gc-liste{margin:0;font-size:15px;line-height:1.7;color:#4b5763;} .gc-liste i{font-style:normal;margin:0 9px;color:#b3bcc4;}
+  .gc-btns{display:grid;gap:10px;align-self:end;}
+  .gc-wa{display:flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;border:1px solid rgba(12,32,48,.2);background:rgba(255,255,255,.55);color:#0c2030 !important;font-weight:500;font-size:15px;text-decoration:none;}
+  .gc-wa:hover{background:#fff;border-color:#0c2030;}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -507,6 +511,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section class="sc-hero sc-hero2 sc-hero3">
   <div class="wrap">
+    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
     
     <div class="actions hero-actions">
         <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo de mon produit</a>
@@ -537,7 +542,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section id="methode">
   <div class="wrap">
-    <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
+
     <p class="num"><b>01</b> Comment ça marche</p>
     <h2 class="xl">De l’usine <span class="t">à votre porte.</span></h2>
     <ol class="etapes" id="etapes">
@@ -651,7 +656,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
       if (!l.length) return '';
       const mots = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : [s]));
-      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><p class="gc-tags">${mots.map((m) => `<span>${esc(m)}</span>`).join('')}</p><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a></article>`;
+      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><p class="gc-liste">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener">Envoyer une photo sur WhatsApp</a></div></article>`;
     };
     $('catList').innerHTML = `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
       (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
