@@ -537,10 +537,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .fs-err{margin:0;padding:11px 14px;border-radius:12px;background:#fdecea;color:#a3271b;font-size:14.5px;} .fs-err[hidden]{display:none;}
   .fs .btn[disabled]{opacity:.7;cursor:progress;} .fs .fs-note{font-size:13.5px;margin:0;max-width:none;text-align:center;} .fs .btn span{display:block;}
   @media (max-width:520px){.fs-seg.fs-3{grid-template-columns:repeat(3,minmax(0,1fr));} .fs-seg.fs-3 span{font-size:13.5px;padding:11px 4px;}}
-  .fs label.fs-check{display:flex;align-items:flex-start;gap:12px;font-size:inherit;cursor:pointer;padding:12px 14px;border-radius:14px;border:1px solid rgba(12,32,48,.16);background:#fff;}
-  .fs-check input{width:20px;height:20px;margin:2px 0 0;accent-color:#0b8f8f;flex:none;}
-  .fs-check b{display:block;font-size:15.5px;font-weight:500;color:#0c2030;} .fs-check small{display:block;font-size:13.5px;color:var(--muted);font-weight:400;margin-top:2px;}
-  .fs-check:has(input:checked){border-color:#10b4cf;box-shadow:0 0 0 3px rgba(16,180,207,.22);}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -607,7 +603,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <form class="fs" id="fsForm" novalidate>
       <section class="fs-etape"><h3><b>1</b>Que cherchez-vous ?</h3>
         <textarea name="produit" id="fsProduit" aria-label="Décrivez le produit" placeholder="Décrivez-le : nom, matière, couleurs… ou collez un lien"></textarea>
-        <label class="fs-check"><input type="checkbox" name="photo"><span><b>J’ai une photo à envoyer</b><small>Vous l’ajoutez dans WhatsApp, juste après avoir envoyé le message.</small></span></label>
       </section>
       <section class="fs-etape"><h3><b>2</b>Combien en voulez-vous ?</h3>
         <div class="fs-seg fs-gros" role="radiogroup"><label><input type="radio" name="mode" value="au détail" checked><span>Au détail<small>Quelques pièces</small></span></label><label><input type="radio" name="mode" value="en gros"><span>En gros<small>Un lot, prix usine</small></span></label></div>
@@ -847,7 +842,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       const l = ['Bonjour' + (v('nom') ? ', ici ' + v('nom') : '') + ', je voudrais un produit sur mesure.', 'Achat : ' + mode + ', pour ' + fo.elements.usage.value, 'Marque : ' + fo.elements.marque.value];
       if (v('produit')) l.push('Produit : ' + v('produit'));
       if (v('qte')) l.push((mode === 'en gros' ? 'Quantité : ' : 'Pièces : ') + v('qte'));
-      if (fo.elements.photo.checked) l.push('Photo : je vous l’envoie juste après ce message.');
       if (!window.open(WA + encodeURIComponent(l.join('\n')), '_blank', 'noopener')) location.href = WA + encodeURIComponent(l.join('\n'));
     });
   })();
