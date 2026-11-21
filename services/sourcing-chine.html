@@ -440,6 +440,34 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-prix-2{display:grid;gap:3px;} .cat-prix-2 .cat-prix{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;} .cat-prix i{font-style:normal;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);} .cat-prix small{font-size:12.5px;color:var(--muted);} .cat-prix-2 b{font-size:21px !important;}
   .cat-titre{margin:18px 0 22px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);letter-spacing:-.03em;line-height:1.05;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;} .cat-titre small{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;letter-spacing:0;color:var(--muted);}
   .cat-secteurs:empty{display:none;} .cat-pied[hidden]{display:none;}
+
+  /* ===== Catalogue (accueil) : plat et sobre, DA Limitless Wash — Outfit fin, DM Sans, boutons noirs, filets plutôt que cartes ===== */
+  .cx{display:grid;gap:34px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;}
+  .cx-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:18px 0;border-top:1px solid rgba(12,32,48,.14);border-bottom:1px solid rgba(12,32,48,.14);}
+  .cx-top p{margin:0;max-width:60ch;font-size:16px;line-height:1.5;color:#3d4a55;} .cx-top b{color:#0c2030;font-weight:600;}
+  .cx-g{display:grid;}
+  .cx-gh{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding-bottom:16px;border-bottom:1px solid #0c2030;}
+  .cx-gh img{width:44px;height:44px;border-radius:50%;display:block;}
+  .cx-gh h3{margin:0;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.025em;line-height:1.1;color:#0c2030;}
+  .cx-gh span{display:block;margin-top:2px;font-size:13.5px;color:#6b7782;}
+  .cx-join{font-size:14.5px;font-weight:500;color:#0c2030;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;white-space:nowrap;}
+  .cx-join:hover{color:#0a8fa8;}
+  .cx-row{display:grid;grid-template-columns:minmax(180px,1.1fr) 2fr auto;align-items:center;gap:12px 28px;padding:20px 0;border-bottom:1px solid rgba(12,32,48,.12);}
+  .cx-t{display:grid;gap:2px;} .cx-name{text-decoration:none;color:#0c2030;} .cx-name:hover h4{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;}
+  .cx-name h4{margin:0;font-family:'Outfit',sans-serif;font-weight:400;font-size:21px;letter-spacing:-.015em;}
+  .cx-n{font-size:13px;color:#6b7782;}
+  .cx-gout{margin:0;font-size:14.5px;line-height:1.6;color:#4b5763;} .cx-gout i{font-style:normal;margin:0 8px;color:#b3bcc4;}
+  .cx-photos{display:flex;gap:8px;} .cx-ph{all:unset;cursor:pointer;width:64px;height:64px;border-radius:10px;overflow:hidden;background:#eef2f4;border:1px solid rgba(12,32,48,.1);} .cx-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cx-act{display:flex;align-items:center;gap:18px;justify-self:end;}
+  .cx-btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:10px;background:#0c1116;color:#fff !important;font-weight:500;font-size:14.5px;text-decoration:none;white-space:nowrap;transition:background .15s;}
+  .cx-btn:hover{background:#26313b;}
+  .cx-link{font-size:14.5px;font-weight:500;color:#0c2030;text-decoration:none;white-space:nowrap;} .cx-link:hover{color:#0a8fa8;} .cx-link span{display:inline-block;transition:transform .15s;} .cx-link:hover span{transform:translateX(3px);}
+  @media (max-width:860px){
+    .cx-row{grid-template-columns:1fr;gap:10px;padding:18px 0;}
+    .cx-act{justify-self:stretch;flex-wrap:wrap;gap:10px 18px;} .cx-act .cx-btn{flex:1 1 100%;}
+    .cx-gh{grid-template-columns:40px 1fr;} .cx-gh img{width:40px;height:40px;} .cx-join{grid-column:1/-1;justify-self:start;}
+    .cx-top .cx-btn{width:100%;}
+  }
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -663,21 +691,28 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    // Le catalogue est rangé comme Telegram : un bloc par groupe, avec ses catégories.
+    // Catalogue rangé comme Telegram : un bloc par groupe, une ligne par catégorie.
+    // Chaque ligne = un avant-goût (ce qu'on y trouve, ou les photos publiées) + 2 actions : WhatsApp / catalogue complet sur Telegram.
     const secs = ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s));
-    const carteSecteur = (s) => {
-      const ps = tous.filter((p) => sect(p) === s), nm = new Set(ps.map((p) => p.marque || '')).size;
-      const c = TG_CAT[s], g = c && TG_GROUPES[c[0]];
-      const tg = g ? `<a class="gt-tg" href="${g.url}${c[1] ? '/' + c[1] : ''}" target="_blank" rel="noopener" aria-label="Voir ${escTg(s)} sur Telegram" title="Voir sur Telegram"><span aria-hidden="true">✈</span></a>` : '';
-      return `<div class="gt">${tuile(lien(s), ph(s, true), '', s, ps.length ? `${pluriel(ps.length, 'produit', 'produits')} · ${DESC[s] || ''}` : (DESC[s] || ''), 'Voir')}${tg}</div>`;
+    const urlTg = (s) => { const c = TG_CAT[s], g = c && TG_GROUPES[c[0]]; return g ? g.url + (c[1] ? '/' + c[1] : '') : TG_DOSSIER; };
+    const gout = (s) => {
+      const ps = tous.filter((p) => sect(p) === s && p.nbPhotos).slice(0, 4);
+      if (ps.length) return `<div class="cx-photos">${ps.map((p) => `<button type="button" class="cx-ph cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}"><img loading="lazy" decoding="async" alt="" src="${photo(p, 0)}"></button>`).join('')}</div>`;
+      const mots = (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : (RAYONS[s] && RAYONS[s].length > 1 ? RAYONS[s] : String(DESC[s] || '').split(/,\s*/))).filter(Boolean).slice(0, 8);
+      return mots.length ? `<p class="cx-gout">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p>` : '';
+    };
+    const ligne = (s) => {
+      const n = tous.filter((p) => sect(p) === s).length;
+      return `<article class="cx-row"><div class="cx-t"><a class="cx-name" href="${lien(s)}"><h4>${esc(s)}</h4></a>${n ? `<span class="cx-n">${pluriel(n, 'produit', 'produits')}</span>` : ''}</div>${gout(s)}<div class="cx-act"><a class="cx-btn" href="${wa('Bonjour, je veux un produit de la catégorie ' + s + ' : ')}" target="_blank" rel="noopener">Je veux un produit</a><a class="cx-link" href="${urlTg(s)}" target="_blank" rel="noopener">Voir le catalogue complet <span aria-hidden="true">→</span></a></div></article>`;
     };
     const groupe = (k) => {
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
       if (!l.length) return '';
-      return `<section class="cat-groupe g-${k}"><div class="cat-groupe-h"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3><a class="cat-groupe-btn" href="${g.url}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre <i aria-hidden="true">→</i></a></div><div class="cat-grid cat-secteurs">${l.map(carteSecteur).join('')}</div></section>`;
+      return `<section class="cx-g"><header class="cx-gh"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="44" height="44"><div><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3><span>Groupe Telegram · ${pluriel(l.length, 'catégorie', 'catégories')}</span></div><a class="cx-join" href="${g.url}" target="_blank" rel="noopener">Rejoindre le groupe</a></header>${l.map(ligne).join('')}</section>`;
     };
     const horsGroupe = secs.filter((s) => !TG_CAT[s]);
-    $('catList').innerHTML = blocTg() + ['luxe', 'acc', 'beaute'].map(groupe).join('') + (horsGroupe.length ? `<div class="cat-grid cat-secteurs">${horsGroupe.map(carteSecteur).join('')}</div>` : '');
+    $('catList').innerHTML = `<div class="cx"><div class="cx-top"><p>Tout le catalogue est en direct sur Telegram : <b>3 groupes</b>, un sujet par catégorie, un seul lien pour tout rejoindre.</p><a class="cx-btn" href="${TG_DOSSIER}" target="_blank" rel="noopener">Rejoindre les 3 groupes</a></div>` +
+      ['luxe', 'acc', 'beaute'].map(groupe).join('') + (horsGroupe.length ? `<section class="cx-g">${horsGroupe.map(ligne).join('')}</section>` : '') + `</div>`;
   }
 
   function secteur(s) {
