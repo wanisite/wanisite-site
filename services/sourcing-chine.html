@@ -698,8 +698,9 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     const gout = (s) => {
       const ps = tous.filter((p) => sect(p) === s && p.nbPhotos).slice(0, 4);
       if (ps.length) return `<div class="cx-photos">${ps.map((p) => `<button type="button" class="cx-ph cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}"><img loading="lazy" decoding="async" alt="" src="${photo(p, 0)}"></button>`).join('')}</div>`;
-      const mots = (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : (RAYONS[s] && RAYONS[s].length > 1 ? RAYONS[s] : String(DESC[s] || '').split(/,\s*/))).filter(Boolean).slice(0, 8);
-      return mots.length ? `<p class="cx-gout">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p>` : '';
+      const mots = (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => r[0]) : (RAYONS[s] && RAYONS[s].length > 1 ? RAYONS[s] : [])).filter(Boolean).slice(0, 8);
+      if (mots.length) return `<p class="cx-gout">${mots.map(esc).join('<i aria-hidden="true">·</i>')}</p>`;
+      return DESC[s] ? `<p class="cx-gout">${esc(DESC[s])}</p>` : '';
     };
     const ligne = (s) => {
       const n = tous.filter((p) => sect(p) === s).length;
