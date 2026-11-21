@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta name="theme-color" content="#ffffff">
 <title>Sourcing en Chine : trouver un fournisseur fiable — Wanisite</title>
-<meta name="description" content="On cherche les usines en Chine, on compare les offres, on vérifie les échantillons et on contrôle votre marchandise avant le départ. Une photo suffit pour demander un devis.">
+<meta name="description" content="On cherche les usines en Chine, on compare les offres, on vérifie les échantillons et on contrôle votre marchandise avant le départ. Au détail ou en gros, dites-nous ce que vous cherchez.">
 <link rel="canonical" href="https://www.wanisitelab.com/services/sourcing-chine">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
@@ -510,15 +510,20 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .gc-liste li:first-child a{padding-top:2px;} .gc-liste a span{flex:1;} .gc-liste a i{font-style:normal;color:#9aa6b0;transition:transform .2s,color .2s;}
   .gc-liste a:hover{color:#0b8f8f;} .gc-liste a:hover i{transform:translateX(4px);color:#0b8f8f;}
   .gc-mini{width:40px;height:40px;border-radius:10px;object-fit:cover;flex:none;}
-  /* Formulaire de sourcing (bouton « Demander un devis » du haut) */
-  .fs-box{position:relative;width:min(520px,100%);background:#fff;border-radius:26px;padding:34px 30px 28px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);}
-  .fs-box h2{margin:0 0 6px;font-family:'Outfit',sans-serif;font-weight:300;font-size:30px;letter-spacing:-.02em;color:#0c2030;}
-  .fs-box>p{margin:0 0 20px;color:var(--muted);font-size:15.5px;}
-  .fs-box form{display:grid;gap:14px;} .fs-box label{display:grid;gap:6px;font-size:14px;color:#4b5763;font-weight:500;}
-  .fs-box input,.fs-box textarea{font:inherit;font-size:16px;color:#0c2030;padding:12px 14px;border:1px solid rgba(12,32,48,.16);border-radius:12px;background:#fff;width:100%;box-sizing:border-box;}
-  .fs-box textarea{min-height:92px;resize:vertical;} .fs-box input:focus,.fs-box textarea:focus{outline:2px solid #10b4cf;outline-offset:1px;border-color:transparent;}
-  .fs-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;} @media (max-width:520px){.fs-2{grid-template-columns:1fr;} .fs-box{padding:30px 20px 22px;}}
-  .fs-box .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;} .fs-note{font-size:13.5px;color:var(--muted);text-align:center;margin:0;}
+  /* Formulaire inline « Quel produit cherchez-vous ? » */
+  #methode{padding-bottom:20px;} .end{padding:20px 0 56px;} .fin-cta{gap:12px;}
+  .fs{width:min(560px,100%);margin-top:14px;text-align:left;display:grid;gap:14px;padding:26px;border-radius:26px;border:1px solid rgba(255,255,255,.85);background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.5));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 30px 60px -36px rgba(8,110,140,.55);}
+  .fs label{display:grid;gap:6px;font-size:14px;color:#4b5763;font-weight:500;}
+  .fs input[type=text],.fs input:not([type]),.fs textarea{font:inherit;font-size:16px;color:#0c2030;padding:12px 14px;border:1px solid rgba(12,32,48,.16);border-radius:12px;background:#fff;width:100%;box-sizing:border-box;}
+  .fs textarea{min-height:88px;resize:vertical;} .fs input:focus-visible,.fs textarea:focus-visible{outline:2px solid #10b4cf;outline-offset:1px;border-color:transparent;}
+  .fs-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;} @media (max-width:520px){.fs-2{grid-template-columns:1fr;} .fs{padding:20px 16px;}}
+  .fs-choix{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;} @media (max-width:520px){.fs-choix{grid-template-columns:1fr;}}
+  .fs-choix label{display:block;cursor:pointer;} .fs-choix input{position:absolute;opacity:0;pointer-events:none;}
+  .fs-choix span{display:grid;gap:3px;padding:14px 16px;border-radius:16px;border:1px solid rgba(12,32,48,.16);background:#fff;transition:border-color .2s,box-shadow .2s;}
+  .fs-choix b{font-family:'Outfit',sans-serif;font-weight:500;font-size:19px;color:#0c2030;} .fs-choix small{font-size:13.5px;color:var(--muted);font-weight:400;line-height:1.35;}
+  .fs-choix input:checked+span{border-color:#10b4cf;box-shadow:0 0 0 3px rgba(16,180,207,.22);} .fs-choix input:focus-visible+span{outline:2px solid #0c2030;outline-offset:2px;}
+  .fs .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;} .fs-note{font-size:13.5px;color:var(--muted);text-align:center;margin:0;}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -528,7 +533,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <nav class="menu" aria-label="Navigation">
       <a class="hide-m" href="/#realisations">Réalisations</a>
       <a class="hide-m" href="#faq">Questions</a>
-      <a class="btn main cta" style="min-height:42px;padding:0 16px;font-size:15px;" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20cherche%20un%20fournisseur%20en%20Chine%20pour%20un%20produit." target="_blank" rel="noopener" data-form-sourcing>Demander un devis</a>
+      <a class="btn main cta" style="min-height:42px;padding:0 16px;font-size:15px;" href="#demande">Demander un devis</a>
     </nav>
   </div>
 </header>
@@ -539,13 +544,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
     
     <div class="actions hero-actions">
-        <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener">Envoyer la photo de mon produit</a>
+        <a class="btn main big" href="#demande">Sourcer un produit</a>
         <a class="btn ghost big" href="#produits">Voir le catalogue</a>
       </div>
     <div class="hero-txt">
       <p class="num"><b class="route-fl"><span class="fl cn" role="img" aria-label="Chine"></span><i>→</i><span class="fl fr" role="img" aria-label="France"></span></b> Sourcing Chine</p>
       <h1 class="xl">Je vous ramène tout <span class="t">à la source.</span></h1>
-      <p class="lead">Une photo suffit. Je trouve l’usine, je négocie, je contrôle avant le départ.</p>
+      <p class="lead">Au détail ou en gros : dites-moi ce que vous cherchez. Je trouve l’usine, je négocie, je contrôle avant le départ.</p>
     </div>
   </div>
 </section>
@@ -562,15 +567,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <div id="catList" aria-live="polite"><div class="cat-vide">Chargement du catalogue…</div></div>
   </div>
 </section>
-<div class="cat-modal" id="formModal" hidden role="dialog" aria-modal="true" aria-labelledby="fsTitre"><div class="fs-box"><button type="button" class="cat-x" id="fsX" aria-label="Fermer">✕</button>
-  <h2 id="fsTitre">Demander un devis</h2><p>Dites-nous ce que vous cherchez. Le message part sur WhatsApp, prêt à envoyer.</p>
-  <form id="fsForm">
-    <label>Le produit<textarea name="produit" required placeholder="Nom, description, ou lien du produit"></textarea></label>
-    <div class="fs-2"><label>Quantité<input name="qte" inputmode="numeric" placeholder="Ex. 100"></label><label>Budget<input name="budget" placeholder="Ex. 2 000 €"></label></div>
-    <label>Votre prénom<input name="nom" autocomplete="given-name" placeholder="Prénom"></label>
-    <button class="btn main big" type="submit"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.7-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>Envoyer sur WhatsApp</button>
-    <p class="fs-note">Vous avez une photo ? Ajoutez-la dans WhatsApp juste après.</p>
-  </form></div></div>
 <div class="cat-modal" id="catModal" hidden role="dialog" aria-modal="true" aria-labelledby="catModalNom"><div class="cat-modal-box"><button type="button" class="cat-x" id="catX" aria-label="Fermer">✕</button><div id="catModalBody"></div></div></div>
 
 <section id="methode">
@@ -589,10 +585,19 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section id="demande" class="end">
   <div class="wrap fin-cta">
-    <span class="fin-ico"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg></span>
-    <h2 class="xl">Une photo <span class="t">suffit.</span></h2>
-    <p class="sec-intro">Prenez en photo le produit que vous cherchez et envoyez-la-nous sur WhatsApp. On revient vers vous avec des usines, des prix et un calendrier.</p>
-    <a class="btn main big" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20de%20mon%20produit%20%3A" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer la photo de mon produit</a>
+    <h2 class="xl">Quel produit <span class="t">cherchez-vous ?</span></h2>
+    <p class="sec-intro">Au détail ou en gros, dites-nous ce qu’il vous faut. Le message part sur WhatsApp, prêt à envoyer.</p>
+    <form class="fs" id="fsForm">
+      <fieldset class="fs-choix"><legend class="sr">Vous cherchez</legend>
+        <label><input type="radio" name="mode" value="au détail" checked><span><b>Au détail</b><small>Quelques pièces, pour vous ou pour revendre</small></span></label>
+        <label><input type="radio" name="mode" value="en gros"><span><b>En gros</b><small>Un lot, avec prix négocié à l’usine</small></span></label>
+      </fieldset>
+      <label>Le produit<textarea name="produit" required placeholder="Nom, description, ou lien du produit"></textarea></label>
+      <div class="fs-2"><label><span id="fsQteL">Combien de pièces ?</span><input name="qte" inputmode="numeric" placeholder="Ex. 5"></label><label>Budget (facultatif)<input name="budget" placeholder="Ex. 500 €"></label></div>
+      <label>Votre prénom<input name="nom" autocomplete="given-name" placeholder="Prénom"></label>
+      <button class="btn main big" type="submit"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.7-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>Envoyer sur WhatsApp</button>
+      <p class="fs-note">Vous avez une photo ? Ajoutez-la dans WhatsApp juste après.</p>
+    </form>
   </div>
 </section>
 
@@ -790,22 +795,18 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 })();
   // Formulaire de sourcing : le message est composé puis envoyé sur WhatsApp.
   (() => {
-    const WA = 'https://wa.me/33624547342?text=', m = document.getElementById('formModal'), fo = document.getElementById('fsForm');
-    if (!m || !fo) return;
-    const ouvrir = (e) => { e.preventDefault(); m.hidden = false; document.body.style.overflow = 'hidden'; fo.elements.produit.focus(); };
-    const fermer = () => { m.hidden = true; document.body.style.overflow = ''; };
-    document.querySelectorAll('[data-form-sourcing]').forEach((a) => a.addEventListener('click', ouvrir));
-    document.getElementById('fsX').addEventListener('click', fermer);
-    m.addEventListener('click', (e) => { if (e.target === m) fermer(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !m.hidden) fermer(); });
+    const fo = document.getElementById('fsForm'); if (!fo) return;
+    const WA = 'https://wa.me/33624547342?text=';
+    const maj = () => { const g = fo.elements.mode.value === 'en gros'; document.getElementById('fsQteL').textContent = g ? 'Quantité souhaitée' : 'Combien de pièces ?'; fo.elements.qte.placeholder = g ? 'Ex. 200' : 'Ex. 5'; fo.elements.budget.placeholder = g ? 'Ex. 3 000 €' : 'Ex. 500 €'; };
+    fo.addEventListener('change', maj);
+    document.querySelectorAll('a[href="#demande"]').forEach((a) => a.addEventListener('click', () => setTimeout(() => { try { fo.elements.produit.focus({ preventScroll: true }); } catch (e) {} }, 500)));
     fo.addEventListener('submit', (e) => {
       e.preventDefault();
-      const v = (k) => fo.elements[k].value.trim();
-      const l = ['Bonjour' + (v('nom') ? ', ici ' + v('nom') : '') + ', je voudrais un devis sourcing Chine.', 'Produit : ' + v('produit')];
-      if (v('qte')) l.push('Quantité : ' + v('qte'));
+      const v = (k) => fo.elements[k].value.trim(), mode = fo.elements.mode.value;
+      const l = ['Bonjour' + (v('nom') ? ', ici ' + v('nom') : '') + ', je cherche un produit ' + mode + '.', 'Produit : ' + v('produit')];
+      if (v('qte')) l.push((mode === 'en gros' ? 'Quantité : ' : 'Pièces : ') + v('qte'));
       if (v('budget')) l.push('Budget : ' + v('budget'));
       window.open(WA + encodeURIComponent(l.join('\n')), '_blank', 'noopener');
-      fermer(); fo.reset();
     });
   })();
 </script>
