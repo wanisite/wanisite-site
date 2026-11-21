@@ -531,12 +531,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .fs{gap:22px;} .fs-etape{display:grid;gap:10px;margin:0;padding:0;border:0;}
   .fs-etape h3{margin:0;display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:400;font-size:20px;letter-spacing:-.01em;color:#0c2030;}
   .fs-etape h3 b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0aa6a0,#1f8be6);color:#fff;font-size:13.5px;font-weight:600;font-family:'DM Sans',sans-serif;flex:none;}
-  .fs-photo{display:block;cursor:pointer;border:1.5px dashed rgba(16,140,200,.45);border-radius:18px;background:rgba(255,255,255,.7);padding:18px;transition:border-color .2s,background .2s;} .fs-photo:hover{border-color:#10b4cf;background:#fff;}
-  .fs-photo input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;} .fs-photo:focus-within{outline:2px solid #0c2030;outline-offset:2px;}
-  .fs-photo-vide,.fs-photo-plein{display:flex;align-items:center;gap:14px;} .fs-photo-vide[hidden],.fs-photo-plein[hidden]{display:none;} .fs-photo-vide>svg{color:#0b8f8f;flex:none;}
-  .fs-photo b{display:block;font-size:16px;color:#0c2030;font-weight:500;} .fs-photo small{display:block;font-size:13.5px;color:var(--muted);font-weight:400;margin-top:2px;}
-  .fs-photo.plein{border-style:solid;border-color:#10b4cf;} .fs-photo-plein img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:none;} .fs-photo-plein>span{flex:1;}
-  .fs-photo-plein button{border:0;background:rgba(12,32,48,.08);width:32px;height:32px;border-radius:50%;cursor:pointer;color:#0c2030;font-size:14px;flex:none;} .fs-photo-plein button:hover{background:rgba(12,32,48,.16);}
   .fs-seg{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;} .fs-seg.fs-gros{grid-template-columns:repeat(2,minmax(0,1fr));} .fs-seg:not(.fs-3):not(.fs-gros){grid-template-columns:repeat(2,minmax(0,1fr));}
   .fs-seg span small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:2px;}
   .fs .fs-aide{margin:0;font-size:14px;color:var(--muted);text-align:left;max-width:none;} .fs-qte,.fs-prenom{margin-top:2px;}
@@ -608,11 +602,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     <p class="sec-intro">Quatre petites questions. Votre demande part sur WhatsApp, prête à envoyer.</p>
     <form class="fs" id="fsForm" novalidate>
       <section class="fs-etape"><h3><b>1</b>Que cherchez-vous ?</h3>
-        <label class="fs-photo" id="fsPhotoZone"><input type="file" name="photo" id="fsPhoto" accept="image/jpeg,image/png,image/webp,image/*">
-          <span class="fs-photo-vide"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg><span><b>Ajouter une photo</b><small>Facultatif, mais ça aide beaucoup</small></span></span>
-          <span class="fs-photo-plein" hidden><img alt="" id="fsPhotoImg"><span><b id="fsPhotoNom">Photo ajoutée</b><small>Touchez pour changer</small></span><button type="button" id="fsPhotoX" aria-label="Retirer la photo">✕</button></span>
-        </label>
         <textarea name="produit" id="fsProduit" aria-label="Décrivez le produit" placeholder="Décrivez-le : nom, matière, couleurs… ou collez un lien"></textarea>
+        <p class="fs-aide">Vous avez une photo ? Vous l’enverrez dans WhatsApp, juste après.</p>
       </section>
       <section class="fs-etape"><h3><b>2</b>Combien en voulez-vous ?</h3>
         <div class="fs-seg fs-gros" role="radiogroup"><label><input type="radio" name="mode" value="au détail" checked><span>Au détail<small>Quelques pièces</small></span></label><label><input type="radio" name="mode" value="en gros"><span>En gros<small>Un lot, prix usine</small></span></label></div>
@@ -628,7 +619,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       </section>
       <p class="fs-err" id="fsErr" role="alert" hidden></p>
       <button class="btn main big" type="submit" id="fsEnvoi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.7-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg><span>Envoyer ma demande sur WhatsApp</span></button>
-      <p class="fs-note">Le budget, les couleurs, le logo : on en parle ensuite sur WhatsApp.</p>
+      <p class="fs-note">Photo, logo, budget : on s’en occupe ensuite sur WhatsApp.</p>
     </form>
   </div>
 </section>
@@ -825,14 +816,12 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const et = $('etapes');
   if (et) { if (!('IntersectionObserver' in window)) et.classList.add('vu'); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { et.classList.add('vu'); o.disconnect(); } }, { threshold: 0.25 }).observe(et); }
 })();
-  // Formulaire de sourcing : le message est composé puis envoyé sur WhatsApp (la photo, si elle existe, y est jointe sous forme de lien).
+  // Formulaire de sourcing : le message est composé puis envoyé sur WhatsApp (la photo se joint ensuite dans WhatsApp).
   (() => {
     const fo = document.getElementById('fsForm'); if (!fo) return;
     const WA = 'https://wa.me/33624547342?text=';
-    const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
     const $ = (id) => document.getElementById(id);
     const AIDES = { 'sans marque (générique)': 'Produit neutre, sans logo.', 'avec ma propre étiquette personnalisée': 'Votre marque : logo, étiquette ou emballage à votre nom.', 'd’une marque précise': 'Un modèle de marque que vous avez repéré.' };
-    let fichier = null, versionApercu = null;
     const err = (m) => { $('fsErr').textContent = m || ''; $('fsErr').hidden = !m; };
     const gros = () => fo.elements.mode.value === 'en gros';
     let usageTouche = false;
@@ -845,43 +834,15 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       }
       if (e.target.name === 'marque') $('fsAide').textContent = AIDES[fo.elements.marque.value] || '';
     });
-    // Photo : aperçu tout de suite, réduite avant l'envoi pour rester légère.
-    const choisir = (f) => {
-      fichier = f || null; err('');
-      if (versionApercu) URL.revokeObjectURL(versionApercu); versionApercu = f ? URL.createObjectURL(f) : null;
-      document.querySelector('.fs-photo-vide').hidden = !!f; document.querySelector('.fs-photo-plein').hidden = !f;
-      $('fsPhotoZone').classList.toggle('plein', !!f); if (f) { $('fsPhotoImg').src = versionApercu; $('fsPhotoNom').textContent = 'Photo ajoutée'; }
-    };
-    $('fsPhoto').addEventListener('change', (e) => choisir(e.target.files[0]));
-    $('fsPhotoX').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); $('fsPhoto').value = ''; choisir(null); });
-    const reduire = (f) => new Promise((ok) => {
-      const img = new Image(); img.onload = () => {
-        const k = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement('canvas');
-        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-        c.toBlob((b) => ok(b || f), 'image/jpeg', 0.82);
-      }; img.onerror = () => ok(null); img.src = URL.createObjectURL(f);
-    });
-    const envoyerPhoto = async () => {
-      if (!fichier) return '';
-      try {
-        const b = await reduire(fichier); if (!b) return '';
-        const fd = new FormData(); fd.append('photo', b, 'photo.jpg');
-        const r = await fetch(API + '/api/public/sourcing/photo', { method: 'POST', body: fd });
-        const d = await r.json().catch(() => ({})); return r.ok && /^https:\/\//.test(d.url || '') ? d.url : '';
-      } catch (e) { return ''; }
-    };
     document.querySelectorAll('a[href="#demande"]').forEach((a) => a.addEventListener('click', () => setTimeout(() => { try { $('fsProduit').focus({ preventScroll: true }); } catch (e) {} }, 500)));
-    fo.addEventListener('submit', async (e) => {
+    fo.addEventListener('submit', (e) => {
       e.preventDefault();
       const v = (k) => fo.elements[k].value.trim(), mode = fo.elements.mode.value;
-      if (!v('produit') && !fichier) { err('Décrivez le produit ou ajoutez une photo.'); $('fsProduit').focus(); return; }
-      err(''); const bt = $('fsEnvoi'), txt = bt.querySelector('span'), avant = txt.textContent; bt.disabled = true; txt.textContent = fichier ? 'Envoi de la photo…' : 'Ouverture de WhatsApp…';
-      const lien = await envoyerPhoto();
+      if (!v('produit')) { err('Décrivez le produit en quelques mots.'); $('fsProduit').focus(); return; }
+      err('');
       const l = ['Bonjour' + (v('nom') ? ', ici ' + v('nom') : '') + ', je voudrais un produit sur mesure.', 'Achat : ' + mode + ', pour ' + fo.elements.usage.value, 'Marque : ' + fo.elements.marque.value];
       if (v('produit')) l.push('Produit : ' + v('produit'));
       if (v('qte')) l.push((mode === 'en gros' ? 'Quantité : ' : 'Pièces : ') + v('qte'));
-      if (lien) l.push('Photo : ' + lien); else if (fichier) l.push('(Photo à vous envoyer ici, le chargement a échoué.)');
-      bt.disabled = false; txt.textContent = avant;
       if (!window.open(WA + encodeURIComponent(l.join('\n')), '_blank', 'noopener')) location.href = WA + encodeURIComponent(l.join('\n'));
     });
   })();
