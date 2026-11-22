@@ -736,10 +736,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       if (!l.length) return '';
       // Chaque sujet est un lien direct vers son fil Telegram ; la mini-photo vient d'un produit publié du même type (jamais inventée).
       const items = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => [r[0], r[1], RAYON_TYPES[r[0]] || [r[0]], s]) : [[s, TG_CAT[s][1], [s], s]]));
-      // Autres catalogues proposés (sujet Telegram connu quand il existe, sinon le groupe s'ouvre).
+      // Autres catalogues : un sujet Telegram chacun (numéro du sujet dans le groupe).
       const AUTRES = {
-        luxe: [['Running', null, ['Chaussures'], 'Articles de luxe'], ['Doudounes', null, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', null, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', null, ['Vêtements'], 'Articles de luxe']],
-        acc: [['Électronique', null, ['Électronique'], 'Tech'], ['Casques moto (Arai)', 10, ['Casques'], 'Auto & moto'], ['Canapés & maison', null, ['Canapés'], 'Maison'], ['Lego & jouets', null, ['Jouets'], 'Jouets']],
+        luxe: [['Running', 10, ['Chaussures'], 'Articles de luxe'], ['Doudounes', 12, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', 14, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', 16, ['Vêtements'], 'Articles de luxe']],
+        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Casques moto (Arai)', 10, ['Casques'], 'Auto & moto'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego & jouets', 33, ['Jouets'], 'Jouets']],
       };
       (AUTRES[k] || []).forEach((x) => { if (!items.some((it) => it[0] === x[0])) items.push(x.slice()); });
       // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
