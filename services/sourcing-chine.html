@@ -546,6 +546,12 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .gc-main + .gc-grid{margin-top:0;}
   .gc-tout{margin:6px 0 0;text-align:center;} .gc-tout a{color:#0b6f80;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid rgba(11,111,128,.35);} .gc-tout a:hover{color:#0b8f8f;} .gc-tout i{font-style:normal;}
   @media (max-width:760px){.gc-main{grid-template-columns:auto 1fr;padding:20px;} .gc-main-btn{grid-column:1/-1;justify-content:center;}}
+  /* À la une : le produit mis en avant en tête de liste (fond teinté, texte plus fort), sans pastille */
+  .gc-liste li.une{margin:0 -10px 4px;padding:0 10px;border-top:0;border-radius:14px;background:linear-gradient(135deg,rgba(10,166,160,.14),rgba(31,139,230,.12));}
+  .gc-liste li.une + li{border-top:0;}
+  .gc-liste li.une a{padding:12px 0;min-height:52px;} .gc-liste li.une a span{display:grid;gap:1px;font-weight:600;font-size:16.5px;color:#0c2030;}
+  .gc-liste li.une a span small{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0b7f8a;}
+  .gc-liste li.une:first-child a{padding-top:12px;}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -730,8 +736,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       if (!l.length) return '';
       // Chaque sujet est un lien direct vers son fil Telegram ; la mini-photo vient d'un produit publié du même type (jamais inventée).
       const items = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => [r[0], r[1], RAYON_TYPES[r[0]] || [r[0]], s]) : [[s, TG_CAT[s][1], [s], s]]));
+      // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
+      const une = { 'Whoop': 'Bracelets connectés Whoop' };
+      items.forEach((it) => { if (une[it[0]]) { it[0] = une[it[0]]; it[4] = true; } });
+      if (k === 'luxe') items.unshift(['Bracelets Fred', 6, ['Bijoux'], 'Articles de luxe', true]);
+      items.sort((x, y) => Number(!!y[4]) - Number(!!x[4]));
       const miniature = (types, sec) => { const p = tous.find((x) => x.nbPhotos && (types.includes(x.type) || (!x.type && sect(x) === sec) || sect(x) === sec && types.includes(sec))); return p ? `<img class="gc-mini" loading="lazy" decoding="async" alt="" src="${photo(p, 0)}">` : ''; };
-      const mots = items.map(([nom, sujet, types, sec]) => `<li><a href="${g.url}${sujet ? '/' + sujet : ''}" target="_blank" rel="noopener">${miniature(types, sec)}<span>${esc(nom)}</span><i aria-hidden="true">→</i></a></li>`);
+      const mots = items.map(([nom, sujet, types, sec, vedette]) => `<li${vedette ? ' class="une"' : ''}><a href="${g.url}${sujet ? '/' + sujet : ''}" target="_blank" rel="noopener">${miniature(types, sec)}<span>${vedette ? '<small>À la une</small>' : ''}${esc(nom)}</span><i aria-hidden="true">→</i></a></li>`);
       return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><ul class="gc-liste">${mots.join('')}</ul><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo</a></div></article>`;
     };
     // Le channel principal (fond noir) : nouveautés et messages épinglés vers les 3 catégories.
