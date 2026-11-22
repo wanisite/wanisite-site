@@ -740,11 +740,12 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       const items = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => [r[0], r[1], RAYON_TYPES[r[0]] || [r[0]], s]) : [[s, TG_CAT[s][1], [s], s]]));
       // Autres catalogues : un sujet Telegram chacun (numéro du sujet dans le groupe).
       const AUTRES = {
-        luxe: [['Running', 10, ['Chaussures'], 'Articles de luxe'], ['Doudounes', 12, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', 14, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', 16, ['Vêtements'], 'Articles de luxe']],
-        moto: [['Casques Arai', 3, ['Casques'], 'Moto'], ['Casques Arai Chine', 5, ['Casques'], 'Moto'], ['Intercoms', 7, ['Intercoms'], 'Moto'], ['Visières', 9, ['Visières'], 'Moto'], ['Kits LED & feux', 11, ['Éclairage'], 'Moto'], ['Crash bars', 13, ['Crash bars'], 'Moto'], ['Dosserets TMAX', 15, ['Dosserets'], 'Moto'], ['Accessoires moto', 17, ['Moto'], 'Moto']],
+        luxe: [['Running', 10, ['Chaussures'], 'Articles de luxe'], ['Doudounes', 12, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', 14, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', 16, ['Vêtements'], 'Articles de luxe'], ['Lulu Lemon', 24, ['Vêtements'], 'Articles de luxe'], ['Alo', 23, ['Vêtements'], 'Articles de luxe'], ['On', 22, ['Chaussures'], 'Articles de luxe']],
+        moto: [['Casques Arai', 3, ['Casques'], 'Moto'], ['Intercoms', 7, ['Intercoms'], 'Moto'], ['Visières', 9, ['Visières'], 'Moto'], ['Kits LED & feux', 11, ['Éclairage'], 'Moto'], ['Crash bars', 13, ['Crash bars'], 'Moto'], ['Dosserets TMAX', 15, ['Dosserets'], 'Moto']],
         beaute: [['Kayali', 13, ['Parfums'], 'Parfums']],
-        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego & jouets', 33, ['Jouets'], 'Jouets']],
+        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego', 33, ['Jouets'], 'Jouets']],
       };
+      if (k === 'luxe') items.forEach((it) => { if (it[0] === 'Baskets & chaussures') it[0] = 'Prada'; });
       if (k === 'acc') items.forEach((it) => { if (it[0] === 'Auto & moto') it[0] = 'Auto'; });
       (AUTRES[k] || []).forEach((x) => { if (!items.some((it) => it[0] === x[0])) items.push(x.slice()); });
       // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
