@@ -745,7 +745,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
       const une = { 'Whoop': 'Bracelets connectés Whoop' };
       items.forEach((it) => { if (une[it[0]]) { it[0] = une[it[0]]; it[4] = true; } });
-      if (k === 'luxe') items.unshift(['Bracelets Fred', 6, ['Bijoux'], 'Articles de luxe', true]);
+      if (k === 'luxe') items.unshift(['Bracelets Fred', 20, ['Bijoux'], 'Articles de luxe', true]);
       items.sort((x, y) => Number(!!y[4]) - Number(!!x[4]));
       const miniature = (types, sec) => { const p = tous.find((x) => x.nbPhotos && (types.includes(x.type) || (!x.type && sect(x) === sec) || sect(x) === sec && types.includes(sec))); return p ? `<img class="gc-mini" loading="lazy" decoding="async" alt="" src="${photo(p, 0)}">` : ''; };
       const mots = items.map(([nom, sujet, types, sec, vedette]) => `<li${vedette ? ' class="une"' : ''}><a href="${g.url}${sujet ? '/' + sujet : ''}" target="_blank" rel="noopener">${miniature(types, sec)}<span>${vedette ? '<small>À la une</small>' : ''}${esc(nom)}</span><i aria-hidden="true">→</i></a></li>`);
