@@ -537,6 +537,15 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .fs-err{margin:0;padding:11px 14px;border-radius:12px;background:#fdecea;color:#a3271b;font-size:14.5px;} .fs-err[hidden]{display:none;}
   .fs .btn[disabled]{opacity:.7;cursor:progress;} .fs .fs-note{font-size:13.5px;margin:0;max-width:none;text-align:center;} .fs .btn span{display:block;}
   @media (max-width:520px){.fs-seg.fs-3{grid-template-columns:repeat(3,minmax(0,1fr));} .fs-seg.fs-3 span{font-size:13.5px;padding:11px 4px;}}
+  /* Channel principal : carte noire, au-dessus des 3 catégories */
+  .gc-main{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;margin:26px 0 14px;padding:22px 26px;border-radius:28px;background:radial-gradient(120% 140% at 100% 0%,#1a2430 0%,#0a0d12 60%);color:#fff;box-shadow:0 26px 50px -30px rgba(0,0,0,.7);}
+  .gc-main img{width:72px;height:72px;border-radius:50%;display:block;box-shadow:0 0 0 1px rgba(255,255,255,.14);}
+  .gc-main h3{margin:0 0 4px;font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(26px,2.8vw,34px);letter-spacing:-.025em;color:#fff;}
+  .gc-main p{margin:0;color:rgba(255,255,255,.72);font-size:15.5px;line-height:1.5;max-width:52ch;}
+  .gc-main-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;background:#fff;color:#0a0d12 !important;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:transform .2s,background .2s;} .gc-main-btn:hover{background:#e9fbfb;transform:translateY(-2px);} .gc-main-btn i{font-style:normal;}
+  .gc-main + .gc-grid{margin-top:0;}
+  .gc-tout{margin:6px 0 0;text-align:center;} .gc-tout a{color:#0b6f80;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid rgba(11,111,128,.35);} .gc-tout a:hover{color:#0b8f8f;} .gc-tout i{font-style:normal;}
+  @media (max-width:760px){.gc-main{grid-template-columns:auto 1fr;padding:20px;} .gc-main-btn{grid-column:1/-1;justify-content:center;}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -571,7 +580,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 <section id="produits">
   <div class="wrap">
     <h2 class="xl">Le catalogue <span class="t">complet.</span></h2>
-    <p class="sec-intro">Trois groupes Telegram, avec toutes les photos et le prix au détail. Pour le prix de gros, envoyez-nous un message sur WhatsApp.</p>
+    <p class="sec-intro">Le channel principal, puis un groupe par catégorie, avec toutes les photos et le prix au détail. Pour le prix de gros, envoyez-nous un message sur WhatsApp.</p>
     <nav class="cat-fil" id="catFil" aria-label="Fil d’Ariane du catalogue" hidden></nav>
     <div class="cat-bar" id="catBar" hidden>
       <nav class="cat-types" id="catSecteurs" aria-label="Type de produit"></nav>
@@ -643,6 +652,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const $ = (id) => document.getElementById(id);
   // Telegram : 3 groupes publics (un sujet par catégorie) + un lien de dossier qui les fait rejoindre tous d'un coup.
   const TG_DOSSIER = 'https://t.me/addlist/uIApVfUPlioxNjE0';
+  // Channel principal : lien d'invitation (passer à https://t.me/wanisitelab quand le nom public sera posé sur le channel).
+  const TG_PRINCIPAL = 'https://t.me/+WcUqhObX2V5kMjNk';
   const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Parfums', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
   // Catégorie du site → [groupe, numéro du sujet dans ce groupe] (null = la page du groupe)
   // Rayons d'une catégorie = les sujets de son groupe Telegram (même nom, même ordre).
@@ -723,7 +734,10 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       const mots = items.map(([nom, sujet, types, sec]) => `<li><a href="${g.url}${sujet ? '/' + sujet : ''}" target="_blank" rel="noopener">${miniature(types, sec)}<span>${esc(nom)}</span><i aria-hidden="true">→</i></a></li>`);
       return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><ul class="gc-liste">${mots.join('')}</ul><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo</a></div></article>`;
     };
-    $('catList').innerHTML = `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
+    // Le channel principal (fond noir) : nouveautés et messages épinglés vers les 3 catégories.
+    const principal = `<article class="gc-main"><img src="/assets/telegram/groupe-principal.webp" alt="" width="72" height="72"><div class="gc-main-t"><h3>Wanisite</h3><p>Le channel principal : les nouveautés, et les liens pour rejoindre chaque catégorie.</p></div><a class="gc-main-btn" href="${TG_PRINCIPAL}" target="_blank" rel="noopener">Rejoindre le channel <i aria-hidden="true">→</i></a></article>`;
+    $('catList').innerHTML = principal + `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
+      `<p class="gc-tout"><a href="${TG_DOSSIER}" target="_blank" rel="noopener">Rejoindre les 4 d’un coup <i aria-hidden="true">→</i></a></p>` +
       (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
   }
 
