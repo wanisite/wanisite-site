@@ -552,6 +552,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .gc-liste li.une a{padding:12px 0;min-height:52px;} .gc-liste li.une a span{display:grid;gap:1px;font-weight:600;font-size:16.5px;color:#0c2030;}
   .gc-liste li.une a span small{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0b7f8a;}
   .gc-liste li.une:first-child a{padding-top:12px;}
+  /* 4 groupes Telegram : 2 colonnes (2 x 2) */
+  @media (min-width:761px){.gc-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -660,7 +662,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const TG_DOSSIER = 'https://t.me/addlist/uIApVfUPlioxNjE0';
   // Channel principal (nom public posé le 2026-11-22).
   const TG_PRINCIPAL = 'https://t.me/wanisitelab';
-  const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Parfums', ico: '💄', url: 'https://t.me/wanisitebeaute' } };
+  const TG_GROUPES = { luxe: { nom: 'Wanisite Luxe & Prestige', ico: '💎', url: 'https://t.me/wanisiteluxe' }, acc: { nom: 'Wanisite Accessoires', ico: '📱', url: 'https://t.me/wanisitesourcing' }, beaute: { nom: 'Wanisite Beauté & Parfums', ico: '💄', url: 'https://t.me/wanisitebeaute' }, moto: { nom: 'Wanisite Moto', ico: '🏍️', url: 'https://t.me/wanisitemoto' } };
   // Catégorie du site → [groupe, numéro du sujet dans ce groupe] (null = la page du groupe)
   // Rayons d'une catégorie = les sujets de son groupe Telegram (même nom, même ordre).
   const TG_RAYONS = { 'Articles de luxe': [['Casquettes & bonnets', 2], ['Vêtements', 3], ['Baskets & chaussures', 4], ['Sacs & maroquinerie', 5], ['Montres & bijoux', 6], ['Lunettes & accessoires', 7]] };
@@ -733,14 +735,16 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     // Une carte par groupe Telegram : son nom, ses catégories (simple repère), un seul bouton.
     const carteGroupe = (k) => {
       const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
-      if (!l.length) return '';
+      if (!l.length && k !== 'moto') return '';
       // Chaque sujet est un lien direct vers son fil Telegram ; la mini-photo vient d'un produit publié du même type (jamais inventée).
       const items = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => [r[0], r[1], RAYON_TYPES[r[0]] || [r[0]], s]) : [[s, TG_CAT[s][1], [s], s]]));
       // Autres catalogues : un sujet Telegram chacun (numéro du sujet dans le groupe).
       const AUTRES = {
         luxe: [['Running', 10, ['Chaussures'], 'Articles de luxe'], ['Doudounes', 12, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', 14, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', 16, ['Vêtements'], 'Articles de luxe']],
-        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Casques moto (Arai)', 10, ['Casques'], 'Auto & moto'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego & jouets', 33, ['Jouets'], 'Jouets']],
+        moto: [['Casques Arai', 3, ['Casques'], 'Moto'], ['Casques Arai Chine', 5, ['Casques'], 'Moto'], ['Intercoms', 7, ['Intercoms'], 'Moto'], ['Visières', 9, ['Visières'], 'Moto'], ['Kits LED & feux', 11, ['Éclairage'], 'Moto'], ['Crash bars', 13, ['Crash bars'], 'Moto'], ['Dosserets TMAX', 15, ['Dosserets'], 'Moto'], ['Accessoires moto', 17, ['Moto'], 'Moto']],
+        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego & jouets', 33, ['Jouets'], 'Jouets']],
       };
+      if (k === 'acc') items.forEach((it) => { if (it[0] === 'Auto & moto') it[0] = 'Auto'; });
       (AUTRES[k] || []).forEach((x) => { if (!items.some((it) => it[0] === x[0])) items.push(x.slice()); });
       // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
       const une = { 'Whoop': 'Bracelets connectés Whoop' };
@@ -752,8 +756,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><ul class="gc-liste">${mots.join('')}</ul><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo</a></div></article>`;
     };
     // Le channel principal (fond noir) : nouveautés et messages épinglés vers les 3 catégories.
-    const principal = `<article class="gc-main"><img src="/assets/telegram/groupe-principal.webp" alt="" width="72" height="72"><div class="gc-main-t"><h3>Wanisite</h3><p>Le channel principal et les trois catégories : un seul lien pour tout rejoindre.</p></div><a class="gc-main-btn" href="${TG_DOSSIER}" target="_blank" rel="noopener">Voir tout le catalogue complet <i aria-hidden="true">→</i></a></article>`;
-    $('catList').innerHTML = principal + `<div class="gc-grid">${['luxe', 'acc', 'beaute'].map(carteGroupe).join('')}</div>` +
+    const principal = `<article class="gc-main"><img src="/assets/telegram/groupe-principal.webp" alt="" width="72" height="72"><div class="gc-main-t"><h3>Wanisite</h3><p>Le channel principal et les quatre catégories : un seul lien pour tout rejoindre.</p></div><a class="gc-main-btn" href="${TG_DOSSIER}" target="_blank" rel="noopener">Voir tout le catalogue complet <i aria-hidden="true">→</i></a></article>`;
+    $('catList').innerHTML = principal + `<div class="gc-grid">${['luxe', 'acc', 'moto', 'beaute'].map(carteGroupe).join('')}</div>` +
       (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
   }
 
