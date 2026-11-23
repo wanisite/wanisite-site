@@ -614,6 +614,29 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   .cat-quote button{cursor:pointer;border:0;border-radius:12px;background:#008a8a;color:white;font:700 15px 'DM Sans',sans-serif;min-height:46px;padding:12px 14px}
   @media(max-width:1000px){.sc-quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
   @media(max-width:620px){.sc-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.sc-quick-card img,.sc-quick-custom .sc-quick-symbol{height:105px}.sc-quick-card .sc-quick-body{padding:12px}.sc-quick-card strong{font-size:16px}.sc-quick-custom{grid-column:span 2}.sc-quick-custom .sc-quick-symbol{height:85px}}
+
+  /* Rectangles empilés : les cinq univers visibles ensemble sur le premier écran. */
+  .sc-quick{height:calc(100svh - 76px);min-height:0;padding:clamp(8px,1.5vh,16px) 0;box-sizing:border-box}
+  .sc-quick .wrap{display:flex;flex-direction:column;min-height:0;height:100%;gap:clamp(6px,1vh,12px)}
+  .sc-quick-head{flex:none;margin:0;align-items:center}
+  .sc-quick .sc-quick-title{font-size:clamp(23px,2.7vw,36px)}
+  .sc-quick-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(5,minmax(0,1fr));flex:1;min-height:0;height:auto;gap:clamp(6px,1vh,11px)}
+  .sc-quick-card,.sc-quick-custom{grid-column:1;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:clamp(12px,2vw,28px);padding:clamp(8px,1.2vh,15px) clamp(14px,2vw,24px);min-height:0;border-radius:18px}
+  .sc-quick-card .sc-quick-top{flex:0 0 52px;justify-content:flex-start;align-items:center}
+  .sc-quick-card .sc-quick-top .sc-quick-arrow{display:none}
+  .sc-quick-card .sc-quick-art,.sc-quick-custom .sc-quick-art{flex:0 0 clamp(56px,8vw,100px);min-height:0;height:100%;margin:0}
+  .sc-quick-card .sc-quick-art span,.sc-quick-custom .sc-quick-art span{font-size:clamp(35px,5vw,64px);transform:none}
+  .sc-quick-card .sc-quick-body,.sc-quick-custom .sc-quick-body{flex:1;min-width:0;display:flex;flex-direction:row;align-items:center;gap:clamp(8px,2vw,26px)}
+  .sc-quick-card .sc-quick-body strong,.sc-quick-custom .sc-quick-body strong{flex:0 0 clamp(125px,17vw,245px);font-size:clamp(18px,2vw,27px)}
+  .sc-quick-card .sc-quick-body small,.sc-quick-custom .sc-quick-body small{flex:1;font-size:clamp(11px,1.2vw,14px)}
+  .sc-quick-card .sc-quick-examples{flex:1;min-width:0;margin:0}
+  .sc-quick-card .sc-quick-go,.sc-quick-custom .sc-quick-go{flex:none;margin:0;font-size:12px}
+  .sc-quick-custom{background:linear-gradient(110deg,rgba(9,38,55,.94),rgba(10,111,126,.84))}
+  .sc-quick-custom .sc-quick-no{display:none}
+  .sc-quick-custom .sc-quick-arrow{flex:none}
+  @media(max-width:850px){.sc-quick{height:calc(100svh - 76px);min-height:0}.sc-quick-grid{grid-template-columns:1fr;grid-template-rows:repeat(5,minmax(0,1fr));height:auto}.sc-quick-card,.sc-quick-custom{padding:9px 12px;gap:12px}.sc-quick-card .sc-quick-top{display:none}.sc-quick-card .sc-quick-art,.sc-quick-custom .sc-quick-art{flex-basis:60px}.sc-quick-card .sc-quick-body,.sc-quick-custom .sc-quick-body{display:grid;grid-template-columns:1fr auto;gap:2px 8px}.sc-quick-card .sc-quick-body strong,.sc-quick-custom .sc-quick-body strong{grid-column:1;font-size:clamp(18px,3vw,23px)}.sc-quick-card .sc-quick-body small,.sc-quick-custom .sc-quick-body small{grid-column:1}.sc-quick-card .sc-quick-examples{grid-column:1}.sc-quick-card .sc-quick-go,.sc-quick-custom .sc-quick-go{grid-column:2;grid-row:1 / span 3;align-self:center}.sc-quick-custom .sc-quick-arrow{display:none}}
+  @media(max-width:520px){.sc-quick{height:calc(100svh - 68px);min-height:0;padding:8px 0}.sc-quick .wrap{gap:7px}.sc-quick-head{margin:0}.sc-quick .sc-quick-title{font-size:clamp(19px,5.2vw,25px)}.sc-quick-grid{height:auto;grid-template-rows:repeat(5,minmax(0,1fr));gap:6px}.sc-quick-card,.sc-quick-custom{padding:7px 10px;border-radius:14px;gap:9px}.sc-quick-card .sc-quick-art,.sc-quick-custom .sc-quick-art{flex-basis:47px}.sc-quick-card .sc-quick-art span,.sc-quick-custom .sc-quick-art span{font-size:36px}.sc-quick-card .sc-quick-body,.sc-quick-custom .sc-quick-body{gap:2px}.sc-quick-card .sc-quick-body strong,.sc-quick-custom .sc-quick-body strong{font-size:17px}.sc-quick-card .sc-quick-body small,.sc-quick-custom .sc-quick-body small{font-size:10px}.sc-quick-card .sc-quick-examples em{font-size:9px;padding:2px 5px}.sc-quick-card .sc-quick-go,.sc-quick-custom .sc-quick-go{font-size:10px;max-width:75px;line-height:1.25;text-align:right}}
+  @media(max-height:640px){.sc-quick .sc-quick-title{font-size:20px}.sc-quick-card .sc-quick-examples{display:none}.sc-quick-card .sc-quick-art span{font-size:30px}.sc-quick-card .sc-quick-body small{font-size:10px}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
