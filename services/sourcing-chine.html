@@ -563,6 +563,32 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   @keyframes ctaPulse{0%{box-shadow:0 14px 30px -12px rgba(0,138,138,.65),0 0 0 0 rgba(0,138,138,.38);}70%,100%{box-shadow:0 14px 30px -12px rgba(0,138,138,.65),0 0 0 16px rgba(0,138,138,0);}}
   @media (prefers-reduced-motion:reduce){.hero-actions .cta-sm{animation:none;}}
   @media (max-width:560px){.hero-actions .cta-sm{width:100%;} .hero-actions .btn.ghost{width:100%;}}
+
+  /* Entrée immédiate dans l'application catalogue */
+  .sc-quick{padding:22px 0 26px;background:#f4f7f9}
+  .sc-quick .sc-quick-title{margin:0 0 16px;font:800 clamp(23px,3vw,34px)/1.2 'Outfit',sans-serif;color:#0c2030;letter-spacing:-.03em}
+  .sc-quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .sc-quick-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:18px;border:1px solid #dbe9ed;background:#fff;color:#0c2030;text-decoration:none;box-shadow:0 12px 26px -20px rgba(12,32,48,.35);transition:transform .2s,border-color .2s,box-shadow .2s}
+  .sc-quick-card:hover,.sc-quick-card:focus-visible{transform:translateY(-4px);border-color:#008a8a;box-shadow:0 16px 32px -20px rgba(0,138,138,.45)}
+  .sc-quick-card img{display:block;width:100%;height:130px;object-fit:cover;background:#e3f1f4}
+  .sc-quick-card .sc-quick-body{display:grid;gap:5px;padding:14px}
+  .sc-quick-card strong{font:700 18px/1.15 'Outfit',sans-serif}
+  .sc-quick-card small{font:400 12px/1.4 'DM Sans',sans-serif;color:#60727a}
+  .sc-quick-card .sc-quick-go{margin-top:4px;font-size:12px;font-weight:700;color:#008a8a}
+  .sc-quick-custom{background:linear-gradient(145deg,#0c2030,#124c62);color:#fff;border-color:#146678}
+  .sc-quick-custom .sc-quick-symbol{display:grid;place-items:center;height:130px;background:radial-gradient(circle at 50% 50%,#157d84,#0b2637);font-size:60px;color:#83efed}
+  .sc-quick-custom small{color:#c0d7db}
+  .sc-quick-custom .sc-quick-go{color:#7ff0e5}
+  .cat-quote{display:grid;gap:12px;margin-top:18px;padding:16px;border:1px solid #d5e6e7;border-radius:16px;background:#f4fafa;color:#0c2030}
+  .cat-quote h4{margin:0;font:700 19px 'Outfit',sans-serif}
+  .cat-quote .cat-quote-modes{display:flex;gap:10px;flex-wrap:wrap}
+  .cat-quote .cat-quote-modes label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:14px}
+  .cat-quote input[type=number],.cat-quote textarea{box-sizing:border-box;width:100%;border:1px solid #bfced2;background:white;border-radius:10px;padding:11px 12px;font:inherit;color:#0c2030}
+  .cat-quote label.cat-quote-label{display:grid;gap:5px;font-size:13px;font-weight:700}
+  .cat-quote textarea{min-height:76px;resize:vertical}
+  .cat-quote button{cursor:pointer;border:0;border-radius:12px;background:#008a8a;color:white;font:700 15px 'DM Sans',sans-serif;min-height:46px;padding:12px 14px}
+  @media(max-width:1000px){.sc-quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:620px){.sc-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.sc-quick-card img,.sc-quick-custom .sc-quick-symbol{height:105px}.sc-quick-card .sc-quick-body{padding:12px}.sc-quick-card strong{font-size:16px}.sc-quick-custom{grid-column:span 2}.sc-quick-custom .sc-quick-symbol{height:85px}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -578,6 +604,19 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 </header>
 <main id="top">
 
+
+<section class="sc-quick" aria-labelledby="scQuickTitle">
+  <div class="wrap">
+    <h2 class="sc-quick-title" id="scQuickTitle">Explorez nos univers</h2>
+    <div class="sc-quick-grid">
+      <a class="sc-quick-card" href="#produits/groupe/luxe"><img src="/assets/telegram/groupe-luxe.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Luxe</strong><small>Sacs, mode, montres et bijoux</small><span class="sc-quick-go">Voir les produits →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/acc"><img src="/assets/telegram/groupe-acc.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Accessoires</strong><small>Tech, maison et quotidien</small><span class="sc-quick-go">Voir les produits →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/moto"><img src="/assets/telegram/groupe-moto.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Moto</strong><small>Casques, intercoms, visières</small><span class="sc-quick-go">Voir les produits →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/beaute"><img src="/assets/telegram/groupe-beaute.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Beauté</strong><small>Soins, cosmétiques, parfums</small><span class="sc-quick-go">Voir les produits →</span></span></a>
+      <a class="sc-quick-card sc-quick-custom" href="#demande"><span class="sc-quick-symbol" aria-hidden="true">✦</span><span class="sc-quick-body"><strong>Produit sur mesure</strong><small>Fabriquez votre produit à votre marque</small><span class="sc-quick-go">Décrire mon projet →</span></span></a>
+    </div>
+  </div>
+</section>
 <section class="sc-hero sc-hero2 sc-hero3">
   <div class="wrap">
     <div class="hero-vis"><div class="scene3d" id="scene3d" data-scene3d data-stations="2" data-disposition="ligne" aria-label="Animation 3D : une usine en Chine, une route où voyagent des colis, une boutique en France et un avion" role="img"></div><picture class="hero-fallback"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/hero-v1-fixe.webp"><img src="/assets/sourcing/hero-v1.webp" alt="De la Chine à la France : une usine, une route où voyagent des colis, une boutique, et le logo Wanisite au milieu" width="840" height="400" decoding="async"></picture></div>
@@ -702,7 +741,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const eur = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
   // Un seul prix affiché : « à partir de » au détail. Le prix de gros est donné sur WhatsApp (jamais publié).
   const prixHtml = (p) => (p.aPartirDe != null ? `<span class="cat-prix">à partir de <b>${eur(p.aPartirDe)}</b></span>` : '<span class="cat-prix">Prix sur devis</span>');
-  const devis = (p) => wa(`Bonjour, je voudrais un devis pour : ${p.nom}${p.marque ? ' (' + p.marque + (p.reference ? ', réf. ' + p.reference : '') + ')' : p.reference ? ' (réf. ' + p.reference + ')' : ''}. Quantité souhaitée : `);
+  const devis = (p, mode, quantite, details) => wa(['Bonjour Wanisite, je souhaite un devis Sourcing Chine.', 'Produit : ' + p.nom, p.marque ? 'Marque : ' + p.marque : '', p.reference ? 'Référence : ' + p.reference : '', 'Catégorie : ' + sect(p), 'Demande : ' + (mode === 'gros' ? 'Achat en gros' : 'Demande détaillée'), 'Quantité : ' + (quantite || 'à préciser'), details ? 'Détails : ' + details : ''].filter(Boolean).join('\n'));
   let tous = [], type = '', vente = '';
   // Ordre et rangement choisis dans le dashboard (Catalogue → Secteurs, types et marques).
   let ORDRE_TYPES = [], ORDRE_MARQUES = [], depuisDash = false;
@@ -726,7 +765,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   const secteursPresents = () => ORDRE.concat([...new Set(tous.map(sect))].filter((s) => !ORDRE.includes(s)));
 
   // ---- navigation par l'adresse : #produits  |  #produits/Mode  |  #produits/Mode/Marque (_ = sans marque) ----
-  const route = () => { const m = decodeURIComponent(location.hash.slice(1)).split('/'); return m[0] === 'produits' ? { s: m[1] || '', m: m[2] === undefined ? null : (m[2] === '_' ? '' : m[2]) } : null; };
+  const route = () => { const m = decodeURIComponent(location.hash.slice(1)).split('/'); return m[0] === 'produits' ? { s: m[1] || '', m: m[2] === undefined ? null : (m[2] === '_' ? '' : m[2]), groupe: m[1] === 'groupe' ? m[2] : null } : null; };
   const lien = (s, m) => '#produits' + (s ? '/' + enc(s) : '') + (m === undefined || m === null ? '' : '/' + (m === '' ? '_' : enc(m)));
 
   const carte = (p) => `<button type="button" class="cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}, ouvrir la fiche">
@@ -741,38 +780,38 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     nav.innerHTML = items.map((it, i) => i === items.length - 1 ? `<span aria-current="page">${esc(it[0])}</span>` : `<a href="${it[1]}">${esc(it[0])}</a>`).join('<i aria-hidden="true">/</i>');
   }
 
+
+  // Regroupement des secteurs publiés par univers, sans produits fictifs.
+  const groupeProduit = (p) => {
+    const s = (sect(p) + ' ' + (p.type || '')).toLowerCase();
+    if (/moto|casque|visière|intercom|crash bar|tmax/.test(s)) return 'moto';
+    if (/luxe|mode|vêtement|bijou|montre|sac|chaussure|basket/.test(s)) return 'luxe';
+    if (/beauté|cosmétique|parfum|soin|maquillage/.test(s)) return 'beaute';
+    return 'acc';
+  };
   function accueil() {
     fil([]); $('catBar').hidden = true;
-    const secs = ORDRE.filter((s) => depuisDash || ICO[s] || tous.some((p) => sect(p) === s));
-    // Une carte par groupe Telegram : son nom, ses catégories (simple repère), un seul bouton.
-    const carteGroupe = (k) => {
-      const g = TG_GROUPES[k], l = secs.filter((s) => TG_CAT[s] && TG_CAT[s][0] === k);
-      if (!l.length && k !== 'moto') return '';
-      // Chaque sujet est un lien direct vers son fil Telegram ; la mini-photo vient d'un produit publié du même type (jamais inventée).
-      const items = l.flatMap((s) => (TG_RAYONS[s] ? TG_RAYONS[s].map((r) => [r[0], r[1], RAYON_TYPES[r[0]] || [r[0]], s]) : [[s, TG_CAT[s][1], [s], s]]));
-      // Autres catalogues : un sujet Telegram chacun (numéro du sujet dans le groupe).
-      const AUTRES = {
-        luxe: [['Running', 10, ['Chaussures'], 'Articles de luxe'], ['Doudounes', 12, ['Doudounes'], 'Articles de luxe'], ['Maillots de foot', 14, ['Maillots'], 'Articles de luxe'], ['C.P. Company & Stone Island', 16, ['Vêtements'], 'Articles de luxe'], ['Lulu Lemon', 24, ['Vêtements'], 'Articles de luxe'], ['Alo', 23, ['Vêtements'], 'Articles de luxe'], ['On', 22, ['Chaussures'], 'Articles de luxe']],
-        moto: [['Casques Arai', 3, ['Casques'], 'Moto'], ['Intercoms', 7, ['Intercoms'], 'Moto'], ['Visières', 9, ['Visières'], 'Moto'], ['Kits LED & feux', 11, ['Éclairage'], 'Moto'], ['Crash bars', 13, ['Crash bars'], 'Moto'], ['Dosserets TMAX', 15, ['Dosserets'], 'Moto']],
-        beaute: [['Kayali', 13, ['Parfums'], 'Parfums']],
-        acc: [['Électronique', 29, ['Électronique'], 'Tech'], ['Canapés & maison', 31, ['Canapés'], 'Maison'], ['Lego', 33, ['Jouets'], 'Jouets']],
-      };
-      if (k === 'luxe') items.forEach((it) => { if (it[0] === 'Baskets & chaussures') it[0] = 'Prada'; });
-      if (k === 'acc') items.forEach((it) => { if (it[0] === 'Auto & moto') it[0] = 'Auto'; });
-      (AUTRES[k] || []).forEach((x) => { if (!items.some((it) => it[0] === x[0])) items.push(x.slice()); });
-      // À la une : les produits mis en avant (le sujet Telegram correspondant s'ouvre au clic).
-      const une = { 'Whoop': 'Bracelets connectés Whoop' };
-      items.forEach((it) => { if (une[it[0]]) { it[0] = une[it[0]]; it[4] = true; } });
-      if (k === 'luxe') items.unshift(['Bracelets Fred', 20, ['Bijoux'], 'Articles de luxe', true]);
-      items.sort((x, y) => Number(!!y[4]) - Number(!!x[4]));
-      const miniature = (types, sec) => { const p = tous.find((x) => x.nbPhotos && (types.includes(x.type) || (!x.type && sect(x) === sec) || sect(x) === sec && types.includes(sec))); return p ? `<img class="gc-mini" loading="lazy" decoding="async" alt="" src="${photo(p, 0)}">` : ''; };
-      const mots = items.map(([nom, sujet, types, sec, vedette]) => `<li${vedette ? ' class="une"' : ''}><a href="${g.url}${sujet ? '/' + sujet : ''}" target="_blank" rel="noopener">${miniature(types, sec)}<span>${vedette ? '<small>À la une</small>' : ''}${esc(nom)}</span><i aria-hidden="true">→</i></a></li>`);
-      return `<article class="gc"><div class="gc-h"><img src="/assets/telegram/groupe-${k}.webp" alt="" width="52" height="52"><h3>${esc(g.nom.replace('Wanisite ', ''))}</h3></div><ul class="gc-liste">${mots.join('')}</ul><div class="gc-btns"><a class="gc-btn" href="${g.url}" target="_blank" rel="noopener">Voir le catalogue complet <i aria-hidden="true">→</i></a><a class="gc-wa" href="${wa('Bonjour, je vous envoie la photo d’un produit (' + g.nom.replace('Wanisite ', '') + ') : ')}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo</a></div></article>`;
-    };
-    // Le channel principal (fond noir) : nouveautés et messages épinglés vers les 3 catégories.
-    const principal = `<article class="gc-main"><img src="/assets/telegram/groupe-principal.webp" alt="" width="72" height="72"><div class="gc-main-t"><h3>Wanisite</h3><p>Le channel principal et les quatre catégories : un seul lien pour tout rejoindre.</p></div><a class="gc-main-btn" href="${TG_DOSSIER}" target="_blank" rel="noopener">Voir tout le catalogue complet <i aria-hidden="true">→</i></a></article>`;
-    $('catList').innerHTML = principal + `<div class="gc-grid">${['luxe', 'acc', 'moto', 'beaute'].map(carteGroupe).join('')}</div>` +
-      (tous.length ? `<h3 class="gc-sous">Produits avec prix</h3><div class="cat-grid">${tous.map(carte).join('')}</div>` : '');
+    const groupes = [
+      ['luxe', 'Luxe', 'Sacs, mode, montres et bijoux'],
+      ['acc', 'Accessoires', 'High-tech, maison et accessoires'],
+      ['moto', 'Moto', 'Casques, intercoms, visières et équipements'],
+      ['beaute', 'Beauté', 'Soins, cosmétiques et parfums']
+    ];
+    $('catList').innerHTML = '<div class="cat-grid cat-secteurs">' +
+      groupes.map(([k, nom, description]) => tuile('#produits/groupe/' + k, '<img class="ph" alt="" src="/assets/telegram/groupe-' + k + '.webp">', 'Catalogue', nom, description, 'Voir les produits')).join('') +
+      tuile('#demande', '<span class="ini" aria-hidden="true">✦</span>', 'Sur mesure', 'Créez votre marque', 'Votre produit, votre logo, votre emballage', 'Demander un devis') +
+      '</div>' +
+      (tous.length ? '<h3 class="gc-sous">Tous les produits disponibles</h3><div class="cat-grid">' + tous.map(carte).join('') + '</div>' : '<p class="cat-vide">Les fiches produits seront affichées dès leur publication dans le catalogue Wanisite.</p>');
+  }
+  function catalogueGroupe(k) {
+    const config = { luxe:['Luxe','wanisiteluxe'], acc:['Accessoires','wanisitesourcing'], moto:['Moto','wanisitemoto'], beaute:['Beauté','wanisitebeaute'] }[k];
+    if (!config) { accueil(); return; }
+    const ps = tous.filter((p) => groupeProduit(p) === k);
+    fil([['Catalogue','#produits'], [config[0]]]);
+    $('catBar').hidden = true;
+    $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '<small>' + pluriel(ps.length,'produit','produits') + '</small></h3>' +
+      (ps.length ? '<div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '<div class="cat-vide">Aucun produit publié dans cet univers pour le moment.</div>') +
+      '<div class="cat-pied"><div><b>Vous cherchez un modèle précis ?</b><span>Décrivez-le sur WhatsApp, en gros ou en détail.</span></div><a class="btn main big" target="_blank" rel="noopener" href="' + wa('Bonjour Wanisite, je cherche un produit dans la catégorie ' + config[0] + '.') + '">Demander un devis →</a></div>';
   }
 
   function secteur(s) {
@@ -825,7 +864,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
     if (cle !== dernier) { type = ''; vente = ''; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', 'false')); }
     dernier = cle;
     const pb = $('catPiedBase'); if (pb) pb.hidden = !!r.s;
-    if (!r.s) accueil(); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
+    if (!r.s) accueil(); else if (r.s === 'groupe') catalogueGroupe(r.groupe); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
     if (defiler && route()) { const t = $('produits'); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }
   }
   window.addEventListener('hashchange', () => afficher(true));
@@ -840,7 +879,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
       ${prixHtml(p)}
       <span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}${p.vente ? ' · ' + esc(p.vente === 'Détail et gros' ? 'au détail et en gros' : p.vente === 'Gros' ? 'en gros' : 'au détail') : ''}</span>
       ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.${p.vente && p.vente !== 'Détail' ? ' Vous achetez en gros ? Le prix de gros vous est donné sur WhatsApp.' : ''}</p>
-      <a class="btn wa big" href="${devis(p)}" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div></div>`;
+      <form class="cat-quote" id="catQuote"><h4>Recevoir un devis WhatsApp</h4><div class="cat-quote-modes" role="radiogroup" aria-label="Type de demande"><label><input type="radio" name="mode" value="gros" checked> Achat en gros</label><label><input type="radio" name="mode" value="details"> Demande détaillée</label></div><label class="cat-quote-label">Quantité souhaitée<input type="number" name="quantite" min="1" step="1" value="50" required></label><label class="cat-quote-label">Précisions (facultatif)<textarea name="details" placeholder="Couleur, modèle, personnalisation, budget, délai…"></textarea></label><button type="submit">Envoyer ma demande sur WhatsApp ↗</button></form></div></div>`;
+    $('catQuote').addEventListener('submit', (e) => { e.preventDefault(); const f = e.currentTarget; if (!f.reportValidity()) return; const url = devis(p, f.elements.mode.value, f.elements.quantite.value, f.elements.details.value.trim()); const w = window.open(url, '_blank', 'noopener'); if (!w) window.location.href = url; });
     $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((b) => b.addEventListener('click', () => { $('catBig').innerHTML = `<img alt="${esc(p.nom)}" src="${photo(p, +b.dataset.i)}">`; $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((x) => x.setAttribute('aria-current', String(x === b))); }));
     $('catModal').hidden = false; document.body.style.overflow = 'hidden'; $('catX').focus();
   }
