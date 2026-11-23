@@ -564,21 +564,46 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   @media (prefers-reduced-motion:reduce){.hero-actions .cta-sm{animation:none;}}
   @media (max-width:560px){.hero-actions .cta-sm{width:100%;} .hero-actions .btn.ghost{width:100%;}}
 
-  /* Entrée immédiate dans l'application catalogue */
-  .sc-quick{padding:22px 0 26px;background:#f4f7f9}
-  .sc-quick .sc-quick-title{margin:0 0 16px;font:800 clamp(23px,3vw,34px)/1.2 'Outfit',sans-serif;color:#0c2030;letter-spacing:-.03em}
-  .sc-quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-  .sc-quick-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:18px;border:1px solid #dbe9ed;background:#fff;color:#0c2030;text-decoration:none;box-shadow:0 12px 26px -20px rgba(12,32,48,.35);transition:transform .2s,border-color .2s,box-shadow .2s}
-  .sc-quick-card:hover,.sc-quick-card:focus-visible{transform:translateY(-4px);border-color:#008a8a;box-shadow:0 16px 32px -20px rgba(0,138,138,.45)}
-  .sc-quick-card img{display:block;width:100%;height:130px;object-fit:cover;background:#e3f1f4}
-  .sc-quick-card .sc-quick-body{display:grid;gap:5px;padding:14px}
-  .sc-quick-card strong{font:700 18px/1.15 'Outfit',sans-serif}
-  .sc-quick-card small{font:400 12px/1.4 'DM Sans',sans-serif;color:#60727a}
-  .sc-quick-card .sc-quick-go{margin-top:4px;font-size:12px;font-weight:700;color:#008a8a}
-  .sc-quick-custom{background:linear-gradient(145deg,#0c2030,#124c62);color:#fff;border-color:#146678}
-  .sc-quick-custom .sc-quick-symbol{display:grid;place-items:center;height:130px;background:radial-gradient(circle at 50% 50%,#157d84,#0b2637);font-size:60px;color:#83efed}
-  .sc-quick-custom small{color:#c0d7db}
-  .sc-quick-custom .sc-quick-go{color:#7ff0e5}
+  /* Première vue : quatre univers + une bannière sur mesure, effet verre premium. */
+  .sc-quick{position:relative;isolation:isolate;box-sizing:border-box;min-height:calc(100svh - 76px);display:flex;align-items:center;padding:clamp(16px,3vh,30px) 0;background:radial-gradient(ellipse at 14% 16%,rgba(0,201,201,.21),transparent 42%),radial-gradient(ellipse at 87% 80%,rgba(31,139,230,.19),transparent 48%),linear-gradient(135deg,#eaf7f7 0%,#eef4fc 55%,#e7f6f6 100%);overflow:hidden}
+  .sc-quick:before,.sc-quick:after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(255,255,255,.62);border-radius:50%;width:48vw;height:48vw;filter:blur(1px);opacity:.45;z-index:-1}
+  .sc-quick:before{top:-38vw;right:-12vw}.sc-quick:after{bottom:-40vw;left:-15vw}
+  .sc-quick .wrap{width:100%;box-sizing:border-box}
+  .sc-quick-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(12px,2.3vh,24px)}
+  .sc-quick-kicker{display:block;margin:0 0 5px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#007f88}
+  .sc-quick .sc-quick-title{margin:0;font:700 clamp(27px,3.3vw,47px)/1.05 'Outfit',sans-serif;color:#0c2030;letter-spacing:-.045em}
+  .sc-quick-intro{margin:0;max-width:300px;font-size:13px;line-height:1.5;color:#526a79}
+  .sc-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(235px,1fr) minmax(120px,.45fr);gap:clamp(9px,1.2vw,18px);height:clamp(390px,65svh,630px)}
+  .sc-quick-card{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-width:0;overflow:hidden;padding:clamp(14px,1.6vw,24px);border-radius:clamp(17px,2vw,27px);border:1px solid rgba(255,255,255,.85);background:linear-gradient(155deg,rgba(255,255,255,.75),rgba(255,255,255,.3));-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:0 16px 42px -28px rgba(20,85,113,.52),inset 0 1px rgba(255,255,255,.96);color:#102f3d;text-decoration:none;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .sc-quick-card:hover,.sc-quick-card:focus-visible{transform:translateY(-5px);border-color:rgba(0,165,173,.65);box-shadow:0 25px 44px -26px rgba(8,117,143,.52)}
+  .sc-quick-card:focus-visible{outline:3px solid #008a8a;outline-offset:2px}
+  .sc-quick-top{display:flex;justify-content:space-between;align-items:center;gap:6px}
+  .sc-quick-no{font-size:11px;letter-spacing:.18em;font-weight:800;color:#648b95}
+  .sc-quick-arrow{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);font-size:19px}
+  .sc-quick-art{position:relative;display:flex;justify-content:center;align-items:center;flex:1;min-height:65px;margin:2px 0;isolation:isolate}
+  .sc-quick-art:before{content:"";position:absolute;z-index:-1;width:min(145px,75%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(0,166,160,.25),rgba(31,139,230,.09) 57%,transparent 72%);filter:blur(5px)}
+  .sc-quick-art span{font-size:clamp(50px,6vw,100px);line-height:1;filter:drop-shadow(0 14px 12px rgba(12,56,74,.16));transform:rotate(-9deg)}
+  .sc-quick-card:nth-child(2) .sc-quick-art span{transform:rotate(8deg)}
+  .sc-quick-card:nth-child(3) .sc-quick-art span{transform:rotate(-5deg)}
+  .sc-quick-card:nth-child(4) .sc-quick-art span{transform:rotate(9deg)}
+  .sc-quick-body{display:grid;gap:6px}
+  .sc-quick-body strong{font:700 clamp(20px,2.1vw,30px)/1.1 'Outfit',sans-serif;letter-spacing:-.03em}
+  .sc-quick-body small{font:400 12px/1.4 'DM Sans',sans-serif;color:#526e7c}
+  .sc-quick-examples{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+  .sc-quick-examples em{font-style:normal;font-size:10px;line-height:1.2;padding:5px 7px;border-radius:100px;background:rgba(255,255,255,.63);border:1px solid rgba(255,255,255,.8);color:#35626b}
+  .sc-quick-go{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;font-weight:800;color:#008a8a}
+  .sc-quick-custom{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:22px;background:linear-gradient(110deg,rgba(9,38,55,.96),rgba(7,95,112,.89) 62%,rgba(10,134,151,.85));border-color:rgba(255,255,255,.3);color:#fff}
+  .sc-quick-custom .sc-quick-art{flex:0 0 clamp(65px,12%,155px);min-height:0;margin:0}
+  .sc-quick-custom .sc-quick-art:before{background:radial-gradient(circle,rgba(114,240,226,.35),transparent 75%)}
+  .sc-quick-custom .sc-quick-art span{font-size:clamp(52px,6vw,90px);transform:none}
+  .sc-quick-custom .sc-quick-body{flex:1;gap:5px}
+  .sc-quick-custom .sc-quick-body strong{font-size:clamp(23px,2.6vw,37px)}
+  .sc-quick-custom .sc-quick-body small{color:#cce5e9}
+  .sc-quick-custom .sc-quick-go{color:#8ef3e8}
+  .sc-quick-custom .sc-quick-arrow{flex:none;color:#0b4b5b}
+  @media(max-width:850px){.sc-quick{min-height:calc(100svh - 76px)}.sc-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(170px,1fr)) minmax(110px,.6fr);height:clamp(510px,74svh,780px)}.sc-quick-art span{font-size:clamp(44px,8vw,76px)}.sc-quick-intro{display:none}.sc-quick-card{padding:14px}.sc-quick-body strong{font-size:21px}}
+  @media(max-width:520px){.sc-quick{padding:12px 0 18px;min-height:calc(100svh - 68px)}.sc-quick-head{margin-bottom:10px}.sc-quick-kicker{font-size:9px}.sc-quick .sc-quick-title{font-size:clamp(23px,6vw,30px)}.sc-quick-grid{height:clamp(490px,73svh,710px);grid-template-rows:repeat(2,minmax(155px,1fr)) minmax(108px,.65fr);gap:8px}.sc-quick-card{padding:11px;border-radius:17px}.sc-quick-top .sc-quick-arrow{width:25px;height:25px;font-size:16px}.sc-quick-art{min-height:40px}.sc-quick-art span{font-size:clamp(43px,12vw,65px)}.sc-quick-body{gap:4px}.sc-quick-body strong{font-size:19px}.sc-quick-body small{font-size:10px}.sc-quick-examples{gap:4px}.sc-quick-examples em{font-size:9px;padding:3px 5px}.sc-quick-go{font-size:10px;margin-top:1px}.sc-quick-custom{gap:8px}.sc-quick-custom .sc-quick-art{flex-basis:53px}.sc-quick-custom .sc-quick-art span{font-size:46px}.sc-quick-custom .sc-quick-body strong{font-size:21px}}
+  @media(max-height:720px) and (min-width:851px){.sc-quick{padding:12px 0}.sc-quick-grid{height:clamp(320px,61svh,450px);grid-template-rows:minmax(205px,1fr) minmax(100px,.4fr)}.sc-quick-art span{font-size:60px}}
   .cat-quote{display:grid;gap:12px;margin-top:18px;padding:16px;border:1px solid #d5e6e7;border-radius:16px;background:#f4fafa;color:#0c2030}
   .cat-quote h4{margin:0;font:700 19px 'Outfit',sans-serif}
   .cat-quote .cat-quote-modes{display:flex;gap:10px;flex-wrap:wrap}
@@ -607,13 +632,13 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
 
 <section class="sc-quick" aria-labelledby="scQuickTitle">
   <div class="wrap">
-    <h2 class="sc-quick-title" id="scQuickTitle">Explorez nos univers</h2>
+    <div class="sc-quick-head"><div><span class="sc-quick-kicker">Wanisite · Sourcing Chine</span><h1 class="sc-quick-title" id="scQuickTitle">Qu'est-ce qu'on source pour vous ?</h1></div><p class="sc-quick-intro">Explorez les univers, découvrez les produits et demandez votre devis directement sur WhatsApp.</p></div>
     <div class="sc-quick-grid">
-      <a class="sc-quick-card" href="#produits/groupe/luxe"><img src="/assets/telegram/groupe-luxe.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Luxe</strong><small>Sacs, mode, montres et bijoux</small><span class="sc-quick-go">Voir les produits →</span></span></a>
-      <a class="sc-quick-card" href="#produits/groupe/acc"><img src="/assets/telegram/groupe-acc.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Accessoires</strong><small>Tech, maison et quotidien</small><span class="sc-quick-go">Voir les produits →</span></span></a>
-      <a class="sc-quick-card" href="#produits/groupe/moto"><img src="/assets/telegram/groupe-moto.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Moto</strong><small>Casques, intercoms, visières</small><span class="sc-quick-go">Voir les produits →</span></span></a>
-      <a class="sc-quick-card" href="#produits/groupe/beaute"><img src="/assets/telegram/groupe-beaute.webp" alt="" loading="eager"><span class="sc-quick-body"><strong>Beauté</strong><small>Soins, cosmétiques, parfums</small><span class="sc-quick-go">Voir les produits →</span></span></a>
-      <a class="sc-quick-card sc-quick-custom" href="#demande"><span class="sc-quick-symbol" aria-hidden="true">✦</span><span class="sc-quick-body"><strong>Produit sur mesure</strong><small>Fabriquez votre produit à votre marque</small><span class="sc-quick-go">Décrire mon projet →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/luxe" aria-label="Explorer le catalogue Luxe"><span class="sc-quick-top"><span class="sc-quick-no">01 / LUXE</span><span class="sc-quick-arrow" aria-hidden="true">↗</span></span><span class="sc-quick-art" aria-hidden="true"><span>👜</span></span><span class="sc-quick-body"><strong>Luxe</strong><small>Pièces mode & prestige</small><span class="sc-quick-examples"><em>Sacs</em><em>Montres</em><em>Bijoux</em></span><span class="sc-quick-go">Explorer le catalogue →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/acc" aria-label="Explorer le catalogue Accessoires"><span class="sc-quick-top"><span class="sc-quick-no">02 / ACCESSOIRES</span><span class="sc-quick-arrow" aria-hidden="true">↗</span></span><span class="sc-quick-art" aria-hidden="true"><span>🎧</span></span><span class="sc-quick-body"><strong>Accessoires</strong><small>Tech, maison & quotidien</small><span class="sc-quick-examples"><em>Électronique</em><em>Maison</em><em>Gadgets</em></span><span class="sc-quick-go">Explorer le catalogue →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/moto" aria-label="Explorer le catalogue Moto"><span class="sc-quick-top"><span class="sc-quick-no">03 / MOTO</span><span class="sc-quick-arrow" aria-hidden="true">↗</span></span><span class="sc-quick-art" aria-hidden="true"><span>🏍️</span></span><span class="sc-quick-body"><strong>Moto</strong><small>Équipement & pièces</small><span class="sc-quick-examples"><em>Casques</em><em>Intercoms</em><em>Visières</em></span><span class="sc-quick-go">Explorer le catalogue →</span></span></a>
+      <a class="sc-quick-card" href="#produits/groupe/beaute" aria-label="Explorer le catalogue Beauté"><span class="sc-quick-top"><span class="sc-quick-no">04 / BEAUTÉ</span><span class="sc-quick-arrow" aria-hidden="true">↗</span></span><span class="sc-quick-art" aria-hidden="true"><span>🧴</span></span><span class="sc-quick-body"><strong>Beauté</strong><small>Cosmétiques & parfums</small><span class="sc-quick-examples"><em>Soins</em><em>Parfums</em><em>Maquillage</em></span><span class="sc-quick-go">Explorer le catalogue →</span></span></a>
+      <a class="sc-quick-card sc-quick-custom" href="#demande" aria-label="Créer sa marque et demander un produit sur mesure"><span class="sc-quick-art" aria-hidden="true"><span>✦</span></span><span class="sc-quick-body"><span class="sc-quick-no" style="color:#90d8da">05 / SOURCING SUR MESURE</span><strong>Votre produit. Votre marque.</strong><small>Fabrication personnalisée · Logo · Packaging · Étiquette · Prix usine</small><span class="sc-quick-go">Créer ma marque / demander un produit →</span></span><span class="sc-quick-arrow" aria-hidden="true">↗</span></a>
     </div>
   </div>
 </section>
