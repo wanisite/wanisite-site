@@ -639,7 +639,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;}
   @media(max-height:640px){.sc-quick .sc-quick-title{font-size:20px}.sc-quick-card .sc-quick-examples{display:none}.sc-quick-card .sc-quick-art span{font-size:30px}.sc-quick-card .sc-quick-body small{font-size:10px}}
 
   /* Funnel : aucune distraction au premier écran, cinq cartes photographiques. */
-  body:has(.sc-funnel) > header.top{display:none}
   .sc-funnel.sc-quick{height:100svh;min-height:0;display:block;box-sizing:border-box;padding:clamp(8px,1.3vh,16px);background:radial-gradient(circle at 18% 0%,#12485c 0%,#081b2a 48%,#040c14 100%);overflow:hidden}
   .sc-funnel .sc-funnel-list{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,minmax(0,1fr));gap:clamp(6px,1.1vh,12px);height:100%;max-width:1280px;padding:0}
   .sc-funnel-card{position:relative;isolation:isolate;display:block;overflow:hidden;min-height:0;border-radius:clamp(14px,2vh,23px);text-decoration:none;color:#fff;background:#102c3b;border:1px solid rgba(255,255,255,.22);box-shadow:0 7px 22px rgba(0,0,0,.18);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
@@ -688,6 +687,27 @@ body.sc-choice-open .sc-choice-back{display:block}
 .sc-tg-topic:hover{transform:translateY(-3px);border-color:#0aa6a0}
 .sc-tg-topic span{color:#0aa6a0;font-size:21px}
 .sc-tg-note{color:#5d6d75;font-size:14px;margin:8px 0 20px}
+
+/* Cinq cartes : une couleur par univers + une petite image tintée, header du site conservé. */
+.sc-funnel.sc-quick{height:calc(100svh - 84px);background:#f4f8fa;padding:clamp(8px,1.3vh,14px) clamp(8px,1.3vh,14px) clamp(10px,1.6vh,18px)}
+body.sc-choice-home .sc-funnel{height:calc(100svh - 84px)}
+.sc-funnel-card{background:linear-gradient(100deg,var(--c1),var(--c2));border-color:rgba(255,255,255,.28);box-shadow:0 14px 28px -18px var(--c2)}
+.sc-funnel-card:before{background:none}
+.sc-funnel-card .sc-funnel-image{inset:0 0 0 auto;width:44%;background-size:cover;background-position:center;opacity:.5;mix-blend-mode:luminosity;transform:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 60%);mask-image:linear-gradient(90deg,transparent,#000 60%)}
+.sc-funnel-card:hover .sc-funnel-image{transform:none;opacity:.62}
+.sc-funnel-card:hover,.sc-funnel-card:focus-visible{border-color:rgba(255,255,255,.7)}
+.sc-funnel-luxe{--c1:#2e2208;--c2:#b0802a}
+.sc-funnel-acc{--c1:#053f47;--c2:#0b9aa5}
+.sc-funnel-moto{--c1:#3a140a;--c2:#d0561f}
+.sc-funnel-beaute{--c1:#4a1030;--c2:#c8497f}
+.sc-funnel-custom{--c1:#0a1826;--c2:#27506c;border-color:rgba(255,255,255,.28);background:linear-gradient(100deg,var(--c1),var(--c2))}
+.sc-funnel-custom:before{background:none}
+.sc-funnel .sc-funnel-index{color:#fff;background:rgba(255,255,255,.16)}
+.sc-funnel .sc-funnel-copy small{color:rgba(255,255,255,.86)}
+.sc-funnel .sc-funnel-action span{color:#fff}
+.sc-tg-topic b{display:grid;gap:2px;font-weight:700} .sc-tg-topic b small{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0b7f8a}
+.sc-tg-topic.une{border-color:#0aa6a0;background:linear-gradient(135deg,rgba(10,166,160,.1),rgba(31,139,230,.08))}
+.sc-tg-all{margin:0 0 22px;font-weight:600} .sc-tg-all a{color:#0b6f80;text-decoration:none;border-bottom:1px solid rgba(11,111,128,.35)}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -707,10 +727,10 @@ body.sc-choice-open .sc-choice-back{display:block}
 
 <section class="sc-quick sc-funnel" aria-label="Choisissez votre univers de sourcing">
   <div class="wrap sc-funnel-list">
-      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">01</span><span class="sc-funnel-copy"><strong>LUXE</strong><small>Sacs · Montres · Bijoux</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">02</span><span class="sc-funnel-copy"><strong>ACCESSOIRES</strong><small>Tech · Gadgets · Maison</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">01</span><span class="sc-funnel-copy"><strong>LUXE</strong><small>Prada · Lulu Lemon · Montres · Bijoux</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">02</span><span class="sc-funnel-copy"><strong>ACCESSOIRES</strong><small>Whoop · Électronique · Maison</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
       <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">03</span><span class="sc-funnel-copy"><strong>MOTO</strong><small>Casques · Intercoms · Visières</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">04</span><span class="sc-funnel-copy"><strong>BEAUTÉ</strong><small>Parfums · Soins · Maquillage</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">04</span><span class="sc-funnel-copy"><strong>BEAUTÉ</strong><small>Parfums · Kayali</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
       <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Créer votre marque ou sourcer un produit sur mesure"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">05</span><span class="sc-funnel-copy"><strong>CRÉER MA MARQUE</strong><small>Votre produit · Votre logo · Votre packaging</small></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
   </div>
 </section>
@@ -804,11 +824,11 @@ body.sc-choice-open .sc-choice-back{display:block}
   const escTg = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const btnTg = (s) => {
     const c = s && TG_CAT[s], g = c && TG_GROUPES[c[0]];
-    if (!g) return `<a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre nos 3 groupes Telegram <i aria-hidden="true">→</i></a>`;
+    if (!g) return `<a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Rejoindre nos 4 groupes Telegram <i aria-hidden="true">→</i></a>`;
     return `<a class="cat-tg" href="${g.url}${c[1] ? '/' + c[1] : ''}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Voir ${escTg(s)} sur Telegram <i aria-hidden="true">→</i></a><span class="cat-tg-ou">dans le groupe <b>${g.ico} ${escTg(g.nom)}</b></span>`;
   };
   // Bloc d'accueil du catalogue : le lien unique + les 3 groupes.
-  const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues en direct sur Telegram</b><span>Photos, lots et nouveautés, un sujet par catégorie. Un seul lien pour rejoindre les 3 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Tout rejoindre <i aria-hidden="true">→</i></a></div>`;
+  const blocTg = () => `<div class="tg-bloc"><div class="tg-bloc-t"><b>Nos catalogues en direct sur Telegram</b><span>Photos, lots et nouveautés, un sujet par catégorie. Un seul lien pour rejoindre les 4 groupes.</span></div><a class="cat-tg" href="${TG_DOSSIER}" target="_blank" rel="noopener"><span aria-hidden="true">✈</span> Tout rejoindre <i aria-hidden="true">→</i></a></div>`;
   let ORDRE = ['Articles de luxe', 'Whoop', 'Auto & moto', 'Autre', 'Beauté & cosmétiques', 'Parfums', 'Pros & restaurants'];
   let ICO = { 'Whoop': 'tech', 'Articles de luxe': 'mode', 'Maison': 'maison', 'Pros & restaurants': 'pros', 'Beauté': 'beaute', 'Beauté & cosmétiques': 'beaute', 'Parfums': 'beaute', 'Auto & moto': 'auto' };
   // Rayons prévus par secteur (affichés tant qu'aucun produit n'est publié) : ce sont des catégories, jamais de faux produits.
@@ -873,10 +893,10 @@ body.sc-choice-open .sc-choice-back{display:block}
   function accueil() {
     fil([]); $('catBar').hidden = true;
     const groupes = [
-      ['luxe', 'Luxe', 'Sacs, mode, montres et bijoux'],
-      ['acc', 'Accessoires', 'High-tech, maison et accessoires'],
+      ['luxe', 'Luxe', 'Prada, Lulu Lemon, montres et bijoux'],
+      ['acc', 'Accessoires', 'Whoop, électronique et maison'],
       ['moto', 'Moto', 'Casques, intercoms, visières et équipements'],
-      ['beaute', 'Beauté', 'Soins, cosmétiques et parfums']
+      ['beaute', 'Beauté', 'Parfums et Kayali']
     ];
     $('catList').innerHTML = '<div class="cat-grid cat-secteurs">' +
       groupes.map(([k, nom, description]) => tuile('#produits/groupe/' + k, '<img class="ph" alt="" src="/assets/telegram/groupe-' + k + '.webp">', 'Catalogue', nom, description, 'Voir les produits')).join('') +
@@ -890,10 +910,16 @@ body.sc-choice-open .sc-choice-back{display:block}
     const ps = tous.filter((p) => groupeProduit(p) === k);
     fil([['Catalogue','#produits'], [config[0]]]);
     $('catBar').hidden = true;
-    const sujetsLuxe = [['Casquettes & bonnets',2],['Vêtements',3],['Baskets & chaussures',4],['Sacs & maroquinerie',5],['Montres & bijoux',6],['Lunettes & accessoires',7]];
-    const sujets = k === 'luxe' ? sujetsLuxe : [];
+    // Sujets réels de chaque groupe Telegram (numéro du sujet = fin du lien). Relevés dans Telegram le 2026-11-23.
+    const SUJETS_TG = {
+      luxe: [['Bracelets Fred',20,1],['Prada',4],['Lulu Lemon',24],['Alo',23],['On',22],['Casquettes & bonnets',2],['Vêtements',3],['Sacs & maroquinerie',5],['Montres & bijoux',6],['Lunettes & accessoires',7],['Running',10],['Doudounes',12],['Maillots de foot',14],['C.P. Company & Stone Island',16]],
+      acc: [['Bracelets connectés Whoop',2,1],['Volant Auto',10],['Électronique',29],['Canapés & maison',31],['Lego',33],['Autre',11]],
+      moto: [['Casques Arai',3],['Intercoms',7],['Visières',9],['Kits LED & feux',11],['Crash bars',13],['Dosserets TMAX',15]],
+      beaute: [['Kayali',13]]
+    };
+    const sujets = SUJETS_TG[k] || [];
     const accesSujets = sujets.length
-      ? '<p class="sc-tg-note">Choisissez un rayon pour ouvrir son sujet Telegram.</p><div class="sc-tg-topics">' + sujets.map(([nom,id]) => '<a class="sc-tg-topic" href="https://t.me/wanisiteluxe/' + id + '" target="_blank" rel="noopener">' + esc(nom) + '<span aria-hidden="true">↗</span></a>').join('') + '</div>'
+      ? '<p class="sc-tg-note">Choisissez un sujet pour ouvrir son fil Telegram.</p><div class="sc-tg-topics">' + sujets.map(([nom,id,une]) => '<a class="sc-tg-topic' + (une ? ' une' : '') + '" href="https://t.me/' + config[1] + '/' + id + '" target="_blank" rel="noopener"><b>' + (une ? '<small>À la une</small>' : '') + esc(nom) + '</b><span aria-hidden="true">↗</span></a>').join('') + '</div><p class="sc-tg-all"><a href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir tout le groupe Wanisite ' + esc(config[0]) + ' sur Telegram →</a></p>'
       : '<p class="sc-tg-note">Consultez les rayons et les nouveautés directement sur le groupe Telegram.</p><div class="sc-tg-topics"><a class="sc-tg-topic" href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir Wanisite ' + esc(config[0]) + ' sur Telegram <span aria-hidden="true">↗</span></a></div>';
     $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '</h3>' + accesSujets + '<h3 class="cat-titre">Produits disponibles<small>' + pluriel(ps.length,'produit','produits') + '</small></h3>' +
       (ps.length ? '<div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '<div class="cat-vide">Aucun produit publié dans cet univers pour le moment.</div>') +
