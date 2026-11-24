@@ -1037,6 +1037,49 @@ body.sc-choice-custom #demande{padding-top:28px}
  .sc-choice-back{min-height:46px;padding:10px 17px 10px 13px;font-size:14px;gap:10px}
  .sc-choice-back:before{width:24px;height:24px;font-size:19px}
 }
+
+/* Cartes structurées et devis WhatsApp intégré au catalogue. */
+.sc-product-card{display:flex;flex-direction:column}
+.sc-product-visual{flex:none}
+.sc-product-body{display:flex;flex-direction:column;flex:1;padding:24px;gap:20px}
+.sc-product-body h3{font-size:26px;line-height:1.18;font-weight:600;letter-spacing:-.035em;margin:0;min-height:2.36em}
+.sc-product-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:auto;align-items:stretch}
+.sc-product-view{
+ display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 16px;box-sizing:border-box;
+ border-radius:12px;background:#0b7f80;color:#fff;font-size:14px;font-weight:700;
+ transition:background .2s ease;text-decoration:none;
+}
+.sc-product-view:hover{background:#08696b;color:#fff}
+.sc-product-actions .sc-notify{width:100%;min-height:40px;border-radius:12px;background:#f5f8f9;border-color:#e1e8eb;color:#40545f;font-weight:500;font-size:12px}
+.sc-product-actions .sc-notify:hover{background:#e8f4f3;border-color:#bddbd8}
+.sc-brand-quote{
+ display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:32px;
+ padding:28px 30px;border:1px solid #dce7e7;border-radius:22px;
+ background:linear-gradient(120deg,#fff,#edf7f5);
+ box-shadow:0 12px 30px -24px rgba(12,50,48,.3);
+}
+.sc-quote-copy h3{margin:0 0 7px;font:650 25px/1.15 'Outfit',var(--sans),sans-serif;letter-spacing:-.025em;color:#102532}
+.sc-quote-copy p{margin:0;font:400 14px/1.5 var(--sans);color:#5b6e76}
+.sc-whatsapp-cta{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;gap:3px;
+ min-width:205px;min-height:62px;padding:12px 24px;box-sizing:border-box;border-radius:14px;
+ background:#087d60;color:#fff;text-decoration:none;box-shadow:0 6px 16px -10px rgba(8,125,96,.65);
+ transition:background .2s ease,transform .2s ease;
+}
+.sc-whatsapp-cta>span{font:700 15px/1.3 var(--sans)}
+.sc-whatsapp-cta>small{font:500 12px/1.3 var(--sans);color:rgba(255,255,255,.85)}
+.sc-whatsapp-cta:hover{background:#06664f;transform:translateY(-1px);color:#fff}
+.sc-whatsapp-cta:focus-visible{outline:3px solid #0aa6a0;outline-offset:4px}
+.sc-notify-help{margin:16px 4px 0;font-size:12px;color:#70818a;max-width:70ch}
+@media(max-width:620px){
+ .sc-product-body{padding:22px;gap:18px}
+ .sc-product-body h3{font-size:26px;min-height:0}
+ .sc-brand-quote{flex-direction:column;align-items:stretch;gap:20px;padding:24px;margin-top:26px;border-radius:20px}
+ .sc-quote-copy h3{font-size:25px}
+ .sc-whatsapp-cta{width:100%;min-height:62px}
+ .sc-notify-help{margin-top:15px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.sc-whatsapp-cta,.sc-product-view{transition:none}.sc-whatsapp-cta:hover{transform:none}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -1295,8 +1338,8 @@ body.sc-choice-custom #demande{padding-top:28px}
       (produits.length?'<div class="cat-grid sc-real-products">'+produits.map(p=>'<div class="sc-real-product">'+carte(p)+suivre(sujets.length===1?groupeUrl+'/'+sujets[0][1]:groupeUrl,p.nom)+'</div>').join('')+'</div>':'')+
       (cards?'<div class="sc-products-grid sc-universe-'+k+'">'+cards+'</div>':'')+
       (!produits.length&&!cards?'<p class="cat-vide">Les produits de cette marque seront affichés dès leur publication.</p>':'')+
-      '<p class="sc-notify-help">Pour recevoir les actualités, activez les notifications du sujet ou du canal dans Telegram.</p>'+
-      '<div class="sc-brand-quote"><a class="btn main" href="'+wa('Bonjour Wanisite, je cherche un produit '+selection.nom+' dans la catégorie '+config.nom+'.')+'" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div>';
+      '<div class="sc-brand-quote"><div class="sc-quote-copy"><h3>Besoin d’un devis ?</h3><p>Un modèle précis, une quantité ou un projet en tête ?</p></div><a class="sc-whatsapp-cta" href="'+wa('Bonjour Wanisite, je cherche un produit '+selection.nom+' dans la catégorie '+config.nom+'.')+'" target="_blank" rel="noopener"><span>Demander mon devis</span><small>Sur WhatsApp</small></a></div>'+
+      '<p class="sc-notify-help">Pour recevoir les actualités, activez les notifications du sujet ou du canal dans Telegram.</p>';
   }
 
   function secteur(s) {
