@@ -1127,6 +1127,90 @@ body.sc-choice-custom #demande{padding-top:28px}
  .sc-choice-back{padding:0 16px 0 0;gap:11px;min-height:46px;font-size:14px;border-radius:11px}
  .sc-choice-back:before{width:46px;height:46px;font-size:24px}
 }
+
+/* Deux entrées distinctes, au sein de la cinquième rangée. */
+.sc-custom-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}
+.sc-custom-split .sc-funnel-card{height:100%}
+.sc-custom-split .sc-funnel-copy strong{font-size:clamp(23px,2.7vw,36px);letter-spacing:-.04em}
+.sc-custom-split .sc-funnel-glass{width:78%;padding:20px 25px}
+.sc-custom-split .sc-brand-wall{width:21%;right:4%;padding:8px 0}
+.sc-custom-split .logo-wanisite{width:85px;height:65px}
+.sc-custom-split .sc-funnel-action{display:none}
+.sc-custom-marque{--c1:#083947;--c2:#087e8a}
+.sc-custom-marque:before{background:linear-gradient(90deg,rgba(0,25,38,.7),rgba(0,55,68,.2))}
+.ws-custom-section{padding:30px 0 60px;text-align:left}
+.ws-custom-wrap{max-width:740px}
+.ws-custom-heading{margin:0 0 26px}
+.ws-eyebrow{display:block;color:#0a7e80;font:600 11px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase;margin-bottom:10px}
+.ws-custom-heading h1{font:300 clamp(34px,5vw,54px)/1.1 'Outfit',var(--sans);letter-spacing:-.05em;margin:0;color:#102532}
+.ws-custom-heading p{font:400 15px/1.5 var(--sans);color:#61747e;margin:14px 0 0}
+.ws-funnel{padding:30px;background:#fff;border:1px solid #dbe6e9;border-radius:24px;box-shadow:0 18px 45px -32px rgba(12,32,48,.3)}
+.wf-progress{display:flex;gap:18px;align-items:center;margin-bottom:30px;color:#5e7480;font:500 12px/1.4 var(--sans)}
+.wf-progress progress{flex:1;min-width:0;max-width:200px;height:5px;accent-color:#0b7f80;border:0;border-radius:99px;overflow:hidden}
+.wf-progress progress::-webkit-progress-bar{background:#e6eff1}
+.wf-progress progress::-webkit-progress-value{background:#0b7f80;border-radius:99px}
+.ws-funnel fieldset{margin:0;padding:0;border:0;min-width:0;display:grid;gap:20px}
+.ws-funnel fieldset[hidden],.ws-funnel [hidden],.ws-quick-quote [hidden]{display:none!important}
+.ws-funnel legend{padding:0;margin:0 0 24px;font:600 25px/1.2 'Outfit',var(--sans);color:#143344;letter-spacing:-.025em}
+.ws-funnel label,.ws-quick-quote label{display:grid;gap:8px;color:#274753;font:600 14px/1.4 var(--sans);text-align:left}
+.ws-funnel label small,.ws-quick-quote label small{font-size:11px;font-weight:400;color:#81929b}
+.ws-funnel :is(input:not([type=checkbox]),select,textarea),.ws-quick-quote :is(input,textarea){
+ width:100%;box-sizing:border-box;border:1px solid #cfdee3;border-radius:11px;background:#f9fbfc;
+ padding:13px 14px;color:#153546;font:400 16px/1.4 var(--sans);
+}
+.ws-funnel textarea,.ws-quick-quote textarea{resize:vertical;min-height:85px}
+.ws-funnel :is(input,select,textarea):focus-visible,.ws-quick-quote :is(input,textarea):focus-visible{outline:2px solid #0a9292;outline-offset:2px}
+.wf-two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wf-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wf-options label{display:flex;align-items:center;gap:10px;padding:13px;border:1px solid #d8e4e8;border-radius:11px;cursor:pointer;font-weight:500;font-size:13px}
+.wf-options label:has(input:checked){border-color:#0b7f80;background:#eaf6f4}
+.wf-options input{width:17px;height:17px;flex:none;accent-color:#0b7f80}
+.wf-navigation{display:flex;justify-content:flex-end;gap:12px;margin-top:28px}
+.wf-primary,.wf-secondary{border:0;border-radius:12px;min-height:48px;padding:12px 22px;cursor:pointer;font:650 14px/1.4 var(--sans)}
+.wf-primary{background:#087e61;color:#fff}
+.wf-primary:hover{background:#06674f}
+.wf-primary:focus-visible,.wf-secondary:focus-visible{outline:3px solid #0aa6a0;outline-offset:3px}
+.wf-secondary{background:#edf3f6;color:#375565;margin-right:auto}
+.wf-footnote{font:400 11px/1.5 var(--sans);color:#7a8d96;margin:17px 0 0;text-align:center}
+.wf-error{color:#a63b32;font-size:13px;margin:16px 0 0}
+.wf-summary{font:400 12px/1.5 var(--sans);color:#5d7480;background:#f0f6f8;padding:12px 14px;border-radius:10px;overflow-wrap:anywhere;white-space:pre-wrap}
+.sc-product-quote{
+ display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;padding:10px 9px;
+ box-sizing:border-box;border:0;border-radius:10px;background:#fff;color:#103c55;cursor:pointer;
+ font:700 12px/1.3 var(--sans);
+}
+.sc-product-quote:hover{background:#d9f4f6}
+.sc-product-quote:focus-visible{outline:3px solid #35c8d3;outline-offset:3px}
+.sc-product-actions .sc-product-view{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600}
+.sc-product-actions .sc-product-view:hover{background:rgba(255,255,255,.2);color:#fff}
+.sc-real-product-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px;background:#11374f;border-radius:0 0 14px 14px}
+.sc-real-product-actions .sc-product-view{font-size:12px;color:white;background:rgba(255,255,255,.12)}
+.ws-quick-quote{width:min(480px,calc(100% - 32px));max-height:90svh;overflow:auto;border:1px solid #dce7eb;border-radius:23px;padding:28px;color:#163747;background:white;box-sizing:border-box;box-shadow:0 30px 100px rgba(4,28,44,.25)}
+.ws-quick-quote::backdrop{background:rgba(4,25,40,.55);backdrop-filter:blur(5px)}
+.ws-quick-quote form{display:grid;gap:18px}
+.qq-top{display:flex;align-items:center;justify-content:space-between;gap:14px;font:600 11px/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#0b7f80}
+.qq-top button{width:34px;height:34px;border:0;background:#edf4f6;border-radius:50%;font-size:24px;color:#355361;cursor:pointer}
+.ws-quick-quote h2{font:500 29px/1.15 'Outfit',var(--sans);margin:0;letter-spacing:-.035em}
+.qq-context{font:400 13px/1.4 var(--sans);color:#6a7d87;margin:-9px 0 0}
+.qq-product-reference{font-size:12px;color:#58717d}
+.ws-quick-quote .wf-footnote{margin:0}
+@media(max-width:620px){
+ .sc-custom-split{gap:7px}
+ .sc-custom-split .sc-funnel-copy strong{font-size:clamp(17px,5vw,22px);line-height:1.13}
+ .sc-custom-split .sc-funnel-glass{padding:12px;width:83%}
+ .sc-custom-split .sc-brand-wall{right:3%;width:24%}
+ .sc-custom-split .logo-wanisite{width:42px;height:40px;opacity:.65}
+ .ws-custom-section{padding:24px 0 40px}
+ .ws-custom-heading h1{font-size:35px}
+ .ws-funnel{padding:22px;border-radius:20px}
+ .ws-funnel legend{font-size:23px}
+ .wf-two{gap:14px}
+ .wf-options{grid-template-columns:1fr}
+ .wf-navigation .wf-primary{flex:1}
+ .wf-navigation .wf-secondary{padding-inline:14px}
+ .ws-quick-quote{padding:23px;max-height:88svh}
+ .ws-quick-quote h2{font-size:27px}
+}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -1150,7 +1234,7 @@ body.sc-choice-custom #demande{padding-top:28px}
       <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
       <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"><img class="sc-brand-logo logo-bose" src="/assets/brands/bose.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
       <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Sur mesure : créer votre produit ou votre marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sur mesure</strong></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
+      <div class="sc-custom-split"><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing" href="#demande/sourcing" aria-label="Sourcing sur mesure"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sourcing sur mesure</strong></span><span class="sc-funnel-action"><span aria-hidden="true">↗</span></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-marque" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Création de marque</strong></span><span class="sc-funnel-action"><span aria-hidden="true">↗</span></span></span></a></div>
   </div>
 <p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
@@ -1180,35 +1264,50 @@ body.sc-choice-custom #demande{padding-top:28px}
   </div>
 </section>
 
-<section id="demande" class="end">
-  <div class="wrap fin-cta">
-    <p class="num"><b>Sur mesure</b> Un produit introuvable ?</p>
-    <h2 class="xl">On vous trouve <span class="t">votre produit.</span></h2>
-    <p class="sec-intro">Décrivez-le en quatre petites questions, ou envoyez-nous simplement une photo. On trouve l’usine, on négocie et on vous répond sur WhatsApp avec un devis.</p>
-    <form class="fs" id="fsForm" novalidate>
-      <section class="fs-etape"><h3><b>1</b>Que cherchez-vous ?</h3>
-        <textarea name="produit" id="fsProduit" aria-label="Décrivez le produit" placeholder="Décrivez-le : nom, matière, couleurs… ou collez un lien"></textarea>
-      </section>
-      <section class="fs-etape"><h3><b>2</b>Combien en voulez-vous ?</h3>
-        <div class="fs-seg fs-gros" role="radiogroup"><label><input type="radio" name="mode" value="au détail" checked><span>Au détail<small>Quelques pièces</small></span></label><label><input type="radio" name="mode" value="en gros"><span>En gros<small>Un lot, prix usine</small></span></label></div>
-        <label class="fs-qte"><span id="fsQteL">Nombre de pièces</span><input name="qte" inputmode="numeric" placeholder="Ex. 5" aria-label="Quantité"></label>
-      </section>
-      <section class="fs-etape"><h3><b>3</b>Quelle marque ?</h3>
-        <div class="fs-seg fs-3" role="radiogroup"><label><input type="radio" name="marque" value="sans marque (générique)" checked><span>Sans marque</span></label><label><input type="radio" name="marque" value="avec ma propre étiquette personnalisée"><span>Mon étiquette</span></label><label><input type="radio" name="marque" value="d’une marque précise"><span>Une marque</span></label></div>
-        <p class="fs-aide" id="fsAide">Produit neutre, sans logo.</p>
-      </section>
-      <section class="fs-etape"><h3><b>4</b>C’est pour…</h3>
-        <div class="fs-seg " role="radiogroup"><label><input type="radio" name="usage" value="mon usage personnel" checked><span>Moi</span></label><label><input type="radio" name="usage" value="la revente"><span>La revente</span></label></div>
-        <label class="fs-prenom"><span>Votre prénom</span><input name="nom" autocomplete="given-name" placeholder="Prénom" aria-label="Prénom"></label>
-      </section>
-      <p class="fs-err" id="fsErr" role="alert" hidden></p>
-      <button class="btn main big" type="submit" id="fsEnvoi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.7-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg><span>Envoyer ma demande sur WhatsApp</span></button>
-      <div class="fs-ou" aria-hidden="true"><span>ou</span></div>
-      <a class="gc-wa fs-photo" href="https://wa.me/33624547342?text=Bonjour%2C%20je%20vous%20envoie%20la%20photo%20du%20produit%20que%20je%20cherche%20%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.2-1.8A1.5 1.5 0 0 1 10.1 4.5h3.8c.5 0 .97.25 1.25.7L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.6" r="3.4"/></svg>Envoyer une photo du produit</a>
-      <p class="fs-note">Une photo suffit : on s’occupe du reste sur WhatsApp (logo, budget, quantité).</p>
-    </form>
-  </div>
+<section id="demande" class="ws-custom-section">
+ <div class="wrap ws-custom-wrap">
+  <div class="ws-custom-heading"><span class="ws-eyebrow" id="wfEyebrow">Votre projet</span><h1 id="wfTitle">Sourcing sur mesure</h1><p>Quelques réponses, puis votre demande prête sur WhatsApp.</p></div>
+  <form id="fsForm" class="ws-funnel" novalidate>
+   <div class="wf-progress"><span id="wfProgressText" aria-live="polite">Étape 1 sur 3</span><progress id="wfProgress" value="1" max="3" aria-label="Progression de la demande"></progress></div>
+   <fieldset data-wf-step="0"><legend tabindex="-1">Parlez-nous de votre projet</legend>
+    <label>Secteur d’activité<select name="secteur" required><option value="">Choisir un secteur</option><option>Mode & textile</option><option>Beauté & cosmétiques</option><option>Moto & automobile</option><option>Électronique & accessoires</option><option>Maison & décoration</option><option>Restauration & équipement professionnel</option><option>Sport & bien-être</option><option>Autre secteur</option></select></label>
+    <label>Quel produit ou projet ?<textarea name="produit" id="fsProduit" required rows="3" placeholder="Votre idée, un produit, une référence ou un lien…"></textarea></label>
+   </fieldset>
+   <fieldset data-wf-step="1" hidden><legend tabindex="-1">Précisons votre besoin</legend>
+    <div class="wf-two"><label>Quantité envisagée <small>Facultatif</small><input type="number" name="qte" min="1" step="1" inputmode="numeric" placeholder="À définir"></label><label>Budget global<select name="budget"><option>À définir</option><option>Moins de 500 €</option><option>500 à 2 000 €</option><option>2 000 à 5 000 €</option><option>5 000 à 10 000 €</option><option>Plus de 10 000 €</option></select></label></div>
+    <label>Nom de votre marque <small>Si vous en avez déjà un</small><input name="marque" placeholder="Facultatif"></label>
+    <label>Échéance souhaitée<select name="delai"><option>Pas de date précise</option><option>Dès que possible</option><option>Sous 1 à 3 mois</option><option>Dans plus de 3 mois</option></select></label>
+   </fieldset>
+   <fieldset data-wf-step="2" hidden><legend tabindex="-1">De quoi avez-vous besoin en plus ?</legend>
+    <div class="wf-options">
+     <label><input type="checkbox" name="services" value="Logo & identité visuelle"><span>Logo & identité visuelle</span></label>
+     <label><input type="checkbox" name="services" value="Étiquettes personnalisées"><span>Étiquettes personnalisées</span></label>
+     <label><input type="checkbox" name="services" value="Packaging personnalisé"><span>Packaging personnalisé</span></label>
+     <label><input type="checkbox" name="services" value="Site internet vitrine"><span>Site internet</span></label>
+     <label><input type="checkbox" name="services" value="Boutique e-commerce"><span>Boutique e-commerce</span></label>
+     <label><input type="checkbox" name="services" value="SEO & référencement naturel"><span>SEO & référencement</span></label>
+    </div>
+    <label>Votre prénom <small>Facultatif</small><input name="nom" autocomplete="given-name" placeholder="Prénom"></label>
+    <div class="wf-summary" id="wfSummary"></div>
+   </fieldset>
+   <p class="wf-error" id="fsErr" role="alert" hidden></p>
+   <div class="wf-navigation"><button type="button" id="wfPrevious" class="wf-secondary" hidden>Précédent</button><button type="submit" id="wfNext" class="wf-primary">Continuer</button></div>
+   <p class="wf-footnote">Aucun compte à créer. Votre demande s’ouvre dans WhatsApp, prête à envoyer.</p>
+  </form>
+ </div>
 </section>
+<dialog id="wsQuickQuote" class="ws-quick-quote" aria-labelledby="qqTitle">
+ <form id="qqForm" novalidate>
+  <div class="qq-top"><span>Devis produit</span><button type="button" id="qqClose" aria-label="Fermer le devis">×</button></div>
+  <h2 id="qqTitle">Votre produit</h2><p id="qqContext" class="qq-context"></p>
+  <div class="qq-product-reference" id="qqReference" hidden></div>
+  <label>Quantité souhaitée<input type="number" name="quantite" min="1" step="1" value="1" inputmode="numeric" required></label>
+  <label>Précisions <small>Facultatif</small><textarea name="details" rows="2" placeholder="Modèle, taille, couleur…"></textarea></label>
+  <p id="qqError" class="wf-error" role="alert" hidden></p>
+  <button class="wf-primary" type="submit">Demander mon devis sur WhatsApp</button>
+  <p class="wf-footnote">Le produit et sa fiche sont déjà ajoutés à votre demande.</p>
+ </form>
+</dialog>
 
 <section id="faq">
   <div class="wrap" style="max-width:820px;">
@@ -1341,6 +1440,7 @@ body.sc-choice-custom #demande{padding-top:28px}
   };
   const lienMarque = (k,id) => '#produits/groupe/' + enc(k) + (id ? '/' + enc(id) : '');
   const imageMarque = (m,extra='') => m.logo ? '<img class="sc-brand-logo logo-' + esc(m.id) + ' ' + extra + '" src="/assets/brands/' + esc(m.logo) + '" alt="" decoding="async">' : '';
+  const boutonDevisProduit = (data) => '<button type="button" class="sc-product-quote" data-product-quote="' + esc(JSON.stringify(data)) + '">Devis WhatsApp</button>';
   const suivre = (url,nom) => '<a class="sc-notify" href="' + url + '" target="_blank" rel="noopener" aria-label="Être notifié sur Telegram : ' + esc(nom) + '" title="Ouvrir Telegram puis activer les notifications du sujet ou du canal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg>Être notifié</a>';
   function marquesDuGroupe(k) {
     const base=FLOW[k].marques.slice();
@@ -1380,10 +1480,10 @@ body.sc-choice-custom #demande{padding-top:28px}
         '<img class="sc-product-scene" src="/assets/sourcing/'+(selection.image||config.image)+'" alt="" loading="lazy">'+
         (selection.logo?'<span class="sc-product-logo" aria-hidden="true">'+imageMarque(selection)+'</span>':'')+
         '</a><div class="sc-product-body"><h3>'+esc(nom)+'</h3>'+
-        '<div class="sc-product-actions"><a class="sc-product-view" href="'+url+'" target="_blank" rel="noopener">Voir les produits</a>'+suivre(url,nom)+'</div></div></article>';
+        '<div class="sc-product-actions">'+boutonDevisProduit({nom,marque:selection.nom,categorie:config.nom,telegram:url})+'<a class="sc-product-view" href="'+url+'" target="_blank" rel="noopener">Voir la fiche</a></div></div></article>';
     }).join('');
     $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(selection.nom)+'</h2>'+suivre(groupeUrl,config.nom)+'</div>'+
-      (produits.length?'<div class="cat-grid sc-real-products">'+produits.map(p=>'<div class="sc-real-product">'+carte(p)+suivre(sujets.length===1?groupeUrl+'/'+sujets[0][1]:groupeUrl,p.nom)+'</div>').join('')+'</div>':'')+
+      (produits.length?'<div class="cat-grid sc-real-products">'+produits.map(p=>{const topic=sujets.length===1?sujets[0]:sujets.find(s=>motCle(p.type||'') && motCle(s[0]).includes(motCle(p.type)));const fiche=topic?groupeUrl+'/'+topic[1]:groupeUrl;return '<div class="sc-real-product">'+carte(p)+'<div class="sc-real-product-actions">'+boutonDevisProduit({id:p.id,nom:p.nom,reference:p.reference||'',marque:p.marque||selection.nom,categorie:config.nom,telegram:fiche})+'<a class="sc-product-view" href="'+fiche+'" target="_blank" rel="noopener">Voir la fiche</a></div></div>';}).join('')+'</div>':'')+
       (cards?'<div class="sc-products-grid sc-universe-'+k+'">'+cards+'</div>':'')+
       (!produits.length&&!cards?'<p class="cat-vide">Les produits de cette marque seront affichés dès leur publication.</p>':'')+
       '<div class="sc-brand-quote"><div class="sc-quote-copy"><h3>Besoin d’un devis ?</h3><p>Un modèle précis, une quantité ou un projet en tête ?</p></div><a class="sc-whatsapp-cta" href="'+wa('Bonjour Wanisite, je cherche un produit '+selection.nom+' dans la catégorie '+config.nom+'.')+'" target="_blank" rel="noopener"><span>Demander mon devis</span><small>Sur WhatsApp</small></a></div>'+
@@ -1480,36 +1580,78 @@ body.sc-choice-custom #demande{padding-top:28px}
   const et = $('etapes');
   if (et) { if (!('IntersectionObserver' in window)) et.classList.add('vu'); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { et.classList.add('vu'); o.disconnect(); } }, { threshold: 0.25 }).observe(et); }
 })();
-  // Formulaire de sourcing : le message est composé puis envoyé sur WhatsApp (la photo se joint ensuite dans WhatsApp).
-  (() => {
-    const fo = document.getElementById('fsForm'); if (!fo) return;
-    const WA = 'https://wa.me/33624547342?text=';
-    const $ = (id) => document.getElementById(id);
-    const AIDES = { 'sans marque (générique)': 'Produit neutre, sans logo.', 'avec ma propre étiquette personnalisée': 'Votre marque : logo, étiquette ou emballage à votre nom.', 'd’une marque précise': 'Un modèle de marque que vous avez repéré.' };
-    const err = (m) => { $('fsErr').textContent = m || ''; $('fsErr').hidden = !m; };
-    const gros = () => fo.elements.mode.value === 'en gros';
-    let usageTouche = false;
-    fo.elements.usage.forEach((r) => r.addEventListener('change', () => { usageTouche = true; }));
-    fo.addEventListener('change', (e) => {
-      if (e.target.name === 'mode') {
-        $('fsQteL').textContent = gros() ? 'Quantité souhaitée' : 'Nombre de pièces';
-        fo.elements.qte.placeholder = gros() ? 'Ex. 200' : 'Ex. 5';
-        if (!usageTouche) fo.elements.usage.forEach((r) => { r.checked = r.value === (gros() ? 'la revente' : 'mon usage personnel'); });
-      }
-      if (e.target.name === 'marque') $('fsAide').textContent = AIDES[fo.elements.marque.value] || '';
-    });
-    document.querySelectorAll('a[href="#demande"]').forEach((a) => a.addEventListener('click', () => setTimeout(() => { try { $('fsProduit').focus({ preventScroll: true }); } catch (e) {} }, 500)));
-    fo.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const v = (k) => fo.elements[k].value.trim(), mode = fo.elements.mode.value;
-      if (!v('produit')) { err('Décrivez le produit en quelques mots.'); $('fsProduit').focus(); return; }
-      err('');
-      const l = ['Bonjour' + (v('nom') ? ', ici ' + v('nom') : '') + ', je voudrais un produit sur mesure.', 'Achat : ' + mode + ', pour ' + fo.elements.usage.value, 'Marque : ' + fo.elements.marque.value];
-      if (v('produit')) l.push('Produit : ' + v('produit'));
-      if (v('qte')) l.push((mode === 'en gros' ? 'Quantité : ' : 'Pièces : ') + v('qte'));
-      if (!window.open(WA + encodeURIComponent(l.join('\n')), '_blank', 'noopener')) location.href = WA + encodeURIComponent(l.join('\n'));
-    });
-  })();
+  // Demandes guidées et devis produit contextualisés.
+(() => {
+ const fo=document.getElementById('fsForm'),dialog=document.getElementById('wsQuickQuote');
+ const $=id=>document.getElementById(id);
+ const ouvrirWhatsApp=lines=>{const url='https://wa.me/33624547342?text='+encodeURIComponent(lines.filter(Boolean).join('\n'));if(!window.open(url,'_blank','noopener'))location.href=url;};
+ let mode=null,step=0;
+ const fieldsets=Array.from(fo.querySelectorAll('[data-wf-step]'));
+ const value=name=>String(fo.elements[name].value||'').trim();
+ function render(focus){
+  fieldsets.forEach((el,i)=>el.hidden=i!==step);
+  $('wfProgress').value=step+1;$('wfProgressText').textContent='Étape '+(step+1)+' sur 3';
+  $('wfPrevious').hidden=step===0;$('wfNext').textContent=step===2?'Envoyer sur WhatsApp':'Continuer';
+  $('wfSummary').textContent=value('secteur')+' · '+value('produit')+(value('qte')?' · '+value('qte')+' pièce(s)':'');
+  $('fsErr').hidden=true;
+  if(focus)fieldsets[step].querySelector('legend').focus();
+ }
+ function sync(){
+  if(location.hash.indexOf('#demande')!==0)return;
+  const next=location.hash.split('/')[1]==='marque'?'marque':'sourcing';
+  if(mode!==next){
+   mode=next;step=0;fo.reset();
+   if(mode==='marque')fo.querySelectorAll('[name="services"]').forEach(c=>c.checked=['Logo & identité visuelle','Étiquettes personnalisées','Packaging personnalisé'].includes(c.value));
+   $('wfTitle').textContent=mode==='marque'?'Création de marque':'Sourcing sur mesure';
+   $('wfEyebrow').textContent=mode==='marque'?'Votre marque, de l’idée au lancement':'Votre projet, du besoin au fournisseur';
+   render(false);
+  }
+ }
+ $('wfPrevious').addEventListener('click',()=>{if(step>0){step--;render(true);}});
+ fo.addEventListener('submit',e=>{
+  e.preventDefault();
+  const bad=Array.from(fieldsets[step].querySelectorAll('input,select,textarea')).find(el=>!el.checkValidity() || (el.required&&!el.value.trim()));
+  if(bad){$('fsErr').textContent='Complétez ce champ pour continuer.';$('fsErr').hidden=false;bad.focus();bad.reportValidity();return;}
+  if(step<2){step++;render(true);return;}
+  const options=Array.from(fo.querySelectorAll('[name="services"]:checked')).map(c=>c.value);
+  ouvrirWhatsApp([
+   'Bonjour Wanisite'+(value('nom')?', ici '+value('nom'):'')+'.',
+   'Demande de devis : '+(mode==='marque'?'création de marque':'sourcing sur mesure'),
+   'Secteur : '+value('secteur'),'Projet / produit : '+value('produit'),
+   'Quantité : '+(value('qte')||'à définir'),'Budget global : '+value('budget'),
+   value('marque')?'Nom de marque : '+value('marque'):'',
+   'Échéance : '+value('delai'),'Accompagnement : '+(options.length?options.join(', '):'sourcing uniquement')
+  ]);
+ });
+ window.addEventListener('hashchange',sync);sync();
+ const qf=$('qqForm');let produit=null,trigger=null,oldOverflow='';
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-product-quote]');if(!b)return;
+  try{produit=JSON.parse(b.dataset.productQuote);}catch(_){return;}
+  trigger=b;qf.reset();$('qqError').hidden=true;
+  $('qqTitle').textContent=produit.nom;$('qqContext').textContent=[produit.categorie,produit.marque].filter(Boolean).join(' · ');
+  $('qqReference').hidden=!produit.reference;$('qqReference').textContent=produit.reference?'Référence : '+produit.reference:'';
+  oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
+  if(!dialog.open)dialog.showModal();
+  qf.elements.quantite.focus();qf.elements.quantite.select();
+ });
+ $('qqClose').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>{document.body.style.overflow=oldOverflow;if(trigger&&trigger.isConnected)trigger.focus();});
+ qf.addEventListener('submit',e=>{
+  e.preventDefault();if(!produit)return;
+  if(!qf.elements.quantite.checkValidity()){ $('qqError').textContent='Indiquez une quantité entière à partir de 1.';$('qqError').hidden=false;qf.elements.quantite.focus();return;}
+  ouvrirWhatsApp([
+   'Bonjour Wanisite, je souhaite un devis pour ce produit.',
+   'Produit : '+produit.nom,produit.reference?'Référence : '+produit.reference:'',
+   produit.id?'Identifiant produit : '+produit.id:'',
+   'Marque : '+produit.marque,'Catégorie : '+produit.categorie,
+   'Quantité : '+qf.elements.quantite.value,
+   qf.elements.details.value.trim()?'Précisions : '+qf.elements.details.value.trim():'',
+   'Fiche Telegram : '+produit.telegram
+  ]);
+ });
+})();
 </script>
 <script>
 (function(){
