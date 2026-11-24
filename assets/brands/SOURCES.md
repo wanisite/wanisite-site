@@ -16,3 +16,12 @@ Logos utilisés uniquement pour identifier les références des univers du catal
 | /assets/img/nav-logo.webp | Logo Wanisite existant dans le dépôt |
 
 Les contours et couleurs sont conservés. Fred est converti sans perte en WebP ; les marges transparentes de Fred et TMAX sont rognées. Le fond blanc ajouté par l’archive TMAX est retiré. Les SVG inline Alo, On et WHOOP sont extraits en fichiers autonomes avec leurs tracés d'origine ; les attributs propres au site source sont retirés.
+
+
+## Logos complétés pour le parcours marques
+
+- lululemon.svg : https://commons.wikimedia.org/wiki/File:Lululemon_Athletica_logo.svg (source d’origine : lululemon / Brands of the World).
+- cpcompany.svg : https://commons.wikimedia.org/wiki/File:C.P._Company_logo.svg (source d’origine : site corporate C.P. Company).
+- stoneisland.svg : https://commons.wikimedia.org/wiki/File:Stone-Island-Logo.svg (auteur : Stone Island).
+
+SVG téléchargés sans modification des tracés ou des couleurs.

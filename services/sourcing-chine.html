@@ -915,6 +915,87 @@ body.sc-choice-home{overflow:auto}
  .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic,
  .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:before{transition:none}
 }
+
+/* Parcours : catégories → marques → produits / sujets. */
+body.sc-choice-products #produits{padding:28px 0 56px}
+.cat-fil{margin:0 0 22px}
+.sc-funnel .sc-funnel-copy strong{font-size:clamp(36px,5vw,64px);letter-spacing:-.055em}
+.sc-funnel-luxe .sc-brand-wall{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 16px;
+ justify-items:center;align-content:center;padding:13px 0;
+}
+.sc-funnel-luxe .sc-brand-logo{width:78px;height:30px;max-width:100%;--drift-y:0px}
+.sc-funnel-luxe .logo-prada{width:95px;height:26px}
+.sc-funnel-luxe .logo-alo{width:38px;height:31px}
+.sc-funnel-luxe .logo-on{width:43px;height:38px}
+.sc-funnel-luxe .logo-lululemon{width:32px;height:32px}
+.sc-funnel-luxe .logo-cpcompany{width:69px;height:35px}
+.sc-funnel-luxe .logo-stoneisland{width:88px;height:32px}
+.sc-brand-logo.logo-lululemon{object-fit:contain}
+.sc-level-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 28px}
+.sc-level-head h2{font:300 clamp(36px,5vw,62px)/1.1 'Outfit',var(--sans),sans-serif;letter-spacing:-.055em;margin:0;color:#102532}
+.sc-notify{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 12px;box-sizing:border-box;border:1px solid rgba(12,32,48,.19);border-radius:99px;color:#173845;background:rgba(255,255,255,.85);text-decoration:none;font:500 12px/1.25 var(--sans);white-space:nowrap;transition:background .2s,border-color .2s}
+.sc-notify:hover{background:#dff4f2;border-color:#0a8a89}
+.sc-notify svg{width:16px;height:16px;flex:none}
+.sc-notify:focus-visible,.sc-product-view:focus-visible{outline:3px solid #0aa6a0;outline-offset:3px}
+.sc-products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:22px}
+.sc-products-grid.sc-universe-luxe{--product-start:#30230a;--product-end:#ad8232}
+.sc-products-grid.sc-universe-acc{--product-start:#053f47;--product-end:#0b9aa5}
+.sc-products-grid.sc-universe-moto{--product-start:#34140a;--product-end:#c8521f}
+.sc-products-grid.sc-universe-beaute{--product-start:#4a1030;--product-end:#be457b}
+.sc-product-card{border-radius:24px;overflow:hidden;background:#fff;border:1px solid rgba(12,32,48,.1);box-shadow:0 18px 40px -25px rgba(12,32,48,.3);transition:transform .25s ease,box-shadow .25s ease}
+.sc-product-card:hover{transform:translateY(-4px);box-shadow:0 24px 40px -22px rgba(12,32,48,.38)}
+.sc-product-visual{position:relative;isolation:isolate;display:grid;place-items:center;aspect-ratio:1.35;background:linear-gradient(135deg,var(--product-start),var(--product-end));overflow:hidden}
+.sc-product-scene{position:absolute;width:90%;height:110%;object-fit:contain;opacity:.38;mix-blend-mode:luminosity;z-index:-2}
+.sc-product-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(0,0,0,.5));z-index:-1}
+.sc-product-logo{position:relative;display:grid;place-items:center;width:62%;height:150px}
+.sc-product-logo:before{content:"";position:absolute;inset:-20px -35px;background:radial-gradient(ellipse,rgba(255,255,255,.42),transparent 70%);z-index:-1}
+.sc-universe-luxe .sc-product-logo:before{background:radial-gradient(ellipse,rgba(239,209,139,.9),rgba(224,181,99,.35) 40%,transparent 72%)}
+.sc-product-logo .sc-brand-logo{width:100%;height:92px;object-fit:contain;--drift-y:0px}
+.sc-product-logo .logo-alo,.sc-product-logo .logo-lululemon{width:85px;height:85px}
+.sc-product-logo .logo-on{width:100px;height:130px}
+.sc-product-logo .logo-lego{width:96px;height:96px}
+.sc-product-logo .logo-kayali{width:125px;height:125px}
+.sc-product-tag{position:absolute;left:18px;bottom:17px;color:rgba(255,255,255,.83);font:500 11px/1.3 var(--sans);letter-spacing:.06em}
+.sc-product-body{padding:23px}
+.sc-product-body h3{font:300 28px/1.12 'Outfit',var(--sans),sans-serif;letter-spacing:-.035em;margin:0 0 24px;color:#102532}
+.sc-product-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sc-product-view{display:inline-flex;align-items:center;min-height:40px;font:600 14px/1.3 var(--sans);text-decoration:none;color:#087c7d}
+.sc-notify-help{font:400 12px/1.6 var(--sans);color:#64737b;margin:20px 0}
+.sc-brand-quote{margin-top:24px}
+.sc-real-products{margin-bottom:24px}
+.sc-real-product{position:relative;min-width:0}
+.sc-real-product>.cat-card{width:100%}
+.sc-real-product>.sc-notify{margin:10px 0}
+.sc-topic-art .logo-lululemon{width:62px!important;height:62px!important}
+.sc-topic-art .logo-cpcompany{height:78px!important;width:140px!important}
+.sc-topic-art .logo-stoneisland{width:165px!important}
+.sc-brand-list .sc-tg-topic{min-height:132px}
+@media(max-width:620px){
+ body.sc-choice-products #produits{padding-top:24px}
+ .sc-funnel .sc-funnel-copy strong{font-size:clamp(30px,8.5vw,38px)}
+ .sc-funnel-card .sc-funnel-glass{width:53%;padding-left:18px}
+ .sc-funnel-luxe .sc-brand-wall{width:43%;right:3%;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 7px;padding:12px 0}
+ .sc-funnel-luxe .sc-brand-logo{width:43px;height:19px;--drift-y:0px}
+ .sc-funnel-luxe .logo-prada{width:47px;height:17px}
+ .sc-funnel-luxe .logo-alo{width:24px;height:21px}
+ .sc-funnel-luxe .logo-on{width:29px;height:29px}
+ .sc-funnel-luxe .logo-lululemon{width:22px;height:22px}
+ .sc-funnel-luxe .logo-cpcompany{width:40px;height:25px}
+ .sc-funnel-luxe .logo-stoneisland{width:44px;height:19px}
+ .sc-level-head{gap:12px;align-items:center;margin-bottom:22px}
+ .sc-level-head h2{font-size:38px;overflow-wrap:anywhere}
+ .sc-level-head>.sc-notify{font-size:11px;padding:8px 10px}
+ .sc-products-grid{grid-template-columns:1fr;gap:18px}
+ .sc-product-body{padding:21px}
+ .sc-product-body h3{font-size:27px}
+ .sc-product-visual{aspect-ratio:1.4}
+ .sc-brand-list .sc-tg-topic{min-height:116px}
+ .sc-topic-art .logo-lululemon{width:44px!important;height:44px!important}
+ .sc-topic-art .logo-cpcompany{width:80px!important;height:56px!important}
+ .sc-topic-art .logo-stoneisland{width:92px!important;height:43px!important}
+}
+@media(prefers-reduced-motion:reduce){.sc-product-card,.sc-notify{transition:none}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -934,18 +1015,16 @@ body.sc-choice-home{overflow:auto}
 
 <section class="sc-quick sc-funnel" aria-label="Choisissez votre univers de sourcing">
   <div class="wrap sc-funnel-list">
-      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-prada" src="/assets/brands/prada.png" alt="" decoding="async"><img class="sc-brand-logo logo-alo" src="/assets/brands/alo.svg" alt="" decoding="async"><img class="sc-brand-logo logo-on" src="/assets/brands/on.svg" alt="" decoding="async"><img class="sc-brand-logo logo-fred" src="/assets/brands/fred.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Luxe</strong><small>Prada · Alo · On · Fred</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong><small>Whoop · Lego · Électronique</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong><small>Casques · Intercoms · Visières</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong><small>Parfums · Kayali</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Sur mesure : créer votre produit ou votre marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sur mesure</strong><small>Votre produit · Votre logo · Votre packaging</small></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-prada" src="/assets/brands/prada.png" alt="" decoding="async"><img class="sc-brand-logo logo-alo" src="/assets/brands/alo.svg" alt="" decoding="async"><img class="sc-brand-logo logo-on" src="/assets/brands/on.svg" alt="" decoding="async"><img class="sc-brand-logo logo-fred" src="/assets/brands/fred.webp" alt="" decoding="async"><img class="sc-brand-logo logo-lululemon" src="/assets/brands/lululemon.svg" alt="" decoding="async"><img class="sc-brand-logo logo-cpcompany" src="/assets/brands/cpcompany.svg" alt="" decoding="async"><img class="sc-brand-logo logo-stoneisland" src="/assets/brands/stoneisland.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Luxe</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Sur mesure : créer votre produit ou votre marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sur mesure</strong></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
   </div>
 <p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
 <section id="produits">
   <div class="wrap">
-    <h2 class="xl">Un aperçu de <span class="t">ce qu’on trouve.</span></h2>
-    <p class="sec-intro">En gros ou au détail. À commencer par le luxe et le prestige, puis les accessoires, la moto, la beauté et les parfums : un groupe par catégorie, avec les photos et le prix au détail. Pour le prix de gros, écrivez-nous sur WhatsApp.</p>
     <nav class="cat-fil" id="catFil" aria-label="Fil d’Ariane du catalogue" hidden></nav>
     <div class="cat-bar" id="catBar" hidden>
       <nav class="cat-types" id="catSecteurs" aria-label="Type de produit"></nav>
@@ -1074,7 +1153,7 @@ body.sc-choice-home{overflow:auto}
   const secteursPresents = () => ORDRE.concat([...new Set(tous.map(sect))].filter((s) => !ORDRE.includes(s)));
 
   // ---- navigation par l'adresse : #produits  |  #produits/Mode  |  #produits/Mode/Marque (_ = sans marque) ----
-  const route = () => { const m = decodeURIComponent(location.hash.slice(1)).split('/'); return m[0] === 'produits' ? { s: m[1] || '', m: m[2] === undefined ? null : (m[2] === '_' ? '' : m[2]), groupe: m[1] === 'groupe' ? m[2] : null } : null; };
+  const route = () => { const m = decodeURIComponent(location.hash.slice(1)).split('/'); return m[0] === 'produits' ? { s: m[1] || '', m: m[2] === undefined ? null : (m[2] === '_' ? '' : m[2]), groupe: m[1] === 'groupe' ? m[2] : null, marqueId: m[1] === 'groupe' ? m[3] || '' : '' } : null; };
   const lien = (s, m) => '#produits' + (s ? '/' + enc(s) : '') + (m === undefined || m === null ? '' : '/' + (m === '' ? '_' : enc(m)));
 
   const carte = (p) => `<button type="button" class="cat-card" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}, ouvrir la fiche">
@@ -1092,58 +1171,91 @@ body.sc-choice-home{overflow:auto}
 
   // Regroupement des secteurs publiés par univers, sans produits fictifs.
   const groupeProduit = (p) => {
+    const marqueConnue = motCle(p.marque || '');
+    if (['fred','prada','lululemon','alo','on','cpcompany','stoneisland'].includes(marqueConnue)) return 'luxe';
+    if (['arai','tmax','yamaha'].includes(marqueConnue)) return 'moto';
+    if (marqueConnue === 'kayali') return 'beaute';
     const s = (sect(p) + ' ' + (p.type || '')).toLowerCase();
     if (/moto|casque|visière|intercom|crash bar|tmax/.test(s)) return 'moto';
     if (/luxe|mode|vêtement|bijou|montre|sac|chaussure|basket/.test(s)) return 'luxe';
     if (/beauté|cosmétique|parfum|soin|maquillage/.test(s)) return 'beaute';
     return 'acc';
   };
-  function accueil() {
-    fil([]); $('catBar').hidden = true;
-    const groupes = [
-      ['luxe', 'Luxe', 'Prada, Lulu Lemon, montres et bijoux'],
-      ['acc', 'Accessoires', 'Whoop, électronique et maison'],
-      ['moto', 'Moto', 'Casques, intercoms, visières et équipements'],
-      ['beaute', 'Beauté', 'Parfums et Kayali']
-    ];
-    $('catList').innerHTML = '<div class="cat-grid cat-secteurs">' +
-      groupes.map(([k, nom, description]) => tuile('#produits/groupe/' + k, '<img class="ph" alt="" src="/assets/telegram/groupe-' + k + '.webp">', 'Catalogue', nom, description, 'Voir les produits')).join('') +
-      tuile('#demande', '<span class="ini" aria-hidden="true">✦</span>', 'Sur mesure', 'Créez votre marque', 'Votre produit, votre logo, votre emballage', 'Demander un devis') +
-      '</div>' +
-      (tous.length ? '<h3 class="gc-sous">Tous les produits disponibles</h3><div class="cat-grid">' + tous.map(carte).join('') + '</div>' : '<p class="cat-vide">Les fiches produits seront affichées dès leur publication dans le catalogue Wanisite.</p>');
+
+  const FLOW = {
+    luxe: {nom:'Luxe', canal:'wanisiteluxe', image:'secteur-mode-v2-fixe.webp', marques:[
+      {id:'fred',nom:'Fred',logo:'fred.webp',sujets:[['Bracelets Fred',20]]},
+      {id:'prada',nom:'Prada',logo:'prada.png',sujets:[['Prada',4]]},
+      {id:'lululemon',nom:'Lululemon',logo:'lululemon.svg',sujets:[['Lululemon',24]]},
+      {id:'alo',nom:'Alo',logo:'alo.svg',sujets:[['Alo',23]]},
+      {id:'on',nom:'On',logo:'on.svg',sujets:[['On',22]]},
+      {id:'cpcompany',nom:'C.P. Company',logo:'cpcompany.svg',sujets:[['C.P. Company & Stone Island',16]]},
+      {id:'stoneisland',nom:'Stone Island',logo:'stoneisland.svg',sujets:[['C.P. Company & Stone Island',16]]},
+      {id:'collections',nom:'Autres collections',sujets:[['Casquettes & bonnets',2],['Vêtements',3],['Sacs & maroquinerie',5],['Montres & bijoux',6],['Lunettes & accessoires',7],['Running',10],['Doudounes',12],['Maillots de foot',14]]}
+    ]},
+    acc: {nom:'Accessoires',canal:'wanisitesourcing',image:'secteur-tech-v2-fixe.webp',marques:[
+      {id:'whoop',nom:'Whoop',logo:'whoop.svg',sujets:[['Bracelets connectés Whoop',2]]},
+      {id:'lego',nom:'Lego',logo:'lego.svg',sujets:[['Lego',33]]},
+      {id:'collections',nom:'Autres accessoires',sujets:[['Volant Auto',10],['Électronique',29],['Canapés & maison',31],['Autre',11]]}
+    ]},
+    moto: {nom:'Moto',canal:'wanisitemoto',image:'secteur-auto-v2-fixe.webp',marques:[
+      {id:'arai',nom:'Arai',logo:'arai.png',sujets:[['Casques Arai',3]]},
+      {id:'tmax',nom:'TMAX',logo:'tmax.png?v=2',sujets:[['Dosserets TMAX',15]]},
+      {id:'collections',nom:'Équipements moto',sujets:[['Intercoms',7],['Visières',9],['Kits LED & feux',11],['Crash bars',13]]}
+    ]},
+    beaute: {nom:'Beauté',canal:'wanisitebeaute',image:'secteur-beaute-v2-fixe.webp',marques:[
+      {id:'kayali',nom:'Kayali',logo:'kayali.png',sujets:[['Kayali',13]]}
+    ]}
+  };
+  const lienMarque = (k,id) => '#produits/groupe/' + enc(k) + (id ? '/' + enc(id) : '');
+  const imageMarque = (m,extra='') => m.logo ? '<img class="sc-brand-logo logo-' + esc(m.id) + ' ' + extra + '" src="/assets/brands/' + esc(m.logo) + '" alt="" decoding="async">' : '';
+  const suivre = (url,nom) => '<a class="sc-notify" href="' + url + '" target="_blank" rel="noopener" aria-label="Être notifié sur Telegram : ' + esc(nom) + '" title="Ouvrir Telegram puis activer les notifications du sujet ou du canal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg>Être notifié</a>';
+  function marquesDuGroupe(k) {
+    const base=FLOW[k].marques.slice();
+    tous.filter(p=>groupeProduit(p)===k && p.marque).forEach(p=>{
+      const id=motCle(p.marque);
+      if (!base.some(m=>m.id===id || motCle(m.nom)===id)) base.push({id,nom:p.marque,sujets:[]});
+    });
+    return base;
   }
-  function catalogueGroupe(k) {
-    const config = { luxe:['Luxe','wanisiteluxe'], acc:['Accessoires','wanisitesourcing'], moto:['Moto','wanisitemoto'], beaute:['Beauté','wanisitebeaute'] }[k];
-    if (!config) { accueil(); return; }
-    const ps = tous.filter((p) => groupeProduit(p) === k);
-    fil([['Catalogue','#produits'], [config[0]]]);
-    $('catBar').hidden = true;
-    // Sujets réels de chaque groupe Telegram (numéro du sujet = fin du lien). Relevés dans Telegram le 2026-11-23.
-    const SUJETS_TG = {
-      luxe: [['Bracelets Fred',20,1],['Prada',4],['Lulu Lemon',24],['Alo',23],['On',22],['Casquettes & bonnets',2],['Vêtements',3],['Sacs & maroquinerie',5],['Montres & bijoux',6],['Lunettes & accessoires',7],['Running',10],['Doudounes',12],['Maillots de foot',14],['C.P. Company & Stone Island',16]],
-      acc: [['Bracelets connectés Whoop',2,1],['Volant Auto',10],['Électronique',29],['Canapés & maison',31],['Lego',33],['Autre',11]],
-      moto: [['Casques Arai',3],['Intercoms',7],['Visières',9],['Kits LED & feux',11],['Crash bars',13],['Dosserets TMAX',15]],
-      beaute: [['Kayali',13]]
-    };
-    const sujets = SUJETS_TG[k] || [];
-    // Les références disposent de leurs vrais logos ; les autres rayons gardent une illustration.
-    const LOGOS_SUJETS = {
-      'luxe:20':['fred.webp','Fred'], 'luxe:4':['prada.png','Prada'],
-      'luxe:23':['alo.svg','Alo'], 'luxe:22':['on.svg','On'],
-      'acc:2':['whoop.svg','Whoop'], 'acc:33':['lego.svg','Lego'],
-      'moto:3':['arai.png','Arai'], 'moto:15':['tmax.png?v=2','TMAX'],
-      'beaute:13':['kayali.png','Kayali']
-    };
-    const artSujet = (id) => {
-      const logo = LOGOS_SUJETS[k + ':' + id];
-      return logo ? '<span class="sc-topic-art" aria-hidden="true"><img class="sc-brand-logo logo-' + logo[1].toLowerCase() + '" src="/assets/brands/' + logo[0] + '" alt="" loading="lazy" decoding="async"></span>' : '';
-    };
-    const accesSujets = sujets.length
-      ? '<p class="sc-tg-note">Choisissez un sujet pour ouvrir son fil Telegram.</p><div class="sc-tg-topics sc-universe-' + k + '">' + sujets.map(([nom,id,une]) => '<a class="sc-tg-topic' + (une ? ' une' : '') + (LOGOS_SUJETS[k + ':' + id] ? ' has-logo' : '') + '" href="https://t.me/' + config[1] + '/' + id + '" target="_blank" rel="noopener">' + artSujet(id) + '<b>' + (une ? '<small>À la une</small>' : '') + esc(nom) + '</b><span class="sc-topic-open" aria-hidden="true">↗</span></a>').join('') + '</div><p class="sc-tg-all"><a href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir tout le groupe Wanisite ' + esc(config[0]) + ' sur Telegram →</a></p>'
-      : '<p class="sc-tg-note">Consultez les rayons et les nouveautés directement sur le groupe Telegram.</p><div class="sc-tg-topics"><a class="sc-tg-topic" href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir Wanisite ' + esc(config[0]) + ' sur Telegram <span aria-hidden="true">↗</span></a></div>';
-    $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '</h3>' + accesSujets +
-      (ps.length ? '<h3 class="cat-titre">Produits disponibles<small>' + pluriel(ps.length,'produit','produits') + '</small></h3><div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '') +
-      '<div class="cat-pied"><div><b>Vous cherchez un modèle précis ?</b><span>Décrivez-le sur WhatsApp, en gros ou en détail.</span></div><a class="btn main big" target="_blank" rel="noopener" href="' + wa('Bonjour Wanisite, je cherche un produit dans la catégorie ' + config[0] + '.') + '">Demander un devis →</a></div>';
+  function accueil() {
+    fil([]); $('catBar').hidden=true;
+    location.hash='univers';
+  }
+  function catalogueGroupe(k, marqueId) {
+    const config=FLOW[k];
+    if(!config){accueil();return;}
+    const marques=marquesDuGroupe(k), selection=marques.find(m=>m.id===marqueId);
+    const groupeUrl='https://t.me/'+config.canal;
+    $('catBar').hidden=true;
+    const retour=document.querySelector('.sc-choice-back');
+    if(retour){retour.href=selection?lienMarque(k):'#univers';retour.textContent=selection?'← Retour aux marques':'← Retour aux catégories';retour.setAttribute('aria-label',selection?'Retour aux marques':'Retour aux catégories');}
+    if(!selection){
+      fil([['Catégories','#univers'],[config.nom]]);
+      $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(config.nom)+'</h2>'+suivre(groupeUrl,config.nom)+'</div>'+
+        '<div class="sc-tg-topics sc-universe-'+k+' sc-brand-list">'+marques.map(m=>
+          '<a class="sc-tg-topic'+(m.logo?' has-logo':'')+'" href="'+lienMarque(k,m.id)+'" aria-label="Voir les produits '+esc(m.nom)+'">'+
+          (m.logo?'<span class="sc-topic-art" aria-hidden="true">'+imageMarque(m)+'</span>':'')+
+          '<b>'+esc(m.nom)+'</b><span class="sc-topic-open" aria-hidden="true">↗</span></a>').join('')+'</div>';
+      return;
+    }
+    fil([['Catégories','#univers'],[config.nom,lienMarque(k)],[selection.nom]]);
+    const produits=tous.filter(p=>groupeProduit(p)===k && p.marque && (motCle(p.marque)===selection.id || motCle(p.marque)===motCle(selection.nom)));
+    const sujets=selection.sujets;
+    const cards=sujets.map(([nom,id])=>{
+      const url=groupeUrl+'/'+id;
+      return '<article class="sc-product-card"><a class="sc-product-visual" href="'+url+'" target="_blank" rel="noopener" aria-label="Voir '+esc(nom)+' sur Telegram">'+
+        '<img class="sc-product-scene" src="/assets/sourcing/'+config.image+'" alt="" loading="lazy">'+
+        (selection.logo?'<span class="sc-product-logo" aria-hidden="true">'+imageMarque(selection)+'</span>':'')+
+        '<span class="sc-product-tag">Sujet Telegram</span></a><div class="sc-product-body"><h3>'+esc(nom)+'</h3>'+
+        '<div class="sc-product-actions"><a class="sc-product-view" href="'+url+'" target="_blank" rel="noopener">Voir les produits</a>'+suivre(url,nom)+'</div></div></article>';
+    }).join('');
+    $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(selection.nom)+'</h2>'+suivre(groupeUrl,config.nom)+'</div>'+
+      (produits.length?'<div class="cat-grid sc-real-products">'+produits.map(p=>'<div class="sc-real-product">'+carte(p)+suivre(sujets.length===1?groupeUrl+'/'+sujets[0][1]:groupeUrl,p.nom)+'</div>').join('')+'</div>':'')+
+      (cards?'<div class="sc-products-grid sc-universe-'+k+'">'+cards+'</div>':'')+
+      (!produits.length&&!cards?'<p class="cat-vide">Les produits de cette marque seront affichés dès leur publication.</p>':'')+
+      '<p class="sc-notify-help">Pour recevoir les actualités, activez les notifications du sujet ou du canal dans Telegram.</p>'+
+      '<div class="sc-brand-quote"><a class="btn main" href="'+wa('Bonjour Wanisite, je cherche un produit '+selection.nom+' dans la catégorie '+config.nom+'.')+'" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a></div>';
   }
 
   function secteur(s) {
@@ -1197,7 +1309,7 @@ body.sc-choice-home{overflow:auto}
     dernier = cle;
     const pb = $('catPiedBase'); if (pb) pb.hidden = !!r.s;
     $('catList').dataset.universe = r.s === 'groupe' ? r.groupe : '';
-    if (!r.s) accueil(); else if (r.s === 'groupe') catalogueGroupe(r.groupe); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
+    if (!r.s) accueil(); else if (r.s === 'groupe') catalogueGroupe(r.groupe,r.marqueId); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
     if (defiler && route()) { const t = $('produits'); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }
   }
   window.addEventListener('hashchange', () => afficher(true));
@@ -1273,6 +1385,8 @@ body.sc-choice-home{overflow:auto}
     var h=decodeURIComponent(location.hash||'');
     var product=h.indexOf('#produits')===0;
     var custom=h.indexOf('#demande')===0;
+    const back=document.querySelector('.sc-choice-back');
+    if(custom && back){back.href='#univers';back.textContent='← Retour aux catégories';back.setAttribute('aria-label','Retour aux catégories');}
     document.body.classList.toggle('sc-choice-home',!product&&!custom);
     document.body.classList.toggle('sc-choice-open',product||custom);
     document.body.classList.toggle('sc-choice-products',product);
