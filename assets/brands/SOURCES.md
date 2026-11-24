@@ -25,3 +25,5 @@ Les contours et couleurs sont conservés. Fred est converti sans perte en WebP ;
 - stoneisland.svg : https://commons.wikimedia.org/wiki/File:Stone-Island-Logo.svg (auteur : Stone Island).
 
 SVG téléchargés sans modification des tracés ou des couleurs.
+
+- bose.svg : https://github.com/simple-icons/simple-icons/blob/develop/icons/bose.svg — tracé Simple Icons, variante monochrome blanche, viewBox recadré aux marges du mot-symbole. Le sujet Intercoms reste https://t.me/wanisitemoto/7.
