@@ -1226,6 +1226,35 @@ body.sc-choice-custom #demande{padding-top:28px}
  .sc-search-symbol{width:43px;height:43px}
 }
 @media(prefers-reduced-motion:reduce){.sc-search-symbol{animation:none}}
+
+/* Icône de création et formulaire compact, sans titres empilés. */
+.sc-create-symbol{display:block;width:76px;height:76px;max-width:100%;color:#5ee4e3;filter:drop-shadow(0 5px 10px rgba(0,0,0,.18));animation:sc-search-drift 8s ease-in-out infinite}
+body.sc-choice-custom .sc-choice-back{margin-top:14px;margin-left:max(20px,calc((100% - 740px)/2))}
+body.sc-choice-custom #demande{padding-top:16px}
+.ws-funnel{padding:24px 28px}
+.ws-custom-heading{margin:0 0 14px}
+.ws-custom-heading h1{font-size:27px;font-weight:600;line-height:1.15;letter-spacing:-.035em}
+.wf-progress{margin-bottom:24px;font-size:12px}
+.wf-progress progress{margin-left:auto;max-width:140px}
+.ws-funnel legend{font-size:23px;margin-bottom:20px;font-weight:500}
+.ws-funnel fieldset{gap:17px}
+.wf-options-hint{margin:-6px 0 0;color:#6c818c;font:400 13px/1.5 var(--sans)}
+.wf-navigation{margin-top:22px}
+.wf-footnote{margin-top:13px}
+@media(max-width:620px){
+ .sc-create-symbol{width:43px;height:43px}
+ body.sc-choice-custom .sc-choice-back{margin-top:12px;margin-left:20px;min-height:42px}
+ body.sc-choice-custom .sc-choice-back:before{height:42px;width:42px}
+ body.sc-choice-custom #demande{padding-top:14px}
+ .ws-funnel{padding:20px}
+ .ws-custom-heading{margin-bottom:12px}
+ .ws-custom-heading h1{font-size:25px}
+ .wf-progress{gap:10px;margin-bottom:22px;font-size:11px}
+ .wf-progress progress{max-width:85px}
+ .ws-funnel legend{font-size:22px;margin-bottom:18px}
+ .wf-two{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.sc-create-symbol{animation:none}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -1249,7 +1278,7 @@ body.sc-choice-custom #demande{padding-top:28px}
       <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"><img class="sc-brand-logo logo-bose" src="/assets/brands/bose.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong></span></span></a>
-      <div class="sc-custom-split"><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing" href="#demande/sourcing" aria-label="Sourcing sur mesure"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sourcing sur mesure</strong></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-marque" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite" src="/assets/img/nav-logo.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Création de marque</strong></span></span></a></div>
+      <div class="sc-custom-split"><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing" href="#demande/sourcing" aria-label="Sourcing sur mesure"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sourcing sur mesure</strong></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-marque" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-create-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 15H19a7 7 0 0 0-7 7v39a7 7 0 0 0 7 7h39a7 7 0 0 0 7-7V40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m32 44-4 15 15-4 25-25-11-11-25 25Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m52 24 11 11M62 8v7M74 20h-7M70 11l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Création de marque</strong></span></span></a></div>
   </div>
 <p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
@@ -1281,26 +1310,26 @@ body.sc-choice-custom #demande{padding-top:28px}
 
 <section id="demande" class="ws-custom-section">
  <div class="wrap ws-custom-wrap">
-  <div class="ws-custom-heading"><span class="ws-eyebrow" id="wfEyebrow">Votre projet</span><h1 id="wfTitle">Sourcing sur mesure</h1><p>Quelques réponses, puis votre demande prête sur WhatsApp.</p></div>
   <form id="fsForm" class="ws-funnel" novalidate>
+   <div class="ws-custom-heading"><h1 id="wfTitle">Sourcing sur mesure</h1></div>
    <div class="wf-progress"><span id="wfProgressText" aria-live="polite">Étape 1 sur 3</span><progress id="wfProgress" value="1" max="3" aria-label="Progression de la demande"></progress></div>
-   <fieldset data-wf-step="0"><legend tabindex="-1">Parlez-nous de votre projet</legend>
-    <label>Secteur d’activité<select name="secteur" required><option value="">Choisir un secteur</option><option>Mode & textile</option><option>Beauté & cosmétiques</option><option>Moto & automobile</option><option>Électronique & accessoires</option><option>Maison & décoration</option><option>Restauration & équipement professionnel</option><option>Sport & bien-être</option><option>Autre secteur</option></select></label>
-    <label>Quel produit ou projet ?<textarea name="produit" id="fsProduit" required rows="3" placeholder="Votre idée, un produit, une référence ou un lien…"></textarea></label>
+   <fieldset data-wf-step="0"><legend tabindex="-1" id="wfQuestion">Que recherchez-vous ?</legend>
+    <label>Dans quel secteur ?<select name="secteur" required><option value="">Choisir un secteur</option><option>Mode & textile</option><option>Beauté & cosmétiques</option><option>Moto & automobile</option><option>Électronique & accessoires</option><option>Maison & décoration</option><option>Restauration & équipement professionnel</option><option>Sport & bien-être</option><option>Autre secteur</option></select></label>
+    <label><span id="wfProductLabel">Quel produit recherchez-vous ?</span><textarea name="produit" id="fsProduit" required rows="3" placeholder="Ex. : 100 gourdes en inox avec mon logo, ou un lien vers le modèle…"></textarea></label>
    </fieldset>
-   <fieldset data-wf-step="1" hidden><legend tabindex="-1">Précisons votre besoin</legend>
+   <fieldset data-wf-step="1" hidden><legend tabindex="-1">Quantité et budget</legend>
     <div class="wf-two"><label>Quantité envisagée <small>Facultatif</small><input type="number" name="qte" min="1" step="1" inputmode="numeric" placeholder="À définir"></label><label>Budget global<select name="budget"><option>À définir</option><option>Moins de 500 €</option><option>500 à 2 000 €</option><option>2 000 à 5 000 €</option><option>5 000 à 10 000 €</option><option>Plus de 10 000 €</option></select></label></div>
     <label>Nom de votre marque <small>Si vous en avez déjà un</small><input name="marque" placeholder="Facultatif"></label>
     <label>Échéance souhaitée<select name="delai"><option>Pas de date précise</option><option>Dès que possible</option><option>Sous 1 à 3 mois</option><option>Dans plus de 3 mois</option></select></label>
    </fieldset>
-   <fieldset data-wf-step="2" hidden><legend tabindex="-1">De quoi avez-vous besoin en plus ?</legend>
+   <fieldset data-wf-step="2" hidden><legend tabindex="-1">Votre accompagnement</legend><p class="wf-options-hint">Cochez les services qui vous intéressent. Tout est facultatif.</p>
     <div class="wf-options">
      <label><input type="checkbox" name="services" value="Logo & identité visuelle"><span>Logo & identité visuelle</span></label>
      <label><input type="checkbox" name="services" value="Étiquettes personnalisées"><span>Étiquettes personnalisées</span></label>
      <label><input type="checkbox" name="services" value="Packaging personnalisé"><span>Packaging personnalisé</span></label>
      <label><input type="checkbox" name="services" value="Site internet vitrine"><span>Site internet</span></label>
      <label><input type="checkbox" name="services" value="Boutique e-commerce"><span>Boutique e-commerce</span></label>
-     <label><input type="checkbox" name="services" value="SEO & référencement naturel"><span>SEO & référencement</span></label>
+     <label><input type="checkbox" name="services" value="SEO & référencement naturel"><span>Être visible sur Google (SEO)</span></label>
     </div>
     <label>Votre prénom <small>Facultatif</small><input name="nom" autocomplete="given-name" placeholder="Prénom"></label>
     <div class="wf-summary" id="wfSummary"></div>
@@ -1605,7 +1634,7 @@ body.sc-choice-custom #demande{padding-top:28px}
  const value=name=>String(fo.elements[name].value||'').trim();
  function render(focus){
   fieldsets.forEach((el,i)=>el.hidden=i!==step);
-  $('wfProgress').value=step+1;$('wfProgressText').textContent='Étape '+(step+1)+' sur 3';
+  $('wfProgress').value=step+1;$('wfProgressText').textContent=(step+1)+' / 3 · '+['Votre projet','Quantité et budget','Accompagnement'][step];
   $('wfPrevious').hidden=step===0;$('wfNext').textContent=step===2?'Envoyer sur WhatsApp':'Continuer';
   $('wfSummary').textContent=value('secteur')+' · '+value('produit')+(value('qte')?' · '+value('qte')+' pièce(s)':'');
   $('fsErr').hidden=true;
@@ -1616,9 +1645,11 @@ body.sc-choice-custom #demande{padding-top:28px}
   const next=location.hash.split('/')[1]==='marque'?'marque':'sourcing';
   if(mode!==next){
    mode=next;step=0;fo.reset();
-   if(mode==='marque')fo.querySelectorAll('[name="services"]').forEach(c=>c.checked=['Logo & identité visuelle','Étiquettes personnalisées','Packaging personnalisé'].includes(c.value));
+   
    $('wfTitle').textContent=mode==='marque'?'Création de marque':'Sourcing sur mesure';
-   $('wfEyebrow').textContent=mode==='marque'?'Votre marque, de l’idée au lancement':'Votre projet, du besoin au fournisseur';
+   $('wfQuestion').textContent=mode==='marque'?'Que voulez-vous créer ?':'Que recherchez-vous ?';
+   $('wfProductLabel').textContent=mode==='marque'?'Décrivez votre idée':'Quel produit recherchez-vous ?';
+   $('fsProduit').placeholder=mode==='marque'?'Ex. : une marque de vêtements de sport avec mes étiquettes…':'Ex. : 100 gourdes en inox avec mon logo, ou un lien vers le modèle…';
    render(false);
   }
  }
