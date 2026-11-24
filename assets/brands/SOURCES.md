@@ -13,6 +13,6 @@ Logos utilisés uniquement pour identifier les références des univers du catal
 | arai.png | https://www.araihelmet.eu/img/arai-logo@2x.png |
 | tmax.png | https://seeklogo.com/vector-logo/287310/yamaha-tmax — https://images.seeklogo.com/logo-png/28/1/yamaha-tmax-logo-png_seeklogo-287310.png |
 | kayali.png | Logo doré officiel chargé par https://kayali.com/en-fr : https://cdn.cookielaw.org/logos/4f98d710-13d8-455a-96f6-a5acee137c78/0199754e-fa2c-73db-90a2-b92006b6a50a/38368177-4a71-4c2c-9edc-91f8c53692d5/KAY_Solid-Gold-Logo_2025.png |
-| /assets/wanisite-logo-nav.png | Logo Wanisite existant dans le dépôt |
+| /assets/img/nav-logo.webp | Logo Wanisite existant dans le dépôt |
 
-Les contours et couleurs sont conservés. Fred est converti sans perte en WebP ; seules les marges transparentes de Fred et TMAX sont rognées. Les SVG inline Alo, On et WHOOP sont extraits en fichiers autonomes avec leurs tracés d'origine ; les attributs propres au site source sont retirés.
+Les contours et couleurs sont conservés. Fred est converti sans perte en WebP ; les marges transparentes de Fred et TMAX sont rognées. Le fond blanc ajouté par l’archive TMAX est retiré. Les SVG inline Alo, On et WHOOP sont extraits en fichiers autonomes avec leurs tracés d'origine ; les attributs propres au site source sont retirés.
