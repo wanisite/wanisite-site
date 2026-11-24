@@ -736,34 +736,56 @@ body.sc-choice-home .sc-funnel{height:calc(100svh - 84px)}
  .sc-tg-topic b{font-size:19px}
 }
 
-/* Univers visuels : compositions typographiques à droite, sans photos */
+
+/* Logos officiels locaux : silhouettes libres, couleurs et proportions préservées. */
 .sc-funnel-card .sc-funnel-image{display:none}
 .sc-funnel-card .sc-brand-wall{
- position:absolute;inset:0 2% 0 auto;width:44%;display:flex;align-content:center;
- justify-content:center;align-items:center;flex-wrap:wrap;gap:clamp(6px,1vw,16px);
- padding:12px 0;box-sizing:border-box;transform:rotate(-7deg);opacity:.85;
- pointer-events:none;z-index:0;
- -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 28%);
- mask-image:linear-gradient(90deg,transparent 0%,#000 28%);
+ position:absolute;inset:0 3% 0 auto;width:43%;display:flex;align-items:center;
+ justify-content:space-evenly;gap:clamp(12px,2vw,30px);padding:14px 0;
+ box-sizing:border-box;pointer-events:none;z-index:3;
 }
-.sc-funnel-card .sc-brand-word{
- font-family:'Outfit',sans-serif;font-size:clamp(12px,2vw,30px);
- font-weight:650;letter-spacing:.055em;color:rgba(255,255,255,.9);
- border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);
- border-radius:10px;padding:.3em .65em;white-space:nowrap;
- box-shadow:0 5px 18px rgba(0,0,0,.08);
-}
-.sc-funnel-card .sc-brand-word:nth-child(even){font-weight:350;font-style:italic;transform:translateY(9px)}
-.sc-funnel-luxe .sc-brand-word{font-family:Georgia,serif;letter-spacing:.12em}
-.sc-funnel-moto .sc-brand-word{font-style:italic;transform:skew(-8deg)}
-.sc-funnel-beaute .sc-brand-word{font-family:Georgia,serif;font-weight:400}
-.sc-funnel-custom .sc-brand-word{font-weight:350;letter-spacing:.025em}
-.sc-funnel-card:hover .sc-brand-wall{opacity:1}
+.sc-brand-logo{display:block;width:clamp(54px,7vw,98px);height:clamp(32px,5vh,54px);
+ object-fit:contain;flex:0 1 auto;min-width:0;transition:transform .3s ease}
+.sc-brand-logo.logo-prada{width:clamp(76px,9vw,128px);filter:drop-shadow(0 2px 4px rgba(46,34,8,.45))}
+.sc-brand-logo.logo-alo{width:clamp(38px,4vw,58px)}
+.sc-brand-logo.logo-on{width:clamp(50px,5vw,72px);height:clamp(50px,7vh,76px)}
+.sc-brand-logo.logo-whoop{width:clamp(115px,16vw,205px)}
+.sc-brand-logo.logo-lego{width:clamp(40px,5vw,62px);height:clamp(40px,7vh,62px)}
+.sc-brand-logo.logo-arai{width:clamp(80px,11vw,140px);height:auto}
+.sc-brand-logo.logo-tmax{width:clamp(104px,15vw,190px)}
+.sc-brand-logo.logo-kayali{width:clamp(62px,8vw,96px);height:clamp(62px,10vh,96px)}
+.sc-brand-logo.logo-wanisite{width:clamp(90px,14vw,170px);height:clamp(56px,9vh,88px)}
+.sc-funnel-luxe{background:radial-gradient(ellipse at 85% 50%,#e4c77e 0%,transparent 60%),linear-gradient(100deg,var(--c1),var(--c2))}
+.sc-funnel-card .sc-funnel-glass{width:53%;-webkit-backdrop-filter:none;backdrop-filter:none}
+.sc-funnel-card .sc-funnel-action{font-size:0;padding:8px 10px;background:transparent;border-color:rgba(255,255,255,.3)}
+.sc-funnel-card:hover .sc-brand-logo{transform:translateY(-2px)}
+.sc-brand-note{margin:8px 0 0;text-align:center;font:400 11px/1.3 var(--sans);color:#52616c}
+.sc-funnel .sc-funnel-list{height:calc(100% - 24px)}
+body.sc-choice-home{overflow:auto}
+.sc-funnel.sc-quick{min-height:590px}
 @media(max-width:620px){
- .sc-funnel-card .sc-brand-wall{width:39%;gap:5px;right:1%}
- .sc-funnel-card .sc-brand-word{font-size:clamp(9px,2.8vw,14px);border-radius:6px;padding:.25em .4em}
- .sc-funnel-card .sc-brand-word:nth-child(n+4){display:none}
+ .sc-funnel-card .sc-funnel-glass{width:57%;gap:8px;padding:12px 10px}
+ .sc-funnel .sc-funnel-index{display:none}
+ .sc-funnel .sc-funnel-copy strong{font-size:clamp(23px,6vw,30px)}
+ .sc-funnel .sc-funnel-copy small{font-size:10px;letter-spacing:0;max-width:22ch}
+ .sc-funnel-card .sc-funnel-action{display:none}
+ .sc-funnel-card .sc-brand-wall{right:4%;width:35%;gap:12px}
+ .sc-funnel-luxe .sc-brand-wall{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;justify-items:center;padding:12px 0}
+ .sc-brand-logo{width:100%;height:28px}
+ .sc-brand-logo.logo-prada{width:65px;height:20px}
+ .sc-brand-logo.logo-alo{width:31px;height:25px}
+ .sc-brand-logo.logo-on{width:43px;height:36px}
+ .sc-brand-logo.logo-fred{width:56px;height:23px}
+ .sc-brand-logo.logo-whoop{width:76px;height:25px}
+ .sc-brand-logo.logo-lego{width:33px;height:33px}
+ .sc-brand-logo.logo-arai{width:64px;height:auto}
+ .sc-brand-logo.logo-tmax{width:67px;height:25px}
+ .sc-funnel-moto .sc-brand-wall{flex-direction:column;gap:10px}
+ .sc-brand-logo.logo-kayali{width:67px;height:67px}
+ .sc-brand-logo.logo-wanisite{width:100px;height:60px}
+ .sc-brand-note{font-size:10px}
 }
+@media(prefers-reduced-motion:reduce){.sc-brand-logo{transition:none}.sc-funnel-card:hover .sc-brand-logo{transform:none}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -783,12 +805,13 @@ body.sc-choice-home .sc-funnel{height:calc(100svh - 84px)}
 
 <section class="sc-quick sc-funnel" aria-label="Choisissez votre univers de sourcing">
   <div class="wrap sc-funnel-list">
-      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-brand-wall" aria-hidden="true"><span class="sc-brand-word sc-brand-word-0">PRADA</span><span class="sc-brand-word sc-brand-word-1">ALO</span><span class="sc-brand-word sc-brand-word-2">On</span><span class="sc-brand-word sc-brand-word-3">FRED</span></span><span class="sc-funnel-glass"><span class="sc-funnel-index">01</span><span class="sc-funnel-copy"><strong>Luxe</strong><small>Prada · Lulu Lemon · Montres · Bijoux</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-brand-wall" aria-hidden="true"><span class="sc-brand-word sc-brand-word-0">WHOOP</span><span class="sc-brand-word sc-brand-word-1">TECH</span><span class="sc-brand-word sc-brand-word-2">LEGO</span><span class="sc-brand-word sc-brand-word-3">MAISON</span></span><span class="sc-funnel-glass"><span class="sc-funnel-index">02</span><span class="sc-funnel-copy"><strong>Accessoires</strong><small>Whoop · Électronique · Maison</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-brand-wall" aria-hidden="true"><span class="sc-brand-word sc-brand-word-0">ARAI</span><span class="sc-brand-word sc-brand-word-1">TMAX</span><span class="sc-brand-word sc-brand-word-2">LED</span><span class="sc-brand-word sc-brand-word-3">INTERCOM</span></span><span class="sc-funnel-glass"><span class="sc-funnel-index">03</span><span class="sc-funnel-copy"><strong>Moto</strong><small>Casques · Intercoms · Visières</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-brand-wall" aria-hidden="true"><span class="sc-brand-word sc-brand-word-0">KAYALI</span><span class="sc-brand-word sc-brand-word-1">PARFUMS</span><span class="sc-brand-word sc-brand-word-2">BEAUTÉ</span></span><span class="sc-funnel-glass"><span class="sc-funnel-index">04</span><span class="sc-funnel-copy"><strong>Beauté</strong><small>Parfums · Kayali</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
-      <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Sur mesure : créer votre produit ou votre marque"><span class="sc-brand-wall" aria-hidden="true"><span class="sc-brand-word sc-brand-word-0">WANISITE</span><span class="sc-brand-word sc-brand-word-1">VOTRE MARQUE</span><span class="sc-brand-word sc-brand-word-2">PACKAGING</span></span><span class="sc-funnel-glass"><span class="sc-funnel-index">05</span><span class="sc-funnel-copy"><strong>Sur mesure</strong><small>Votre produit · Votre logo · Votre packaging</small></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-prada" src="/assets/brands/prada.png" alt="" decoding="async"><img class="sc-brand-logo logo-alo" src="/assets/brands/alo.svg" alt="" decoding="async"><img class="sc-brand-logo logo-on" src="/assets/brands/on.svg" alt="" decoding="async"><img class="sc-brand-logo logo-fred" src="/assets/brands/fred.webp" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">01</span><span class="sc-funnel-copy"><strong>Luxe</strong><small>Prada · Alo · On · Fred</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">02</span><span class="sc-funnel-copy"><strong>Accessoires</strong><small>Whoop · Lego · Électronique</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">03</span><span class="sc-funnel-copy"><strong>Moto</strong><small>Casques · Intercoms · Visières</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">04</span><span class="sc-funnel-copy"><strong>Beauté</strong><small>Parfums · Kayali</small></span><span class="sc-funnel-action">Découvrir <span aria-hidden="true">↗</span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-custom" href="#demande" aria-label="Sur mesure : créer votre produit ou votre marque"><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-wanisite-logo-nav" src="/assets/wanisite-logo-nav.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-index">05</span><span class="sc-funnel-copy"><strong>Sur mesure</strong><small>Votre produit · Votre logo · Votre packaging</small></span><span class="sc-funnel-action">Sur mesure <span aria-hidden="true">↗</span></span></span></a>
   </div>
+<p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
 <section id="produits">
   <div class="wrap">
@@ -1122,3 +1145,4 @@ body.sc-choice-home .sc-funnel{height:calc(100svh - 84px)}
 
 </body>
 </html>
+
