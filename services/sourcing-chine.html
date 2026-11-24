@@ -843,6 +843,78 @@ body.sc-choice-home{overflow:auto}
  .sc-funnel-card .sc-funnel-image{transition:none}
  .sc-funnel-card:hover .sc-brand-logo{transform:rotate(var(--tilt))}
 }
+
+/* Même DA dans les univers : grandes cartes, logos et sujets Telegram. */
+.sc-tg-topics.sc-universe-luxe{--c1:#2e2208;--c2:#b0802a;--topic-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')}
+.sc-tg-topics.sc-universe-acc{--c1:#053f47;--c2:#0b9aa5;--topic-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')}
+.sc-tg-topics.sc-universe-moto{--c1:#3a140a;--c2:#d0561f;--topic-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')}
+.sc-tg-topics.sc-universe-beaute{--c1:#4a1030;--c2:#c8497f;--topic-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')}
+.sc-tg-topics[class*="sc-universe-"]{grid-template-columns:1fr;gap:14px;margin:26px 0}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic{
+ position:relative;isolation:isolate;overflow:hidden;min-height:126px;box-sizing:border-box;
+ padding:26px 34px;border-radius:21px;border:1px solid rgba(255,255,255,.25);
+ background:linear-gradient(110deg,var(--c1),var(--c2));color:#fff;
+ box-shadow:0 14px 28px -20px var(--c2);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:before{
+ content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+ background-image:var(--topic-image);background-size:auto 190%;background-position:65% 48%;
+ background-repeat:no-repeat;opacity:.6;mix-blend-mode:luminosity;transition:transform .6s ease;
+}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:after{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(90deg,rgba(0,0,0,.48),rgba(0,0,0,.1) 43%,rgba(0,0,0,.58));
+}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:hover,
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:focus-visible{
+ transform:translateY(-2px);border-color:rgba(255,255,255,.75);box-shadow:0 16px 30px -16px var(--c1);
+}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:hover:before{transform:scale(1.04)}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:focus-visible{outline:3px solid #0aa6a0;outline-offset:3px}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic b{
+ position:relative;max-width:70%;font:300 clamp(23px,3vw,36px)/1.16 'Outfit',var(--sans),sans-serif;
+ letter-spacing:-.04em;gap:9px;text-shadow:0 2px 12px rgba(0,0,0,.18);
+}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic.has-logo b{max-width:55%}
+.sc-tg-topics[class*="sc-universe-"] .sc-tg-topic b small{font:500 11px/1.2 var(--sans);letter-spacing:.08em;color:rgba(255,255,255,.8)}
+.sc-tg-topic .sc-topic-art{
+ position:absolute;right:10%;top:10px;bottom:10px;width:28%;display:flex;align-items:center;
+ justify-content:center;pointer-events:none;
+}
+.sc-tg-topic .sc-topic-art .sc-brand-logo{width:min(100%,150px);height:64px;max-width:100%;object-fit:contain}
+.sc-tg-topic .sc-topic-art .logo-whoop{width:min(100%,200px);height:48px}
+.sc-tg-topic .sc-topic-art .logo-on{width:70px;height:76px}
+.sc-tg-topic .sc-topic-art .logo-kayali{width:84px;height:84px}
+.sc-tg-topic .sc-topic-art .logo-lego{width:66px;height:66px}
+.sc-universe-luxe .has-logo .sc-topic-art:before{
+ content:"";position:absolute;inset:-12px -28px;z-index:-1;
+ background:radial-gradient(ellipse,rgba(234,202,135,.88),rgba(217,174,91,.4) 46%,transparent 72%);
+}
+.sc-tg-topic:nth-child(2n) .sc-brand-logo{--tilt:7deg;--drift-y:5px;animation-delay:-2s}
+.sc-tg-topic:nth-child(3n) .sc-brand-logo{--tilt:-9deg;--drift-y:-4px;animation-delay:-4s}
+.sc-tg-topics[class*="sc-universe-"] .sc-topic-open{
+ flex:none;color:rgba(255,255,255,.9);font-size:22px;align-self:center;
+ width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;
+}
+#catList[data-universe]:not([data-universe=""]) > .cat-titre{font-family:'Outfit',var(--sans);font-weight:300;letter-spacing:-.04em}
+@media(max-width:620px){
+ .sc-tg-topics[class*="sc-universe-"]{gap:11px}
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic{min-height:116px;padding:23px 18px;border-radius:18px}
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic b{font-size:23px;max-width:77%}
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic.has-logo b{max-width:53%}
+ .sc-tg-topic .sc-topic-art{right:10%;width:28%}
+ .sc-tg-topic .sc-topic-art .sc-brand-logo{height:43px;width:92px}
+ .sc-tg-topic .sc-topic-art .logo-alo{width:49px;height:43px}
+ .sc-tg-topic .sc-topic-art .logo-on{width:53px;height:62px}
+ .sc-tg-topic .sc-topic-art .logo-lego{width:44px;height:44px}
+ .sc-tg-topic .sc-topic-art .logo-kayali{width:65px;height:65px}
+ .sc-tg-topics[class*="sc-universe-"] .sc-topic-open{font-size:18px;width:26px;height:26px}
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:before{background-size:auto 155%;background-position:72% 50%}
+}
+@media(prefers-reduced-motion:reduce){
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic,
+ .sc-tg-topics[class*="sc-universe-"] .sc-tg-topic:before{transition:none}
+}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -1054,8 +1126,20 @@ body.sc-choice-home{overflow:auto}
       beaute: [['Kayali',13]]
     };
     const sujets = SUJETS_TG[k] || [];
+    // Les références disposent de leurs vrais logos ; les autres rayons gardent une illustration.
+    const LOGOS_SUJETS = {
+      'luxe:20':['fred.webp','Fred'], 'luxe:4':['prada.png','Prada'],
+      'luxe:23':['alo.svg','Alo'], 'luxe:22':['on.svg','On'],
+      'acc:2':['whoop.svg','Whoop'], 'acc:33':['lego.svg','Lego'],
+      'moto:3':['arai.png','Arai'], 'moto:15':['tmax.png?v=2','TMAX'],
+      'beaute:13':['kayali.png','Kayali']
+    };
+    const artSujet = (id) => {
+      const logo = LOGOS_SUJETS[k + ':' + id];
+      return logo ? '<span class="sc-topic-art" aria-hidden="true"><img class="sc-brand-logo logo-' + logo[1].toLowerCase() + '" src="/assets/brands/' + logo[0] + '" alt="" loading="lazy" decoding="async"></span>' : '';
+    };
     const accesSujets = sujets.length
-      ? '<p class="sc-tg-note">Choisissez un sujet pour ouvrir son fil Telegram.</p><div class="sc-tg-topics">' + sujets.map(([nom,id,une]) => '<a class="sc-tg-topic' + (une ? ' une' : '') + '" href="https://t.me/' + config[1] + '/' + id + '" target="_blank" rel="noopener"><b>' + (une ? '<small>À la une</small>' : '') + esc(nom) + '</b><span aria-hidden="true">↗</span></a>').join('') + '</div><p class="sc-tg-all"><a href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir tout le groupe Wanisite ' + esc(config[0]) + ' sur Telegram →</a></p>'
+      ? '<p class="sc-tg-note">Choisissez un sujet pour ouvrir son fil Telegram.</p><div class="sc-tg-topics sc-universe-' + k + '">' + sujets.map(([nom,id,une]) => '<a class="sc-tg-topic' + (une ? ' une' : '') + (LOGOS_SUJETS[k + ':' + id] ? ' has-logo' : '') + '" href="https://t.me/' + config[1] + '/' + id + '" target="_blank" rel="noopener">' + artSujet(id) + '<b>' + (une ? '<small>À la une</small>' : '') + esc(nom) + '</b><span class="sc-topic-open" aria-hidden="true">↗</span></a>').join('') + '</div><p class="sc-tg-all"><a href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir tout le groupe Wanisite ' + esc(config[0]) + ' sur Telegram →</a></p>'
       : '<p class="sc-tg-note">Consultez les rayons et les nouveautés directement sur le groupe Telegram.</p><div class="sc-tg-topics"><a class="sc-tg-topic" href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir Wanisite ' + esc(config[0]) + ' sur Telegram <span aria-hidden="true">↗</span></a></div>';
     $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '</h3>' + accesSujets +
       (ps.length ? '<h3 class="cat-titre">Produits disponibles<small>' + pluriel(ps.length,'produit','produits') + '</small></h3><div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '') +
@@ -1112,6 +1196,7 @@ body.sc-choice-home{overflow:auto}
     if (cle !== dernier) { type = ''; vente = ''; $('catVente').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', 'false')); }
     dernier = cle;
     const pb = $('catPiedBase'); if (pb) pb.hidden = !!r.s;
+    $('catList').dataset.universe = r.s === 'groupe' ? r.groupe : '';
     if (!r.s) accueil(); else if (r.s === 'groupe') catalogueGroupe(r.groupe); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
     if (defiler && route()) { const t = $('produits'); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }
   }
