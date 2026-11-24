@@ -948,8 +948,8 @@ body.sc-choice-home .sc-funnel{height:calc(100svh - 84px)}
     const accesSujets = sujets.length
       ? '<p class="sc-tg-note">Choisissez un sujet pour ouvrir son fil Telegram.</p><div class="sc-tg-topics">' + sujets.map(([nom,id,une]) => '<a class="sc-tg-topic' + (une ? ' une' : '') + '" href="https://t.me/' + config[1] + '/' + id + '" target="_blank" rel="noopener"><b>' + (une ? '<small>À la une</small>' : '') + esc(nom) + '</b><span aria-hidden="true">↗</span></a>').join('') + '</div><p class="sc-tg-all"><a href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir tout le groupe Wanisite ' + esc(config[0]) + ' sur Telegram →</a></p>'
       : '<p class="sc-tg-note">Consultez les rayons et les nouveautés directement sur le groupe Telegram.</p><div class="sc-tg-topics"><a class="sc-tg-topic" href="https://t.me/' + config[1] + '" target="_blank" rel="noopener">Ouvrir Wanisite ' + esc(config[0]) + ' sur Telegram <span aria-hidden="true">↗</span></a></div>';
-    $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '</h3>' + accesSujets + '<h3 class="cat-titre">Produits disponibles<small>' + pluriel(ps.length,'produit','produits') + '</small></h3>' +
-      (ps.length ? '<div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '<div class="cat-vide">Aucun produit publié dans cet univers pour le moment.</div>') +
+    $('catList').innerHTML = '<h3 class="cat-titre">' + config[0] + '</h3>' + accesSujets +
+      (ps.length ? '<h3 class="cat-titre">Produits disponibles<small>' + pluriel(ps.length,'produit','produits') + '</small></h3><div class="cat-grid">' + ps.map(carte).join('') + '</div>' : '') +
       '<div class="cat-pied"><div><b>Vous cherchez un modèle précis ?</b><span>Décrivez-le sur WhatsApp, en gros ou en détail.</span></div><a class="btn main big" target="_blank" rel="noopener" href="' + wa('Bonjour Wanisite, je cherche un produit dans la catégorie ' + config[0] + '.') + '">Demander un devis →</a></div>';
   }
 
