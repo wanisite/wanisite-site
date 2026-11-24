@@ -996,6 +996,28 @@ body.sc-choice-products #produits{padding:28px 0 56px}
  .sc-topic-art .logo-stoneisland{width:92px!important;height:43px!important}
 }
 @media(prefers-reduced-motion:reduce){.sc-product-card,.sc-notify{transition:none}}
+
+/* Retour léger, dans le flux : aucun bandeau ni chevauchement avec le menu. */
+.sc-choice-back{
+ position:relative;top:auto;z-index:auto;width:fit-content;max-width:calc(100% - 40px);
+ align-items:center;gap:10px;margin:24px 20px 0 max(20px,calc((100% - 1120px)/2));
+ padding:9px 13px;border:1px solid rgba(16,37,50,.12);border-radius:99px;
+ background:rgba(255,255,255,.76);color:#40545f;text-decoration:none;
+ font:500 13px/1.4 var(--sans);box-shadow:none;
+ -webkit-backdrop-filter:none;backdrop-filter:none;
+ transition:color .2s ease,background .2s ease,border-color .2s ease;
+}
+body.sc-choice-open .sc-choice-back{display:inline-flex}
+.sc-choice-back:before{content:"";width:6px;height:6px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:2px}
+.sc-choice-back:hover{color:#0b7f80;border-color:rgba(11,127,128,.3);background:#fff}
+.sc-choice-back:focus-visible{outline:2px solid #0aa6a0;outline-offset:4px}
+body.sc-choice-products #produits{padding-top:24px}
+body.sc-choice-custom #demande{padding-top:28px}
+@media(max-width:620px){
+ .sc-choice-back{margin:20px 20px 0;padding:8px 12px;font-size:12px}
+ body.sc-choice-products #produits{padding-top:22px}
+}
+@media(prefers-reduced-motion:reduce){.sc-choice-back{transition:none}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Sourcing en Chine", "item": "https://www.wanisitelab.com/services/sourcing-chine"}]}</script><!--/ariane--></head>
 <body>
@@ -1009,7 +1031,7 @@ body.sc-choice-products #produits{padding:28px 0 56px}
     </nav>
   </div>
 </header>
-<a class="sc-choice-back" href="#univers" aria-label="Retour aux cinq univers">← Retour aux univers</a>
+<a class="sc-choice-back" href="#univers" aria-label="Retour aux cinq univers">Retour aux univers</a>
 <main id="top">
 
 
@@ -1229,7 +1251,7 @@ body.sc-choice-products #produits{padding:28px 0 56px}
     const groupeUrl='https://t.me/'+config.canal;
     $('catBar').hidden=true;
     const retour=document.querySelector('.sc-choice-back');
-    if(retour){retour.href=selection?lienMarque(k):'#univers';retour.textContent=selection?'← Retour aux marques':'← Retour aux catégories';retour.setAttribute('aria-label',selection?'Retour aux marques':'Retour aux catégories');}
+    if(retour){retour.href=selection?lienMarque(k):'#univers';retour.textContent=selection?'Retour aux marques':'Retour aux catégories';retour.setAttribute('aria-label',selection?'Retour aux marques':'Retour aux catégories');}
     if(!selection){
       fil([['Catégories','#univers'],[config.nom]]);
       $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(config.nom)+'</h2>'+suivre(groupeUrl,config.nom)+'</div>'+
@@ -1386,7 +1408,7 @@ body.sc-choice-products #produits{padding:28px 0 56px}
     var product=h.indexOf('#produits')===0;
     var custom=h.indexOf('#demande')===0;
     const back=document.querySelector('.sc-choice-back');
-    if(custom && back){back.href='#univers';back.textContent='← Retour aux catégories';back.setAttribute('aria-label','Retour aux catégories');}
+    if(custom && back){back.href='#univers';back.textContent='Retour aux catégories';back.setAttribute('aria-label','Retour aux catégories');}
     document.body.classList.toggle('sc-choice-home',!product&&!custom);
     document.body.classList.toggle('sc-choice-open',product||custom);
     document.body.classList.toggle('sc-choice-products',product);
