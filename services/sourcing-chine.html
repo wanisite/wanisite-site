@@ -1220,7 +1220,7 @@ body.sc-choice-products #produits{padding:28px 0 56px}
   }
   function accueil() {
     fil([]); $('catBar').hidden=true;
-    location.hash='univers';
+    if (location.hash.indexOf('#produits') === 0) location.hash='univers';
   }
   function catalogueGroupe(k, marqueId) {
     const config=FLOW[k];
