@@ -1436,6 +1436,23 @@ header.top .wrap .brand{grid-column:2;grid-row:1;justify-self:center;margin:0!im
 header.top .wrap .menu{grid-column:3;grid-row:1;justify-self:end}
 
 .brand-source{color:#0fb3b8}
+/* Bouton « Voir tout le catalogue » : ajoute d'un coup tous les groupes Telegram */
+header.top .wrap .menu a.tg-tout{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;background:#1c8fcb;color:#fff;font-weight:600;font-size:14px;white-space:nowrap;text-decoration:none}
+header.top .wrap .menu a.tg-tout:hover{background:#14719f;color:#fff}
+.tg-tout svg{flex:none} .tg-moyen,.tg-court{display:none}
+@media(max-width:620px){
+ header.top .wrap{grid-template-columns:auto 1fr auto!important;column-gap:8px}
+ header.top .wrap .brand{justify-self:start!important}
+ header.top .wrap .menu a.tg-tout{min-height:38px;padding:0 11px;font-size:12.5px;gap:6px}
+ .tg-tout .tg-long{display:none} .tg-tout .tg-moyen{display:inline}
+ body.sc-choice-open .tg-tout .tg-moyen{display:none} body.sc-choice-open .tg-tout .tg-court{display:inline}
+ header.top .wrap .brand{gap:6px!important;white-space:nowrap;min-width:max-content}
+ header.top .wrap .brand img{width:34px!important;height:auto!important}
+ header.top .wrap .brand span{font-size:18px!important}
+ header.top .wrap .menu{min-width:0}
+ header.top .wrap{padding-left:10px!important;padding-right:8px!important}
+}
+@media(max-width:360px){.tg-tout .tg-moyen{display:none} .tg-tout .tg-court{display:inline}}
 
 /* Fiches produits : grandes cartes à la couleur de l'univers, deux par ligne, toute la carte mène aux photos */
 #catList .sc-fiches{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
@@ -1515,6 +1532,7 @@ body.sc-choice-brand #brandIdeas{display:block}
     <nav class="menu" aria-label="Navigation">
       <a class="hide-m" href="/#realisations">Réalisations</a>
       <a class="hide-m" href="#faq">Questions</a>
+      <a class="tg-tout" href="https://t.me/addlist/uIApVfUPlioxNjE0" target="_blank" rel="noopener" aria-label="Voir tout le catalogue sur Telegram"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M21.4 4.2 2.9 11.4c-.9.35-.88 1.64.03 1.95l4.6 1.55 1.8 5.5c.25.76 1.22.97 1.76.38l2.6-2.84 4.7 3.45c.66.49 1.6.13 1.77-.67l3.2-15.1c.19-.9-.7-1.65-1.56-1.42zM9.7 14.6l8.2-5.2-6.5 6.2-.4 3.1z"/></svg><span class="tg-long">Voir tout le catalogue</span><span class="tg-moyen">Tout le catalogue</span><span class="tg-court">Catalogue</span></a>
     </nav>
   </div>
 </header>
