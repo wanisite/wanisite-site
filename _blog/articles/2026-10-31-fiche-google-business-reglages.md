@@ -57,7 +57,7 @@ Rien n'agace plus un client que de trouver porte close alors que Google annonça
 
 - **Téléphone** : un numéro qui répond, de préférence celui que vos clients connaissent déjà.
 - **Site web** : le lien vers votre site donne au client tout ce que la fiche ne peut pas montrer (prestations détaillées, photos, tarifs, zone d'intervention) et à Google des informations en plus pour comprendre votre activité. Si vous n'avez qu'une page Instagram, c'est souvent là que ça coince : un [site vitrine](/services/site-vitrine) simple, avec votre adresse, vos horaires et vos services, complète bien la fiche.
-- **Lien de réservation ou de prise de rendez-vous** : selon votre catégorie, Google propose un champ dédié. Si vous avez un module de [réservation en ligne](/services/reservation), mettez-le ici, le client réserve sans passer par le standard.
+- **Lien de réservation ou de prise de rendez-vous** : selon votre catégorie, Google propose un champ dédié. Si vous avez un module de réservation en ligne, mettez-le ici, le client réserve sans passer par le standard.
 
 ## 7. Description, services et produits
 

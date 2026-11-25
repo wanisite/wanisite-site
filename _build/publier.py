@@ -20,13 +20,11 @@ PUBLIES = []
 
 SERVICES = [
     ('/services/site-vitrine', 'Site vitrine'),
-    ('/services/reservation', 'Réservation en ligne'),
     ('/services/ecommerce', 'Boutique en ligne'),
     ('/services/logiciel-sur-mesure', 'Logiciel sur mesure'),
-    ('/services/budget-marketing', 'Meta Ads et Google Ads'),
     ('/wanisource', 'Wanisource · sourcing Chine'),
 ]
-REALISATIONS = [('/realisations/clean-and-polish', 'Clean & Polish'), ('/realisations/aesthetic-men', 'Aesthetic Men')]
+REALISATIONS = []  # études de cas Meta Ads retirées le 2026-11-25 (service Ads arrêté)
 
 
 def lire(chemin):
@@ -142,7 +140,7 @@ def pied_pro():
     classe = 'fp fp-5' if RESEAUX else 'fp'
     return ('<!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=4">' f'<div class="{classe}">'
             '<div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a>'
-            '<p>Le laboratoire digital : sites, logiciels, CRM et campagnes pour attirer, vendre et piloter votre activité.</p>'
+            '<p>Le laboratoire digital : sites, boutiques, logiciels et CRM pour attirer, vendre et piloter votre activité.</p>'
             '<a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div>'
             f'<nav class="fp-col" aria-label="Services"><h2>Services</h2><ul>{svc}</ul></nav>'
             '<nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li>'
@@ -295,12 +293,12 @@ def page_liste(articles):
     items = ''.join(f'<li><time datetime="{a["date"]}">{date_fr(a["date_obj"])}</time><a href="/blog/{a["slug"]}">{html.escape(a["titre"])}</a>'
                     f'<p>{html.escape(a["description"])}</p></li>' for a in articles)
     contenu = ('<p class="fil"><a href="/">Accueil</a> / Blog</p><h1>Le blog Wanisite</h1>'
-               '<p class="chapeau">Sites internet, réservation, e-commerce, publicité et sourcing en Chine : des conseils concrets pour les commerces et les indépendants.</p>'
+               '<p class="chapeau">Sites internet, e-commerce, logiciels et sourcing en Chine : des conseils concrets pour les commerces et les indépendants.</p>'
                + (f'<ol class="liste-blog">{items}</ol>' if items else '<p class="meta-art">Premier article bientôt en ligne.</p>'))
     jsonld = {"@context": "https://schema.org", "@type": "Blog", "name": "Le blog Wanisite", "url": SITE + "/blog/", "inLanguage": "fr-FR", "publisher": ORGA,
               "blogPost": [{"@type": "BlogPosting", "headline": a['titre'], "url": f"{SITE}/blog/{a['slug']}", "datePublished": a['date']} for a in articles[:20]]}
     return GABARIT.format(titre_page='Blog Wanisite : site internet, e-commerce, publicité et sourcing', titre_og='Le blog Wanisite',
-                          description='Conseils concrets pour les commerces et les indépendants : site internet, réservation en ligne, boutique, publicité Meta et sourcing en Chine.',
+                          description='Conseils concrets pour les commerces et les indépendants : site internet, boutique en ligne, logiciels et sourcing en Chine.',
                           url=SITE + '/blog/', og_type='website', wa=WA + 'Bonjour%2C%20je%20voudrais%20un%20devis.',
                           jsonld='<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + '</script>\n' + ariane([('/', 'Accueil'), ('/blog/', 'Blog')]),
                           contenu=contenu, pied=pied_pro())

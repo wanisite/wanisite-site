@@ -31,6 +31,36 @@
       "source": "/services/sourcing-chine.html",
       "destination": "/wanisource",
       "permanent": true
+    },
+    {
+      "source": "/services/reservation",
+      "destination": "/#tarifs",
+      "permanent": true
+    },
+    {
+      "source": "/services/budget-marketing",
+      "destination": "/#tarifs",
+      "permanent": true
+    },
+    {
+      "source": "/realisations/clean-and-polish",
+      "destination": "/#realisations",
+      "permanent": true
+    },
+    {
+      "source": "/realisations/aesthetic-men",
+      "destination": "/#realisations",
+      "permanent": true
+    },
+    {
+      "source": "/blog/reservation-en-ligne-rendez-vous-oublies",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/meta-ads-commerce-local-petit-budget",
+      "destination": "/blog/",
+      "permanent": true
     }
   ]
 }
