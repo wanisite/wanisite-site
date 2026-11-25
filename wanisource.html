@@ -1301,6 +1301,20 @@ body.sc-choice-custom #demande{padding-top:16px}
 .wf-photo-hint strong{display:block;color:#146354;font-weight:650}
 @media(max-width:620px){.sc-funnel-luxe .logo-hermes{width:45px;height:18px}.sc-topic-art .logo-hermes{width:88px!important;height:38px!important}}
 
+
+/* Accueil : 1) sur mesure (gros, détail, marque) 2) dispo en France 3) les 4 univers du catalogue */
+.sc-funnel .sc-funnel-list{grid-template-rows:repeat(6,minmax(0,1fr))}
+.sc-custom-split.sc-trio{grid-template-columns:repeat(3,1fr)}
+.sc-trio .sc-funnel-glass{width:100%}
+.sc-trio .sc-brand-wall{opacity:.55}
+.sc-funnel .sc-trio .sc-funnel-copy small,.sc-funnel .sc-funnel-france .sc-funnel-copy small{display:block;font-size:clamp(10px,1.1vw,13px);letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.sc-funnel-france{--c1:#0a2f63;--c2:#1f5fbf}
+@media(max-width:620px){.sc-custom-split.sc-trio{gap:6px}.sc-trio .sc-brand-wall{display:none}.sc-trio .sc-funnel-glass{padding:10px}.sc-funnel .sc-trio .sc-funnel-copy strong{font-size:clamp(16px,4.6vw,21px)}}
+.fr-vide{display:grid;gap:14px;justify-items:start;padding:28px;border-radius:22px;background:#fff;border:1px solid rgba(12,32,48,.1)}
+.fr-vide p{margin:0;color:rgba(12,32,48,.7);max-width:52ch}
+.fr-vide .fr-actions{display:flex;flex-wrap:wrap;gap:10px}
+.fr-vide a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:600;text-decoration:none;background:#141c24;color:#fff}
+.fr-vide a.fr-ghost{background:transparent;color:#141c24;border:1px solid rgba(12,32,48,.2)}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane--></head>
 <body>
@@ -1320,11 +1334,12 @@ body.sc-choice-custom #demande{padding-top:16px}
 
 <section class="sc-quick sc-funnel" aria-label="Choisissez votre univers de sourcing">
   <div class="wrap sc-funnel-list">
+      <div class="sc-custom-split sc-trio"><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing sc-sm-gros" href="#demande/sourcing/gros" aria-label="Sourcer un produit sur mesure, en gros"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Sur mesure</small><strong>En gros</strong></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing sc-sm-detail" href="#demande/sourcing/detail" aria-label="Sourcer un produit sur mesure, au détail"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Sur mesure</small><strong>Au détail</strong></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-marque" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-create-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 15H19a7 7 0 0 0-7 7v39a7 7 0 0 0 7 7h39a7 7 0 0 0 7-7V40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m32 44-4 15 15-4 25-25-11-11-25 25Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m52 24 11 11M62 8v7M74 20h-7M70 11l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Sur mesure</small><strong>Ta marque</strong></span></span></a></div>
+      <a class="sc-funnel-card sc-funnel-france" href="#produits/france" aria-label="Produits du moment, disponibles en France"><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 28 40 15l26 13v26L40 67 14 54V28Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m14 28 26 13 26-13M40 41v26" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Produits du moment</small><strong>Dispo en France</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-prada" src="/assets/brands/prada.png" alt="" decoding="async"><img class="sc-brand-logo logo-alo" src="/assets/brands/alo.svg" alt="" decoding="async"><img class="sc-brand-logo logo-on" src="/assets/brands/on.svg" alt="" decoding="async"><img class="sc-brand-logo logo-fred" src="/assets/brands/fred.webp" alt="" decoding="async"><img class="sc-brand-logo logo-lululemon" src="/assets/brands/lululemon.svg" alt="" decoding="async"><img class="sc-brand-logo logo-cpcompany" src="/assets/brands/cpcompany.svg" alt="" decoding="async"><img class="sc-brand-logo logo-stoneisland" src="/assets/brands/stoneisland.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Luxe</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"><img class="sc-brand-logo logo-bose" src="/assets/brands/bose.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong></span></span></a>
       <a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong></span></span></a>
-      <div class="sc-custom-split"><a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing" href="#demande/sourcing" aria-label="Sourcing sur mesure"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Sourcing sur mesure</strong></span></span></a><a class="sc-funnel-card sc-funnel-custom sc-custom-marque" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-create-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 15H19a7 7 0 0 0-7 7v39a7 7 0 0 0 7 7h39a7 7 0 0 0 7-7V40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m32 44-4 15 15-4 25-25-11-11-25 25Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m52 24 11 11M62 8v7M74 20h-7M70 11l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Création de marque</strong></span></span></a></div>
   </div>
 <p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
@@ -1542,6 +1557,14 @@ body.sc-choice-custom #demande{padding-top:16px}
     });
     return base;
   }
+  // Produits déjà en stock en France : case « En stock en France » cochée dans le dashboard.
+  function dispoFrance() {
+    fil([['Catalogue', '#univers'], ['Dispo en France']]); $('catBar').hidden = true;
+    const liste = tous.filter((p) => p.france);
+    $('catList').innerHTML = '<div class="sc-level-head"><h2>Dispo en France</h2></div>' + (liste.length
+      ? `<p class="cat-tg-ligne">Produits du moment, déjà en stock en France. Touchez un produit pour le demander.</p><div class="cat-grid">${liste.map(carte).join('')}</div>`
+      : `<div class="fr-vide"><b>Les prochains arrivages arrivent bientôt.</b><p>Aucun produit en stock en France pour l'instant. Dites-nous ce que vous cherchez, ou suivez les nouveautés sur Telegram.</p><div class="fr-actions"><a href="${wa('Bonjour Wanisource, je cherche un produit disponible en France : ')}" target="_blank" rel="noopener">Demander sur WhatsApp</a><a class="fr-ghost" href="${TG_DOSSIER}" target="_blank" rel="noopener">Voir les groupes Telegram</a></div></div>`);
+  }
   function accueil() {
     fil([]); $('catBar').hidden=true;
     if (location.hash.indexOf('#produits') === 0) location.hash='univers';
@@ -1635,7 +1658,7 @@ body.sc-choice-custom #demande{padding-top:16px}
     dernier = cle;
     const pb = $('catPiedBase'); if (pb) pb.hidden = !!r.s;
     $('catList').dataset.universe = r.s === 'groupe' ? r.groupe : '';
-    if (!r.s) accueil(); else if (r.s === 'groupe') catalogueGroupe(r.groupe,r.marqueId); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
+    if (!r.s) accueil(); else if (r.s === 'france') dispoFrance(); else if (r.s === 'groupe') catalogueGroupe(r.groupe,r.marqueId); else if (r.m === null) secteur(r.s); else marque(r.s, r.m);
     if (defiler && route()) { const t = $('produits'); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); }
   }
   window.addEventListener('hashchange', () => afficher(true));
@@ -1679,7 +1702,7 @@ body.sc-choice-custom #demande{padding-top:16px}
  const fo=document.getElementById('fsForm'),dialog=document.getElementById('wsQuickQuote');
  const $=id=>document.getElementById(id);
  const ouvrirWhatsApp=lines=>{const url='https://wa.me/33624547342?text='+encodeURIComponent(lines.filter(Boolean).join('\n'));if(!window.open(url,'_blank','noopener'))location.href=url;};
- let mode=null,step=0;
+ let mode=null,step=0,venteChoisie=null;
  const fieldsets=Array.from(fo.querySelectorAll('[data-wf-step]'));
  const value=name=>String(fo.elements[name].value||'').trim();
  function render(focus){
@@ -1692,11 +1715,14 @@ body.sc-choice-custom #demande{padding-top:16px}
  }
  function sync(){
   if(location.hash.indexOf('#demande')!==0)return;
-  const next=location.hash.split('/')[1]==='marque'?'marque':'sourcing';
-  if(mode!==next){
+  const morceaux=location.hash.split('/');
+  const next=morceaux[1]==='marque'?'marque':'sourcing';
+  const achat=morceaux[2]==='gros'?'en gros':morceaux[2]==='detail'?'au détail':'';
+  if(mode!==next||achat!==venteChoisie){
+   venteChoisie=achat;
    mode=next;step=0;fo.reset();
    
-   $('wfTitle').textContent=mode==='marque'?'Création de marque':'Sourcing sur mesure';
+   $('wfTitle').textContent=mode==='marque'?'Création de marque':(venteChoisie?'Sur mesure '+venteChoisie:'Sourcing sur mesure');
    $('wfQuestion').textContent=mode==='marque'?'Que voulez-vous créer ?':'Que recherchez-vous ?';
    $('wfPhotoHint').hidden=mode==='marque';
    $('wfProductLabel').textContent=mode==='marque'?'Décrivez votre idée':'Quel produit recherchez-vous ?';
@@ -1713,7 +1739,7 @@ body.sc-choice-custom #demande{padding-top:16px}
   const options=Array.from(fo.querySelectorAll('[name="services"]:checked')).map(c=>c.value);
   ouvrirWhatsApp([
    'Bonjour Wanisource'+(value('nom')?', ici '+value('nom'):'')+'.',
-   'Demande de devis : '+(mode==='marque'?'création de marque':'sourcing sur mesure'),
+   'Demande de devis : '+(mode==='marque'?'création de marque':'sourcing sur mesure'+(venteChoisie?' '+venteChoisie:'')),
    'Secteur : '+value('secteur'),'Projet / produit : '+value('produit'),
    mode==='sourcing'?'Photo de référence : je pourrai vous l’envoyer ici dans WhatsApp.':'',
    'Quantité : '+(value('qte')||'à définir'),'Budget global : '+value('budget'),
