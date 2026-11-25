@@ -1303,7 +1303,7 @@ body.sc-choice-custom #demande{padding-top:16px}
 
 
 /* Accueil : 1) sur mesure (gros, détail, marque) 2) dispo en France 3) les 4 univers du catalogue */
-.sc-funnel .sc-funnel-list{grid-template-rows:minmax(0,1.5fr) repeat(2,minmax(0,1.55fr)) minmax(0,1fr)}
+.sc-funnel .sc-funnel-list{grid-template-rows:minmax(0,1.9fr) repeat(2,minmax(0,1.4fr)) minmax(0,1fr)}
 /* Les 4 univers, deux par rangée */
 .sc-duo-univers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,1.1vh,12px);min-height:0}
 .sc-duo-univers .sc-funnel-card{height:100%}
@@ -1317,7 +1317,7 @@ body.sc-choice-custom #demande{padding-top:16px}
 .sc-hero-recherche .sc-funnel-copy{gap:10px}
 .sc-funnel .sc-hero-recherche .sc-funnel-copy small,.sc-funnel .sc-marque-bas .sc-funnel-copy small{display:block;font-size:clamp(10px,1.1vw,13px);letter-spacing:.08em;text-transform:uppercase;opacity:.85}
 .sc-hero-etapes{display:flex;flex-wrap:wrap;gap:8px 18px;font:500 clamp(13px,1.3vw,16px)/1.3 'DM Sans',sans-serif;color:rgba(255,255,255,.9)}
-.sc-marque-bas .sc-funnel-glass{width:100%}
+.sc-marque-bas .sc-funnel-glass{width:76%}
 .sc-funnel .sc-marque-bas .sc-funnel-copy strong{font-size:clamp(26px,3.4vw,44px)}
 .sc-custom-split.sc-trio{grid-template-columns:repeat(2,1fr)}
 .sc-sm-duo .sc-brand-wall{display:none}
@@ -1338,16 +1338,17 @@ body.sc-choice-custom #demande{padding-top:16px}
 .fr-vide a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:600;text-decoration:none;background:#141c24;color:#fff}
 .fr-vide a.fr-ghost{background:transparent;color:#141c24;border:1px solid rgba(12,32,48,.2)}
 
-/* Carte du haut : une barre de recherche (toute la carte est un lien vers la demande) */
-.sc-hero-recherche .sc-funnel-copy{flex:1;max-width:760px;width:100%;min-width:0;grid-template-columns:minmax(0,1fr);align-content:center}
-.sc-recherche{box-sizing:border-box;width:100%;max-width:100%}
-.sc-recherche{display:flex;align-items:center;gap:12px;margin-top:6px;height:clamp(46px,6vh,58px);padding:0 6px 0 18px;border-radius:999px;background:#fff;color:#0c2030;box-shadow:0 10px 26px -14px rgba(0,0,0,.55);transition:box-shadow .2s}
-.sc-recherche svg{width:22px;height:22px;flex:none;color:#0b7f80}
-.sc-recherche-txt{flex:1;min-width:0;font:400 clamp(14px,1.3vw,16px)/1 'DM Sans',sans-serif;color:rgba(12,32,48,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sc-recherche-go{flex:none;display:inline-flex;align-items:center;height:calc(100% - 12px);padding:0 20px;border-radius:999px;background:#141c24;color:#fff;font:600 clamp(13px,1.2vw,15px)/1 'DM Sans',sans-serif}
-.sc-hero-recherche:hover .sc-recherche,.sc-hero-recherche:focus-visible .sc-recherche{box-shadow:0 0 0 3px rgba(37,211,200,.45),0 10px 26px -14px rgba(0,0,0,.55)}
-.sc-hero-recherche:hover .sc-recherche-go{background:#0b7f80}
-@media(max-width:620px){.sc-recherche{height:44px;padding-left:14px;gap:9px}.sc-recherche svg{width:19px;height:19px}.sc-recherche-txt{font-size:13px}.sc-recherche-go{padding:0 13px;font-size:12.5px}}
+/* Carte du haut : grande loupe à droite, phrase claire et bouton d'action (toute la carte est un lien) */
+.sc-hero-recherche .sc-funnel-copy{flex:1;max-width:720px;width:100%;min-width:0;grid-template-columns:minmax(0,1fr);align-content:center}
+.sc-hero-recherche .sc-funnel-glass{width:72%}
+.sc-hero-loupe{width:26%!important;right:4%!important}
+.sc-hero-loupe .sc-search-symbol{width:clamp(80px,14vh,140px);height:clamp(80px,14vh,140px)}
+.sc-hero-phrase{font:400 clamp(14px,1.35vw,17px)/1.4 'DM Sans',sans-serif;color:rgba(255,255,255,.88);max-width:46ch}
+.sc-hero-cta{justify-self:start;display:inline-flex;align-items:center;gap:10px;margin-top:4px;min-height:44px;padding:0 20px;border-radius:999px;background:#fff;color:#0c2030;font:600 clamp(14px,1.25vw,16px)/1 'DM Sans',sans-serif;box-shadow:0 10px 24px -14px rgba(0,0,0,.6);transition:background .2s,color .2s}
+.sc-hero-cta i{font-style:normal;transition:transform .2s}
+.sc-hero-recherche:hover .sc-hero-cta,.sc-hero-recherche:focus-visible .sc-hero-cta{background:#5ee4e3}
+.sc-hero-recherche:hover .sc-hero-cta i{transform:translateX(4px)}
+@media(max-width:620px){.sc-funnel .sc-hero-recherche .sc-funnel-copy strong{font-size:clamp(24px,7vw,29px)}.sc-hero-recherche .sc-funnel-copy{gap:7px}.sc-hero-recherche .sc-funnel-glass{width:74%!important}.sc-hero-loupe{width:24%!important;right:3%!important}.sc-hero-loupe .sc-search-symbol{width:62px;height:62px}.sc-hero-phrase{font-size:12.5px}.sc-hero-cta{min-height:36px;padding:0 14px;font-size:13px}}
 .wf-options.wf-achat{grid-template-columns:1fr 1fr!important}
 .wf-achat label{position:relative;justify-content:center;font-size:15px;font-weight:600;padding:15px;min-height:52px;box-sizing:border-box}
 .wf-achat input{position:absolute!important;opacity:0;width:1px!important;height:1px!important;margin:0;pointer-events:none}
@@ -1357,6 +1358,9 @@ body.sc-choice-custom #demande{padding-top:16px}
 /* En-tête téléphone : le bouton ne doit pas recouvrir « Wanisource » */
 .cta-court{display:none}
 @media(max-width:620px){.cta-top{min-height:38px!important;padding:0 14px!important;font-size:13.5px!important;white-space:nowrap}.cta-long{display:none}.cta-court{display:inline}}
+
+.sc-marque-phrase{font:400 clamp(13px,1.2vw,16px)/1.35 'DM Sans',sans-serif;color:rgba(255,255,255,.86)}
+@media(max-width:620px){.sc-marque-phrase{font-size:12px}.sc-marque-bas .sc-funnel-glass{width:78%!important}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane--></head>
 <body>
@@ -1376,10 +1380,10 @@ body.sc-choice-custom #demande{padding-top:16px}
 
 <section class="sc-quick sc-funnel" aria-label="Choisissez votre univers de sourcing">
   <div class="wrap sc-funnel-list">
-      <a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing sc-hero-recherche" href="#demande/sourcing" aria-label="On trouve votre article : envoyer une recherche"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Sourcing en Chine</small><strong>On trouve votre article</strong><span class="sc-recherche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/></svg><span class="sc-recherche-txt">Une référence, une photo ou le modèle…</span><span class="sc-recherche-go">Rechercher</span></span></span></span></a>
+      <a class="sc-funnel-card sc-funnel-custom sc-custom-sourcing sc-hero-recherche" href="#demande/sourcing" aria-label="On trouve votre article : lancer ma recherche"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/etape-usine-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall sc-hero-loupe" aria-hidden="true"><svg class="sc-search-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="33" cy="33" r="21" stroke="currentColor" stroke-width="5"/><path d="m49 49 19 19" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M23 24a14 14 0 0 1 17-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>On trouve votre article</strong><span class="sc-hero-phrase">Envoyez la référence, une photo ou le modèle : on le cherche pour vous.</span><span class="sc-hero-cta">Lancer ma recherche <i aria-hidden="true">→</i></span></span></span></a>
       <div class="sc-duo-univers"><a class="sc-funnel-card sc-funnel-luxe" href="#produits/groupe/luxe" aria-label="Découvrir LUXE"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-prada" src="/assets/brands/prada.png" alt="" decoding="async"><img class="sc-brand-logo logo-alo" src="/assets/brands/alo.svg" alt="" decoding="async"><img class="sc-brand-logo logo-on" src="/assets/brands/on.svg" alt="" decoding="async"><img class="sc-brand-logo logo-fred" src="/assets/brands/fred.webp" alt="" decoding="async"><img class="sc-brand-logo logo-lululemon" src="/assets/brands/lululemon.svg" alt="" decoding="async"><img class="sc-brand-logo logo-cpcompany" src="/assets/brands/cpcompany.svg" alt="" decoding="async"><img class="sc-brand-logo logo-stoneisland" src="/assets/brands/stoneisland.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Luxe</strong></span></span></a><a class="sc-funnel-card sc-funnel-beaute" href="#produits/groupe/beaute" aria-label="Découvrir BEAUTÉ"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-beaute-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-kayali" src="/assets/brands/kayali.png" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Beauté</strong></span></span></a></div>
       <div class="sc-duo-univers"><a class="sc-funnel-card sc-funnel-acc" href="#produits/groupe/acc" aria-label="Découvrir ACCESSOIRES"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-tech-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-whoop" src="/assets/brands/whoop.svg" alt="" decoding="async"><img class="sc-brand-logo logo-lego" src="/assets/brands/lego.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Accessoires</strong></span></span></a><a class="sc-funnel-card sc-funnel-moto" href="#produits/groupe/moto" aria-label="Découvrir MOTO"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-auto-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><img class="sc-brand-logo logo-arai" src="/assets/brands/arai.png" alt="" decoding="async"><img class="sc-brand-logo logo-tmax" src="/assets/brands/tmax.png?v=2" alt="" decoding="async"><img class="sc-brand-logo logo-bose" src="/assets/brands/bose.svg" alt="" decoding="async"></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><strong>Moto</strong></span></span></a></div>
-      <a class="sc-funnel-card sc-funnel-custom sc-custom-marque sc-marque-bas" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-create-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 15H19a7 7 0 0 0-7 7v39a7 7 0 0 0 7 7h39a7 7 0 0 0 7-7V40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m32 44-4 15 15-4 25-25-11-11-25 25Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m52 24 11 11M62 8v7M74 20h-7M70 11l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Vous lancez votre marque ?</small><strong>Création de marque</strong></span></span></a>
+      <a class="sc-funnel-card sc-funnel-custom sc-custom-marque sc-marque-bas" href="#demande/marque" aria-label="Création de marque"><span class="sc-funnel-image" style="background-image:url('/assets/sourcing/secteur-mode-v2-fixe.webp')" aria-hidden="true"></span><span class="sc-brand-wall" aria-hidden="true"><svg class="sc-create-symbol" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 15H19a7 7 0 0 0-7 7v39a7 7 0 0 0 7 7h39a7 7 0 0 0 7-7V40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m32 44-4 15 15-4 25-25-11-11-25 25Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m52 24 11 11M62 8v7M74 20h-7M70 11l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="sc-funnel-glass"><span class="sc-funnel-copy"><small>Vous lancez votre marque ?</small><strong>Création de marque</strong><span class="sc-marque-phrase">Logo, étiquettes, packaging et votre site internet avec Wanisite.</span></span></span></a>
   </div>
 <p class="sc-brand-note">Marques citées à titre de référence, sans affiliation ni partenariat officiel.</p>
 </section>
