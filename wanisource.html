@@ -964,6 +964,8 @@ body.sc-choice-products #produits{padding:28px 0 56px}
 .sc-notify-help{font:400 12px/1.6 var(--sans);color:#64737b;margin:20px 0}
 .sc-brand-quote{margin-top:24px}
 .sc-real-products{margin-bottom:24px}
+.sc-nouveaux+.sc-real-products .sc-real-product-actions{grid-template-columns:1fr}
+.sc-nouveaux{margin:26px 0 12px;font:300 26px/1.15 'Outfit',var(--sans),sans-serif;letter-spacing:-.02em;color:#0c2030}
 .sc-real-product{position:relative;min-width:0}
 .sc-real-product>.cat-card{width:100%}
 .sc-real-product>.sc-notify{margin:10px 0}
@@ -1532,6 +1534,17 @@ body.sc-choice-brand #brandIdeas{display:block}
 .mb-lien:hover{background:rgba(255,255,255,.18)}
 @media(max-width:700px){.mb-carte{flex-direction:column;align-items:flex-start;padding:20px}}
 
+.mb-produits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.mb-produit{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:#fff;border:1px solid rgba(12,32,48,.1)}
+.mb-produit img,.mb-sans-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:linear-gradient(145deg,#e7f5ee,#d3eadf)}
+.mb-corps{display:flex;flex-direction:column;gap:8px;padding:14px 16px 16px;flex:1}
+.mb-corps h3{margin:0;color:#102532;font:500 19px/1.15 'Outfit',var(--sans),sans-serif;letter-spacing:-.02em}
+.mb-corps p{margin:0;color:#5d6d75;font:400 13px/1.45 var(--sans)}
+.mb-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.mb-actions button,.mb-actions a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;font:600 13px/1 var(--sans);text-decoration:none;cursor:pointer}
+.mb-actions button{border:0;background:#0f7a4c;color:#fff}
+.mb-actions a{border:1px solid rgba(15,122,76,.3);color:#0f7a4c;background:#f2faf6}
+@media(max-width:560px){.mb-produits{grid-template-columns:1fr}}
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane--></head>
 <body>
@@ -1622,9 +1635,27 @@ body.sc-choice-brand #brandIdeas{display:block}
     <h2 id="brandIdeasTitle">Pas encore de produit en tête ?</h2>
     <p>Nous publions des produits à fort potentiel, prêts à passer sous votre marque, dans notre sujet Telegram « Marque blanche ». Choisissez celui qui vous plaît, puis demandez votre devis ci-dessus.</p>
    </div>
-   <a class="mb-lien" href="https://t.me/wanisitesourcing/41" target="_blank" rel="noopener">Voir les produits sur Telegram <i aria-hidden="true">→</i></a>
+   <a class="mb-lien" id="mbLien" href="https://t.me/wanisitesourcing/41" target="_blank" rel="noopener">Voir les produits sur Telegram <i aria-hidden="true">→</i></a>
   </div>
+  <div class="mb-produits" id="mbProduits" hidden></div>
  </div>
+<script>
+// Produits tendance en marque blanche : produits publiés du catalogue du dashboard avec la case « Marque blanche ».
+(() => {
+  const API = location.hostname === 'localhost' ? 'http://localhost:3501' : 'https://wanisitedash.vercel.app';
+  const TG = 'https://t.me/wanisitesourcing/41';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const enc = encodeURIComponent;
+  fetch(API + '/api/public/catalogue').then((r) => r.json()).then((d) => {
+    const ps = (Array.isArray(d.produits) ? d.produits : []).filter((p) => p.marqueBlanche).slice(0, 6);
+    if (!ps.length) return;
+    const box = document.getElementById('mbProduits');
+    box.innerHTML = ps.map((p) => `<article class="mb-produit">${p.nbPhotos ? `<img src="${API}/api/public/catalogue/photo/${enc(p.id)}/0?v=${enc(p.version)}" alt="${esc(p.nom)}" loading="lazy">` : '<span class="mb-sans-photo" aria-hidden="true"></span>'}<div class="mb-corps"><h3>${esc(p.nom)}</h3>${p.description ? `<p>${esc(p.description)}</p>` : ''}<div class="mb-actions"><button type="button" data-brand-pick="${esc(p.nom)}" data-brand-telegram="${TG}" data-brand-sector="">Demander un devis</button><a href="${TG}" target="_blank" rel="noopener">Voir sur Telegram</a></div></div></article>`).join('');
+    box.hidden = false;
+    const l = document.getElementById('mbLien'); if (l) l.firstChild.textContent = 'Tous les produits sur Telegram ';
+  }).catch(() => {});
+})();
+</script>
 </section>
 <dialog id="wsQuickQuote" class="ws-quick-quote" aria-labelledby="qqTitle">
  <form id="qqForm" novalidate>
@@ -1808,6 +1839,13 @@ body.sc-choice-brand #brandIdeas{display:block}
           '<a class="sc-tg-topic sc-brand-'+esc(m.id)+(m.logo?' has-logo':'')+'" href="'+lienMarque(k,m.id)+'" aria-label="Voir les produits '+esc(m.nom)+'">'+
           (m.logo?'<span class="sc-topic-art" aria-hidden="true">'+imageMarque(m)+'</span>':'')+
           '<b>'+esc(m.nom)+'</b><span class="sc-topic-open" aria-hidden="true">↗</span></a>').join('')+'</div>';
+      // Produits ajoutés depuis le dashboard sans marque : affichés ici, avec leur sujet Telegram.
+      const SUJET_TYPE={acc:{'Électronique':29,'Canapés':31,'Accessoires':10,'Autres':11},moto:{'Intercoms':7,'Visières':9,'Kits LED & feux':11,'Crash bars':13,'Dosserets TMAX':15}};
+      const nouveaux=tous.filter(p=>groupeProduit(p)===k && !p.marque && !p.marqueBlanche);
+      if(nouveaux.length) $('catList').innerHTML+='<h3 class="sc-nouveaux">Nos produits</h3><div class="cat-grid sc-real-products">'+nouveaux.map(p=>{
+        const id=(SUJET_TYPE[k]||{})[p.type], fiche=id?groupeUrl+'/'+id:groupeUrl;
+        return '<div class="sc-real-product">'+carte(p)+'<div class="sc-real-product-actions">'+boutonDevisProduit({id:p.id,nom:p.nom,reference:p.reference||'',marque:'Sans marque',categorie:config.nom,telegram:fiche})+'<a class="sc-product-view" href="'+fiche+'" target="_blank" rel="noopener">Voir sur Telegram</a></div></div>';
+      }).join('')+'</div>';
       return;
     }
     fil([['Catégories','#univers'],[config.nom,lienMarque(k)],[selection.nom]]);
