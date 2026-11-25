@@ -1424,6 +1424,33 @@ header.top .wrap .menu{grid-column:3;grid-row:1;justify-self:end}
 .sc-funnel .sc-hero-phrase,.sc-funnel .sc-marque-phrase{font-size:clamp(13px,min(1.25vw,1.9vh),16px)!important;line-height:1.35!important;max-width:none!important}
 .sc-funnel .sc-hero-recherche .sc-hero-cta,.sc-funnel .sc-marque-bas .sc-hero-cta{min-height:clamp(36px,5vh,46px)!important}
 .sc-funnel .sc-hero-recherche .sc-hero-cta i,.sc-funnel .sc-marque-bas .sc-hero-cta i{width:clamp(28px,4vh,34px);height:clamp(28px,4vh,34px)}
+
+/* Idées de produits marque blanche visibles uniquement dans le parcours Création de marque. */
+#brandIdeas{display:none;width:min(1080px,100%);margin:0 auto 30px;padding:0 20px;box-sizing:border-box}
+body.sc-choice-brand #brandIdeas{display:block}
+.brand-ideas-head{max-width:720px;margin:0 auto 22px;text-align:center}
+.brand-ideas-kicker{display:inline-block;margin-bottom:9px;color:#078887;font:700 11px/1.3 var(--sans);letter-spacing:.13em;text-transform:uppercase}
+.brand-ideas-head h2{margin:0;color:#102532;font:400 clamp(28px,4vw,40px)/1.08 'Outfit',var(--sans),sans-serif;letter-spacing:-.04em}
+.brand-ideas-head p{margin:10px auto 0;color:#5d6d75;font:400 14px/1.55 var(--sans);max-width:66ch}
+.brand-ideas-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.brand-idea{overflow:hidden;border:1px solid rgba(12,32,48,.12);border-radius:20px;background:#fff;box-shadow:0 14px 34px -25px rgba(12,32,48,.38)}
+.brand-idea-art{position:relative;display:grid;place-items:center;aspect-ratio:1.25;background:linear-gradient(145deg,#e9f3f5,#d8e8ed);overflow:hidden}
+.brand-idea-art img{width:85%;height:82%;object-fit:contain}
+.brand-idea-art span{position:absolute;left:12px;top:12px;padding:6px 9px;border:1px solid rgba(255,255,255,.7);border-radius:99px;background:rgba(255,255,255,.9);color:#126c6d;font:700 10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase}
+.brand-idea-body{padding:16px}
+.brand-idea-body small{display:block;color:#078887;font:700 10px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.brand-idea-body h3{margin:5px 0 7px;color:#102532;font:500 20px/1.15 'Outfit',var(--sans),sans-serif;letter-spacing:-.02em}
+.brand-idea-body p{min-height:42px;margin:0 0 14px;color:#5d6d75;font:400 12px/1.45 var(--sans)}
+.brand-idea-actions{display:grid;gap:8px}
+.brand-idea-actions a,.brand-idea-actions button{display:flex;align-items:center;justify-content:center;min-height:39px;padding:8px 10px;border-radius:11px;box-sizing:border-box;font:600 12px/1.3 var(--sans);text-align:center;text-decoration:none;cursor:pointer}
+.brand-idea-actions a{border:1px solid rgba(8,124,125,.25);color:#087c7d;background:#f5fbfb}
+.brand-idea-actions button{border:1px solid #087c7d;background:#087c7d;color:#fff}
+.brand-idea-actions a:hover{background:#e4f5f4}.brand-idea-actions button:hover{background:#066b6c}
+.brand-idea-actions a:focus-visible,.brand-idea-actions button:focus-visible{outline:3px solid #0aa6a0;outline-offset:3px}
+.brand-ideas-note{margin:14px 0 0;color:#62717a;font:400 12px/1.5 var(--sans);text-align:center}
+@media(max-width:800px){.brand-ideas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#brandIdeas{padding:0 14px}.brand-ideas-grid{gap:10px}.brand-idea-body{padding:12px}.brand-idea-body h3{font-size:18px}.brand-idea-body p{font-size:11px;min-height:48px}.brand-idea-actions a,.brand-idea-actions button{font-size:11px;padding:8px 7px}}
+
 </style>
 <!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane--></head>
 <body>
@@ -1475,6 +1502,21 @@ header.top .wrap .menu{grid-column:3;grid-row:1;justify-self:end}
 </section>
 
 <section id="demande" class="ws-custom-section">
+
+ <div id="brandIdeas" aria-labelledby="brandIdeasTitle">
+  <div class="brand-ideas-head">
+   <span class="brand-ideas-kicker">Pistes à potentiel · marque blanche</span>
+   <h2 id="brandIdeasTitle">Choisissez un produit pour votre marque</h2>
+   <p>Découvrez des idées d’équipement moto présentées dans nos sujets Telegram, puis préparez votre projet de marque blanche.</p>
+  </div>
+  <div class="brand-ideas-grid">
+   <article class="brand-idea"><div class="brand-idea-art"><img src="/assets/sourcing/moto-intercom-reference.webp" alt="Intercom moto" loading="lazy"><span>Potentiel à valider</span></div><div class="brand-idea-body"><small>Équipement moto</small><h3>Intercom moto</h3><p>Une piste pour créer une gamme d’accessoires sous votre propre marque.</p><div class="brand-idea-actions"><a href="https://t.me/wanisitemoto/7" target="_blank" rel="noopener">Voir le sujet Telegram ↗</a><button type="button" data-brand-pick="Intercom moto" data-brand-sector="Moto &amp; automobile" data-brand-telegram="https://t.me/wanisitemoto/7">Créer ma marque avec ce produit</button></div></div></article>
+   <article class="brand-idea"><div class="brand-idea-art"><img src="/assets/sourcing/moto-visiere.svg" alt="Visière moto" loading="lazy"><span>Potentiel à valider</span></div><div class="brand-idea-body"><small>Équipement moto</small><h3>Visières moto</h3><p>Une piste à vérifier selon les modèles de casques et les compatibilités.</p><div class="brand-idea-actions"><a href="https://t.me/wanisitemoto/9" target="_blank" rel="noopener">Voir le sujet Telegram ↗</a><button type="button" data-brand-pick="Visières moto" data-brand-sector="Moto &amp; automobile" data-brand-telegram="https://t.me/wanisitemoto/9">Créer ma marque avec ce produit</button></div></div></div></article>
+   <article class="brand-idea"><div class="brand-idea-art"><img src="/assets/sourcing/moto-led.svg" alt="Éclairage LED pour moto" loading="lazy"><span>Potentiel à valider</span></div><div class="brand-idea-body"><small>Équipement moto</small><h3>Kits LED &amp; feux</h3><p>Une idée à étudier selon les motos compatibles et les exigences applicables.</p><div class="brand-idea-actions"><a href="https://t.me/wanisitemoto/11" target="_blank" rel="noopener">Voir le sujet Telegram ↗</a><button type="button" data-brand-pick="Kits LED et feux moto" data-brand-sector="Moto &amp; automobile" data-brand-telegram="https://t.me/wanisitemoto/11">Créer ma marque avec ce produit</button></div></div></div></article>
+   <article class="brand-idea"><div class="brand-idea-art"><img src="/assets/sourcing/moto-crashbar.svg" alt="Crash bars pour moto" loading="lazy"><span>Potentiel à valider</span></div><div class="brand-idea-body"><small>Équipement moto</small><h3>Crash bars</h3><p>Une piste de gamme à valider selon les motos et les quantités souhaitées.</p><div class="brand-idea-actions"><a href="https://t.me/wanisitemoto/13" target="_blank" rel="noopener">Voir le sujet Telegram ↗</a><button type="button" data-brand-pick="Crash bars moto" data-brand-sector="Moto &amp; automobile" data-brand-telegram="https://t.me/wanisitemoto/13">Créer ma marque avec ce produit</button></div></div></article>
+  </div>
+  <p class="brand-ideas-note">Ce sont des pistes à étudier, pas une garantie de ventes. Le potentiel commercial, la disponibilité en marque blanche, les quantités minimales et les exigences de conformité sont à confirmer avec le fournisseur.</p>
+ </div>
  <div class="wrap ws-custom-wrap">
   <form id="fsForm" class="ws-funnel" novalidate>
    <div class="ws-custom-heading"><h1 id="wfTitle">Sourcing sur mesure</h1></div>
@@ -1838,6 +1880,16 @@ header.top .wrap .menu{grid-column:3;grid-row:1;justify-self:end}
    render(false);
   }
  }
+ document.addEventListener('click',e=>{
+  const pick=e.target.closest('[data-brand-pick]');if(!pick)return;
+  if(mode!=='marque'){location.hash='#demande/marque';return;}
+  step=0;render(false);
+  fo.elements.secteur.value=pick.dataset.brandSector;
+  fo.elements.produit.value='Je souhaite étudier une marque blanche autour de : '+pick.dataset.brandPick+'. Sujet Telegram : '+pick.dataset.brandTelegram;
+  $('wfSummary').textContent=value('secteur')+' · '+value('produit');
+  fo.scrollIntoView({behavior:'smooth',block:'start'});
+  fieldsets[0].querySelector('legend').focus({preventScroll:true});
+ });
  $('wfPrevious').addEventListener('click',()=>{if(step>0){step--;render(true);}});
  fo.addEventListener('submit',e=>{
   e.preventDefault();
@@ -1898,6 +1950,7 @@ header.top .wrap .menu{grid-column:3;grid-row:1;justify-self:end}
     document.body.classList.toggle('sc-choice-open',product||custom);
     document.body.classList.toggle('sc-choice-products',product);
     document.body.classList.toggle('sc-choice-custom',custom);
+    document.body.classList.toggle('sc-choice-brand',custom && h.indexOf('/marque')!==-1);
     if(h==='#univers')history.replaceState(null,'',location.pathname+location.search);
     if(product||custom)requestAnimationFrame(function(){window.scrollTo(0,0)});
   }
