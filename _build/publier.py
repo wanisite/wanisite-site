@@ -129,15 +129,18 @@ def pied_liens():
 
 
 # Réseaux affichés dans le pied de page de l'accueil : (nom, adresse). Vide = la colonne n'apparaît pas.
-RESEAUX = [("TikTok", "https://www.tiktok.com/@wani.source"), ("Instagram", "https://www.instagram.com/wani.source/"), ("Telegram", "https://t.me/addlist/uIApVfUPlioxNjE0")]
+# Réseaux du pied de page (décision du 2026-11-25) : Wanisite = LinkedIn seulement ; la page /wanisource garde les réseaux du sourcing.
+RESEAUX = [("LinkedIn", "https://www.linkedin.com/in/wani-site-002005273/")]
+RESEAUX_SOURCING = [("TikTok", "https://www.tiktok.com/@wani.source"), ("Instagram", "https://www.instagram.com/wani.source/"), ("Telegram", "https://t.me/addlist/uIApVfUPlioxNjE0")]
 
 
-def pied_pro():
+def pied_pro(reseaux=None):
+    reseaux = RESEAUX if reseaux is None else reseaux
     """Pied de page structuré de l'accueil (colonnes). Le contenu entre les repères <!--pied-liens--> est régénéré ici."""
     svc = ''.join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for u, n in SERVICES)
-    res = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a></li>' for n, u in RESEAUX)
-    colonne_res = f'<nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul>{res}</ul></nav>' if RESEAUX else ''
-    classe = 'fp fp-5' if RESEAUX else 'fp'
+    res = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a></li>' for n, u in reseaux)
+    colonne_res = f'<nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul>{res}</ul></nav>' if reseaux else ''
+    classe = 'fp fp-5' if reseaux else 'fp'
     return ('<!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=4">' f'<div class="{classe}">'
             '<div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a>'
             '<p>Le laboratoire digital : sites, boutiques, logiciels et CRM pour attirer, vendre et piloter votre activité.</p>'
@@ -152,9 +155,9 @@ def pied_pro():
             '<p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens-->')
 
 
-def moderniser_pied(s, index=False):
+def moderniser_pied(s, index=False, reseaux=None):
     """Même pied de page partout : <footer class="fpied"> + bloc structuré (le style est dans /assets/pied.css)."""
-    bloc = pied_pro()
+    bloc = pied_pro(reseaux)
     if index:  # l'accueil garde son bloc de style dans le pied : on ne remplace que le bloc régénéré
         s = re.sub(r'<footer(?: class="fpied")?>', '<footer class="fpied">', s, count=1)
         return remplacer_bloc(s, 'pied-liens', bloc, '</footer>')
@@ -358,7 +361,7 @@ def referencer_pages():
     for u, nom in SERVICES:
         f = u.lstrip('/') + '.html'
         s = lire(f)
-        s = moderniser_pied(s)
+        s = moderniser_pied(s, reseaux=RESEAUX_SOURCING if u == '/wanisource' else None)
         s = remplacer_bloc(s, 'ariane', ariane([('/', 'Accueil'), (u, nom)]), '</head>')
         ecrire(f, s)
     for u, nom in REALISATIONS:
