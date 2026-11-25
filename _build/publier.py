@@ -131,7 +131,7 @@ def pied_liens():
 
 
 # Réseaux affichés dans le pied de page de l'accueil : (nom, adresse). Vide = la colonne n'apparaît pas.
-RESEAUX = [("TikTok", "https://www.tiktok.com/@wanisite"), ("Instagram", "https://www.instagram.com/wanisite/"), ("Telegram", "https://t.me/addlist/uIApVfUPlioxNjE0")]
+RESEAUX = [("TikTok", "https://www.tiktok.com/@wani.source"), ("Instagram", "https://www.instagram.com/wani.source/"), ("Telegram", "https://t.me/addlist/uIApVfUPlioxNjE0")]
 
 
 def pied_pro():
