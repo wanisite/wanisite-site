@@ -1233,7 +1233,7 @@ setTimeout(hide,1200);})();</script>
           <p>CRM, dashboard, gestion clients / stock / équipe — un outil pensé pour votre métier, pas un logiciel générique qu'on vous impose.</p>
           <div class="meta">Sur devis <a class="learn-more" href="/services/logiciel-sur-mesure">En savoir plus →</a></div>
         </div>
-        <div class="price-card">
+        <div class="price-card large">
           <picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/icones/sourcing-3d-fixe.webp?v=2"><img class="svc-ico" src="/assets/icones/sourcing-3d-v3.webp" alt="" width="150" height="150" loading="lazy" decoding="async" fetchpriority="low"></picture>
           <div class="pt">Sourcing</div>
           <h3>Fournisseurs en Chine</h3>
@@ -1484,6 +1484,14 @@ setTimeout(hide,1200);})();</script>
 
   /* Fond continu sous la barre du haut : le quadrillage du hero remonte derrière la navigation (plus de ligne de coupure) */
   .dot-grid{margin-top:-101px;padding-top:101px;}
+
+  /* Sourcing : 4e carte seule sur sa ligne → pleine largeur, même style que les 3 autres (icône à gauche, texte à droite) */
+  @media (min-width:900px){
+    #tarifs .real-track .price-card.large{grid-column:1 / -1;display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:32px;align-items:start;}
+    #tarifs .price-card.large .svc-ico{grid-row:1 / span 4;margin:0;}
+    #tarifs .price-card.large .pt,#tarifs .price-card.large h3,#tarifs .price-card.large p,#tarifs .price-card.large .meta{grid-column:2;}
+    #tarifs .price-card.large p{max-width:720px;}
+  }
 
 </style>
   <!--pied-liens--><link rel="stylesheet" href="/assets/pied.css?v=4"><div class="fp fp-5"><div class="fp-marque"><a class="fp-nom" href="/">Wanisite</a><p>Le laboratoire digital : sites, boutiques, logiciels et CRM pour attirer, vendre et piloter votre activité.</p><a class="fp-cta" href="/#rdv">Diagnostic gratuit</a></div><nav class="fp-col" aria-label="Services"><h2>Services</h2><ul><li><a href="/services/site-vitrine">Site vitrine</a></li><li><a href="/services/ecommerce">Boutique en ligne</a></li><li><a href="/services/logiciel-sur-mesure">Logiciel sur mesure</a></li><li><a href="/wanisource">Wanisource · sourcing Chine</a></li></ul></nav><nav class="fp-col" aria-label="Le site"><h2>Le site</h2><ul><li><a href="/">Accueil</a></li><li><a href="/#realisations">Réalisations</a></li><li><a href="/#protocole">Comment ça marche</a></li><li><a href="/blog/">Blog</a></li></ul></nav><nav class="fp-col" aria-label="Réseaux"><h2>Réseaux</h2><ul><li><a href="https://www.tiktok.com/@wani.source" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.instagram.com/wani.source/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://t.me/addlist/uIApVfUPlioxNjE0" target="_blank" rel="noopener">Telegram</a></li></ul></nav><div class="fp-col"><h2>Contact</h2><ul><li><a href="mailto:wanisitepro@gmail.com">wanisitepro@gmail.com</a></li><li><a href="tel:+33624547342">+33 6 24 54 73 42</a></li><li><a href="https://wa.me/33624547342" target="_blank" rel="noopener">WhatsApp</a></li><li class="fp-note">Réponse sous 24 h</li></ul></div><p class="fp-bas">© 2026 Wanisite · Le laboratoire digital</p></div><!--/pied-liens--></footer>
