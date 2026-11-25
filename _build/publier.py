@@ -24,7 +24,7 @@ SERVICES = [
     ('/services/ecommerce', 'Boutique en ligne'),
     ('/services/logiciel-sur-mesure', 'Logiciel sur mesure'),
     ('/services/budget-marketing', 'Meta Ads et Google Ads'),
-    ('/services/sourcing-chine', 'Sourcing en Chine'),
+    ('/wanisource', 'Wanisource · sourcing Chine'),
 ]
 REALISATIONS = [('/realisations/clean-and-polish', 'Clean & Polish'), ('/realisations/aesthetic-men', 'Aesthetic Men')]
 

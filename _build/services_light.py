@@ -326,7 +326,7 @@ def reservation():
                 'Vos clients choisissent un créneau libre, vous êtes prévenu, ils reçoivent une confirmation. Exemple réel, devis gratuit et prix fixe annoncé avant de commencer.',
                 'Système de réservation en ligne', 'Bonjour, je voudrais un devis pour un système de réservation en ligne.', 'Bonjour, je voudrais présenter mon projet de réservation en ligne.', h, body, faq)
 
-# La page Sourcing Chine (services/sourcing-chine) est écrite à la main : design à part, inspiré du style « Source Club ».
+# La page Sourcing Chine (wanisource.html, adresse /wanisource) est écrite à la main : design à part, inspiré du style « Source Club ».
 
 if __name__ == '__main__':
     for name, fn in (('site-vitrine', vitrine), ('ecommerce', ecommerce), ('reservation', reservation)):

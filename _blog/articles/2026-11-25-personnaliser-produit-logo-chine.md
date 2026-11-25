@@ -3,7 +3,7 @@ titre: Personnaliser un produit à son logo en Chine : le guide
 description: Technique de marquage, fichier du logo, couleurs, emballage, échantillon et droit des marques : ce qu'il faut préparer avant de commander un produit à votre logo en Chine.
 date: 2026-11-25
 slug: personnaliser-produit-logo-chine
-service: /services/sourcing-chine | Sourcing en Chine
+service: /wanisource | Sourcing en Chine
 mots_cles: personnaliser produit logo, produit personnalisé Chine, marquage logo, OEM, importer de Chine, emballage personnalisé
 ---
 Mettre son logo sur un produit fabriqué en Chine paraît simple : on envoie l'image, l'usine l'imprime. En pratique, c'est l'étape où naissent beaucoup de déceptions à la réception : logo flou, couleur différente, marquage qui s'efface, emballage oublié. Voici ce qu'il faut préparer et vérifier avant de passer commande, pour que le produit qui arrive ressemble à celui que vous aviez en tête.
@@ -91,4 +91,4 @@ L'échantillon validé ne garantit pas que les centaines de pièces suivantes se
 
 Un produit à votre logo réussi tient à quelques étapes : la bonne technique de marquage pour la matière, un fichier vectoriel avec des couleurs Pantone, un BAT relu mot par mot, un échantillon personnalisé testé en conditions réelles, un emballage pensé dès le départ, et un contrôle avant expédition. Chaque étape sautée est un risque de découvrir le problème une fois la marchandise arrivée.
 
-Si vous voulez être accompagné, de la recherche de l'usine au contrôle de la marchandise, découvrez notre service de [sourcing en Chine](/services/sourcing-chine). Le prix est fixé sur devis et annoncé avant de commencer.
+Si vous voulez être accompagné, de la recherche de l'usine au contrôle de la marchandise, découvrez notre service de [sourcing en Chine](/wanisource). Le prix est fixé sur devis et annoncé avant de commencer.

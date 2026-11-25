@@ -20,5 +20,17 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/services/sourcing-chine",
+      "destination": "/wanisource",
+      "permanent": true
+    },
+    {
+      "source": "/services/sourcing-chine.html",
+      "destination": "/wanisource",
+      "permanent": true
+    }
+  ]
 }
