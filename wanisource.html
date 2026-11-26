@@ -1546,7 +1546,27 @@ body.sc-choice-brand #brandIdeas{display:block}
 .mb-actions a{border:1px solid rgba(15,122,76,.3);color:#0f7a4c;background:#f2faf6}
 @media(max-width:560px){.mb-produits{grid-template-columns:1fr}}
 </style>
-<!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane--></head>
+<!--ariane--><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.wanisitelab.com/"}, {"@type": "ListItem", "position": 2, "name": "Wanisource · sourcing Chine", "item": "https://www.wanisitelab.com/wanisource"}]}</script><!--/ariane-->
+<style>
+.ws-produits{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,490px),1fr));gap:20px;margin:20px 0 32px}
+.ws-produit{display:grid;grid-template-columns:minmax(120px,40%) 1fr;background:#fff;border:1px solid #d5dedc;border-radius:20px;overflow:hidden;max-width:880px;color:#172d37}
+.ws-visuel,.cat-gal .big:has(.ws-embleme),.cat-gal .big:has(.ws-signature){display:grid;place-items:center;background:radial-gradient(ellipse at 27% 15%,#fcfaf6,#ebebe4 70%,#d6d9d1);overflow:hidden}
+.ws-visuel{border:0;padding:0;position:relative;min-height:200px;cursor:zoom-in}
+.ws-photo{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.ws-embleme,.cat-gal .big img.ws-embleme{position:static;width:48%;height:72px;object-fit:contain}
+.ws-signature{padding:12px;font:400 clamp(20px,3vw,40px)/1.1 'Outfit',sans-serif;color:#37494a}
+.ws-detail{padding:clamp(20px,3vw,38px);display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.ws-detail>small{font:600 11px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#526560}
+.ws-detail h3{font:400 clamp(24px,3vw,40px)/1.07 'Outfit',sans-serif;letter-spacing:-.035em;margin:0;overflow-wrap:anywhere}
+.ws-extrait{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#4f646a;margin:0}
+.ws-tarif,.ws-actions{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap}
+.ws-tarif{margin:3px 0 8px}.ws-actions{margin-top:auto}
+.ws-actions .sc-product-quote{background:#133b3b;color:white;border:none;border-radius:9px;padding:12px 16px;font:600 14px var(--sans);width:auto;min-height:44px;cursor:pointer}
+.ws-actions a,.ws-telegram{color:#11676b;text-underline-offset:4px;font:600 14px var(--sans);padding-block:10px}
+.ws-visuel:focus-visible{outline:3px solid #078586;outline-offset:-4px}
+@media(max-width:580px){.ws-produit{grid-template-columns:1fr}.ws-visuel{min-height:0;height:clamp(152px,50vw,250px)}.ws-detail{padding:20px}.ws-actions{gap:12px}.ws-embleme{max-width:130px}}
+</style>
+</head>
 <body>
 <header class="top">
   <div class="wrap">
@@ -1824,6 +1844,31 @@ body.sc-choice-brand #brandIdeas{display:block}
     fil([]); $('catBar').hidden=true;
     if (location.hash.indexOf('#produits') === 0) location.hash='univers';
   }
+
+  function identiteProduit(p) {
+    const config = FLOW[groupeProduit(p)];
+    const marque = config.marques.find(m => m.id === motCle(p.marque || ''));
+    if (p.logo) return '<img class="ws-embleme" alt="" src="'+API+'/api/public/catalogue/photo/'+enc(p.id)+'/logo?v='+enc(p.version)+'">';
+    if (marque && marque.logo) return '<img class="ws-embleme" alt="" src="/assets/brands/'+esc(marque.logo)+'">';
+    return '<span class="ws-signature">'+esc(p.marque || config.nom)+'</span>';
+  }
+  function lienProduit(p, repli) {
+    return /^https:\/\/t\.me\/[a-zA-Z0-9_]+(?:\/\d+){0,2}$/.test(p.sujetTelegram || '') ? p.sujetTelegram : repli;
+  }
+  function ficheCatalogue(p, config, repli) {
+    const sujet = lienProduit(p, repli);
+    const resume = [p.marque || config.nom, p.reference].filter(Boolean).map(esc).join(' · ');
+    return `<article class="ws-produit">
+      <button type="button" class="ws-visuel" data-id="${esc(p.id)}" aria-label="${esc(p.nom)}, ouvrir la fiche">
+        ${p.nbPhotos ? '<img class="ws-photo" src="'+photo(p,0)+'" alt="" loading="lazy">' : identiteProduit(p)}
+      </button>
+      <div class="ws-detail"><small>${resume}</small><h3>${esc(p.nom)}</h3>
+        ${p.description ? '<p class="ws-extrait">'+esc(p.description)+'</p>' : ''}
+        <div class="ws-tarif">${prixHtml(p)}<span class="cat-dispo${p.dispo==='Sur commande'?' cmd':''}">${esc(p.dispo)}</span></div>
+        <div class="ws-actions">${boutonDevisProduit({id:p.id,nom:p.nom,reference:p.reference||'',marque:p.marque||'',categorie:config.nom,telegram:sujet})}
+          <a href="${esc(sujet)}" target="_blank" rel="noopener">Voir sur Telegram ↗</a></div>
+      </div></article>`;
+  }
   function catalogueGroupe(k, marqueId) {
     const config=FLOW[k];
     if(!config){accueil();return;}
@@ -1842,9 +1887,9 @@ body.sc-choice-brand #brandIdeas{display:block}
       // Produits ajoutés depuis le dashboard sans marque : affichés ici, avec leur sujet Telegram.
       const SUJET_TYPE={acc:{'Électronique':29,'Canapés':31,'Accessoires':10,'Autres':11},moto:{'Intercoms':7,'Visières':9,'Kits LED & feux':11,'Crash bars':13,'Dosserets TMAX':15}};
       const nouveaux=tous.filter(p=>groupeProduit(p)===k && !p.marque && !p.marqueBlanche);
-      if(nouveaux.length) $('catList').innerHTML+='<h3 class="sc-nouveaux">Nos produits</h3><div class="cat-grid sc-real-products">'+nouveaux.map(p=>{
-        const id=(SUJET_TYPE[k]||{})[p.type], fiche=id?groupeUrl+'/'+id:groupeUrl;
-        return '<div class="sc-real-product">'+carte(p)+'<div class="sc-real-product-actions">'+boutonDevisProduit({id:p.id,nom:p.nom,reference:p.reference||'',marque:'Sans marque',categorie:config.nom,telegram:fiche})+'<a class="sc-product-view" href="'+fiche+'" target="_blank" rel="noopener">Voir sur Telegram</a></div></div>';
+      if(nouveaux.length) $('catList').innerHTML+='<h3 class="sc-nouveaux">Nos produits</h3><div class="ws-produits">'+nouveaux.map(p=>{
+        const id=(SUJET_TYPE[k]||{})[p.type];
+        return ficheCatalogue(p,config,id?groupeUrl+'/'+id:groupeUrl);
       }).join('')+'</div>';
       return;
     }
@@ -1852,7 +1897,12 @@ body.sc-choice-brand #brandIdeas{display:block}
     const produits=tous.filter(p=>groupeProduit(p)===k && p.marque && (motCle(p.marque)===selection.id || motCle(p.marque)===motCle(selection.nom)));
     const sujets=selection.sujets;
     const motoScenes={9:'moto-visiere.svg',11:'moto-led.svg',13:'moto-crashbar.svg'};
-    const cards=sujets.map(([nom,id])=>{
+    function sujetProduit(p) {
+      const sujet = sujets.length === 1 ? sujets[0] : sujets.find(s => p.type && motCle(s[0]).includes(motCle(p.type)));
+      return lienProduit(p, sujet ? groupeUrl+'/'+sujet[1] : groupeUrl);
+    }
+    const sujetsAvecProduit = new Set(produits.map(sujetProduit));
+    const cards=sujets.filter(([,id]) => !sujetsAvecProduit.has(groupeUrl+'/'+id)).map(([nom,id])=>{
       const scene=k==='moto'?(motoScenes[id]||selection.image||config.image):(selection.image||config.image);
       const url=groupeUrl+'/'+id;
       return '<article class="sc-fiche sc-brand-'+esc(selection.id)+'">'+
@@ -1862,8 +1912,8 @@ body.sc-choice-brand #brandIdeas{display:block}
         '<a class="sc-fiche-lien" href="'+url+'" target="_blank" rel="noopener" aria-label="Voir les photos : '+esc(nom)+' sur Telegram">Voir les photos <i aria-hidden="true">→</i></a>'+
         boutonDevisProduit({nom,marque:selection.nom,categorie:config.nom,telegram:url})+'</div></div></article>';
     }).join('');
-    $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(selection.nom)+'</h2>'+suivre(groupeUrl,config.nom)+'</div>'+
-      (produits.length?'<div class="cat-grid sc-real-products">'+produits.map(p=>{const topic=sujets.length===1?sujets[0]:sujets.find(s=>motCle(p.type||'') && motCle(s[0]).includes(motCle(p.type)));const fiche=topic?groupeUrl+'/'+topic[1]:groupeUrl;return '<div class="sc-real-product">'+carte(p)+'<div class="sc-real-product-actions">'+boutonDevisProduit({id:p.id,nom:p.nom,reference:p.reference||'',marque:p.marque||selection.nom,categorie:config.nom,telegram:fiche})+'<a class="sc-product-view" href="'+fiche+'" target="_blank" rel="noopener">Voir la fiche</a></div></div>';}).join('')+'</div>':'')+
+    $('catList').innerHTML='<div class="sc-level-head"><h2>'+esc(selection.nom)+'</h2>'+suivre(sujets.length===1?groupeUrl+'/'+sujets[0][1]:groupeUrl,selection.nom)+'</div>'+
+      (produits.length?'<div class="ws-produits">'+produits.map(p=>ficheCatalogue(p,config,sujetProduit(p))).join('')+'</div>':'')+
       (cards?'<div class="sc-fiches sc-products-grid sc-universe-'+k+'">'+cards+'</div>':'')+
       (!produits.length&&!cards?'<p class="cat-vide">Les produits de cette marque seront affichés dès leur publication.</p>':'')+
       '<div class="sc-brand-quote"><div class="sc-quote-copy"><h3>Besoin d’un devis ?</h3><p>Un modèle précis, une quantité ou un projet en tête ?</p></div><a class="sc-whatsapp-cta" href="'+wa('Bonjour Wanisource, je cherche un produit '+selection.nom+' dans la catégorie '+config.nom+'.')+'" target="_blank" rel="noopener"><span>Demander mon devis</span><small>Sur WhatsApp</small></a></div>'+
@@ -1931,11 +1981,11 @@ body.sc-choice-brand #brandIdeas{display:block}
   // ---- fiche produit (galerie, prix « à partir de », devis WhatsApp) ----
   function ouvrir(p) {
     const n = p.nbPhotos;
-    $('catModalBody').innerHTML = `<div class="cat-det"><div class="cat-gal"><div class="big" id="catBig">${n ? `<img alt="${esc(p.nom)}" src="${photo(p, 0)}">` : ph(sect(p), false)}</div>${n > 1 ? `<div class="cat-thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-current="${i === 0}" style="background-image:url(${photo(p, i)})"></button>`).join('')}</div>` : ''}</div>
-      <div class="cat-info"><small>${esc([p.secteur, p.marque, p.type, p.reference ? 'réf. ' + p.reference : ''].filter(Boolean).join(' · '))}</small><h3 id="catModalNom">${esc(p.nom)}</h3>
+    $('catModalBody').innerHTML = `<div class="cat-det"><div class="cat-gal"><div class="big" id="catBig">${n ? `<img alt="${esc(p.nom)}" src="${photo(p, 0)}">` : identiteProduit(p)}</div>${n > 1 ? `<div class="cat-thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-current="${i === 0}" style="background-image:url(${photo(p, i)})"></button>`).join('')}</div>` : ''}</div>
+      <div class="cat-info"><small>${esc([...new Set([p.marque, p.type, p.reference].filter(Boolean))].join(' · '))}</small><h3 id="catModalNom">${esc(p.nom)}</h3>
       ${prixHtml(p)}
       <span class="cat-dispo${p.dispo === 'Sur commande' ? ' cmd' : ''}">${esc(p.dispo)}${p.vente ? ' · ' + esc(p.vente === 'Détail et gros' ? 'au détail et en gros' : p.vente === 'Gros' ? 'en gros' : 'au détail') : ''}</span>
-      ${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Le prix exact dépend de la quantité : demandez un devis, on vous répond sur WhatsApp.${p.vente && p.vente !== 'Détail' ? ' Vous achetez en gros ? Le prix de gros vous est donné sur WhatsApp.' : ''}</p>
+      ${p.description ? `<p>${esc(p.description)}</p>` : ''}${p.sujetTelegram && lienProduit(p, '') ? '<a class="ws-telegram" href="'+esc(lienProduit(p,''))+'" target="_blank" rel="noopener">Voir le sujet sur Telegram ↗</a>' : ''}
       <form class="cat-quote" id="catQuote"><h4>Recevoir un devis WhatsApp</h4><div class="cat-quote-modes" role="radiogroup" aria-label="Type de demande"><label><input type="radio" name="mode" value="gros" checked> Achat en gros</label><label><input type="radio" name="mode" value="details"> Demande détaillée</label></div><label class="cat-quote-label">Quantité souhaitée<input type="number" name="quantite" min="1" step="1" value="50" required></label><label class="cat-quote-label">Précisions (facultatif)<textarea name="details" placeholder="Couleur, modèle, personnalisation, budget, délai…"></textarea></label><button type="submit">Envoyer ma demande sur WhatsApp ↗</button></form></div></div>`;
     $('catQuote').addEventListener('submit', (e) => { e.preventDefault(); const f = e.currentTarget; if (!f.reportValidity()) return; const url = devis(p, f.elements.mode.value, f.elements.quantite.value, f.elements.details.value.trim()); const w = window.open(url, '_blank', 'noopener'); if (!w) window.location.href = url; });
     $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((b) => b.addEventListener('click', () => { $('catBig').innerHTML = `<img alt="${esc(p.nom)}" src="${photo(p, +b.dataset.i)}">`; $('catModalBody').querySelectorAll('.cat-thumbs button').forEach((x) => x.setAttribute('aria-current', String(x === b))); }));
@@ -1945,7 +1995,7 @@ body.sc-choice-brand #brandIdeas{display:block}
   $('catX').addEventListener('click', fermer);
   $('catModal').addEventListener('click', (e) => { if (e.target === $('catModal')) fermer(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('catModal').hidden) fermer(); });
-  $('catList').addEventListener('click', (e) => { const c = e.target.closest('button.cat-card'); if (!c) return; const p = tous.find((x) => x.id === c.dataset.id); if (p) ouvrir(p); });
+  $('catList').addEventListener('click', (e) => { const c = e.target.closest('button[data-id]'); if (!c) return; const p = tous.find((x) => x.id === c.dataset.id); if (p) ouvrir(p); });
 
   // Les secteurs s'affichent tout de suite ; les produits arrivent ensuite depuis le dashboard (sans réponse, les secteurs restent « bientôt »).
   afficher(false);
