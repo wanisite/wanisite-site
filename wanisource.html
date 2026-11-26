@@ -2144,65 +2144,92 @@ button.ws-tile-art{cursor:pointer}
 })();
 </script>
 
-<!-- Bouton WhatsApp : trois questions, puis le message s'ouvre déjà rédigé. Objets 3D : outils-video/blender-wanisite/entonnoir. -->
+<!-- Bouton WhatsApp : choix, catalogue pour le détail, vrai formulaire par étapes, puis message rédigé. Objets 3D : outils-video/blender-wanisite/entonnoir. -->
 <style>
 .wa-bulle{position:fixed;right:max(6px,env(safe-area-inset-right));bottom:calc(6px + env(safe-area-inset-bottom));z-index:70;width:84px;height:84px;padding:0;border:0;border-radius:50%;background:none;color:#fff;cursor:pointer;transition:transform .18s ease}
 .wa-bulle picture{display:block;width:100%;height:100%}
-.wa-bulle img{display:block;width:100%;height:100%;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+.wa-bulle img{display:block;width:100%;height:100%;filter:drop-shadow(0 8px 14px rgba(0,0,0,.28))}
 .wa-bulle svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 4px rgba(0,0,0,.35))}
 .wa-bulle:hover{transform:scale(1.07)}
-.wa-bulle:focus-visible{outline:3px solid #5cf2df;outline-offset:2px}
+.wa-bulle:focus-visible{outline:3px solid #0a9292;outline-offset:2px}
 body.sc-choice-custom .wa-bulle{display:none}
 
-.ws-wa{width:min(480px,calc(100% - 32px));max-height:92svh;overflow:auto;box-sizing:border-box;padding:22px;border:1px solid rgba(92,242,223,.38);border-radius:26px;color:#fff;font-family:'DM Sans',var(--sans);
-  background:linear-gradient(rgba(92,242,223,.055) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(92,242,223,.055) 1px,transparent 1px) 0 0/34px 34px,radial-gradient(circle at 18% 0%,#12485c 0%,#081b2a 52%,#040c14 100%);
-  box-shadow:0 0 0 1px rgba(0,0,0,.4),0 -6px 44px rgba(24,192,216,.22),0 30px 90px rgba(0,0,0,.5)}
-.ws-wa::backdrop{background:rgba(3,14,22,.68);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.ws-wa{width:min(500px,calc(100% - 32px));max-height:92svh;overflow:auto;overscroll-behavior:contain;box-sizing:border-box;padding:0;border:1px solid #d5e6ea;border-radius:26px;color:#0c2030;font-family:'DM Sans',var(--sans);
+  background:linear-gradient(rgba(10,146,146,.06) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(10,146,146,.06) 1px,transparent 1px) 0 0/34px 34px,radial-gradient(circle at 18% 0%,#dff6f6 0%,#f4f9fb 46%,#fff 100%);
+  box-shadow:0 30px 90px rgba(4,28,44,.28)}
+.ws-wa::backdrop{background:rgba(8,32,48,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .ws-wa [hidden]{display:none!important}
-.ws-wa form{display:grid;gap:16px;margin:0}
+.ws-wa form{display:grid;gap:16px;margin:0;padding:20px 20px 0}
 .wa-haut{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.wa-marque{display:flex;align-items:center;gap:8px;font:300 19px/1 'Outfit',var(--sans);letter-spacing:-.02em}
+.wa-marque{display:flex;align-items:center;gap:8px;font:300 19px/1 'Outfit',var(--sans);letter-spacing:-.02em;color:#0c2030}
 .wa-marque img{width:30px;height:auto}
-.wa-marque b{font-weight:300;color:#5cf2df}
-.wa-fermer{width:36px;height:36px;padding:0;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font:300 22px/1 'Outfit',var(--sans);cursor:pointer}
+.wa-marque b{font-weight:300;color:#008a8a}
+.wa-fermer{width:36px;height:36px;padding:0;border:1px solid #d5e6ea;border-radius:50%;background:#fff;color:#0c2030;font:300 22px/1 'Outfit',var(--sans);cursor:pointer}
+.wa-suivi{display:grid;gap:7px}
 .wa-barre{display:flex;gap:6px}
-.wa-barre i{flex:1;height:3px;border-radius:4px;background:rgba(255,255,255,.14)}
-.wa-barre i.fait{background:#5cf2df;box-shadow:0 0 10px rgba(92,242,223,.75)}
+.wa-barre i{flex:1;height:4px;border-radius:4px;background:#dcebee}
+.wa-barre i.fait{background:linear-gradient(90deg,#0aa6a0,#10b4cf)}
+.wa-compte{font-size:12.5px;color:#4f6b78}
 .wa-tete{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
-.ws-wa h2{margin:0;color:#fff;font:300 32px/1.1 'Outfit',var(--sans);letter-spacing:-.03em;text-align:left}
+.ws-wa h2{margin:0;color:#0c2030;font:300 31px/1.1 'Outfit',var(--sans);letter-spacing:-.03em;text-align:left}
 .ws-wa h2:focus{outline:none}
-.wa-tete img{display:block;width:84px;height:84px;margin:-14px -6px -14px 0}
-.wa-choix{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding-bottom:6px}
-.wa-choix button{display:grid;justify-items:center;align-content:start;gap:2px;padding:6px 8px 14px;border:1px solid rgba(255,255,255,.26);border-radius:18px;background:linear-gradient(160deg,var(--c1),var(--c2));color:#fff;font:300 18px/1.2 'Outfit',var(--sans);letter-spacing:-.015em;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 0 var(--c3),0 14px 18px -8px rgba(0,0,0,.6);transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+.wa-tete img{display:block;width:88px;height:88px;margin:-16px -6px -16px 0}
+.wa-choix{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding-bottom:26px}
 .wa-choix picture{display:flex;justify-content:center;width:100%}
 .wa-choix button img{display:block;width:min(118px,100%);height:auto;aspect-ratio:1}
-.wa-choix button:hover{border-color:rgba(255,255,255,.65);transform:translateY(-2px)}
-.wa-choix button:active{transform:translateY(5px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 0 var(--c3)}
-.wa-choix button:focus-visible,.ws-wa .wa-fermer:focus-visible,.wa-nav button:focus-visible{outline:3px solid #5cf2df;outline-offset:3px}
-[data-besoin="detail"]{--c1:#05252e;--c2:#0a6470;--c3:#043a43}
-[data-besoin="gros"]{--c1:#2b1206;--c2:#7e3a14;--c3:#4a220c}
-[data-besoin="marque"]{--c1:#062416;--c2:#1c6341;--c3:#0e3a26}
-[data-besoin="question"]{--c1:#061c30;--c2:#14577f;--c3:#0a344d}
-.ws-wa label{display:grid;gap:8px;color:#d8ecee;font:500 14px/1.4 'DM Sans',var(--sans);text-align:left}
-.ws-wa label small{font-size:12px;font-weight:400;color:#8fb2b8}
-.ws-wa textarea,.ws-wa input[type="text"]{width:100%;box-sizing:border-box;margin:0;padding:14px 16px;border:1px solid rgba(255,255,255,.22);border-radius:14px;background:rgba(255,255,255,.07);color:#fff;font:400 16px/1.4 'DM Sans',var(--sans)}
-.ws-wa textarea{min-height:96px;resize:vertical}
-.ws-wa ::placeholder{color:#7f9fa7}
-.ws-wa textarea:focus,.ws-wa input[type="text"]:focus{outline:none;border-color:#5cf2df;box-shadow:0 0 0 3px rgba(92,242,223,.18)}
-.wa-aide{margin:10px 0 0;color:#8fb2b8;font-size:12.5px;line-height:1.45}
-.wa-qte{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;border:0}
-.ws-wa .wa-qte label{display:block}
-.wa-qte input{position:absolute;opacity:0;pointer-events:none}
-.wa-qte span{display:block;padding:15px 10px;border:1px solid rgba(255,255,255,.22);border-radius:14px;background:rgba(255,255,255,.07);color:#fff;font:300 17px/1.2 'Outfit',var(--sans);text-align:center;cursor:pointer}
-.wa-qte input:checked+span{background:#5cf2df;border-color:#5cf2df;color:#04202a;font-weight:500;box-shadow:0 0 20px rgba(92,242,223,.45)}
-.wa-qte input:focus-visible+span{outline:3px solid #5cf2df;outline-offset:2px}
-.wa-erreur{margin:0;color:#ffb4a6;font-size:14px}
-.wa-nav{display:flex;gap:10px;padding-bottom:5px}
-.wa-nav button{min-height:52px;padding:12px 22px;border-radius:14px;font:400 17px/1.2 'Outfit',var(--sans);cursor:pointer;color:#fff}
-.wa-retour{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08)}
-.wa-ok{flex:1;border:1px solid rgba(255,255,255,.35);background:linear-gradient(100deg,#057a76,#087f9a 55%,#1468b4);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 5px 0 #04414f,0 0 24px rgba(24,192,216,.35)}
-.wa-ok:active{transform:translateY(4px);box-shadow:0 1px 0 #04414f}
-@media(max-width:600px){.ws-wa{width:100%;max-width:100%;margin:auto 0 0;border-width:1px 0 0;border-radius:26px 26px 0 0;padding:18px 18px calc(16px + env(safe-area-inset-bottom))}}
+.wa-choix button{display:grid;justify-items:center;align-content:start;gap:2px;padding:6px 8px 14px;border:1px solid var(--bord);border-radius:18px;background:linear-gradient(165deg,#fff,var(--teinte));color:#0c2030;font:300 18px/1.2 'Outfit',var(--sans);letter-spacing:-.015em;text-align:center;cursor:pointer;box-shadow:0 5px 0 var(--bord),0 14px 20px -12px rgba(8,40,56,.4);transition:transform .14s ease,box-shadow .14s ease}
+.wa-choix button:hover{transform:translateY(-2px)}
+.wa-choix button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--bord)}
+[data-besoin="detail"]{--teinte:#dcf5f6;--bord:#a9dde0}
+[data-besoin="gros"]{--teinte:#fdeee2;--bord:#f1cdb0}
+[data-besoin="marque"]{--teinte:#e1f6e9;--bord:#b2e0c4}
+[data-besoin="question"]{--teinte:#e2f1fc;--bord:#b6d8f1}
+.ws-wa button:focus-visible,.ws-wa a:focus-visible,.ws-wa summary:focus-visible{outline:3px solid #0a9292;outline-offset:3px}
+
+.wa-champs{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px}
+.wa-champs>*{grid-column:1/-1;min-width:0}
+.wa-champs>.demi{grid-column:auto}
+.ws-wa .wa-champ{display:grid;gap:7px;margin:0;padding:0;border:0;color:#274753;font:600 14px/1.35 'DM Sans',var(--sans);text-align:left}
+.ws-wa .wa-champ legend{margin:0 0 7px;padding:0;color:#274753;font:600 14px/1.35 'DM Sans',var(--sans)}
+.ws-wa small{font-size:12px;font-weight:400;color:#6d8791}
+.ws-wa input[type="text"],.ws-wa select,.ws-wa textarea{width:100%;box-sizing:border-box;min-height:48px;margin:0;padding:12px 14px;border:1px solid #cfe0e5;border-radius:12px;background:#fff;color:#0c2030;font:400 16px/1.4 'DM Sans',var(--sans)}
+.ws-wa textarea{min-height:76px;resize:vertical}
+.ws-wa ::placeholder{color:#93a9b1}
+.ws-wa input[type="text"]:focus,.ws-wa select:focus,.ws-wa textarea:focus{outline:none;border-color:#0a9292;box-shadow:0 0 0 3px rgba(10,146,146,.16)}
+.wa-puces{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ws-wa .wa-puces label{display:block;position:relative;margin:0}
+.wa-puces input{position:absolute;opacity:0;pointer-events:none}
+.wa-puces span{display:flex;align-items:center;justify-content:center;min-height:46px;padding:8px 10px;border:1px solid #cfe0e5;border-radius:12px;background:#fff;color:#0c2030;font:400 14.5px/1.25 'DM Sans',var(--sans);text-align:center;cursor:pointer}
+.wa-puces input:checked+span{background:#087574;border-color:#087574;color:#fff;font-weight:600}
+.wa-puces input:focus-visible+span{outline:3px solid #0a9292;outline-offset:2px}
+
+.wa-fiche{display:grid;gap:8px;padding:14px 16px;border:1px dashed #9fd0d4;border-radius:16px;background:rgba(255,255,255,.85)}
+.wa-fiche strong{font:300 19px/1.2 'Outfit',var(--sans);color:#0c2030}
+.wa-fiche dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:0;font-size:13.5px;line-height:1.4}
+.wa-fiche dt{color:#6d8791}
+.wa-fiche dd{margin:0;color:#0c2030;font-weight:600;text-align:right;overflow-wrap:anywhere}
+.wa-aide{margin:0;color:#4f6b78;font-size:13px;line-height:1.5}
+
+.wa-catalogue{display:grid;gap:12px}
+.wa-catalogue p{margin:0;color:#3d5966;font-size:15px;line-height:1.55}
+.wa-catalogue a,.wa-catalogue button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px;border-radius:16px;font:300 19px/1.25 'Outfit',var(--sans);text-align:left;text-decoration:none;cursor:pointer}
+.wa-catalogue small{display:block;margin-top:3px;font:400 12.5px/1.4 'DM Sans',var(--sans);color:inherit;opacity:.82}
+.wa-catalogue i{font-style:normal;font-size:22px}
+.wa-catalogue a{border:0;background:linear-gradient(100deg,#087574,#0a7f9c);color:#fff;box-shadow:0 5px 0 #055152}
+.wa-catalogue button{border:1px solid #cfe0e5;background:#fff;color:#0c2030;box-shadow:0 5px 0 #d7e6ea}
+
+.wa-faq{display:grid;gap:8px}
+.ws-wa .wa-faq details{margin:0;padding:0;border:1px solid #d5e6ea;border-radius:14px;background:#fff}
+.ws-wa .wa-faq summary{padding:14px 16px;color:#0c2030;font:600 14.5px/1.35 'DM Sans',var(--sans);cursor:pointer}
+.ws-wa .wa-faq details p{margin:0;padding:0 16px 14px;color:#4f6b78;font-size:14px;line-height:1.55}
+
+.wa-erreur{margin:0;color:#b3402d;font-size:14px;font-weight:600}
+.wa-nav{position:sticky;bottom:0;display:flex;gap:10px;margin:0 -20px;padding:12px 20px calc(18px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);border-top:1px solid #e2eef0}
+.wa-nav button{min-height:50px;padding:11px 20px;border-radius:14px;font:400 17px/1.2 'Outfit',var(--sans);cursor:pointer}
+.wa-retour{border:1px solid #cfe0e5;background:#fff;color:#0c2030}
+.wa-ok{flex:1;border:0;background:linear-gradient(100deg,#087574,#0a7f9c);color:#fff;box-shadow:0 4px 0 #055152}
+.wa-ok:active{transform:translateY(3px);box-shadow:0 1px 0 #055152}
+@media(max-width:600px){.ws-wa{width:100%;max-width:100%;margin:auto 0 0;border-width:1px 0 0;border-radius:26px 26px 0 0}}
 @media(prefers-reduced-motion:reduce){.wa-bulle,.wa-choix button{transition:none}.wa-bulle:hover,.wa-choix button:hover{transform:none}}
 </style>
 <button type="button" class="wa-bulle" id="waBulle" aria-haspopup="dialog" aria-label="Nous écrire sur WhatsApp">
@@ -2210,24 +2237,22 @@ body.sc-choice-custom .wa-bulle{display:none}
   <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7A13 13 0 1 0 16 3Zm0 23.7c-2 0-3.9-.5-5.600-1.5l-.4-.2-4 1 1.1-3.900-.3-.4A10.700 10.700 0 1 1 16 26.700Zm5.900-8c-.3-.2-1.900-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.200c-.2.2-.4.200-.700.100a8.8 8.8 0 0 1-4.400-3.800c-.3-.6.3-.5.9-1.700.100-.200 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4c-.3.3-1.200 1.100-1.200 2.8s1.200 3.2 1.400 3.500c.2.2 2.4 3.700 5.900 5.200 2.200.900 3 1 4.100.800.700-.100 1.900-.8 2.200-1.500.3-.800.3-1.400.2-1.500-.100-.200-.3-.300-.6-.400Z"/></svg>
 </button>
 <dialog id="waDialog" class="ws-wa" aria-labelledby="waTitre">
-  <form id="waForm" novalidate>
+  <form id="waForm" novalidate autocomplete="on">
     <div class="wa-haut"><span class="wa-marque"><img src="/assets/img/nav-logo.webp" alt="" width="46" height="30"><span>Wani<b>source</b></span></span><button type="button" class="wa-fermer" id="waFermer" aria-label="Fermer">×</button></div>
-    <div class="wa-barre" id="waBarre" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="wa-tete"><h2 id="waTitre" tabindex="-1">Vous voulez quoi ?</h2><img id="waObjet" alt="" width="240" height="240" hidden></div>
-    <div class="wa-choix" data-wa="0">
-      <button type="button" data-besoin="detail"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-detail-v1-fixe.webp"><img src="/assets/sourcing/wa/wa-detail-v1.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Acheter au détail</span></button>
-      <button type="button" data-besoin="gros"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-gros-v1-fixe.webp"><img src="/assets/sourcing/wa/wa-gros-v1.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Acheter en gros</span></button>
-      <button type="button" data-besoin="marque"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-marque-v1-fixe.webp"><img src="/assets/sourcing/wa/wa-marque-v1.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Créer ma marque</span></button>
-      <button type="button" data-besoin="question"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-question-v1-fixe.webp"><img src="/assets/sourcing/wa/wa-question-v1.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Poser une question</span></button>
+    <div class="wa-suivi" id="waSuivi" hidden><div class="wa-barre" id="waBarre" aria-hidden="true"></div><span class="wa-compte" id="waCompte" aria-live="polite"></span></div>
+    <div class="wa-tete"><h2 id="waTitre" tabindex="-1">Vous voulez quoi&nbsp;?</h2><img id="waObjet" alt="" width="240" height="240" hidden></div>
+    <div class="wa-choix" id="waChoix">
+      <button type="button" data-besoin="detail"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-detail-v2-fixe.webp"><img src="/assets/sourcing/wa/wa-detail-v2.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Acheter au détail</span></button>
+      <button type="button" data-besoin="gros"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-gros-v2-fixe.webp"><img src="/assets/sourcing/wa/wa-gros-v2.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Acheter en gros</span></button>
+      <button type="button" data-besoin="marque"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-marque-v2-fixe.webp"><img src="/assets/sourcing/wa/wa-marque-v2.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Créer ma marque</span></button>
+      <button type="button" data-besoin="question"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/sourcing/wa/wa-question-v2-fixe.webp"><img src="/assets/sourcing/wa/wa-question-v2.webp" alt="" width="240" height="240" decoding="async" loading="lazy"></picture><span>Une question</span></button>
     </div>
-    <div data-wa="1" hidden>
-      <label><span id="waLabel">Quel article ?</span><textarea name="texte" rows="3"></textarea></label>
-      <p class="wa-aide" id="waPhoto">Vous avez une photo ? Envoyez-la dans WhatsApp juste après.</p>
+    <div class="wa-catalogue" id="waCatalogue" hidden>
+      <p>Pour un achat au détail, regardez d’abord le catalogue : votre article y est peut-être déjà.</p>
+      <a href="https://t.me/addlist/uIApVfUPlioxNjE0" target="_blank" rel="noopener"><span>Voir le catalogue<small>Tous nos groupes sur Telegram</small></span><i aria-hidden="true">→</i></a>
+      <button type="button" id="waSurMesure"><span>Je ne trouve pas mon article<small>Remplir une demande, on le cherche</small></span><i aria-hidden="true">→</i></button>
     </div>
-    <div data-wa="2" hidden>
-      <fieldset class="wa-qte" aria-label="Quantité" id="waQte"></fieldset>
-    </div>
-    <label data-wa="fin" hidden>Votre prénom <small>Facultatif</small><input type="text" name="prenom" autocomplete="given-name"></label>
+    <div id="waEtapes"></div>
     <p class="wa-erreur" id="waErreur" role="alert" hidden></p>
     <div class="wa-nav" id="waNav" hidden><button type="button" class="wa-retour" id="waRetour">Retour</button><button type="submit" class="wa-ok" id="waSuite">Continuer</button></div>
   </form>
@@ -2235,70 +2260,145 @@ body.sc-choice-custom .wa-bulle{display:none}
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const boite = $('waDialog'), f = $('waForm');
-  const BESOINS = {
-    detail: { nom: 'un article au détail', question: 'Quel article ?', aide: 'Modèle, taille, couleur, ou un lien…', quantites: ['1', '2 à 5', '6 à 10', 'Plus de 10'] },
-    gros: { nom: 'un achat en gros', question: 'Quel produit ?', aide: 'Le produit, le modèle, ou un lien…', quantites: ['Moins de 50', '50 à 200', '200 à 1 000', 'Plus de 1 000'] },
-    marque: { nom: 'créer ma marque', question: 'Votre idée ?', aide: 'Ex. : des vêtements avec mes étiquettes…', quantites: ['Moins de 50', '50 à 200', 'Plus de 200', 'Je ne sais pas'] },
-    question: { nom: 'une question', question: 'Votre question ?', aide: 'Écrivez-la ici…', quantites: null },
+  const boite = $('waDialog'), f = $('waForm'), zone = $('waEtapes');
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // Champs : n = nom, l = libellé, m = libellé dans la fiche et le message, t = type, o = options, p = exemple.
+  const texte = (n, l, m, p, plus) => Object.assign({ t: 'texte', n, l, m, p }, plus);
+  const puces = (n, l, m, o, plusieurs) => ({ t: 'puces', n, l, m, o, plusieurs });
+  const liste = (n, l, m, o) => ({ t: 'liste', n, l, m, o });
+  const BUDGET = liste('budget', 'Budget total', 'Budget', ['À définir', 'Moins de 500 €', '500 à 2 000 €', '2 000 à 5 000 €', '5 000 à 10 000 €', 'Plus de 10 000 €']);
+  const DELAI = liste('delai', 'Pour quand ?', 'Délai', ['Pas de date précise', 'Dès que possible', 'Sous 1 à 3 mois', 'Dans plus de 3 mois']);
+  const VILLE = texte('ville', 'Ville de livraison', 'Livraison', 'Ex. : Bondy', { facultatif: true, ac: 'address-level2' });
+  const PRENOM = texte('prenom', 'Votre prénom', 'Prénom', '', { facultatif: true, ac: 'given-name' });
+  const NOTE = { t: 'zone', n: 'note', l: 'Une précision ?', m: 'Précision', p: 'Tout ce qui peut nous aider', facultatif: true };
+
+  const FLUX = {
+    detail: { nom: 'achat au détail', etapes: [
+      { titre: 'Votre article', champs: [texte('produit', 'Quel article ?', 'Article', 'Ex. : casque audio, lampe de bureau…', { requis: 'Écrivez quel article vous cherchez.' }), texte('lien', 'Lien ou référence', 'Lien / référence', 'Un lien, un nom de modèle…', { facultatif: true })] },
+      { titre: 'Les détails', champs: [texte('taille', 'Taille', 'Taille', 'Ex. : M, 42', { facultatif: true, demi: true }), texte('couleur', 'Couleur', 'Couleur', 'Ex. : noir', { facultatif: true, demi: true }), puces('quantite', 'Combien ?', 'Quantité', ['1', '2 à 5', '6 à 10', 'Plus de 10']), texte('budget', 'Votre budget', 'Budget', 'Ex. : 80 €', { facultatif: true })] },
+      { titre: 'Pour finir', champs: [VILLE, PRENOM, NOTE] },
+    ] },
+    gros: { nom: 'achat en gros', etapes: [
+      { titre: 'Votre produit', champs: [texte('produit', 'Quel produit ?', 'Produit', 'Ex. : gourdes en inox', { requis: 'Écrivez quel produit vous cherchez.' }), texte('lien', 'Lien ou référence', 'Lien / référence', 'Un lien vers un modèle…', { facultatif: true })] },
+      { titre: 'Votre commande', champs: [puces('quantite', 'Quelle quantité ?', 'Quantité', ['Moins de 50', '50 à 200', '200 à 1 000', 'Plus de 1 000']), texte('prix', 'Prix visé à l’unité', 'Prix visé / unité', 'Ex. : 4 €', { facultatif: true }), puces('perso', 'À votre marque ?', 'Personnalisation', ['Mon logo', 'Étiquettes', 'Packaging', 'Rien de spécial'], true)] },
+      { titre: 'Pour finir', champs: [DELAI, VILLE, PRENOM, NOTE] },
+    ] },
+    marque: { nom: 'création de marque', etapes: [
+      { titre: 'Votre marque', champs: [texte('produit', 'Quel produit voulez-vous vendre ?', 'Produit', 'Ex. : vêtements de sport', { requis: 'Écrivez quel produit vous voulez vendre.' }), texte('nom', 'Nom de la marque', 'Marque', 'Si vous en avez un', { facultatif: true }), puces('stade', 'Vous en êtes où ?', 'Où j’en suis', ['J’ai une idée', 'Je vends déjà'])] },
+      { titre: 'Ce qu’il vous faut', champs: [puces('besoins', 'Cochez ce qui vous intéresse', 'Besoins', ['Logo et identité', 'Étiquettes', 'Packaging', 'Site vitrine', 'Boutique en ligne', 'Visible sur Google'], true), puces('quantite', 'Première commande', 'Quantité', ['Moins de 50', '50 à 200', 'Plus de 200', 'Je ne sais pas'])] },
+      { titre: 'Pour finir', champs: [BUDGET, DELAI, PRENOM, NOTE] },
+    ] },
+    question: { nom: 'question' },
   };
-  let etape = 0, besoin = null, avant = '';
+
+  let besoin = null, ecrans = ['choix'], i = 0, avant = '';
+
+  function champ(c) {
+    const etiquette = esc(c.l) + (c.facultatif ? ' <small>Facultatif</small>' : '');
+    const classe = 'wa-champ' + (c.demi ? ' demi' : '');
+    if (c.t === 'puces') return '<fieldset class="' + classe + '"><legend>' + etiquette + '</legend><div class="wa-puces">' + c.o.map((o) => '<label><input type="' + (c.plusieurs ? 'checkbox' : 'radio') + '" name="' + c.n + '" value="' + esc(o) + '"><span>' + esc(o) + '</span></label>').join('') + '</div></fieldset>';
+    let saisie;
+    if (c.t === 'liste') saisie = '<select name="' + c.n + '">' + c.o.map((o) => '<option>' + esc(o) + '</option>').join('') + '</select>';
+    else if (c.t === 'zone') saisie = '<textarea name="' + c.n + '" rows="2" placeholder="' + esc(c.p || '') + '"></textarea>';
+    else saisie = '<input type="text" name="' + c.n + '" placeholder="' + esc(c.p || '') + '" autocomplete="' + (c.ac || 'off') + '">';
+    return '<label class="' + classe + '"><span>' + etiquette + '</span>' + saisie + '</label>';
+  }
+
+  // Les réponses aux questions courantes sont celles de la FAQ de la page.
+  function faq() {
+    return '<div class="wa-faq">' + Array.from(document.querySelectorAll('#faq details')).map((d) => '<details name="wa-faq"><summary>' + esc(d.querySelector('summary').textContent) + '</summary><p>' + esc(d.querySelector('p').textContent) + '</p></details>').join('') + '</div>' +
+      '<label class="wa-champ"><span>Une autre question ?</span><textarea name="question" rows="2" placeholder="Écrivez-la ici…"></textarea></label>';
+  }
+
+  function construire() {
+    const flux = FLUX[besoin];
+    if (besoin === 'question') {
+      ecrans = ['choix', 'faq'];
+      zone.innerHTML = '<div class="wa-champs" data-ecran="faq">' + faq() + '</div>';
+      return;
+    }
+    ecrans = ['choix'].concat(besoin === 'detail' ? ['catalogue'] : [], flux.etapes.map((_, n) => 'e' + n));
+    zone.innerHTML = flux.etapes.map((e, n) => '<div class="wa-champs" data-ecran="e' + n + '">' + e.champs.map(champ).join('') +
+      (n === flux.etapes.length - 1 ? '<div class="wa-fiche"><strong>Votre fiche de demande</strong><dl id="waFiche"></dl></div><p class="wa-aide">Elle part toute rédigée sur WhatsApp. Vous avez une photo ? Envoyez-la juste après.</p>' : '') + '</div>').join('');
+  }
+
+  function reponses() {
+    const flux = FLUX[besoin];
+    return flux.etapes.flatMap((e) => e.champs).map((c) => {
+      const v = c.t === 'puces'
+        ? Array.from(zone.querySelectorAll('[name="' + c.n + '"]:checked')).map((x) => x.value).join(', ')
+        : String(zone.querySelector('[name="' + c.n + '"]').value).trim();
+      return v && !(c.t === 'liste' && v === c.o[0]) ? { nom: c.n, libelle: c.m, valeur: v } : null;
+    }).filter(Boolean);
+  }
+
+  function fiche() {
+    const dl = $('waFiche');
+    if (dl) dl.innerHTML = reponses().filter((r) => r.nom !== 'prenom' && r.nom !== 'note').map((r) => '<dt>' + esc(r.libelle) + '</dt><dd>' + esc(r.valeur) + '</dd>').join('');
+  }
 
   function afficher(focus) {
-    const b = BESOINS[besoin];
-    const total = b && !b.quantites ? 2 : 3;
-    const derniere = etape === total - 1;
-    f.querySelector('[data-wa="0"]').hidden = etape !== 0;
-    f.querySelector('[data-wa="1"]').hidden = etape !== 1;
-    f.querySelector('[data-wa="2"]').hidden = etape !== 2;
-    f.querySelector('[data-wa="fin"]').hidden = !derniere || etape === 0;
-    $('waNav').hidden = etape === 0;
-    $('waSuite').textContent = derniere ? 'Envoyer sur WhatsApp' : 'Continuer';
-    $('waTitre').textContent = etape === 0 ? 'Vous voulez quoi ?' : etape === 1 ? b.question : 'Combien ?';
-    Array.from($('waBarre').children).forEach((t, i) => { t.hidden = i >= total; t.classList.toggle('fait', i <= etape); });
-    $('waErreur').hidden = true;
-    const objet = $('waObjet');
-    objet.hidden = etape === 0;
-    if (etape) objet.src = '/assets/sourcing/wa/wa-' + besoin + '-v1' + (matchMedia('(prefers-reduced-motion: reduce)').matches ? '-fixe' : '') + '.webp';
-    if (focus) (etape === 1 ? f.elements.texte : $('waTitre')).focus();
-  }
-
-  function choisir(cle) {
-    if (cle !== besoin) {
-      besoin = cle;
-      const b = BESOINS[cle];
-      f.elements.texte.value = '';
-      f.elements.texte.placeholder = b.aide;
-      $('waLabel').textContent = cle === 'marque' ? 'Décrivez-la' : cle === 'question' ? 'Votre message' : 'Décrivez-le';
-      $('waPhoto').hidden = cle === 'question';
-      $('waQte').innerHTML = (b.quantites || []).map((q) => '<label><input type="radio" name="quantite" value="' + q + '"><span>' + q + '</span></label>').join('');
+    const ecran = ecrans[i], etape = ecran[0] === 'e' ? Number(ecran.slice(1)) : null;
+    $('waChoix').hidden = ecran !== 'choix';
+    $('waCatalogue').hidden = ecran !== 'catalogue';
+    Array.from(zone.children).forEach((el) => el.hidden = el.dataset.ecran !== ecran);
+    $('waNav').hidden = ecran === 'choix';
+    $('waSuite').hidden = ecran === 'catalogue';
+    $('waSuivi').hidden = etape === null;
+    if (etape !== null) {
+      const total = FLUX[besoin].etapes.length;
+      $('waBarre').innerHTML = Array.from({ length: total }, (_, n) => '<i class="' + (n <= etape ? 'fait' : '') + '"></i>').join('');
+      $('waCompte').textContent = 'Étape ' + (etape + 1) + ' sur ' + total;
     }
-    etape = 1;
-    afficher(true);
+    $('waSuite').textContent = i === ecrans.length - 1 ? 'Envoyer sur WhatsApp' : 'Continuer';
+    $('waTitre').textContent = ecran === 'choix' ? 'Vous voulez quoi\u00a0?' : ecran === 'catalogue' ? 'Déjà au catalogue\u00a0?' : ecran === 'faq' ? 'Votre question' : FLUX[besoin].etapes[etape].titre;
+    const objet = $('waObjet');
+    objet.hidden = ecran === 'choix';
+    if (ecran !== 'choix') objet.src = '/assets/sourcing/wa/wa-' + besoin + '-v2' + (matchMedia('(prefers-reduced-motion: reduce)').matches ? '-fixe' : '') + '.webp';
+    $('waErreur').hidden = true;
+    fiche();
+    boite.scrollTop = 0;
+    if (focus) $('waTitre').focus({ preventScroll: true });
   }
 
-  f.querySelector('[data-wa="0"]').addEventListener('click', (e) => { const c = e.target.closest('[data-besoin]'); if (c) choisir(c.dataset.besoin); });
-  $('waRetour').addEventListener('click', () => { etape--; afficher(true); });
+  const aller = (n) => { i = n; afficher(true); };
+  const erreur = (message, el) => { $('waErreur').textContent = message; $('waErreur').hidden = false; el.focus(); };
 
-  f.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!etape) return;
-    const b = BESOINS[besoin], texte = f.elements.texte.value.trim();
-    if (!texte) { etape = 1; afficher(true); $('waErreur').textContent = 'Écrivez quelques mots pour continuer.'; $('waErreur').hidden = false; return; }
-    if (etape === 1 && b.quantites) { etape = 2; afficher(true); return; }
-    const prenom = f.elements.prenom.value.trim();
-    const quantite = f.querySelector('[name="quantite"]:checked');
-    const message = [
-      'Bonjour Wanisource' + (prenom ? ', ici ' + prenom : '') + '.',
-      'Ma demande : ' + b.nom,
-      (besoin === 'question' ? 'Question : ' : besoin === 'marque' ? 'Idée : ' : 'Article : ') + texte,
-      b.quantites ? 'Quantité : ' + (quantite ? quantite.value : 'à définir') : '',
-    ].filter(Boolean).join('\n');
-    const url = 'https://wa.me/33624547342?text=' + encodeURIComponent(message);
+  function envoyer(lignes) {
+    const url = 'https://wa.me/33624547342?text=' + encodeURIComponent(lignes.filter(Boolean).join('\n'));
     const fenetre = window.open(url, '_blank');
     if (fenetre) fenetre.opener = null; else location.href = url;
     boite.close();
-    f.reset(); etape = 0; besoin = null;
+    f.reset(); zone.innerHTML = ''; besoin = null; ecrans = ['choix']; i = 0;
+  }
+
+  $('waChoix').addEventListener('click', (e) => {
+    const c = e.target.closest('[data-besoin]');
+    if (!c) return;
+    if (c.dataset.besoin !== besoin) { besoin = c.dataset.besoin; construire(); }
+    aller(1);
+  });
+  $('waSurMesure').addEventListener('click', () => aller(i + 1));
+  $('waRetour').addEventListener('click', () => aller(i - 1));
+  zone.addEventListener('input', () => { $('waErreur').hidden = true; fiche(); });
+
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const ecran = ecrans[i];
+    if (ecran === 'choix' || ecran === 'catalogue') return;
+    if (ecran === 'faq') {
+      const q = zone.querySelector('[name="question"]');
+      if (!q.value.trim()) return erreur('Écrivez votre question avant d’envoyer.', q);
+      return envoyer(['Bonjour Wanisource.', 'J’ai une question : ' + q.value.trim()]);
+    }
+    const flux = FLUX[besoin], etape = Number(ecran.slice(1));
+    const manque = flux.etapes[etape].champs.find((c) => c.requis && !zone.querySelector('[name="' + c.n + '"]').value.trim());
+    if (manque) return erreur(manque.requis, zone.querySelector('[name="' + manque.n + '"]'));
+    if (i < ecrans.length - 1) return aller(i + 1);
+    const r = reponses(), prenom = r.find((x) => x.nom === 'prenom');
+    envoyer(['Bonjour Wanisource' + (prenom ? ', ici ' + prenom.valeur : '') + '.', 'Ma demande : ' + flux.nom]
+      .concat(r.filter((x) => x.nom !== 'prenom').map((x) => x.libelle + ' : ' + x.valeur)));
   });
 
   $('waBulle').addEventListener('click', () => {
@@ -2306,7 +2406,7 @@ body.sc-choice-custom .wa-bulle{display:none}
     document.body.style.overflow = 'hidden';
     afficher(false);
     boite.showModal();
-    $('waTitre').focus();
+    $('waTitre').focus({ preventScroll: true });
   });
   $('waFermer').addEventListener('click', () => boite.close());
   boite.addEventListener('click', (e) => { if (e.target === boite) { const r = boite.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) boite.close(); } });
